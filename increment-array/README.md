@@ -4,7 +4,14 @@
 
 This directory demonstrate how subtle Undefined Behaviors (UB) can be and why they are most often not detected through unit tests
 
-Spoiler: In the below `increment_array()` function, there is an Undefined Behavior (a buffer overflow), you may have already spotted it... But that's not the point of this example. The main point is to show that:
+Note: If you have an Ubuntu machine you can run this demo live by running:
+```bash
+git clone https://github.com/TrustInSoft/tis-examples
+cd increment-array
+./demo.sh
+```
+
+Let's star with a spoiler: In the below `increment_array()` function, there is an Undefined Behavior (a buffer overflow), you may have already spotted it... But that's not the point of this example. The main point is to show that:
 - Despite the Undefined Behavior/buffer overflow a unit test still passes
 - Due to the UB/buffer overflow, the code behaves differently depending on context.
 
