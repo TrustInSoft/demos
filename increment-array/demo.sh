@@ -49,7 +49,8 @@ EOF
 cat increment.c
 
 [ "$steps" = "true" ] && read -p "$MSG" c
-
+#------------------------------------------------------------------------------
+clear
 cat << EOF
 ${GREEN}$H2
 This function is tested with the below test driver.
@@ -73,7 +74,8 @@ sleep $SLEEP_TIME
 make ut
 
 cat << EOF
-${GREEN}As you can see the array is well incremented for all its cells
+${GREEN}As you can see the array is well incremented for all its cells.
+Despite the Undefined Behavior, the test passes
 ${RESET}
 EOF
 
@@ -83,7 +85,7 @@ EOF
 clear
 cat << EOF
 ${GREEN}$H2
-Now let's compile with a bit more information printed on stdout during the test
+Now let's compile with a bit more information logged on stdout during the test
 ${RESET}
 EOF
 
@@ -92,7 +94,7 @@ make ut-debug
 
 cat << EOF
 ${GREEN}If you carefully look, you'll notice that the compiler stored the ${YELLOW}name${GREEN} variable
-in memory just after the ${YELLOW}array${GREEN} variable (16 bytes further, just the size of ${YELLOW}array${GREEN}).
+in memory just after the ${YELLOW}data${GREEN} variable (16 bytes further, just the size of ${YELLOW}data${GREEN}).
 ...and when we display the ${YELLOW}name${GREEN} variable before and after calling ${YELLOW}increment_array()${GREEN} we can see
 that this variable is affected (It was "${RED}O${GREEN}livier" before the call, and becomes "${RED}P${GREEN}livier"
 after the call) even though it is not used for the call to ${YELLOW}increment_array()${GREEN}
@@ -178,16 +180,21 @@ ${GREEN}As you can see from the warning
 ${RESET}increment.c:10:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
 ${GREEN}above, the UB is detected.${RESET}
 EOF
+    [ "$steps" = "true" ] && read -p "$MSG" c
 fi
 
 cat << EOF
 
 ${GREEN}$H2
-With the TrustInSoft Analyzer the analysis/test result is deterministic, not context dependent.
-There is a UB and it will always be detected and reported whatever the environment.
+With the TrustInSoft Analyzer the analysis/test result is deterministic,
+not context dependent. There is a UB and it will always be detected and
+reported whatever the environment.
 ${RED}$H1
-        That's how you can get mathematical guarantee of
-        absence of Undefined Behaviors with TrustInSoft !
+        With TrustInSoft you can get mathematical guarantee of
+        absence of Undefined Behaviors through exhaustive analysis !
+
+        Reach out to us through https://trust-in-soft.com/contact/ if you
+        would like to know more about our product.
 $H1
 ${RESET}
 EOF

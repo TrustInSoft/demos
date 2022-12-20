@@ -2,12 +2,10 @@
 
 ## Overview
 
-This directory demonstrate how subtle Undefined Behaviors (UB) can be and why they are
-most often not detected through unit tests
+This directory demonstrate how subtle Undefined Behaviors (UB) can be and why they are most often not detected through unit tests
 
-Spoiler: In the below `increment_array()` function, there is an Undefined Behavior (a buffer overflow), you may have already spotted it...
-...But that's not the point of this example. The main point is to show that:
-- Despite the Undefined Behavior/buffer overflow the unit test still passes
+Spoiler: In the below `increment_array()` function, there is an Undefined Behavior (a buffer overflow), you may have already spotted it... But that's not the point of this example. The main point is to show that:
+- Despite the Undefined Behavior/buffer overflow a unit test still passes
 - Due to the UB/buffer overflow, the code behaves differently depending on context.
 
 The tested function is `increment_array()` whose implementation is below
@@ -31,11 +29,11 @@ int main()
     char name[] = "Olivier";
 
     printf("\nRun test_increment_array()\n");
-    DBG("&data = 0x%lx &name = 0x%lx\n", (unsigned long)data, (unsigned long)name);
-    DBG("Before increment array = {%d, %d, %d, %d}, name = %s\n",
+    LOG("&data = 0x%lx &name = 0x%lx\n", (unsigned long)data, (unsigned long)name);
+    LOG("Before increment array = {%d, %d, %d, %d}, name = %s\n",
         data[0], data[1], data[2], data[3], name);
     increment_array(data, sizeof(data)/sizeof(int));
-    DBG("After  increment array = {%d, %d, %d, %d}, name = %s\n",
+    LOG("After  increment array = {%d, %d, %d, %d}, name = %s\n",
         data[0], data[1], data[2], data[3], name);
 
     int ok = (data[0] == 2) && (data[1] == 4) && (data[2] == 6) && (data[3] == 8);
@@ -159,3 +157,6 @@ The TrustInSoft analyzer solves all the above challenges by:
 - Exhaustively and deterministically detecting all Undefined Behaviors in the code
 - Providing a powerful investigation GUI to understand the root cause of an Undefined
   Behavior and fix it quickly
+
+Reach out to us through https://trust-in-soft.com/contact/ if you would like to know
+more about our product.
