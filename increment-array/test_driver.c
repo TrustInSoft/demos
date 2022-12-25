@@ -2,15 +2,11 @@
 #include <stdio.h>
 #include <limits.h>
 #include "increment.h"
+#include "logutils.h"
 
 #define SUCCESS "--> PASSED"
 #define FAILED  "--> *** FAILED ***"
 
-#ifdef LOG_VERBOSE
-#define LOG printf
-#else
-#define LOG // 
-#endif
 
 int main()
 {
@@ -20,16 +16,14 @@ int main()
 #else
     char name[] = "Olivier";
 #endif
+    int len = sizeof(data)/sizeof(int);
+
     printf("\nRun test_increment_array()\n");
-    LOG("&data = 0x%lx &name = 0x%lx\n", (unsigned long)data, (unsigned long)name);
-    LOG("Before increment array = {%d, %d, %d, %d}, name = %s\n",
-        data[0], data[1], data[2], data[3], name);
+    log_info("Before increment", data, len, name, 1);
     increment_array(data, sizeof(data)/sizeof(int));
-    LOG("After  increment array = {%d, %d, %d, %d}, name = %s\n",
-        data[0], data[1], data[2], data[3], name);
+    log_info("After  increment", data, len, name, 0);
 
     int ok = (data[0] == 2) && (data[1] == 4) && (data[2] == 6) && (data[3] == 8);
-    printf("\nincrement_array({1, 3, 5 ,7}) = {%d, %d, %d, %d} %s\n\n",
-        data[0], data[1], data[2], data[3], ok ? SUCCESS: FAILED);
+    printf("\nincrement_array({1, 3, 5, 7}) = %d %s\n\n", data[0], ok ? SUCCESS: FAILED);
     return (ok ? 0 : 1);
 }

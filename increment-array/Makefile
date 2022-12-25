@@ -7,7 +7,7 @@ FONT_RESET := `tput sgr0`
 
 TIS_ANALYZER := tis-analyzer
 TARGET := demo-ub
-FILES := test_driver.c increment.c
+FILES := test_driver.c increment.c logutils.c
 COMPILER := gcc
 TIS_OPTS := -val-profile interpreter -val -I.
 
