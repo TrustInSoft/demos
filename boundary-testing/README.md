@@ -34,7 +34,7 @@ cd boundary-testing
 
 ## Let's do boundary testing
 
-In the hope of detecting corner cases we want to do boundary testing of the `calculate()` function below.
+In the hope of detecting corner cases we want to do boundary testing of the `calculate()` function below. See [boundary.c](boundary.c) for details
 ```c
 // Special value return when input is out of bounds (value not in regular output space)
 #define OUT_OF_BOUNDS   0xCAFECAFE
@@ -62,7 +62,7 @@ In order to try to be comprehensive we will have to test a rather large number o
 (-3, 10001)   ...
 (-3, 20000)   ...
 ```
-We will test this `calculate()`function with the following test driver
+We will test this `calculate()`function with the following test driver. See [test_driver.c](test_driver.c) for details
 ```c
 #define SUCCESS "PASSED"
 #define FAILED  "*** FAILED ***"
@@ -124,12 +124,18 @@ Creating 'boundary.c.gcov'
 **All boundary tests pass and structural coverage is 100%.**
 
 The above shows that boundary testing has several limitations:
-- As exhaustive as this input list may be, we have a good chance to not select one set of inputs that could reveal the problem in the `calculate()` function
+- As exhaustive as this input list may be, we have a good chance to not select one set of inputs that could reveal the problem in the `calculate()` function, like x == 119 and y == 289 for instance.
 - Even if luckily (accidentally) we chose one input vector that can fail the test, this will be an isolated case and will not guarantee
 that all possible combinations that can fail the test are found.
 - It would take 10000 x 10000 = 100 millions tests to test all the possible valid input values.
 
 **Despite the boundary testing efforts, there is an undefined behavior (a division by zero) that was not detected by the tests.**
+
+You may argue that in this example a smart tester should look at the code and determine that some special values may cause a division by zero.
+That's true but:
+- Sometimes testers may not have access to the code implementation so they can't guess special values
+- This example is fairly simple to "reverse engineer" and deduct special values, but in real life code may be way more complex with conditions,
+subfunction calls etc... which would make a tester's life much more difficult to find out special values.
 
 ## Analyzing the above code with TrustInSoft
 
