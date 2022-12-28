@@ -25,14 +25,14 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #endif
 #include "boundary.h"
 
-#define SUCCESS "--> PASSED"
-#define FAILED  "--> *** FAILED ***"
+#define SUCCESS "PASSED"
+#define FAILED  "*** FAILED ***"
 int main()
 {
 #ifndef __TRUSTINSOFT_ANALYZER__
     int inputs[] = {
         -3,-3,         0, -3,         -3, 0,      0, 0,
-        -3, 1,         0, 1,          -3, 5000,   0, 5000
+        -3, 1,         0, 1,          -3, 5000,   0, 5000,
         -3, 10000,     -3, 10001,     -3, 20000,  1, 10000,
         10000, 10000,  10001, 10000,  10001, 7,   7, 7
     };
@@ -46,9 +46,11 @@ int main()
         res = calculate(x, y);
         printf("calculate(%5d, %5d) = ", x, y);
         if (res == OUT_OF_BOUNDS) {
-            printf("OUT_OF_BOUNDS %s\n", (x < 1 || x > 1000 || y < 1 || y > 1000) ? SUCCESS: FAILED); 
+            printf("OUT_OF_BOUNDS --> %s\n",
+                (x < 1 || x > 10000 || y < 1 || y > 10000) ? SUCCESS: FAILED); 
         } else {
-            printf("%8d      %s\n", res, (x >= 1 && x <= 1000 && y >= 1 && y <= 1000) ? SUCCESS: FAILED);
+            printf("%8d      --> %s\n", res,
+                (x >= 1 && x <= 10000 && y >= 1 && y <= 10000) ? SUCCESS: FAILED);
         }
     }
 #else
