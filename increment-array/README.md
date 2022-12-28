@@ -51,19 +51,17 @@ We'll test the above with a driver like the below:
 ```c
 int main()
 {
-    int data[] = {1, 3, 5, 7};
+    int data[] = ARRAY;
     char name[] = "Olivier";
+    int len = sizeof(data)/sizeof(int);
 
     printf("\nRun test_increment_array()\n");
-    LOG("&data = 0x%lx &name = 0x%lx\n", (unsigned long)data, (unsigned long)name);
-    LOG("Before increment array = {%d, %d, %d, %d}, name = %s\n",
-        data[0], data[1], data[2], data[3], name);
-    increment_array(data, sizeof(data)/sizeof(int));
-    LOG("After  increment array = {%d, %d, %d, %d}, name = %s\n",
-        data[0], data[1], data[2], data[3], name);
+    log_info("Before increment", data, len, name, 1);
+    increment_array(data, len);
+    log_info("After  increment", data, len, name, 0);
 
     int ok = (data[0] == 2) && (data[1] == 4) && (data[2] == 6) && (data[3] == 8);
-    printf("\nincrement_array({1, 3, 5 ,7}) = {%d, %d, %d, %d} %s\n\n",
+    printf("\nincrement_array({1, 3, 5, 7}) = {%d, %d, %d, %d} %s\n\n",
         data[0], data[1], data[2], data[3], ok ? SUCCESS: FAILED);
     return (ok ? 0 : 1);
 }
@@ -98,41 +96,41 @@ $ make ut-gcc
 gcc -DLOG_VERBOSE -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
-Address(data) = 0x7ffe4e769640 = 140730214815296
-Address(name) = 0x7ffe4e769660 = 140730214815328
+Address(data) = 0x7ffecadbd2f0 = 140732301824752
+Address(name) = 0x7ffecadbd300 = 140732301824768
 Before increment array = {1, 3, 5, 7} - name = Olivier
-After  increment array = {2, 4, 6, 8} - name = Olivier
+After  increment array = {2, 4, 6, 8} - name = Plivier
 
-increment_array({1, 3, 5, 7}) = 2 --> PASSED
+increment_array({1, 3, 5, 7}) = {2, 4, 6, 8} --> PASSED
 ```
 
-In the context of this test the array `data` (and the string `name`) are allocated in the stack, and when compiled with `gcc 9.4.0`, `data` and `name` are contiguous in that stack (Address of `name` (0x7ffdab40b310) is exactly 16 bytes (0x10) after address of `data` (0x7ffdab40b300), i.e. just the size of a 4 integers array).
+In the context of this test the array `data` (and the string `name`) are allocated in the heap, and when compiled with `gcc 9.4.0`, `data` and `name` are contiguous in memory (Address of `name` (0x7ffecadbd300) is exactly 16 bytes (0x10) after address of `data` (0x7ffecadbd2f0), i.e. just the size of a 4 integers array).
 Because of the buffer overflow `increment_array()` function (over)writes in the `name` variable.
 - Before calling `increment_array()`, `name` holds the value `Olivier`
 - After  calling `increment_array()`, `name` holds the value `Plivier`
 
 ## Showing that Undefined Behaviors are subtle (but severe) problems
 
-It's all about context! With an Undefined Behavior, the code behaves unpredictably, and differently
-depending on context. We'll make 2 variations of the above test, that should change absolutely nothing, and look at test result
+It's all about context! With an Undefined Behavior, the code behaves unpredictably, and differently depending on context. We'll make 2 variations of the above test, that should change absolutely nothing, and look at the test result
 
 ### Variation 1: Keep same code, change of compiler
 
 Let's change the compiler, and use **clang** instead of **gcc**. For that run `make ut-clang`.
 
 ```bash
-$ make ut-clang
-clang -DDEBUG -I. test_driver.c increment.c -o demo-ub && ./demo-ub
+make ut-clang
+clang -DLOG_VERBOSE -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
-&data = 0x7ffe8dff8750 &name = 0x7ffe8dff8748
-Before increment array = {1, 3, 5, 7}, name = Olivier
-After  increment array = {2, 4, 6, 8}, name = Olivier
+Address(data) = 0x7ffe93113750 = 140731365799760
+Address(name) = 0x7ffe93113748 = 140731365799752
+Before increment array = {1, 3, 5, 7} - name = Olivier
+After  increment array = {2, 4, 6, 8} - name = Olivier
 
-increment_array({1, 3, 5 ,7}) = {2, 4, 6, 8} --> PASSED
+increment_array({1, 3, 5, 7}) = {2, 4, 6, 8} --> PASSED
 ```
 
-With that compiler, you'll notice that variables `data` and `name` are implanted differently in memory (`data` address is below/before `name`, whereas with **gcc** it was above/after) and because of that `name` is not overwritten (but that's pure luck... or unpredictability... or anything but determinism, that is, the essence of an Undefined Behavior)
+With that compiler, you'll notice that variables `data` and `name` are implanted differently in memory (`name` address is below/before `data`, whereas with **gcc** it was above/after) and because of that `name` is not overwritten (but that's pure luck... or unpredictability... or anything but determinism, that is, the essence of an Undefined Behavior)
 
 ### Variation 2: Keep same compiler, change the code in an theoretically innocuous way
 
@@ -141,23 +139,24 @@ Let's set variable `name` to `TrustInSoft` instead of `Olivier`. Just like for t
 you would expect that after calling `increment_array()`, `name` should be corrupted because of the
 buffer overflow, and hold the value `UrustInSoft`.
 
-Let's try by running: `make ut-long-name`
+Let's try by running: `make ut-gcc-long`
 
 ```bash
-$ make ut-long-name
-gcc -DDEBUG -DLONG_NAME -I. test_driver.c increment.c -o demo-ub && ./demo-ub
+$ make ut-gcc-long
+gcc -DLOG_VERBOSE -DLONG_NAME -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
-&data = 0x7fffaef20420 &name = 0x7fffaef2043c
-Before increment array = {1, 3, 5, 7}, name = TrustInSoft
-After  increment array = {2, 4, 6, 8}, name = TrustInSoft
+Address(data) = 0x7ffd865ab5b0 = 140726857545136
+Address(name) = 0x7ffd865ab5cc = 140726857545164
+Before increment array = {1, 3, 5, 7} - name = TrustInSoft
+After  increment array = {2, 4, 6, 8} - name = TrustInSoft
 
-increment_array({1, 3, 5 ,7}) = {2, 4, 6, 8} --> PASSED
+increment_array({1, 3, 5, 7}) = {2, 4, 6, 8} --> PASSED
 ```
 
 Oddly, `name` is not corrupted (i.e. the UB is invisible).
-Why? Because of the string size change, `gcc` decided differently on the variable implantation in memory: `name` is no longer 16 bytes after `data` (ie just after data) but 28 bytes after (Difference between 0x7fffaef2043c and 0x7fffaef20420)
-So when you run the same test, `name` is not overwritten (There is still an Undefined Behavior, just that the memory region overwritten is less visible from the outside).
+Why? Because of the string size change, `gcc` decided differently on the variable implantation in memory: `name` is no longer 16 bytes after `data` (ie just after data) but 28 bytes after (Difference between 0x7ffd865ab5b0 and 0x7ffd865ab5cc)
+So when you run the same test, `name` is not overwritten. There is still an Undefined Behavior, just that the memory region overwritten is less visible from the outside.
 
 
 ## Analyzing the above code with TrustInSoft
@@ -193,19 +192,18 @@ increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
 ```
 
 The message `increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);` is the
-evidence that the buffer overflow was detected and that TrustInSoft analyzer is a much more
+evidence that the buffer overflow was detected and that the TrustInSoft Analyzer is a much more
 reliable way of testing code for robustness than Unit Tests.
 
 ## Conclusion
 
-Undefined Behaviors are sometimes obvious (they can cause runtime errors like division
-by zero, and software crashes) but most of the time:
+Undefined Behaviors are sometimes obvious (they can cause runtime errors like division by zero, and software crashes) but most of the time:
 - They are quite subtle
 - They are often hard to detect with traditional unit tests.
 - They will materialize (cause a problem) only in certain conditions, and their
   potentially catastrophic effect may not materialize immediately (crash after some time, crash under particular circumstances, no crash but unpredictable code behavior etc...)
 
-Because of the above, they are quite complex to spot and investigate
+Because of the above, they are quite complex to spot and investigate.
 Even when all your test pass, even if there is no immediate effect of an undefined behavior (like a crash for instance), undefined behaviors are time bombs that only need time to cause damage (safety or security problems)
 
 The TrustInSoft analyzer solves all the above challenges by:
