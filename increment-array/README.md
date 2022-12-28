@@ -91,18 +91,19 @@ increments one cell to far at the end of the array.
 
 ## Basic Unit Test with a bit more logging
 
-For the moment let's try to see what is happening exactly, and for that we'll re-run the same test with a little bit more information logged, by running `make ut-debug`
+For the moment let's try to see what is happening exactly, and for that we'll re-run the same test with a little bit more information logged, by running `make ut-gcc`
 
 ```bash
-$ make ut-debug
-gcc -DDEBUG -I. test_driver.c increment.c -o demo-ub && ./demo-ub
+$ make ut-gcc
+gcc -DLOG_VERBOSE -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
-&data = 0x7ffdab40b300 &name = 0x7ffdab40b310
-Before increment array = {1, 3, 5, 7}, name = Olivier
-After  increment array = {2, 4, 6, 8}, name = Plivier
+Address(data) = 0x7ffe4e769640 = 140730214815296
+Address(name) = 0x7ffe4e769660 = 140730214815328
+Before increment array = {1, 3, 5, 7} - name = Olivier
+After  increment array = {2, 4, 6, 8} - name = Olivier
 
-increment_array({1, 3, 5 ,7}) = {2, 4, 6, 8} --> PASSED
+increment_array({1, 3, 5, 7}) = 2 --> PASSED
 ```
 
 In the context of this test the array `data` (and the string `name`) are allocated in the stack, and when compiled with `gcc 9.4.0`, `data` and `name` are contiguous in that stack (Address of `name` (0x7ffdab40b310) is exactly 16 bytes (0x10) after address of `data` (0x7ffdab40b300), i.e. just the size of a 4 integers array).
@@ -163,9 +164,37 @@ So when you run the same test, `name` is not overwritten (There is still an Unde
 
 The nice thing is that, unlike shown above, the TrustInSoft analyzer is not dependent of the context. There is an Undefined Behavior and the analyzer would find it with 100% mathematical guarantee.
 If you have access to the TrustInSoft Analyzer this can be verified by running `make tis` or `make tis-gui`
+This would output something like
+```
+tis-analyzer -val-profile interpreter -val -I. test_driver.c increment.c logutils.c
+[kernel] [1/7] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+...
+[kernel] [5/7] Parsing test_driver.c (with preprocessing)
+[kernel] [6/7] Parsing increment.c (with preprocessing)
+[kernel] [7/7] Parsing logutils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at main
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
 
-This is an evidence that TrustInSoft analyzer is a much more reliable way of testing code for robustness
-than Unit Tests.
+
+Run test_increment_array()
+
+increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
+                  stack: increment_array :: test_driver.c:42 <- main
+...
+[time] Performance summary:
+  Parsing: 2.993s
+  Value Analysis: 0.048s
+
+  Total time: 0h00m03s (= 3.041 seconds)
+  Max memory used: 140.3MB (= 140304384 bytes)
+```
+
+The message `increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);` is the
+evidence that the buffer overflow was detected and that TrustInSoft analyzer is a much more
+reliable way of testing code for robustness than Unit Tests.
 
 ## Conclusion
 

@@ -19,22 +19,7 @@
 # 
 set -euo pipefail
 
-BOLD=`tput bold`
-CYAN=`tput setaf 6`
-GREEN=`tput setaf 2`
-RED=`tput setaf 1`
-YELLOW=`tput setaf 3`
-RESET=`tput sgr0`
-UNDERLINE=`tput sgr 0 1`
-MAGENTA=`tput setaf 5`
-
-SLEEP_TIME=1
-
-MSG="Press [Enter] to proceed: "
-H1="================================================================================"
-H2="--------------------------------------------------------------------------------"
-
-steps=true
+source ../tis-examples-tools.sh
 
 #------------------------------------------------------------------------------
 clear
@@ -64,8 +49,8 @@ context, and the UB can be more or less noticeable depending on cases
 $H2${RESET}
 EOF
 
-cat increment.c
-
+tac increment.c | sed -e '/void increment_array/q' | tac
+echo
 [ "$steps" = "true" ] && read -p "$MSG" c
 #------------------------------------------------------------------------------
 clear
@@ -77,6 +62,7 @@ $H2${RESET}
 EOF
 
 tac test_driver.c | sed -e '/int main()/q' | tac
+echo
 
 [ "$steps" = "true" ] && read -p "$MSG" c
 
@@ -108,7 +94,7 @@ ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut-debug
+make ut-gcc
 
 cat << EOF
 ${GREEN}If you carefully look, you'll notice that the compiler stored the ${YELLOW}name${GREEN} variable
@@ -161,7 +147,7 @@ ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut-long-name
+make ut-gcc-long
 
 cat << EOF
 ${GREEN}"Que nenni!" as we'd say in old French: For some reason, because the ${YELLOW}name${GREEN}
@@ -189,24 +175,66 @@ ${GREEN}$H2
 Let's now analyze the same code with the TrustInSoft Analyzer (TISA).
 ${RESET}
 EOF
-
     make tis
 
-    cat << EOF
+else
 
-${GREEN}As you can see from the warning 
-${RESET}increment.c:10:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
+    cat << EOF
+${GREEN}You don't have TrustInSoft Analyzer installed on this machine,
+but an execution would output something like the below:
+${CYAN}
+tis-analyzer -val-profile interpreter -val -I. test_driver.c increment.c logutils.c${RESET}
+[kernel] [1/7] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/7] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/7] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/7] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/7] Parsing test_driver.c (with preprocessing)
+[kernel] [6/7] Parsing increment.c (with preprocessing)
+[kernel] [7/7] Parsing logutils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at main
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+
+
+Run test_increment_array()
+
+increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
+                  stack: increment_array :: test_driver.c:42 <- main
+[value] Stopping at nth alarm
+[from] Non-terminating function increment_array (no dependencies)
+[from] Non-terminating function main (no dependencies)
+[value] user error: Degeneration occurred:
+                    results are not correct for lines of code that can be reached from the degeneration point.
+[time] Performance summary:
+  Parsing: 3.382s
+  Value Analysis: 0.049s
+
+  Total time: 0h00m03s (= 3.431 seconds)
+  Max memory used: 140.3MB (= 140304384 bytes)
+EOF
+fi
+
+cat << EOF
+${GREEN}
+$H2
+As you can see from the warning:
+${RESET}increment.c:27:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
 ${GREEN}above, the UB is detected.${RESET}
 EOF
-    [ "$steps" = "true" ] && read -p "$MSG" c
-fi
+
+[ "$steps" = "true" ] && read -p "$MSG" c
 
 cat << EOF
 
 ${GREEN}$H2
 With the TrustInSoft Analyzer the analysis/test result is deterministic,
 not context dependent. There is a UB and it will always be detected and
-reported whatever the environment.
+reported whatever the environment.${RESET}
+EOF
+
+cat << EOF
 ${RED}$H1
         With TrustInSoft you can get mathematical guarantee of
         absence of Undefined Behaviors through exhaustive analysis !

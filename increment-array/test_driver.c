@@ -30,7 +30,6 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 int main()
 {
     int data[] = ARRAY;
-    int before[] = ARRAY;
 #ifdef LONG_NAME
     char name[] = "TrustInSoft";
 #else
@@ -44,6 +43,7 @@ int main()
     log_info("After  increment", data, len, name, 0);
 
     int ok = (data[0] == 2) && (data[1] == 4) && (data[2] == 6) && (data[3] == 8);
-    printf("\nincrement_array({1, 3, 5, 7}) = %d %s\n\n", data[0], ok ? SUCCESS: FAILED);
+    printf("\nincrement_array({1, 3, 5, 7}) = {%d, %d, %d, %d} %s\n\n",
+        data[0], data[1], data[2], data[3], ok ? SUCCESS: FAILED);
     return (ok ? 0 : 1);
 }
