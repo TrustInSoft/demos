@@ -20,35 +20,19 @@
 
 set -euo pipefail
 
-BOLD=`tput bold`
-CYAN=`tput setaf 6`
-GREEN=`tput setaf 2`
-RED=`tput setaf 1`
-YELLOW=`tput setaf 3`
-RESET=`tput sgr0`
-UNDERLINE=`tput sgr 0 1`
-MAGENTA=`tput setaf 5`
-
-SLEEP_TIME=1
-
-MSG="Press [Enter] to proceed: "
-H1="================================================================================"
-H2="--------------------------------------------------------------------------------"
-
-steps=true
+source ../tis-examples-tools.sh
 
 #------------------------------------------------------------------------------
 clear
 cat << EOF
 
 ${CYAN}$H1
-           THE ${YELLOW}increment_array()${CYAN} UNDEFINED BEHAVIOR EXAMPLE
+           LIMITATIONS OF BOUNDARY TESTING
 $H1
 
 ${GREEN}$H2
-In this example we'll show how Undefined Behaviors are quite subtle,
-may be visible or not in different execution conditions, and how it can be
-extremely difficult to detect them with traditional tests
+In this example we'll why boundary testing may not be a sufficient way to detect
+specific values that may cause problems such as division by zero in you code.
 $H2${RESET}
 EOF
 
@@ -58,68 +42,69 @@ EOF
 clear
 cat << EOF
 ${GREEN}$H2
-Here's a simple function that increments all cells of an array of integers.
-We'll see that this function has an undefined behavior (UB) and, because of
-that, a program using this function can behave differently depending on the
-context, and the UB can be more or less noticeable depending on cases
+We want to do boundary testing of the below simple function that calculates an
+output value out of 2 inputs x and y. x and y inputs are expected to be integers
+between 1 and 10000. If they are out of this range, the function is expected to
+return a special return code OUT_OF_BOUNDS. 
 $H2${RESET}
 EOF
 
-cat increment.c
+tac boundary.c | sed -e '/int handle_error()/q' | tac
+echo
 
 [ "$steps" = "true" ] && read -p "$MSG" c
+#------------------------------------------------------------------------------
+cat << EOF
+${GREEN}$H2
+In order to try to be comprehensive we will have to test a rather large number of combinations for x and y:
+- Within the boundaries
+- Around the boundaries
+// expected inputs: 1 ≤ x ≤ 10000, 1 ≤ y ≤ 10000
+(-3,-3)       (0, -3)    ...
+(-3, 0)       (0, 0)     ...
+(-3, 1)       (0, 1)     ...
+(-3, 5000)    (0, 5000)   ...
+(-3, 10000)   ...
+(-3, 10001)   ...
+(-3, 20000)   ...
+EOF
+
 #------------------------------------------------------------------------------
 clear
 cat << EOF
 ${GREEN}$H2
 This function is tested with the below test driver.
-Note the presence of variable ${YELLOW}name${GREEN} that will play a role
 $H2${RESET}
 EOF
 
-tac test_driver.c | sed -e '/int main()/q' | tac
-
+gcc -E test_driver.c | tac | sed -e '/int main()/q' | tac | sed '/^$/d'
+echo
 [ "$steps" = "true" ] && read -p "$MSG" c
 
 #------------------------------------------------------------------------------
 clear
 cat << EOF
 ${GREEN}$H2
-Let's compile the program (with gcc) and run a test of it
+Let's run the boundary test driver:
 ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut
+make clean ut
 
 cat << EOF
-${GREEN}As you can see the array is well incremented for all its cells.
-Despite the Undefined Behavior, the test passes
-${RESET}
-EOF
+$H2
+${GREEN}As you can see all tests (within boundary, close to boundary and
+outside boundary) pass successfully. Structural coverage is 100%.
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+Unfortunately there is an Undefined Behavior (a division by zero)
+that was not detected by the boundary testing because the value that cause the
+division by zero are not close to the boundaries but "randomly" within the range
+(example: x == 119 and y == 289).
 
-#------------------------------------------------------------------------------
-clear
-cat << EOF
-${GREEN}$H2
-Now let's compile with a bit more information logged on stdout during the test
-${RESET}
-EOF
-
-sleep $SLEEP_TIME
-make ut-debug
-
-cat << EOF
-${GREEN}If you carefully look, you'll notice that the compiler stored the ${YELLOW}name${GREEN} variable
-in memory just after the ${YELLOW}data${GREEN} variable (16 bytes further, just the size of ${YELLOW}data${GREEN}).
-...and when we display the ${YELLOW}name${GREEN} variable before and after calling ${YELLOW}increment_array()${GREEN} we can see
-that this variable is affected (It was "${RED}O${GREEN}livier" before the call, and becomes "${RED}P${GREEN}livier"
-after the call) even though it is not used for the call to ${YELLOW}increment_array()${GREEN}
-
-The reason for that is the buffer overflow in ${YELLOW}increment_array()${GREEN} that increments past the end
-of the array and overwrites the memory location that happens to be the location of ${YELLOW}name${GREEN}
+With 2 integers between 1 and 10000 as input vector the input space has
+10k x 10k = 100 millions valid possible inputs. It's impossible to test so
+many combinations with classical testing techniques (i.e. one by one).
 ${RESET}
 EOF
 
@@ -127,93 +112,75 @@ EOF
 
 #------------------------------------------------------------------------------
 clear
+
 cat << EOF
 ${GREEN}$H2
-Now let's run the same code and test, but compiled with clang instead of gcc
+Now let's run an analysis with the TrustInSoft Analyzer, leveraging it's
+input generalization capability. We'll modify the test driver as follows:
 ${RESET}
 EOF
 
-sleep $SLEEP_TIME
-make ut-clang
-
-cat << EOF
-${GREEN}clang decides for another way of storing the ${YELLOW}data${GREEN} and ${YELLOW}name${GREEN} variables in memory.
-If you look at the addresses, ${YELLOW}data${GREEN} is after ${YELLOW}name${GREEN}, not before
-
-In this context the UB remains completely invisible (${YELLOW}name${GREEN} is not modified), even if the
-tester has the idea to verify the variable name, because the memory overwritten by the
-${YELLOW}increment_array()${GREEN} buffer overflow is not overlapping with ${YELLOW}name${GREEN}.
-The UB problem is nevertheless still present.
-${RESET}
-EOF
+tmpfile=/tmp/test_driver.$$.c
+grep -v '#include' test_driver.c >${tmpfile}
+gcc -D__TRUSTINSOFT_ANALYZER__ -E ${tmpfile} | tac | sed -e '/int main()/q' | tac|grep -v -E '^# '
+rm -f ${tmpfile}
 
 [ "$steps" = "true" ] && read -p "$MSG" c
-
-#------------------------------------------------------------------------------
 clear
-cat << EOF
-${GREEN}$H2
-Another example of the non-deterministic behavior of the code due to the UB.
-
-Let's compile again with gcc (just like in the 2nd run), but change the value of variable ${YELLOW}name${GREEN}
-from "Olivier" to "TrustInSoft". And run the test again. We could expect the name to be
-changed into "${RED}U${GREEN}rustInSoft" because of the buffer overflow. Let's see...
-${RESET}
-EOF
-
-sleep $SLEEP_TIME
-make ut-long-name
-
-cat << EOF
-${GREEN}"Que nenni!" as we'd say in old French: For some reason, because the ${YELLOW}name${GREEN}
-string size has changed, gcc now decided to implant ${YELLOW}name${GREEN} further past ${YELLOW}data${GREEN} in memory
-(precisely 28 bytes). So the array buffer overflow does not overwrites ${YELLOW}name${GREEN}...
-(but again: The UB is still well present and is a potential time bomb) 
-
-It's important to be clear that the UB is NOT there because ${YELLOW}name${GREEN} is overwritten, but because
-any memory location is overwritten. The UB is present in all tests scenarii above,
-just that in some conditions it overwrites the memory location of ${YELLOW}name${GREEN},
-and in others another memory location (which is very likely used for some other data so
-that's just as bad).
-${RESET}
-EOF
-
-make clean
-
-[ "$steps" = "true" ] && read -p "$MSG" c
 
 if [ $(which tis-analyzer) ]; then
-    #------------------------------------------------------------------------------
-    clear
-    cat << EOF
-${GREEN}$H2
-Let's now analyze the same code with the TrustInSoft Analyzer (TISA).
-${RESET}
-EOF
-
     make tis
-
+else
     cat << EOF
+You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
+an analysis would produce something like the below:
 
-${GREEN}As you can see from the warning 
-${RESET}increment.c:10:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
-${GREEN}above, the UB is detected.${RESET}
+${CYAN}tis-analyzer -val-profile analyzer -val -I. test_driver.c boundary.c${RESET}
+[kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/6] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/6] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/6] Parsing test_driver.c (with preprocessing)
+[kernel] [6/6] Parsing boundary.c (with preprocessing)
+[kernel] Successfully parsed 2 files (+4 runtime files)
+[value] Analyzing a complete application starting at main
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+[value] using specification for function tis_interval
+boundary.c:37:[kernel] warning: division by zero: assert d ≢ 0;
+                  stack: calculate :: test_driver.c:59 <- main
+[value] Done for function main
+[time] Performance summary:
+  Parsing: 2.411s
+  Value Analysis: 0.059s
+
+  Total time: 0h00m02s (= 2.470 seconds)
+  Max memory used: 140.3MB (= 140304384 bytes)
 EOF
-    [ "$steps" = "true" ] && read -p "$MSG" c
 fi
 
 cat << EOF
-
 ${GREEN}$H2
-With the TrustInSoft Analyzer the analysis/test result is deterministic,
-not context dependent. There is a UB and it will always be detected and
-reported whatever the environment.
-${RED}$H1
-        With TrustInSoft you can get mathematical guarantee of
-        absence of Undefined Behaviors through exhaustive analysis !
+As you can see the Division By Zero Undefined Behavior has been detected
+deterministically with the below log:
 
-        Reach out to us through https://trust-in-soft.com/contact/ if you
-        would like to know more about our product.
-$H1
+${RESET}boundary.c:37:${MAGENTA}[kernel] warning:${RESET} division by zero: assert d ≢ 0;
+
+${GREEN}If the output log is not self explanatory enough, you may want to
+run the TrustInSoft Analyzer GUI to further investigate the problem.
 ${RESET}
 EOF
+make clean
+
+[ "$steps" = "true" ] && read -p "$MSG" c
+clear
+cat << EOF
+${GREEN}$H2
+With the TrustInSoft Analyzer the analysis/test result is deterministic,
+not dependent on the proper selection of boundary/input vectors selected.
+There is a division by zero Undefined Behaviour and it will always be detected and
+reported whatever the environment.
+
+EOF
+closing()
