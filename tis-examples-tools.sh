@@ -18,8 +18,6 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-set -euo pipefail
-
 BOLD=`tput bold`
 CYAN=`tput setaf 6`
 GREEN=`tput setaf 2`
@@ -35,9 +33,15 @@ MSG="Press [Enter] to proceed: "
 H1="================================================================================"
 H2="--------------------------------------------------------------------------------"
 
-steps=true
+steps="true"
 
-closing()
+function press_enter()
+{
+  echo
+  [ "$steps" = "true" ] && read -p "$MSG" c
+}
+
+function closing()
 {
   cat << EOF
 ${RED}$H1

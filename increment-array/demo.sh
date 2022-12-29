@@ -36,8 +36,8 @@ extremely difficult to detect them with traditional tests
 $H2${RESET}
 EOF
 
+press_enter
 
-[ "$steps" = "true" ] && read -p "$MSG" c
 #------------------------------------------------------------------------------
 clear
 cat << EOF
@@ -50,8 +50,8 @@ $H2${RESET}
 EOF
 
 tac increment.c | sed -e '/void increment_array/q' | tac
-echo
-[ "$steps" = "true" ] && read -p "$MSG" c
+
+press_enter
 #------------------------------------------------------------------------------
 clear
 cat << EOF
@@ -62,9 +62,8 @@ $H2${RESET}
 EOF
 
 tac test_driver.c | sed -e '/int main()/q' | tac
-echo
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 
 #------------------------------------------------------------------------------
 clear
@@ -83,7 +82,7 @@ Despite the Undefined Behavior, the test passes
 ${RESET}
 EOF
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 
 #------------------------------------------------------------------------------
 clear
@@ -108,7 +107,7 @@ of the array and overwrites the memory location that happens to be the location 
 ${RESET}
 EOF
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 
 #------------------------------------------------------------------------------
 clear
@@ -132,7 +131,7 @@ The UB problem is nevertheless still present.
 ${RESET}
 EOF
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 
 #------------------------------------------------------------------------------
 clear
@@ -165,7 +164,7 @@ EOF
 
 make clean
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 
 if [ $(which tis-analyzer) ]; then
     #------------------------------------------------------------------------------
@@ -224,23 +223,14 @@ ${RESET}increment.c:27:${MAGENTA}[kernel] warning:${RESET} out of bounds write. 
 ${GREEN}above, the UB is detected.${RESET}
 EOF
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 
 cat << EOF
 
 ${GREEN}$H2
 With the TrustInSoft Analyzer the analysis/test result is deterministic,
-not context dependent. There is a UB and it will always be detected and
-reported whatever the environment.${RESET}
+not context/memory layout dependent. There is a UB and it will always be
+detected and reported whatever the environment.${RESET}
 EOF
 
-cat << EOF
-${RED}$H1
-        With TrustInSoft you can get mathematical guarantee of
-        absence of Undefined Behaviors through exhaustive analysis !
-
-        Reach out to us through https://trust-in-soft.com/contact/ if you
-        would like to know more about our product.
-$H1
-${RESET}
-EOF
+closing
