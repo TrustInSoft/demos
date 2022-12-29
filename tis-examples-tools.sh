@@ -34,6 +34,8 @@ H1="============================================================================
 H2="--------------------------------------------------------------------------------"
 
 steps="true"
+# Checkout main branch
+git checkout main >/dev/null 2>&1
 
 function press_enter()
 {
@@ -53,4 +55,6 @@ ${RED}$H1
 $H1
 ${RESET}
 EOF
+  # Revert to main branch
+  git checkout main >/dev/null 2>&1
 }
