@@ -25,8 +25,8 @@ This directory demonstrate how subtle Undefined Behaviors (UB) can be and why th
 
 Note: If you have an Ubuntu machine you can run this demo live by running:
 ```bash
-git clone https://github.com/TrustInSoft/tis-examples
-cd increment-array
+git clone https://github.com/TrustInSoft/demos
+cd subtle-ub
 ./demo.sh
 ```
 
