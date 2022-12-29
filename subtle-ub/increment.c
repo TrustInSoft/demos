@@ -22,7 +22,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 void increment_array(int *p, int len)
 {
-    while (len >= 0)
+    while (len > 0)
     {
         (*p)++; // Increment the value at address p
         p++;    // Move to next array cell
