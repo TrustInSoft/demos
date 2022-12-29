@@ -166,53 +166,24 @@ make clean
 
 press_enter
 
-if [ $(which tis-analyzer) ]; then
-    #------------------------------------------------------------------------------
-    clear
-    cat << EOF
+#------------------------------------------------------------------------------
+clear
+cat << EOF
 ${GREEN}$H2
 Let's now analyze the same code with the TrustInSoft Analyzer (TISA).
 ${RESET}
 EOF
+
+if [ $(which tis-analyzer) ]; then
     make tis
-
 else
-
     cat << EOF
-${GREEN}You don't have TrustInSoft Analyzer installed on this machine,
-but an execution would output something like the below:
-${CYAN}
-tis-analyzer -val-profile interpreter -val -I. test_driver.c increment.c logutils.c${RESET}
-[kernel] [1/7] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
-[kernel] [2/7] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
-[kernel] [3/7] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
-[kernel] [4/7] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
-[kernel] [5/7] Parsing test_driver.c (with preprocessing)
-[kernel] [6/7] Parsing increment.c (with preprocessing)
-[kernel] [7/7] Parsing logutils.c (with preprocessing)
-[kernel] Successfully parsed 3 files (+4 runtime files)
-[value] Analyzing a complete application starting at main
-[value] Computing initial state
-[value] Initial state computed
-[value] The Analysis can be stopped by hitting Ctrl-C
-
-
-Run test_increment_array()
-
-increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
-                  stack: increment_array :: test_driver.c:42 <- main
-[value] Stopping at nth alarm
-[from] Non-terminating function increment_array (no dependencies)
-[from] Non-terminating function main (no dependencies)
-[value] user error: Degeneration occurred:
-                    results are not correct for lines of code that can be reached from the degeneration point.
-[time] Performance summary:
-  Parsing: 3.382s
-  Value Analysis: 0.049s
-
-  Total time: 0h00m03s (= 3.431 seconds)
-  Max memory used: 140.3MB (= 140304384 bytes)
+${GREEN}${H2}
+The TrustInSoft Analyzer is not installed in this machine, but if you could run it,
+the output would be like the below:
+${H2}${RESET}
 EOF
+    cat .static/tis-ub.log
 fi
 
 cat << EOF
@@ -220,10 +191,30 @@ ${GREEN}
 $H2
 As you can see from the warning:
 ${RESET}increment.c:27:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
-${GREEN}above, the UB is detected.${RESET}
+${GREEN}above, the Undefined Behavior is detected.${RESET}
 EOF
 
 press_enter
+#------------------------------------------------------------------------------
+clear
+cat << EOF
+
+${GREEN}$H2
+Let's now fix the code and reanalyze with the TrustInSoft Analyzer.
+${RESET}
+EOF
+git branch fix-ub
+if [ $(which tis-analyzer) ]; then
+    make tis
+else
+    cat << EOF
+${GREEN}${H2}
+The TrustInSoft Analyzer is not installed in this machine, but if you could run it,
+the output would be like the below:
+${H2}${RESET}
+EOF
+    cat .static/tis-no-ub.log
+fi
 
 cat << EOF
 
