@@ -19,7 +19,7 @@
 # 
 set -euo pipefail
 
-source ../tis-examples-tools.sh
+source ../demo-tools.sh
 
 #------------------------------------------------------------------------------
 clear
