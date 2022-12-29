@@ -19,6 +19,11 @@
 
 SHELL := /bin/bash
 
+FONT_BOLD := `tput bold`
+FONT_CYAN := `tput setaf 6`
+FONT_RED := `tput setaf 1`
+FONT_RESET := `tput sgr0`
+
 TIS_ANALYZER := tis-analyzer
 TARGET := boundary-test
 FILES := test_driver.c boundary.c
@@ -28,14 +33,18 @@ TIS_OPTS := -val-profile analyzer -val -I.
 .PHONY: ut clean tis tis_gui
 
 ut:
-	$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
-	gcov boundary.c
+	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
+	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
+	@echo -e "$(FONT_CYAN)gcov boundary.c$(FONT_RESET)"
+	@gcov boundary.c
 
 tis:
-	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
 
 tis-gui:
-	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
 clean:
 	@rm -rf $(TARGET) *.gc* compile_commands.json
