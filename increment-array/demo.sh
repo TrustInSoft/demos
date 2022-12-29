@@ -203,6 +203,7 @@ ${GREEN}$H2
 Let's now fix the code and reanalyze with the TrustInSoft Analyzer.
 ${RESET}
 EOF
+# Change to branch with the UB fix
 git branch fix-ub
 if [ $(which tis-analyzer) ]; then
     make tis
@@ -219,9 +220,11 @@ fi
 cat << EOF
 
 ${GREEN}$H2
+No ${MAGENTA}Warning:${GREEN} is raised now that the code is fixed. 
+
 With the TrustInSoft Analyzer the analysis/test result is deterministic,
-not context/memory layout dependent. There is a UB and it will always be
-detected and reported whatever the environment.${RESET}
+not context/memory layout dependent. There is an Undefined Behavior and it
+will always be detected and reported whatever the environment.${RESET}
 EOF
 
 closing
