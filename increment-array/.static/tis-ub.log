@@ -1,0 +1,30 @@
+[36mtis-analyzer -val-profile interpreter -val -I. test_driver.c increment.c logutils.c(B[m
+tis-analyzer -val-profile interpreter -val -I. test_driver.c increment.c logutils.c
+[kernel] [1/7] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/7] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/7] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/7] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/7] Parsing test_driver.c (with preprocessing)
+[kernel] [6/7] Parsing increment.c (with preprocessing)
+[kernel] [7/7] Parsing logutils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at main
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+
+Run test_increment_array()
+
+increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
+                  stack: increment_array :: test_driver.c:42 <- main
+[value] Stopping at nth alarm
+[from] Non-terminating function increment_array (no dependencies)
+[from] Non-terminating function main (no dependencies)
+[value] user error: Degeneration occurred:
+                    results are not correct for lines of code that can be reached from the degeneration point.
+[time] Performance summary:
+  Parsing: 3.293s
+  Value Analysis: 0.041s
+  
+  Total time: 0h00m03s (= 3.334 seconds)
+  Max memory used: 140.3MB (= 140304384 bytes)
