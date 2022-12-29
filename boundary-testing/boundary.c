@@ -27,8 +27,8 @@ int handle_error()
 }
 
 // Expected input ranges:
-// 1 <= x <= 1000
-// 1 <= y <= 1000
+// 1 <= x <= 10000
+// 1 <= y <= 10000
 int calculate(int x, int y)
 {
     if (x <= 0 || x > 10000) return handle_error();
