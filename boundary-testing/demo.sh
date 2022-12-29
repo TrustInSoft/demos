@@ -72,7 +72,9 @@ clear
 
 cat << EOF
 ${GREEN}$H2
-This function is tested with the below test driver.
+This function is tested with the below test driver. We're doing boundary
+testing so we will test with several values around the input boundaries
+that is, around 1 and around 10000
 $H2${RESET}
 EOF
 
@@ -98,7 +100,7 @@ outside boundary) pass successfully. Structural coverage is 100%.
 
 Unfortunately there is an Undefined Behavior (a division by zero)
 that was not detected by the boundary testing because the value that cause the
-division by zero are not close to the boundaries but "randomly" within the range
+division by zero are not close to the boundaries but "somwhere" within the range
 (example: x == 119 and y == 289).
 
 With 2 integers between 1 and 10000 as input vector the input space has
@@ -114,7 +116,9 @@ clear
 cat << EOF
 ${GREEN}$H2
 Now let's run an analysis with the TrustInSoft Analyzer, leveraging it's
-input generalization capability. We'll modify the test driver as follows:
+input generalization capability. We'll modify the test driver as below.
+Note how with 2 simple "tis_interval()" statements we can test the equivalent
+of 2^32 x 2^32 = 4^64 input vectors.
 ${RESET}
 EOF
 
