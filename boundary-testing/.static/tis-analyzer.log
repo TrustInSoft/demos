@@ -1,0 +1,22 @@
+[36mtis-analyzer -val-profile analyzer -val -I. test_driver.c boundary.c(B[m
+[kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/6] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/6] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/6] Parsing test_driver.c (with preprocessing)
+[kernel] [6/6] Parsing boundary.c (with preprocessing)
+[kernel] Successfully parsed 2 files (+4 runtime files)
+[value] Analyzing a complete application starting at main
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+[value] using specification for function tis_interval
+boundary.c:37:[kernel] warning: division by zero: assert d ≢ 0;
+                  stack: calculate :: test_driver.c:59 <- main
+[value] Done for function main
+[time] Performance summary:
+  Parsing: 2.654s
+  Value Analysis: 0.058s
+  
+  Total time: 0h00m02s (= 2.712 seconds)
+  Max memory used: 140.3MB (= 140304384 bytes)

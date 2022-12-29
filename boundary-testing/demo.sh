@@ -118,7 +118,7 @@ ${GREEN}$H2
 Now let's run an analysis with the TrustInSoft Analyzer, leveraging it's
 input generalization capability. We'll modify the test driver as below.
 Note how with 2 simple "tis_interval()" statements we can test the equivalent
-of 2^32 x 2^32 = 4^64 input vectors.
+of 2^32 x 2^32 = 340282366920938463463374607431768211456 input vectors.
 ${RESET}
 EOF
 
@@ -132,35 +132,13 @@ press_enter
 clear
 
 if [ $(which tis-analyzer) ]; then
-    make tis
+  make tis
 else
-    cat << EOF
+  cat << EOF
 You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
 an analysis would produce something like the below:
-
-${CYAN}tis-analyzer -val-profile analyzer -val -I. test_driver.c boundary.c${RESET}
-[kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
-[kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
-[kernel] [3/6] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
-[kernel] [4/6] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
-[kernel] [5/6] Parsing test_driver.c (with preprocessing)
-[kernel] [6/6] Parsing boundary.c (with preprocessing)
-[kernel] Successfully parsed 2 files (+4 runtime files)
-[value] Analyzing a complete application starting at main
-[value] Computing initial state
-[value] Initial state computed
-[value] The Analysis can be stopped by hitting Ctrl-C
-[value] using specification for function tis_interval
-boundary.c:37:[kernel] warning: division by zero: assert d ≢ 0;
-                  stack: calculate :: test_driver.c:59 <- main
-[value] Done for function main
-[time] Performance summary:
-  Parsing: 2.411s
-  Value Analysis: 0.059s
-
-  Total time: 0h00m02s (= 2.470 seconds)
-  Max memory used: 140.3MB (= 140304384 bytes)
 EOF
+  cat .static/tis-analyzer.log
 fi
 
 cat << EOF
@@ -185,6 +163,6 @@ With the TrustInSoft Analyzer the analysis/test result is deterministic,
 not dependent on the proper selection of boundary/input vectors selected.
 There is a division by zero Undefined Behaviour and it will always be detected and
 reported whatever the environment.
-
 EOF
+
 closing
