@@ -36,8 +36,7 @@ specific values that may cause problems such as division by zero in you code.
 $H2${RESET}
 EOF
 
-
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 #------------------------------------------------------------------------------
 clear
 cat << EOF
@@ -50,9 +49,8 @@ $H2${RESET}
 EOF
 
 tac boundary.c | sed -e '/int handle_error()/q' | tac
-echo
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
 #------------------------------------------------------------------------------
 cat << EOF
 ${GREEN}$H2
@@ -71,6 +69,7 @@ EOF
 
 #------------------------------------------------------------------------------
 clear
+
 cat << EOF
 ${GREEN}$H2
 This function is tested with the below test driver.
@@ -78,11 +77,11 @@ $H2${RESET}
 EOF
 
 gcc -E test_driver.c | tac | sed -e '/int main()/q' | tac | sed '/^$/d'
-echo
-[ "$steps" = "true" ] && read -p "$MSG" c
 
+press_enter
 #------------------------------------------------------------------------------
 clear
+
 cat << EOF
 ${GREEN}$H2
 Let's run the boundary test driver:
@@ -108,8 +107,7 @@ many combinations with classical testing techniques (i.e. one by one).
 ${RESET}
 EOF
 
-[ "$steps" = "true" ] && read -p "$MSG" c
-
+press_enter
 #------------------------------------------------------------------------------
 clear
 
@@ -125,7 +123,8 @@ grep -v '#include' test_driver.c >${tmpfile}
 gcc -D__TRUSTINSOFT_ANALYZER__ -E ${tmpfile} | tac | sed -e '/int main()/q' | tac|grep -v -E '^# '
 rm -f ${tmpfile}
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
+#------------------------------------------------------------------------------
 clear
 
 if [ $(which tis-analyzer) ]; then
@@ -173,7 +172,8 @@ ${RESET}
 EOF
 make clean
 
-[ "$steps" = "true" ] && read -p "$MSG" c
+press_enter
+
 clear
 cat << EOF
 ${GREEN}$H2
@@ -183,4 +183,4 @@ There is a division by zero Undefined Behaviour and it will always be detected a
 reported whatever the environment.
 
 EOF
-closing()
+closing
