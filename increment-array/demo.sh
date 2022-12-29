@@ -204,7 +204,7 @@ Let's now fix the code and reanalyze with the TrustInSoft Analyzer.
 ${RESET}
 EOF
 # Change to branch with the UB fix
-git branch fix-array-inc
+git checkout fix-array-inc >/dev/null 2>&1
 if [ $(which tis-analyzer) ]; then
     make tis
 else
@@ -216,6 +216,7 @@ ${H2}${RESET}
 EOF
     cat .static/tis-no-ub.log
 fi
+press_enter
 
 cat << EOF
 
