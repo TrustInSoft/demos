@@ -34,5 +34,5 @@ int calculate(int x, int y)
     if (x <= 0 || x > 10000) return handle_error();
     if (y <= 0 || y > 10000) return handle_error();
     int d = 17 * x - 7 * y;
-    return 1000 / d;
+    return 10000 / d;
 }
