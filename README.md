@@ -13,6 +13,6 @@ It will then show how the TrustInSoft Analyzer Zero false negatives guarantees t
 
 With this example you'll see that boundary testing, although a good practice, is often insufficient to detect corner cases that can have runtime impacts on your code (in the current case an hidden division by zero problem), and how the TrustInSoft Analyzer input generalization feature can deterministicly detect all such problems.
 
-*Coming soon*
+# Coming soon
 
-## [Fuzz testing integration with TrustInSoft Analyzer](fuzzing/README.md)
+*[Fuzz testing integration with TrustInSoft Analyzer](fuzzing/README.md)*
