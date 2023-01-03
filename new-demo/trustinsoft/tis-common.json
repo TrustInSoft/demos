@@ -1,0 +1,11 @@
+{
+    "machdep": "gcc_x86_64",
+    "slevel": 1000,
+    "files": [
+        "../increment.c",
+        "../test_driver.c"
+    ],
+    "cpp-extra-args": "-I.",
+    "whole-program-graph": "true",
+    "mcdc": "true"
+}

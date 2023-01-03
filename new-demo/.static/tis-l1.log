@@ -1,0 +1,72 @@
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.small-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "1.small-array")
+[kernel] Configuration successfully loaded.
+[kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/6] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/6] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/6] Parsing increment.c (with preprocessing)
+[kernel] [6/6] Parsing test_driver.c (with preprocessing)
+[kernel] Successfully parsed 2 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_small_array
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
+                  stack: increment_array :: test_driver.c:63 <-
+                         test_array :: test_driver.c:78 <-
+                         test_small_array
+[value] Stopping at nth alarm
+[from] Non-terminating function increment_array (no dependencies)
+[from] Non-terminating function test_array (no dependencies)
+[from] Non-terminating function test_small_array (no dependencies)
+[value] user error: Degeneration occurred:
+                    results are not correct for lines of code that can be reached from the degeneration point.
+[time] Performance summary:
+  Parsing: 2.364s
+  Value Analysis: 0.072s
+  
+  Total time: 0h00m02s (= 2.436 seconds)
+  Max memory used: 140.3MB (= 140304384 bytes)
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.large-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "2.large-array")
+[kernel] Configuration successfully loaded.
+[kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/6] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/6] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/6] Parsing increment.c (with preprocessing)
+[kernel] [6/6] Parsing test_driver.c (with preprocessing)
+[kernel] Successfully parsed 2 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_large_array
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+
+[TIS LIBC STUBS]: using deterministic rand()
+...
+[TIS LIBC STUBS]: using deterministic rand()
+
+increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
+                  stack: increment_array :: test_driver.c:63 <-
+                         test_array :: test_driver.c:87 <-
+                         test_large_array
+[value] Stopping at nth alarm
+[from] Non-terminating function increment_array (no dependencies)
+[from] Non-terminating function test_array (no dependencies)
+[from] Non-terminating function test_large_array (no dependencies)
+[value] user error: Degeneration occurred:
+                    results are not correct for lines of code that can be reached from the degeneration point.
+[time] Performance summary:
+  Parsing: 2.499s
+  Value Analysis: 2.189s
+  
+  Total time: 0h00m04s (= 4.688 seconds)
+  Max memory used: 240.9MB (= 240967680 bytes)
+===============================================
+       2 UNDEFINED BEHAVIORS FOUND
+===============================================
+Compiling report from 2 past executed tests
+
+Check generated test report [36mtis_report.html(B[m
+
