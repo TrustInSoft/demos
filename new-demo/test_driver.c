@@ -37,7 +37,7 @@ void array_to_string(const int array[], int length, char *outstr)
     int dotted = 0;
     for (int i = 0; i < length; i++)
     {
-        if (i < 10 || i > length-10) {
+        if (i < 5 || i > length-5) {
             char str[20];
             sprintf(str, "%d%s", array[i], (i == length-1) ? "": ", ");
             strcpy(p, str);
