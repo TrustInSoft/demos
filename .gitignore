@@ -1,3 +1,5 @@
 **/.vscode/
 **/compile_commands.json
-fuzzing/afl-results/
+**/afl-results/
+**/*.gcda
+**/*.gcno
