@@ -82,9 +82,29 @@ int test_large_array()
 {
     int input_array[1000];
     for (int i = 0; i < 1000; i++)
-        input_array[i] = rand();
+        input_array[i] = (rand() > RAND_MAX/2 ? rand(): -rand());
     int len = sizeof(input_array)/sizeof(int);
     return test_array(input_array, len);
+}
+
+int test_uninit()
+{
+    int *p;
+    printf("increment_array(uninit)\n");
+    test_array(p, 1);
+}
+
+int test_null()
+{
+    int *p = NULL;
+    printf("increment_array(NULL)\n");
+    test_array(p, 1);
+}
+
+int test_zero_length()
+{
+    int p[] = {};
+    test_array(p, 0);
 }
 
 #ifdef __TRUSTINSOFT_ANALYZER__
@@ -113,6 +133,9 @@ int main()
     int ok = 1;
     ok = test_small_array() && ok;
     ok = test_large_array() && ok;
+    ok = test_zero_length() && ok;
+    // ok = test_uninit() && ok;
+    // ok = test_null() && ok;
 #ifdef __TRUSTINSOFT_ANALYZER__
     test_generalized_small_array();
     test_generalized_large_array();

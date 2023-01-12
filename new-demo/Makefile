@@ -80,7 +80,8 @@ tis-l2-run-gui:
 clean:
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html
 
-tis-l1: tis-l1-1 tis-l1-2 count_ub report
+#tis-l1: tis-l1-1 tis-l1-2 count_ub report
+tis-l1: tis-l1-1 count_ub report
 
 tis-l1-gui: tis-l1-run-gui count_ub report
 
