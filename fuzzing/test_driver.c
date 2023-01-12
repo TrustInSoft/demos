@@ -28,11 +28,25 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define SUCCESS "PASSED"
 #define FAILED  "*** FAILED ***"
 
+int get_params(int argc, char *argv[], int *x, int *y) {
+  if (argc != 2) {
+    return 0;
+  }
+  FILE * f = fopen(argv[1], "r");
+  if (fscanf(f, "%d %d", x, y) != 2) {
+    return 0;
+  } else {
+    return 1;
+  }
+}
+
 int main(int argc, char *argv[])
 {
     int res;
-    int x = atoi(argv[1]);
-    int y = atoi(argv[2]);
+    int x, y;
+    if (! get_params(argc, argv, &x, &y)) {
+      return 1;
+    }
     res = calculate(x, y);
     printf("calculate(%d, %d) = ", x, y);
     if (res == OUT_OF_BOUNDS) {
