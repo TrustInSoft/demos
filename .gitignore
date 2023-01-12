@@ -3,3 +3,4 @@
 **/afl-results/
 **/*.gcda
 **/*.gcno
+**/*.gcov
