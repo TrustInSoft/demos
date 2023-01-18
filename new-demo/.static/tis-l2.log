@@ -1,5 +1,5 @@
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 3.generalized-small-array(B[m
-[kernel] Loading configuration file trustinsoft/tis.json (analysis "3.generalized-small-array")
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.1.generalized-small-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "2.1.generalized-small-array")
 [kernel] Configuration successfully loaded.
 [kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
 [kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
@@ -13,35 +13,80 @@
 [value] Initial state computed
 [value] The Analysis can be stopped by hitting Ctrl-C
 [value] using specification for function tis_make_unknown
-increment.c:27:[kernel] warning: signed overflow. assert *p+1 ≤ 2147483647;
-                  stack: increment_array :: test_driver.c:96 <- test_generalized_small_array
-increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
-                  stack: increment_array :: test_driver.c:96 <- test_generalized_small_array
-increment.c:27:[kernel] warning: all target addresses were invalid. This path is assumed to be dead.
-                  stack: increment_array :: test_driver.c:96 <- test_generalized_small_array
-[from] Non-terminating function increment_array (no dependencies)
-[from] Non-terminating function test_generalized_small_array (no dependencies)
+increment.c:32:[kernel] warning: signed overflow. assert *array+1 ≤ 2147483647;
+                  stack: increment_array :: test_driver.c:127 <- test_generalized_small_array
 [value] Done for function test_generalized_small_array
-[info] Saved files information in '_results/3.generalized-small-array_files.csv'
-[info] Saved function information in '_results/3.generalized-small-array_functions.csv'
-[info] Saved variable information in '_results/3.generalized-small-array_variables.csv'
-[info] Saved shared variable information in '_results/3.generalized-small-array_shared_variables.csv'
-[info] Saved type information in '_results/3.generalized-small-array_types.csv'
-[info] Saved statement information in '_results/3.generalized-small-array_statements.csv'
-[info] Saved property information in '_results/3.generalized-small-array_properties.csv'
-[info] Saved decision information in '_results/3.generalized-small-array_decisions.csv'
-[info] Saved dead block information in '_results/3.generalized-small-array_dead_blocks.csv'
-[info] Saved JSON results in '_results/3.generalized-small-array_results.json'
+[info] Saved files information in '_results/2.1.generalized-small-array_files.csv'
+[info] Saved function information in '_results/2.1.generalized-small-array_functions.csv'
+[info] Saved variable information in '_results/2.1.generalized-small-array_variables.csv'
+[info] Saved shared variable information in '_results/2.1.generalized-small-array_shared_variables.csv'
+[info] Saved type information in '_results/2.1.generalized-small-array_types.csv'
+[info] Saved statement information in '_results/2.1.generalized-small-array_statements.csv'
+[info] Saved property information in '_results/2.1.generalized-small-array_properties.csv'
+[info] Saved decision information in '_results/2.1.generalized-small-array_decisions.csv'
+[info] Saved dead block information in '_results/2.1.generalized-small-array_dead_blocks.csv'
+[info] Saved JSON results in '_results/2.1.generalized-small-array_results.json'
 [time] Performance summary:
-  Parsing: 2.223s
-  Value Analysis: 0.068s
+  Parsing: 2.565s
+  Value Analysis: 0.070s
   
-  Total time: 0h00m02s (= 2.290 seconds)
+  Total time: 0h00m02s (= 2.635 seconds)
   Max memory used: 140.3MB (= 140304384 bytes)
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.2.generalized-large-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "2.2.generalized-large-array")
+[kernel] Configuration successfully loaded.
+[kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
+[kernel] [2/6] Parsing TIS_KERNEL_SHARE/libc/tis_runtime.c (with preprocessing)
+[kernel] [3/6] Parsing TIS_KERNEL_SHARE/__tis_mkfs.c (with preprocessing)
+[kernel] [4/6] Parsing TIS_KERNEL_SHARE/mkfs_empty_filesystem.c (with preprocessing)
+[kernel] [5/6] Parsing increment.c (with preprocessing)
+[kernel] [6/6] Parsing test_driver.c (with preprocessing)
+[kernel] Successfully parsed 2 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_generalized_large_array
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+[value] using specification for function tis_make_unknown
+increment.c:32:[kernel] warning: signed overflow. assert *array+1 ≤ 2147483647;
+                  stack: increment_array :: test_driver.c:136 <- test_generalized_large_array
+[value] Semantic level unrolling superposing up to 100 states
+[value] Semantic level unrolling superposing up to 200 states
+[value] Semantic level unrolling superposing up to 300 states
+[value] Semantic level unrolling superposing up to 400 states
+[value] Semantic level unrolling superposing up to 500 states
+[value] Semantic level unrolling superposing up to 600 states
+[value] Semantic level unrolling superposing up to 700 states
+[value] Semantic level unrolling superposing up to 800 states
+[value] Semantic level unrolling superposing up to 900 states
+[value] Semantic level unrolling superposing up to 1000 states
+increment.c:30:[value] entering loop for the first time
+[value] Done for function test_generalized_large_array
+[info] Saved files information in '_results/2.2.generalized-large-array_files.csv'
+[info] Saved function information in '_results/2.2.generalized-large-array_functions.csv'
+[info] Saved variable information in '_results/2.2.generalized-large-array_variables.csv'
+[info] Saved shared variable information in '_results/2.2.generalized-large-array_shared_variables.csv'
+[info] Saved type information in '_results/2.2.generalized-large-array_types.csv'
+[info] Saved statement information in '_results/2.2.generalized-large-array_statements.csv'
+[info] Saved property information in '_results/2.2.generalized-large-array_properties.csv'
+[info] Saved decision information in '_results/2.2.generalized-large-array_decisions.csv'
+[info] Saved dead block information in '_results/2.2.generalized-large-array_dead_blocks.csv'
+[info] Saved JSON results in '_results/2.2.generalized-large-array_results.json'
+[time] Performance summary:
+  Parsing: 2.341s
+  Value Analysis: 0.804s
+  
+  Total time: 0h00m03s (= 3.146 seconds)
+  Max memory used: 173.8MB (= 173858816 bytes)
 ===============================================
-       1 UNDEFINED BEHAVIORS FOUND
+       2 UNDEFINED BEHAVIORS FOUND
 ===============================================
-Compiling report from 3 past executed tests
+Compiling report from 6 past executed tests
+information: using analysis _results/1.1.small-array_results.json
+information: using analysis _results/1.2.large-array_results.json
+information: using analysis _results/1.3.zero-length-array_results.json
+information: using analysis _results/1.4.null-array_results.json
+information: using analysis _results/2.1.generalized-small-array_results.json
+information: using analysis _results/2.2.generalized-large-array_results.json
 
 Check generated test report [36mtis_report.html(B[m
 
