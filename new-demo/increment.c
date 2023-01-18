@@ -20,14 +20,17 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <stdlib.h>
 #include "increment.h"
 
-void increment_array(int *p, int len)
+/*
+Increments all cells of an integer array
+*/
+void increment_array(int array[], int len)
 {
-    // if (p == NULL)
-    //    return;
-    while (len >= 0)
+    if (array == NULL)
+        return;
+    while (len > 0)
     {
-        (*p)++; // Increment the value at address p
-        p++;    // Move to next array cell
-        len--;  // Decrement counter
+        (*array)++; // Increment the value of the array cell
+        array++;    // Move to next array cell
+        len--;      // Decrement counter
     }
 }

@@ -27,11 +27,15 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <tis_builtin.h>
 #endif
 
-#define SUCCESS "--> PASSED"
-#define FAILED  "--> *** FAILED ***"
+#define SUCCESS "\033[0;32mPASSED\033[0m"
+#define FAILED  "\033[0;31m** FAILED **\033[0m"
 
 void array_to_string(const int array[], int length, char *outstr)
 {
+    if (array == NULL) {
+        strcpy(outstr, "NULL");
+        return;
+    }
     strcpy(outstr, "{");
     char *p = outstr + strlen(outstr);
     int dotted = 0;
@@ -53,21 +57,29 @@ void array_to_string(const int array[], int length, char *outstr)
 
 int test_array(int *in_array, int len)
 {
-    int out_array[len];
-    char input[len*sizeof(int)*15];
-    char output[len*sizeof(int)*15];
- 
-    memcpy(out_array, in_array, len*sizeof(int));
-    array_to_string(in_array, len, input);
-
-    increment_array(out_array, len);
-    array_to_string(out_array, len, output);
-
     int ok = 1;
-    for (int i = 0; i < len && ok == 1; i++) {
-        ok = (out_array[i] == in_array[i]+1) && ok;
+    char input[2+len*sizeof(int)*15];
+    char output[2+len*sizeof(int)*15];
+    if (in_array == NULL)
+    {
+        array_to_string(in_array, len, input);
+        increment_array(in_array, len);
+        array_to_string(in_array, len, output);
+        ok = (in_array == NULL);
     }
-    printf("increment_array(%s) = %s %s\n\n", input, output, ok ? SUCCESS: FAILED);
+    else
+    {
+        int out_array[len > 0 ? len : 1];
+        if (len > 0)
+            memcpy(out_array, in_array, len*sizeof(int));
+        array_to_string(in_array, len, input);
+        increment_array(out_array, len);
+        array_to_string(out_array, len, output);
+        for (int i = 0; i < len && ok == 1; i++) {
+            ok = (out_array[i] == in_array[i]+1) && ok;
+        }
+    }
+    printf("%s: increment_array(%s) = %s\n", ok ? SUCCESS: FAILED, input, output);
     return ok;
 }
 
@@ -91,20 +103,19 @@ int test_uninit()
 {
     int *p;
     printf("increment_array(uninit)\n");
-    test_array(p, 1);
+    return test_array(p, 1);
 }
 
 int test_null()
 {
     int *p = NULL;
-    printf("increment_array(NULL)\n");
-    test_array(p, 1);
+    return test_array(p, 777);
 }
 
 int test_zero_length()
 {
     int p[] = {};
-    test_array(p, 0);
+    return test_array(p, 0);
 }
 
 #ifdef __TRUSTINSOFT_ANALYZER__
@@ -131,14 +142,20 @@ int main()
 {
 
     int ok = 1;
+    printf("\nRunning unit tests\n");
     ok = test_small_array() && ok;
     ok = test_large_array() && ok;
     ok = test_zero_length() && ok;
+    ok = test_null() && ok;
     // ok = test_uninit() && ok;
-    // ok = test_null() && ok;
+    
 #ifdef __TRUSTINSOFT_ANALYZER__
     test_generalized_small_array();
     test_generalized_large_array();
 #endif
+    if (ok)
+        printf("\n\033[0;32m---> All tests PASSED\033[0m\n");
+    else
+        printf("\n\033[0;31m===> Some tests **FAILED**\033[0m\n");
     return (ok ? 0 : 1);
 }
