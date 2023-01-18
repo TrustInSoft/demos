@@ -4,3 +4,8 @@
 **/*.gcda
 **/*.gcno
 **/*.gcov
+**/_results/
+**/tis_report.html
+**/*.json
+new-demo/increment
+overapprox/approx
