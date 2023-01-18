@@ -47,6 +47,9 @@ tis-l1-1:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"
 
+tis-l1-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array" -gui
+
 tis-l1-2:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.2.large-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.2.large-array"
@@ -55,14 +58,9 @@ tis-l1-3:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.3.zero-length-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.3.zero-length-array"
 
-
-tis-l1-3-gui:
-	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.3.zero-length-array" -gui
-
 tis-l1-4:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
-
 
 count_ub:
 	@echo "==============================================="
@@ -74,10 +72,6 @@ count_ub_2:
 	@echo "      " `trustinsoft/count_ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
-tis-l1-run-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.small-array" -gui$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.small-array" -gui
-
 tis-l2-1:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array"
@@ -86,9 +80,8 @@ tis-l2-2:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.2.generalized-large-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.2.generalized-large-array"
 
-tis-l2-run-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array" -gu$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array" -gui
+tis-l2-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array" -gui
 
 clean:
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html
@@ -96,11 +89,7 @@ clean:
 #tis-l1: tis-l1-1 tis-l1-2 count_ub report
 tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
 
-tis-l1-gui: tis-l1-run-gui
-
 tis-l2: tis-l2-1 tis-l2-2 count_ub_2 report
-
-tis-l2-gui: tis-l2-run-gui count_ub_2 report
 
 report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
