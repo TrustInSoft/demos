@@ -328,7 +328,7 @@ increment.c:32:[kernel] warning: signed overflow. assert *array+1 ≤ 2147483647
 ```
 If that is not sufficient to understand the problem, the developer may have a look at the [HTML report](.static/tis_report.l2.html) or even launch the GUI for more dynamic investigation.
 
-Anyhow, the root cause here is that when an array cells contains the value `INT_MAX`, i.e. 2147483647 on the chosen target, trying to increment it will cause an undefined behavior. A special treatment should be implemented for this value.
+Anyhow, the root cause here is that when an array cell contains the value `INT_MAX`, i.e. `2147483647` on the defined target, trying to increment it will cause an undefined behavior. A special treatment should be implemented for this value.
 
 
 ## Conclusion
@@ -341,4 +341,4 @@ Unit Tests are quite useful to verify the functional behavior of the code, but n
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022 TrustInSoft*
+*Copyright (C) 2022-2023 TrustInSoft*
