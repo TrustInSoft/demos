@@ -19,7 +19,9 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 # Demo of buffer overflow/array out of bounds detection
 
-This demo demonstrate how unit tests can typically miss buffer overflow if those buffer overflow do cause immediate problems (like a crash), and how TrustInSoft analysis detects them with mathematical guarantee.
+This demo demonstrates:
+- How unit tests can typically miss undefined behaviors like buffer overflows or integer overflows if those undefined behaviors do cause immediate problems (like a crash), and
+- How TrustInSoft analysis detects them with mathematical guarantee.
 
 ## Code under test
 
@@ -49,7 +51,7 @@ The test driver [test_driver.c](test_driver.c) has several unit tests meant to t
 - Test with an empty array
 - Test with an null (unallocated) array
 
-When running the 4 unit tests, they all pass. This can be verified by running `make clean cov`
+When running the 4 unit tests, they all pass, and on top of that the code coverage is 100%. This can be verified by running `make clean cov`
 ```bash
 $ make clean cov
 
@@ -62,19 +64,24 @@ PASSED: increment_array({}) = {}
 PASSED: increment_array(NULL) = NULL
 
 ---> All tests PASSED
+
+gcov increment.c
+File 'increment.c'
+Lines executed:100.00% of 7
+Creating 'increment.c.gcov'
 ```
 
 Despite the above passing tests we'll see that there are undetected undefined behaviors (or UB below in this document), more specifically a **buffer overflow**... and also an **integer overflow**
 
-## Level 1 analysis
+## Level 1 analysis - Replay existing unit tests
 
 Level 1 analysis with TrustInSoft is really easy because it simply consists in replaying the unit tests with the TrustInSoft analyzer instead of the Unit Test framework. In the current case the [Makefile](makefile) is preparing the quite simple commands to run the 4 tests so it only requires to run `make tis-l1`.
 
 You need to have the TrustInSoft analyzer installed to successfully run this command. If you don't you can see the output below (uninteresting parts of the output log have been stripped)
 
-```
+```bash
 $ make tis-l1
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.2.large-array(B[m
+tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.2.large-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "1.2.large-array")
 [kernel] Configuration successfully loaded.
 ...
@@ -107,7 +114,7 @@ increment.c:32:[kernel] warning: out of bounds write. assert \valid(array);
   
   Total time: 0h00m06s (= 6.241 seconds)
   Max memory used: 308.0MB (= 308076544 bytes)
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.3.zero-length-array(B[m
+tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.3.zero-length-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "1.3.zero-length-array")
 [kernel] Configuration successfully loaded.
 ...
@@ -136,7 +143,7 @@ test_driver.c:55:[kernel] warning: out of bounds write. assert \valid(p);
   
   Total time: 0h00m02s (= 2.540 seconds)
   Max memory used: 140.3MB (= 140304384 bytes)
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.4.null-array(B[m
+tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.4.null-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "1.4.null-array")
 [kernel] Configuration successfully loaded.
 ...
@@ -148,7 +155,7 @@ test_driver.c:55:[kernel] warning: out of bounds write. assert \valid(p);
 [value] Initial state computed
 [value] The Analysis can be stopped by hitting Ctrl-C
 
-[0;32mPASSED[0m: increment_array(NULL) = NULL
+PASSED: increment_array(NULL) = NULL
 
 [value] Done for function test_null
 [scope:rm_asserts] removing 1 assertion(s)
@@ -160,7 +167,7 @@ test_driver.c:55:[kernel] warning: out of bounds write. assert \valid(p);
   
   Total time: 0h00m02s (= 2.683 seconds)
   Max memory used: 140.3MB (= 140304384 bytes)
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.1.small-array(B[m
+tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.1.small-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "1.1.small-array")
 [kernel] Configuration successfully loaded.
 [kernel] [1/6] Parsing TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i (no preprocessing)
@@ -198,7 +205,7 @@ information: using analysis _results/1.2.large-array_results.json
 information: using analysis _results/1.3.zero-length-array_results.json
 information: using analysis _results/1.4.null-array_results.json
 
-Check generated test report [36mtis_report.html(B[m
+Check generated test report tis_report.html
 
 
 ```
@@ -225,7 +232,7 @@ It should be `while (len > 0)` instead of `while (len >= 0)`.
 
 If we fix the code and re-run the 4 unit tests with the TrustInSoft Analyzer, all 4 analyses succeed and demonstrate absence of Undefined Behaviors with the considered inputs (4 differents inputs), See the updated [HTML report](.static/tis_report.l1-no-ub.html)
 
-## Input generalization
+## Level 2 analysi - Input generalization
 
 Now that Level 1 unit tests are proven to ahve no UB, we can now make our analyses more exhaustive, and generalize the inputs to a much larger input set that the 4 (hopefully smart) values used for unit tests. This is what is called Level 2 analysis.
 
@@ -250,7 +257,7 @@ The Level 2 generalized test can be run with `make tis-l2`. You need to have the
 
 ```bash
 make tis-l2
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.1.generalized-small-array(B[m
+tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.1.generalized-small-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "2.1.generalized-small-array")
 [kernel] Configuration successfully loaded.
 ...
@@ -273,7 +280,7 @@ increment.c:32:[kernel] warning: signed overflow. assert *array+1 ≤ 2147483647
   
   Total time: 0h00m02s (= 2.635 seconds)
   Max memory used: 140.3MB (= 140304384 bytes)
-[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.2.generalized-large-array(B[m
+tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.2.generalized-large-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "2.2.generalized-large-array")
 [kernel] Configuration successfully loaded.
 ...
@@ -311,7 +318,7 @@ information: using analysis _results/1.4.null-array_results.json
 information: using analysis _results/2.1.generalized-small-array_results.json
 information: using analysis _results/2.2.generalized-large-array_results.json
 
-Check generated test report [36mtis_report.html(B[m
+Check generated test report tis_report.html
 ```
 
 As you can see, the generalization of input has revealed 2 additional undefined behaviors, not revealed by discrete unit tests. Actually this is the same UB found by the 2 generalized tests with a small 10 cells array and a large 1000 cells array. It's an **integer overflow** as quickly highlighted by the log:
