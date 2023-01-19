@@ -17,6 +17,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
+
 # Demo of buffer overflow/array out of bounds detection
 
 This demo demonstrates:
@@ -25,7 +26,7 @@ This demo demonstrates:
 
 ## Code under test
 
-The code to be tested is the [increment.c](increment.c) source file.
+The code to be tested is the [increment.c](increment.c#L26) source file.
 
 This file has only one function `increment_array(int array[], int len)` that takes an array of integer (and its length) as input and increments by 1 all integers in the array.
 The code of `increment_array()` is the following:
@@ -45,17 +46,17 @@ void increment_array(int array[], int len)
 
 ## Unit tests
 
-The test driver [test_driver.c](test_driver.c) has several unit tests meant to test that function.
+The test driver [test_driver.c](test_driver.c#L64) has several unit tests meant to test that function.
 - Test with small array of a few static integers
 - Test with a larger array (1000 cells) of random integers
 - Test with an empty array
 - Test with an null (unallocated) array
 
 When running the 4 unit tests, they all pass, and on top of that the code coverage is 100%. This can be verified by running `make clean cov`
-```bash
+```
 $ make clean cov
 
-gcc -I. -fprofile-arcs -ftest-coverage test_driver.c increment.c -o increment && ./increment
+gcc -I. -fprofile-arcs -ftest-coverage test_driver.c utils.c increment.c -o increment && ./increment
 
 Running unit tests
 PASSED: increment_array({1, 3, 5, 7, 11, 17}) = {2, 4, 6, 8, 12, 18}
@@ -79,7 +80,7 @@ Level 1 analysis with TrustInSoft is really easy because it simply consists in r
 
 You need to have the TrustInSoft analyzer installed to successfully run this command. If you don't you can see the output below (uninteresting parts of the output log have been stripped)
 
-```bash
+```
 $ make tis-l1
 tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.2.large-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "1.2.large-array")
@@ -89,13 +90,7 @@ tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-selec
 [kernel] [6/6] Parsing test_driver.c (with preprocessing)
 [kernel] Successfully parsed 2 files (+4 runtime files)
 [value] Analyzing a complete application starting at test_large_array
-[value] Computing initial state
-[value] Initial state computed
-[value] The Analysis can be stopped by hitting Ctrl-C
-
-[TIS LIBC STUBS]: using deterministic rand()
 ...
-
 increment.c:32:[kernel] warning: out of bounds write. assert \valid(array);
                   stack: increment_array :: test_driver.c:76 <-
                          test_array :: test_driver.c:99 <-
@@ -121,10 +116,7 @@ tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-selec
 [kernel] [5/6] Parsing increment.c (with preprocessing)
 [kernel] [6/6] Parsing test_driver.c (with preprocessing)
 [kernel] Successfully parsed 2 files (+4 runtime files)
-[value] Analyzing a complete application starting at test_zero_length
-[value] Computing initial state
-[value] Initial state computed
-[value] The Analysis can be stopped by hitting Ctrl-C
+...
 test_driver.c:55:[kernel] warning: out of bounds write. assert \valid(p);
                   stack: strcpy :: test_driver.c:55 <-
                          array_to_string :: test_driver.c:75 <-
@@ -150,10 +142,7 @@ tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-selec
 [kernel] [5/6] Parsing increment.c (with preprocessing)
 [kernel] [6/6] Parsing test_driver.c (with preprocessing)
 [kernel] Successfully parsed 2 files (+4 runtime files)
-[value] Analyzing a complete application starting at test_null
-[value] Computing initial state
-[value] Initial state computed
-[value] The Analysis can be stopped by hitting Ctrl-C
+...
 
 PASSED: increment_array(NULL) = NULL
 
@@ -174,9 +163,7 @@ tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-selec
 ...
 [kernel] [6/6] Parsing test_driver.c (with preprocessing)
 [kernel] Successfully parsed 2 files (+4 runtime files)
-[value] Analyzing a complete application starting at test_small_array
-[value] Computing initial state
-[value] Initial state computed
+...
 [value] The Analysis can be stopped by hitting Ctrl-C
 increment.c:32:[kernel] warning: out of bounds write. assert \valid(array);
                   stack: increment_array :: test_driver.c:76 <-
@@ -260,7 +247,7 @@ void test_generalized_large_array()
 
 The Level 2 generalized test can be run with `make tis-l2`. You need to have the TrustInSoft Analyzer installed to run this command successfully. If you don't, the output is given below (some uninteresting logs may have been stripped out).
 
-```bash
+```
 make tis-l2
 tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.1.generalized-small-array
 [kernel] Loading configuration file trustinsoft/tis.json (analysis "2.1.generalized-small-array")
@@ -293,13 +280,10 @@ tis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-selec
 [kernel] [6/6] Parsing test_driver.c (with preprocessing)
 [kernel] Successfully parsed 2 files (+4 runtime files)
 [value] Analyzing a complete application starting at test_generalized_large_array
-[value] Computing initial state
-[value] Initial state computed
-[value] The Analysis can be stopped by hitting Ctrl-C
+...
 [value] using specification for function tis_make_unknown
 increment.c:32:[kernel] warning: signed overflow. assert *array+1 ≤ 2147483647;
                   stack: increment_array :: test_driver.c:136 <- test_generalized_large_array
-[value] Semantic level unrolling superposing up to 100 states
 ...
 [value] Semantic level unrolling superposing up to 1000 states
 increment.c:30:[value] entering loop for the first time
@@ -316,10 +300,7 @@ increment.c:30:[value] entering loop for the first time
        2 UNDEFINED BEHAVIORS FOUND
 ===============================================
 Compiling report from 6 past executed tests
-information: using analysis _results/1.1.small-array_results.json
-information: using analysis _results/1.2.large-array_results.json
-information: using analysis _results/1.3.zero-length-array_results.json
-information: using analysis _results/1.4.null-array_results.json
+...
 information: using analysis _results/2.1.generalized-small-array_results.json
 information: using analysis _results/2.2.generalized-large-array_results.json
 
@@ -336,7 +317,6 @@ If that is not sufficient to understand the problem, the developer may have a lo
 <img src=".static/tis_report.l2.png" alt="TIS report Level 2 analysis" width="700"/>
 
 Anyhow, the root cause here is that when an array cell contains the value `INT_MAX`, i.e. `2147483647` on the defined target, trying to increment it will cause an undefined behavior. A special treatment should be implemented for this value.
-
 
 ## Conclusion
 
