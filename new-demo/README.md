@@ -232,7 +232,7 @@ It should be `while (len > 0)` instead of `while (len >= 0)`.
 
 If we fix the code and re-run the 4 unit tests with the TrustInSoft Analyzer, all 4 analyses succeed and demonstrate absence of Undefined Behaviors with the considered inputs (4 differents inputs), See the updated [HTML report](.static/tis_report.l1-no-ub.html)
 
-## Level 2 analysi - Input generalization
+## Level 2 analysis - Input generalization
 
 Now that Level 1 unit tests are proven to ahve no UB, we can now make our analyses more exhaustive, and generalize the inputs to a much larger input set that the 4 (hopefully smart) values used for unit tests. This is what is called Level 2 analysis.
 
