@@ -1,6 +1,7 @@
 /*
-tis-examples
-Copyright (C) 2022 TrustInSoft
+trustinsoft/demos
+
+Copyright (C) 2022-2023 TrustInSoft
 mailto:contact AT trust-in-soft DOT com
 
 This program is free software; you can redistribute it and/or
@@ -17,11 +18,13 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <limits.h>
 #include "increment.h"
+#include "utils.h"
 
 #ifdef __TRUSTINSOFT_ANALYZER__
 #include <tis_builtin.h>
@@ -29,31 +32,6 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #define SUCCESS "\033[0;32mPASSED\033[0m"
 #define FAILED  "\033[0;31m** FAILED **\033[0m"
-
-void array_to_string(const int array[], int length, char *outstr)
-{
-    if (array == NULL) {
-        strcpy(outstr, "NULL");
-        return;
-    }
-    strcpy(outstr, "{");
-    char *p = outstr + strlen(outstr);
-    int dotted = 0;
-    for (int i = 0; i < length; i++)
-    {
-        if (i < 5 || i > length-5) {
-            char str[20];
-            sprintf(str, "%d%s", array[i], (i == length-1) ? "": ", ");
-            strcpy(p, str);
-            p += strlen(p);
-        } else if (! dotted) {
-            strcpy(p, "..., ");
-            p += strlen(p);
-            dotted = 1;
-        }
-    }
-    strcpy(p, "}");
-}
 
 int test_array(int *in_array, int len)
 {

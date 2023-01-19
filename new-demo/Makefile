@@ -25,7 +25,7 @@ FONT_RESET := `tput sgr0`
 
 TIS_ANALYZER := tis-analyzer
 TARGET := increment
-FILES := test_driver.c $(TARGET).c
+FILES := test_driver.c utils.c $(TARGET).c
 COMPILER := gcc
 TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
 

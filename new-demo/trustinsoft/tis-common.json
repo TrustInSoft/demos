@@ -4,7 +4,8 @@
     "val": "true",
     "files": [
         "../increment.c",
-        "../test_driver.c"
+        "../test_driver.c",
+        "../utils.c"
     ],
     "cpp-extra-args": "-I.",
     "whole-program-graph": "true",
