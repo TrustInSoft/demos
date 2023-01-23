@@ -93,5 +93,5 @@ tis-l2: tis-l2-1 tis-l2-2 count_ub_2 report
 
 report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-	@tis-report _results/ --skip-file test_driver.c
+	@tis-report _results/ --skip-file test_driver.c,utils.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
