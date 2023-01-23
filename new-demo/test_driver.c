@@ -63,7 +63,7 @@ int test_array(int *in_array, int len)
 
 int test_small_array()
 {
-    int input_array[] = {1, 3, 5, 7, 11, 17};
+    int input_array[] = {1, 3, 5, 7, 11, 13, 17};
     int len = sizeof(input_array)/sizeof(int);
     return test_array(input_array, len);
 }
