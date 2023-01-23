@@ -21,6 +21,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <string.h>
 #include <stdio.h>
+#include "utils.h"
 
 /* converts an integer array into a string */
 void array_to_string(const int array[], int length, char *outstr)
@@ -34,7 +35,7 @@ void array_to_string(const int array[], int length, char *outstr)
     int dotted = 0;
     for (int i = 0; i < length; i++)
     {
-        if (i < 5 || i > length-5) {
+        if (i < (MAX_STRING_CELLS/2) || i > length-(MAX_STRING_CELLS/2)) {
             char str[20];
             sprintf(str, "%d%s", array[i], (i == length-1) ? "": ", ");
             strcpy(p, str);

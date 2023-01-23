@@ -19,5 +19,8 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+// Max number of cells displayed when converting array to string
+#define MAX_STRING_CELLS 10
+
 /* converts an integer array into a string */
 void array_to_string(const int array[], int length, char *outstr);
