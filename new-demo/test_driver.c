@@ -36,8 +36,8 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 int test_array(int *in_array, int len)
 {
     int ok = 1;
-    char input[2+len*sizeof(int)*15];
-    char output[2+len*sizeof(int)*15];
+    char input[3+len*sizeof(int)*15];
+    char output[3+len*sizeof(int)*15];
     if (in_array == NULL)
     {
         array_to_string(in_array, len, input);
