@@ -31,13 +31,21 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #endif
 
 #define SUCCESS "\033[0;32mPASSED\033[0m"
-#define FAILED  "\033[0;31m** FAILED **\033[0m"
+#define FAILED "\033[0;31m** FAILED **\033[0m"
 
 int test_array(int *in_array, int len)
 {
     int ok = 1;
-    char input[3+len*sizeof(int)*15];
-    char output[3+len*sizeof(int)*15];
+    int string_size;
+    if (len <= 0)
+        string_size = 3;
+    else if (len > MAX_STRING_CELLS)
+        string_size = 3 + MAX_STRING_CELLS * 15 + 5;
+    else
+        string_size = 3 + len * 15;
+    char input[string_size];
+    char output[string_size];
+
     if (in_array == NULL)
     {
         array_to_string(in_array, len, input);
@@ -49,22 +57,23 @@ int test_array(int *in_array, int len)
     {
         int out_array[len > 0 ? len : 1];
         if (len > 0)
-            memcpy(out_array, in_array, len*sizeof(int));
+            memcpy(out_array, in_array, len * sizeof(int));
         array_to_string(in_array, len, input);
         increment_array(out_array, len);
         array_to_string(out_array, len, output);
-        for (int i = 0; i < len && ok == 1; i++) {
-            ok = (out_array[i] == in_array[i]+1) && ok;
+        for (int i = 0; i < len && ok == 1; i++)
+        {
+            ok = (out_array[i] == in_array[i] + 1) && ok;
         }
     }
-    printf("%s: increment_array(%s) = %s\n", ok ? SUCCESS: FAILED, input, output);
+    printf("%s: increment_array(%s) = %s\n", ok ? SUCCESS : FAILED, input, output);
     return ok;
 }
 
 int test_small_array()
 {
     int input_array[] = {1, 3, 5, 7, 11, 13, 17};
-    int len = sizeof(input_array)/sizeof(int);
+    int len = sizeof(input_array) / sizeof(int);
     return test_array(input_array, len);
 }
 
@@ -72,8 +81,8 @@ int test_large_array()
 {
     int input_array[1000];
     for (int i = 0; i < 1000; i++)
-        input_array[i] = (rand() > RAND_MAX/2 ? rand(): -rand());
-    int len = sizeof(input_array)/sizeof(int);
+        input_array[i] = (rand() > RAND_MAX / 2 ? rand() : -rand());
+    int len = sizeof(input_array) / sizeof(int);
     return test_array(input_array, len);
 }
 
@@ -100,7 +109,7 @@ int test_zero_length()
 void test_generalized_small_array()
 {
     int input_array[10];
-    int len = sizeof(input_array)/sizeof(int);
+    int len = sizeof(input_array) / sizeof(int);
     tis_make_unknown(input_array, sizeof(input_array));
     increment_array(input_array, len);
     return;
@@ -109,7 +118,7 @@ void test_generalized_small_array()
 void test_generalized_large_array()
 {
     int input_array[1000];
-    int len = sizeof(input_array)/sizeof(int);
+    int len = sizeof(input_array) / sizeof(int);
     tis_make_unknown(input_array, sizeof(input_array));
     increment_array(input_array, len);
     return;
@@ -126,7 +135,7 @@ int main()
     ok = test_zero_length() && ok;
     ok = test_null() && ok;
     // ok = test_uninit() && ok;
-    
+
 #ifdef __TRUSTINSOFT_ANALYZER__
     test_generalized_small_array();
     test_generalized_large_array();
