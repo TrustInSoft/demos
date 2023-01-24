@@ -9,5 +9,6 @@
     ],
     "cpp-extra-args": "-I.",
     "whole-program-graph": "true",
+    "val-stop-at-nth-alarm": 1,
     "mcdc": "true"
 }
