@@ -33,7 +33,7 @@ The code of `increment_array()` is the following:
 ```c
 void increment_array(int array[], int len)
 {
-    if (array == NULL)
+    if (array == NULL || len == 0)
         return;
     while (len >= 0) // While end of array not reached
     {
@@ -52,9 +52,9 @@ The test driver [test_driver.c](test_driver.c#L64) has several unit tests meant 
 - Test with an empty array
 - Test with an null (unallocated) array
 
-When running the 4 unit tests, they all pass, and on top of that the code coverage is 100%. This can be verified by running `make clean cov`
+When running the 4 unit tests, they all pass, and on top of that the code coverage is 100%. This can be verified by running `make clean test`
 ```
-$ make clean cov
+$ make clean test
 
 gcc -I. -fprofile-arcs -ftest-coverage test_driver.c utils.c increment.c -o increment && ./increment
 
