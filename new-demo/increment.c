@@ -29,7 +29,7 @@ void increment_array(int array[], int len)
     if (array == NULL || len == 0)
         return;
 
-    while (len > 0)
+    while (len >= 0)
     {
         (*array)++; // Increment the value of the array cell
         array++;    // Move to next array cell
