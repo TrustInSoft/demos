@@ -18,6 +18,7 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <stdlib.h>
+#include <limits.h>
 #include "increment.h"
 
 /*
@@ -25,9 +26,10 @@ Increments all cells of an integer array
 */
 void increment_array(int array[], int len)
 {
-    if (array == NULL)
+    if (array == NULL || len == 0)
         return;
-    while (len >= 0)
+
+    while (len > 0)
     {
         (*array)++; // Increment the value of the array cell
         array++;    // Move to next array cell
