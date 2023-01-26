@@ -36,13 +36,11 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 int test_array(int *in_array, int len)
 {
     int ok = 1;
-    int string_size;
-    if (len <= 0)
-        string_size = 3;
-    else if (len > MAX_STRING_CELLS)
-        string_size = 3 + MAX_STRING_CELLS * 15 + 5;
+    int string_size = 3;
+    if (len <= MAX_STRING_CELLS)
+        string_size += len * 15;
     else
-        string_size = 3 + len * 15;
+        string_size += MAX_STRING_CELLS * 15 + 5;
     char input[string_size];
     char output[string_size];
 
@@ -86,13 +84,6 @@ int test_large_array()
     return test_array(input_array, len);
 }
 
-int test_uninit()
-{
-    int *p;
-    printf("increment_array(uninit)\n");
-    return test_array(p, 1);
-}
-
 int test_null()
 {
     int *p = NULL;
@@ -134,7 +125,6 @@ int main()
     ok = test_large_array() && ok;
     ok = test_zero_length() && ok;
     ok = test_null() && ok;
-    // ok = test_uninit() && ok;
 
 #ifdef __TRUSTINSOFT_ANALYZER__
     test_generalized_small_array();
