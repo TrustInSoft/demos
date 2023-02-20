@@ -32,12 +32,6 @@ TIS_OPTS := -val-profile analyzer -val -I.
 
 .PHONY: ut clean tis tis_gui
 
-ut:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
-	@echo -e "$(FONT_CYAN)gcov boundary.c$(FONT_RESET)"
-	@gcov boundary.c
-
 tis:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)

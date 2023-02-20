@@ -46,7 +46,7 @@ void increment_array(int array[], int len)
 
 ## Unit tests
 
-The test driver [test_driver.c](test_driver.c#L64) has several unit tests meant to test that function.
+The test driver [test_driver.c](test_driver.c#L71) has several unit tests meant to test that function.
 - Test with small array of a few static integers
 - Test with a larger array (1000 cells) of random integers
 - Test with an empty array
