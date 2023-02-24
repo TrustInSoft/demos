@@ -51,7 +51,7 @@ We'll test the above with a driver like the below:
 ```c
 int main()
 {
-    int data[] = ARRAY;
+    int data[] = {1, 3, 5, 7};
     char name[] = "Olivier";
     int len = sizeof(data)/sizeof(int);
 
@@ -85,7 +85,6 @@ increment_array({1, 3, 5 ,7}) = {2, 4, 6, 8} --> PASSED
 
 Note: We'll see that more in detail at the bottom of this document but an analysis with TrustInSoft would detect the problem and raise an alarm, because the above `increment_array()` function
 increments one cell to far at the end of the array.
-
 
 ## Basic Unit Test with a bit more logging
 
@@ -132,9 +131,9 @@ increment_array({1, 3, 5, 7}) = {2, 4, 6, 8} --> PASSED
 
 With that compiler, you'll notice that variables `data` and `name` are implanted differently in memory (`name` address is below/before `data`, whereas with **gcc** it was above/after) and because of that `name` is not overwritten (but that's pure luck... or unpredictability... or anything but determinism, that is, the essence of an Undefined Behavior)
 
-### Variation 2: Keep same compiler, change the code in an theoretically innocuous way
+### Variation 2: Keep same compiler, change the code in a theoretically innocuous way
 
-Let's make a change to the code, that's supposed to have absolutely no effect on the test outcome.
+Let's make a change to the code, that would be supposed to have absolutely no effect on the test outcome.
 Let's set variable `name` to `TrustInSoft` instead of `Olivier`. Just like for the 1st **gcc** test above
 you would expect that after calling `increment_array()`, `name` should be corrupted because of the
 buffer overflow, and hold the value `UrustInSoft`.
@@ -157,7 +156,6 @@ increment_array({1, 3, 5, 7}) = {2, 4, 6, 8} --> PASSED
 Oddly, `name` is not corrupted (i.e. the UB is invisible).
 Why? Because of the string size change, `gcc` decided differently on the variable implantation in memory: `name` is no longer 16 bytes after `data` (ie just after data) but 28 bytes after (Difference between 0x7ffd865ab5b0 and 0x7ffd865ab5cc)
 So when you run the same test, `name` is not overwritten. There is still an Undefined Behavior, just that the memory region overwritten is less visible from the outside.
-
 
 ## Analyzing the above code with TrustInSoft
 
@@ -204,7 +202,7 @@ Undefined Behaviors are sometimes obvious (they can cause runtime errors like di
   potentially catastrophic effect may not materialize immediately (crash after some time, crash under particular circumstances, no crash but unpredictable code behavior etc...)
 
 Because of the above, they are quite complex to spot and investigate.
-Even when all your test pass, even if there is no immediate effect of an undefined behavior (like a crash for instance), undefined behaviors are time bombs that only need time to cause damage (safety or security problems)
+Even when all your test pass, even if there is no immediate effect of an undefined behavior (like a crash for instance), undefined behaviors are time bombs that only need time to cause damage (safety or security problems).
 
 The TrustInSoft analyzer solves all the above challenges by:
 - Exhaustively and deterministically detecting all Undefined Behaviors in the code
@@ -213,4 +211,4 @@ The TrustInSoft analyzer solves all the above challenges by:
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022 TrustInSoft*
+*Copyright (C) 2022-2023 TrustInSoft*
