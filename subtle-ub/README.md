@@ -142,7 +142,7 @@ Let's try by running: `make ut-gcc-long`
 
 ```bash
 $ make ut-gcc-long
-gcc -DLOG_VERBOSE -DLONG_NAME -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
+gcc -DLOG_VERBOSE -DNAME="TrustInSoft" -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
 Address(data) = 0x7ffd865ab5b0 = 140726857545136
