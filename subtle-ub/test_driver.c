@@ -29,11 +29,10 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 int main()
 {
     int data[] = {1, 3, 5, 7};
-#ifdef LONG_NAME
-    char name[] = "TrustInSoft";
-#else
-    char name[] = "Olivier";
+#ifndef NAME
+#define NAME "Olivier"
 #endif
+    char name[] = NAME;
     int len = sizeof(data)/sizeof(int);
 
     printf("\nRun test_increment_array()\n");

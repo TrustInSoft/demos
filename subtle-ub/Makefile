@@ -44,8 +44,8 @@ ut-clang:
 	@clang -Wno-unused-value -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
 ut-gcc-long:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -DLOG_VERBOSE -DLONG_NAME -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -Wno-unused-value -DLOG_VERBOSE -DLONG_NAME -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+	@echo -e "$(FONT_CYAN)$(COMPILER) -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
+	@$(COMPILER) -Wno-unused-value -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
 tis:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
