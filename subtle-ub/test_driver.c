@@ -25,11 +25,10 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #define SUCCESS "--> PASSED"
 #define FAILED  "--> *** FAILED ***"
-#define ARRAY {1, 3, 5, 7}
 
 int main()
 {
-    int data[] = ARRAY;
+    int data[] = {1, 3, 5, 7};
 #ifdef LONG_NAME
     char name[] = "TrustInSoft";
 #else
