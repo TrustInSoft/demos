@@ -1,0 +1,16 @@
+{
+  "files": [
+    "test_driver.c",
+    "boundary.c"
+  ],
+  "val-profile": "interpreter",
+  "val-args": " input.txt",
+  "filesystem": {
+    "files": [
+      {
+        "name": "input.txt",
+        "from": "work/real_input.txt"
+      }
+    ]
+  }
+}

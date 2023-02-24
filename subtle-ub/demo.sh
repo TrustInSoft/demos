@@ -1,6 +1,6 @@
 #!/bin/bash
 # tis-examples
-# Copyright (C) 2022 TrustInSoft
+# Copyright (C) 2022-2023 TrustInSoft
 # mailto:contact AT trust-in-soft DOT com
 # 
 # This program is free software; you can redistribute it and/or
@@ -33,7 +33,8 @@ ${GREEN}$H2
 In this example we'll show how Undefined Behaviors are quite subtle,
 may be visible or not in different execution conditions, and how it can be
 extremely difficult to detect them with traditional tests
-$H2${RESET}
+$H2
+${RESET}
 EOF
 
 press_enter
@@ -46,11 +47,13 @@ Here's a simple function that increments all cells of an array of integers.
 We'll see that this function has an undefined behavior (UB) and, because of
 that, a program using this function can behave differently depending on the
 context, and the UB can be more or less noticeable depending on cases
-$H2${RESET}
+$H2
+${RESET}
 EOF
 
 tac increment.c | sed -e '/void increment_array/q' | tac
 
+echo ""
 press_enter
 #------------------------------------------------------------------------------
 clear
@@ -58,11 +61,13 @@ cat << EOF
 ${GREEN}$H2
 This function is tested with the below test driver.
 Note the presence of variable ${YELLOW}name${GREEN} that will play a role
-$H2${RESET}
+$H2
+${RESET}
 EOF
 
 tac test_driver.c | sed -e '/int main()/q' | tac
 
+echo ""
 press_enter
 
 #------------------------------------------------------------------------------
@@ -97,13 +102,15 @@ make ut-gcc
 
 cat << EOF
 ${GREEN}If you carefully look, you'll notice that the compiler stored the ${YELLOW}name${GREEN} variable
-in memory just after the ${YELLOW}data${GREEN} variable (16 bytes further, just the size of ${YELLOW}data${GREEN}).
-...and when we display the ${YELLOW}name${GREEN} variable before and after calling ${YELLOW}increment_array()${GREEN} we can see
-that this variable is affected (It was "${RED}O${GREEN}livier" before the call, and becomes "${RED}P${GREEN}livier"
-after the call) even though it is not used for the call to ${YELLOW}increment_array()${GREEN}
+in memory just after the ${YELLOW}data${GREEN} variable (16 bytes further, just the size of
+${YELLOW}data${GREEN})... and when we display the ${YELLOW}name${GREEN} variable before and after calling
+${YELLOW}increment_array()${GREEN} we can see that this variable is affected (It was "${RED}O${GREEN}livier"
+before the call, and becomes "${RED}P${GREEN}livier" after the call) even though it is not
+used for the call to ${YELLOW}increment_array()${GREEN}
 
-The reason for that is the buffer overflow in ${YELLOW}increment_array()${GREEN} that increments past the end
-of the array and overwrites the memory location that happens to be the location of ${YELLOW}name${GREEN}
+The reason for that is the buffer overflow in ${YELLOW}increment_array()${GREEN} that increments
+past the end of the array and overwrites the memory location that happens to
+be the location of ${YELLOW}name${GREEN}
 ${RESET}
 EOF
 
@@ -124,10 +131,10 @@ cat << EOF
 ${GREEN}clang decides for another way of storing the ${YELLOW}data${GREEN} and ${YELLOW}name${GREEN} variables in memory.
 If you look at the addresses, ${YELLOW}data${GREEN} is after ${YELLOW}name${GREEN}, not before
 
-In this context the UB remains completely invisible (${YELLOW}name${GREEN} is not modified), even if the
-tester has the idea to verify the variable name, because the memory overwritten by the
-${YELLOW}increment_array()${GREEN} buffer overflow is not overlapping with ${YELLOW}name${GREEN}.
-The UB problem is nevertheless still present.
+In this context the UB remains completely invisible (${YELLOW}name${GREEN} is not modified), even
+if the tester has the idea to verify the variable name, because the memory
+overwritten by the ${YELLOW}increment_array()${GREEN} buffer overflow is not overlapping with
+${YELLOW}name${GREEN}. The UB problem is nevertheless still present.
 ${RESET}
 EOF
 
@@ -139,9 +146,10 @@ cat << EOF
 ${GREEN}$H2
 Another example of the non-deterministic behavior of the code due to the UB.
 
-Let's compile again with gcc (just like in the 2nd run), but change the value of variable ${YELLOW}name${GREEN}
-from "Olivier" to "TrustInSoft". And run the test again. We could expect the name to be
-changed into "${RED}U${GREEN}rustInSoft" because of the buffer overflow. Let's see...
+Let's compile again with gcc (just like in the 2nd run), but change the value of
+variable ${YELLOW}name${GREEN} from "Olivier" to "TrustInSoft". And run the test again.
+We could expect the name to be changed into "${RED}U${GREEN}rustInSoft" because of the
+buffer overflow. Let's see...
 ${RESET}
 EOF
 
@@ -149,16 +157,17 @@ sleep $SLEEP_TIME
 make ut-gcc-long
 
 cat << EOF
-${GREEN}"Que nenni!" as we'd say in old French: For some reason, because the ${YELLOW}name${GREEN}
-string size has changed, gcc now decided to implant ${YELLOW}name${GREEN} further past ${YELLOW}data${GREEN} in memory
+${GREEN}"Que nenni!" as we'd say in old French: For some reason, because the ${YELLOW}name${GREEN} string
+size has changed, gcc now decided to implant ${YELLOW}name${GREEN} further past ${YELLOW}data${GREEN} in memory
 (precisely 28 bytes). So the array buffer overflow does not overwrites ${YELLOW}name${GREEN}...
 (but again: The UB is still well present and is a potential time bomb) 
 
-It's important to be clear that the UB is NOT there because ${YELLOW}name${GREEN} is overwritten, but because
-any memory location is overwritten. The UB is present in all tests scenarii above,
-just that in some conditions it overwrites the memory location of ${YELLOW}name${GREEN},
-and in others another memory location (which is very likely used for some other data so
-that's just as bad).
+It's important to be clear that the UB is NOT there because ${YELLOW}name${GREEN} is overwritten,
+but because the memory location past the is overwritten, even if this memory is
+not allocated.
+The UB is present in all tests scenarii above, just that in some conditions it
+overwrites the memory location of ${YELLOW}name${GREEN}, and in others another memory location
+(which is very likely used for some other data so that's just as bad).
 ${RESET}
 EOF
 
@@ -191,7 +200,10 @@ ${GREEN}
 $H2
 As you can see from the warning:
 ${RESET}increment.c:27:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
-${GREEN}above, the Undefined Behavior is detected.${RESET}
+${GREEN}above, the Undefined Behavior is detected.
+Technically this alarm means that the pointer ${YELLOW}p${GREEN} points to an invalid (outside
+of the array) location (i.e. a buffer overflow).
+${RESET}
 EOF
 
 press_enter
@@ -216,6 +228,7 @@ ${H2}${RESET}
 EOF
     cat .static/tis-no-ub.log
 fi
+echo ""
 press_enter
 
 cat << EOF

@@ -16,7 +16,6 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-
 SHELL := /bin/bash
 
 FONT_BOLD := `tput bold`
@@ -25,20 +24,42 @@ FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
 
 TIS_ANALYZER := tis-analyzer
-TARGET := boundary-test
-FILES := test_driver.c boundary.c
+TARGET := approx
+FILES := approx.c
 COMPILER := gcc
 TIS_OPTS := -val-profile analyzer -val -I.
 
-.PHONY: ut clean tis tis_gui
+.PHONY: all clean tis tis-gui
+
+all:
+	$(COMPILER) -Wno-unused-value -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
 tis:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
 
-tis-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
+tis-1:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test1 -slevel 10000 $(FILES)
+
+tis-2:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 $(FILES)
+
+tis-2-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 $(FILES) -gui
+
+tis-3:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 -val-split-return-function approx:full $(FILES)
+
+tis-3-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 -val-split-return-function approx:full $(FILES) -gui
+
+tis-4:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test3 -slevel 10000 $(FILES)
+
+tis-5:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test3 -slevel 10000 -val-split-return-function approx:full $(FILES)
+
+tis-6:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main testn -slevel 10000 -val-split-return-function approx:full $(FILES)
 
 clean:
-	@rm -rf $(TARGET) *.gc* compile_commands.json
+	@rm -rf $(TARGET) compile_commands.json

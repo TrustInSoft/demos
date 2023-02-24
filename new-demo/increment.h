@@ -1,3 +1,5 @@
+#ifndef INCREMENT_H
+#define INCREMENT_H
 /*
 tis-examples
 Copyright (C) 2022 TrustInSoft
@@ -17,32 +19,6 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include "increment.h"
-#include "logutils.h"
 
-#define SUCCESS "--> PASSED"
-#define FAILED  "--> *** FAILED ***"
-
-int main()
-{
-    int data[] = {1, 3, 5, 7};
-#ifdef LONG_NAME
-    char name[] = "TrustInSoft";
-#else
-    char name[] = "Olivier";
+void increment_array(int *p, int len);
 #endif
-    int len = sizeof(data)/sizeof(int);
-
-    printf("\nRun test_increment_array()\n");
-    log_info("Before increment", data, len, name, 1);
-    increment_array(data, len);
-    log_info("After  increment", data, len, name, 0);
-
-    int ok = (data[0] == 2) && (data[1] == 4) && (data[2] == 6) && (data[3] == 8);
-    printf("\nincrement_array({1, 3, 5, 7}) = {%d, %d, %d, %d} %s\n\n",
-        data[0], data[1], data[2], data[3], ok ? SUCCESS: FAILED);
-    return (ok ? 0 : 1);
-}

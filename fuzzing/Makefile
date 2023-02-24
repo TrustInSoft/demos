@@ -25,12 +25,16 @@ FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
 
 TIS_ANALYZER := tis-analyzer
-TARGET := boundary-test
+TARGET := calculate
 FILES := test_driver.c boundary.c
-COMPILER := gcc
 TIS_OPTS := -val-profile analyzer -val -I.
+CC := "/usr/bin/afl-gcc"
 
 .PHONY: ut clean tis tis_gui
+
+ut:
+	@echo -e "$(FONT_CYAN)$(CC) -I. $(FILES) -o $(TARGET)$(FONT_RESET)"
+	@$(CC) $(FILES) -o $(TARGET)
 
 tis:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"

@@ -17,32 +17,22 @@ You should have received a copy of the GNU Lesser General Public License
 along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+
 #include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-#include "increment.h"
-#include "logutils.h"
+#include "boundary.h"
 
-#define SUCCESS "--> PASSED"
-#define FAILED  "--> *** FAILED ***"
-
-int main()
+int handle_error()
 {
-    int data[] = {1, 3, 5, 7};
-#ifdef LONG_NAME
-    char name[] = "TrustInSoft";
-#else
-    char name[] = "Olivier";
-#endif
-    int len = sizeof(data)/sizeof(int);
+    return OUT_OF_BOUNDS;
+}
 
-    printf("\nRun test_increment_array()\n");
-    log_info("Before increment", data, len, name, 1);
-    increment_array(data, len);
-    log_info("After  increment", data, len, name, 0);
-
-    int ok = (data[0] == 2) && (data[1] == 4) && (data[2] == 6) && (data[3] == 8);
-    printf("\nincrement_array({1, 3, 5, 7}) = {%d, %d, %d, %d} %s\n\n",
-        data[0], data[1], data[2], data[3], ok ? SUCCESS: FAILED);
-    return (ok ? 0 : 1);
+// Expected input ranges:
+// 1 <= x <= 10000
+// 1 <= y <= 10000
+int calculate(int x, int y)
+{
+    if (x <= 0 || x > 10000) return handle_error();
+    if (y <= 0 || y > 10000) return handle_error();
+    int d = 17 * x - 7 * y;
+    return 10000 / d;
 }
