@@ -39,7 +39,6 @@ git checkout main >/dev/null 2>&1
 
 function press_enter()
 {
-  echo
   [ "$steps" = "true" ] && read -p "$MSG" c
 }
 
