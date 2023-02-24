@@ -33,7 +33,8 @@ ${GREEN}$H2
 In this example we'll show how Undefined Behaviors are quite subtle,
 may be visible or not in different execution conditions, and how it can be
 extremely difficult to detect them with traditional tests
-$H2${RESET}
+$H2
+${RESET}
 EOF
 
 press_enter
@@ -46,11 +47,13 @@ Here's a simple function that increments all cells of an array of integers.
 We'll see that this function has an undefined behavior (UB) and, because of
 that, a program using this function can behave differently depending on the
 context, and the UB can be more or less noticeable depending on cases
-$H2${RESET}
+$H2
+${RESET}
 EOF
 
 tac increment.c | sed -e '/void increment_array/q' | tac
 
+echo ""
 press_enter
 #------------------------------------------------------------------------------
 clear
@@ -58,11 +61,13 @@ cat << EOF
 ${GREEN}$H2
 This function is tested with the below test driver.
 Note the presence of variable ${YELLOW}name${GREEN} that will play a role
-$H2${RESET}
+$H2
+${RESET}
 EOF
 
 tac test_driver.c | sed -e '/int main()/q' | tac
 
+echo ""
 press_enter
 
 #------------------------------------------------------------------------------
@@ -197,7 +202,8 @@ As you can see from the warning:
 ${RESET}increment.c:27:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(p);
 ${GREEN}above, the Undefined Behavior is detected.
 Technically this alarm means that the pointer ${YELLOW}p${GREEN} points to an invalid (outside
-of the array) location (i.e. a buffer overflow).${RESET}
+of the array) location (i.e. a buffer overflow).
+${RESET}
 EOF
 
 press_enter
