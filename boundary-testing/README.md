@@ -1,5 +1,5 @@
 <!--
-# tis-examples
+# trustinsoft/demos
 # Copyright (C) 2022-2023 TrustInSoft
 # mailto:contact AT trust-in-soft DOT com
 #
@@ -27,7 +27,7 @@ that may cause problems such as division by zero in you code.
 
 Note: If you have an Ubuntu machine you can run this demo live by running:
 ```bash
-git clone https://github.com/TrustInSoft/tis-examples
+git clone https://github.com/TrustInSoft/trustinsoft/demos
 cd boundary-testing
 ./demo.sh
 ```

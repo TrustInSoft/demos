@@ -1,7 +1,7 @@
 #ifndef INCREMENT_H
 #define INCREMENT_H
 /*
-tis-examples
+trustinsoft/demos
 Copyright (C) 2022-2023 TrustInSoft
 mailto:contact AT trust-in-soft DOT com
 
