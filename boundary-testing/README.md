@@ -1,6 +1,6 @@
 <!--
 # tis-examples
-# Copyright (C) 2022 TrustInSoft
+# Copyright (C) 2022-2023 TrustInSoft
 # mailto:contact AT trust-in-soft DOT com
 #
 # This program is free software; you can redistribute it and/or
@@ -203,4 +203,4 @@ The TrustInSoft analyzer solves the above problems with its level 2 generalizati
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022 TrustInSoft*
+*Copyright (C) 2022-2023 TrustInSoft*
