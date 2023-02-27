@@ -32,14 +32,12 @@
     {
         "include": "tis-common.json",
         "name": "2.1.generalized-small-array",
-        "val": "true",
         "val-profile": "analyzer",
         "main": "test_generalized_small_array"
     },
     {
         "include": "tis-common.json",
         "name": "2.2.generalized-large-array",
-        "val": "true",
         "val-profile": "analyzer",
         "main": "test_generalized_large_array"
     }
