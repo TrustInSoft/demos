@@ -37,6 +37,9 @@ all:
 tis:
 	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
 
+tis-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
+
 tis-1:
 	$(TIS_ANALYZER) $(TIS_OPTS) -main test1 -slevel 10000 $(FILES)
 
@@ -46,16 +49,22 @@ tis-2:
 tis-2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 $(FILES) -gui
 
-tis-3:
-	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 -val-split-return-function approx:full $(FILES)
+tis-2s-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test2split -slevel 10000 $(FILES) -gui
 
-tis-3-gui:
-	$(TIS_ANALYZER) $(TIS_OPTS) -main test2 -slevel 10000 -val-split-return-function approx:full $(FILES) -gui
+tis-3s:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test3split -slevel 10000 -val-split-return-function approx:full $(FILES)
 
-tis-4:
-	$(TIS_ANALYZER) $(TIS_OPTS) -main test3 -slevel 10000 $(FILES)
+tis-3s-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test3split -slevel 10000 -val-split-return-function approx:full $(FILES) -gui
 
-tis-5:
+tis-4s:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test4split -slevel 10000 $(FILES)
+
+tis-4s-gui:
+	$(TIS_ANALYZER) $(TIS_OPTS) -main test4split -slevel 50000 $(FILES) -gui
+
+tis-5s:
 	$(TIS_ANALYZER) $(TIS_OPTS) -main test3 -slevel 10000 -val-split-return-function approx:full $(FILES)
 
 tis-6:

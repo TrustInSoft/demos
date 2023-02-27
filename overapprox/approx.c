@@ -44,7 +44,16 @@ int test2()
     return 0;
 }
 
-int test3()
+
+int test2split()
+{
+    int n = tis_interval_split(-100, 100);
+    int m = 170 / (42 - approx(n));
+    printf("test2: approx(%d) = %d\n", n, m);
+    return 0;
+}
+
+int test3split()
 {
     int n = tis_interval_split(-1000, 1000);
     int m = 170 / (42 - approx(n));
@@ -52,7 +61,7 @@ int test3()
     return 0;
 }
 
-int testn()
+int test4split()
 {
     int n = tis_interval_split(-10000, 10000);
     int m = 170 / (42 - approx(n));
