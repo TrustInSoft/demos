@@ -84,17 +84,18 @@ int test_large_array()
     return test_array(input_array, len);
 }
 
+int test_zero_length()
+{
+    int p[] = {};
+    return test_array(p, 0);
+}
+
 int test_null()
 {
     int *p = NULL;
     return test_array(p, 777);
 }
 
-int test_zero_length()
-{
-    int p[] = {};
-    return test_array(p, 0);
-}
 
 #ifdef __TRUSTINSOFT_ANALYZER__
 void test_generalized_small_array()
@@ -114,6 +115,8 @@ void test_generalized_large_array()
     increment_array(input_array, len);
     return;
 }
+
+
 #endif
 
 int main()
