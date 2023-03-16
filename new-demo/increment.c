@@ -31,7 +31,8 @@ void increment_array(int array[], int len)
 
     while (len >= 0)
     {
-        (*array)++; // Increment the value of the array cell
+        int value = *array;  
+        *array = value+1; // Increment the value of the array cell
         array++;    // Move to next array cell
         len--;      // Decrement counter
     }
