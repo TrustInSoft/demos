@@ -98,16 +98,8 @@ int test_null()
 
 
 #ifdef __TRUSTINSOFT_ANALYZER__
-void test_generalized_small_array()
-{
-    int input_array[10];
-    int len = sizeof(input_array) / sizeof(int);
-    tis_make_unknown(input_array, sizeof(input_array));
-    increment_array(input_array, len);
-    return;
-}
 
-void test_generalized_large_array()
+void test_generalized_array()
 {
     int input_array[1000];
     int len = sizeof(input_array) / sizeof(int);
@@ -130,8 +122,7 @@ int main()
     ok = test_null() && ok;
 
 #ifdef __TRUSTINSOFT_ANALYZER__
-    test_generalized_small_array();
-    test_generalized_large_array();
+    test_generalized_array();
 #endif
     if (ok)
         printf("\n\033[0;32m---> All tests PASSED\033[0m\n");
