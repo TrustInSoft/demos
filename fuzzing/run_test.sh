@@ -13,7 +13,7 @@ elif [ "$1" == "loop" ]; then
 else
 	nblines=$(cat $INPUT_FILE | wc -l)
 	echo "Seeds file has $nblines lines"
-	for line in {1..16}; do
+	for line in {1..$nblines}; do
 		#echo "LIne = $line"
 		str=$(sed "${line}q;d" ${INPUT_FILE})
 		# echo "Running: calculate $str"
