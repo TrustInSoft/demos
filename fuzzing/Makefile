@@ -45,4 +45,8 @@ tis-gui:
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
 clean:
-	@rm -rf $(TARGET) *.gc* compile_commands.json
+	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results
+
+afl:
+	/usr/bin/afl-gcc $(FILES) -o $(TARGET)-afl
+	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl
