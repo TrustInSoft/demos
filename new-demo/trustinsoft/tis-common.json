@@ -1,6 +1,6 @@
 {
     "machdep": "gcc_x86_64",
-    "slevel": 4000,
+    "slevel": 1500,
     "val": "true",
     "files": [
         "../increment.c",
