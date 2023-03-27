@@ -11,3 +11,4 @@ overapprox/approx
 **/tis_report.html
 **/tis_misra_report/**
 subtle-ub/demo-ub
+fuzzing/afl-results*/
