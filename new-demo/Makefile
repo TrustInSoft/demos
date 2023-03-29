@@ -80,7 +80,7 @@ tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
 
 clean:
-	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html
+	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
 
 #tis-l1: tis-l1-1 tis-l1-2 count_ub report
 tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
@@ -91,3 +91,7 @@ report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
 	@tis-report _results/ --skip-file test_driver.c,utils.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
+
+tis-misra:
+	tis-misra --title "DEMO" increment.c
+	@printf "\nCheck generated test report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"
