@@ -49,7 +49,7 @@ clean:
 
 afl:
 	/usr/bin/afl-gcc $(FILES) -o $(TARGET)-afl
-	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl
+	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl @@
 
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
