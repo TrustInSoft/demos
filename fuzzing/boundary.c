@@ -33,6 +33,13 @@ int calculate(int x, int y)
 {
     if (x <= 0 || x > 10000) return handle_error();
     if (y <= 0 || y > 10000) return handle_error();
+#if defined(HARD)
+    int d = 1732 * x - 7333 * y;
+#elif defined(MEDIUM)
+    int d = 517 * x - 91 * y;
+#else
+    // Easy to find division by zero
     int d = 17 * x - 7 * y;
+#endif
     return 10000 / d;
 }

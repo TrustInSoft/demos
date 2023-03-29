@@ -47,9 +47,19 @@ tis-gui:
 clean:
 	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results
 
-afl:
-	/usr/bin/afl-gcc $(FILES) -o $(TARGET)-afl
-	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl @@
+afl: afl-medium
+
+afl-easy:
+	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-afl-easy
+	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl-easy @@
+
+afl-medium:
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-afl-medium
+	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl-medium @@
+
+afl-hard:
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-afl-hard
+	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl-hard @@
 
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
