@@ -25,8 +25,9 @@ FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
 
 TIS_ANALYZER := tis-analyzer
-TARGET := calculate
+TARGET := calc
 FILES := test_driver.c boundary.c
+SEEDS := seeds
 TIS_OPTS := -val-profile analyzer -val -I.
 CC := "/usr/bin/afl-gcc"
 
@@ -45,21 +46,38 @@ tis-gui:
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
 clean:
+	@rm -f $(SEEDS)/*aided*
 	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results
 
 afl: afl-medium
 
 afl-easy:
-	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-afl-easy
-	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl-easy @@
+	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy @@
 
 afl-medium:
-	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-afl-medium
-	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl-medium @@
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium @@
 
 afl-hard:
-	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-afl-hard
-	afl-fuzz -i input-files -o afl-results -- ./$(TARGET)-afl-hard @@
+	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard
+	cp $(SEEDS)-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard @@
+
+afl-easy-aided:
+	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-aided
+	cp $(SEEDS)-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-aided @@
+
+afl-medium-aided:
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-aided
+	cp $(SEEDS)-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-aided @@
+
+afl-hard-aided:
+	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-aided
+	cp $(SEEDS)-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-aided @@
 
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
