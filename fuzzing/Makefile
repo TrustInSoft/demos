@@ -79,6 +79,21 @@ afl-hard-aided:
 	cp $(SEEDS)-aided/* $(SEEDS)
 	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-aided @@
 
+afl-easy-semi-aided:
+	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-semi-aided
+	cp $(SEEDS)-semi-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-semi-aided @@
+
+afl-medium-semi-aided:
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-semi-aided
+	cp $(SEEDS)-semi-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-aided @@
+
+afl-hard-semi-aided:
+	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-semi-aided
+	cp $(SEEDS)-semi-aided/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-aided @@
+
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
 	./run_test.sh
