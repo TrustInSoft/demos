@@ -46,7 +46,7 @@ tis-gui:
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
 clean:
-	@rm -f $(SEEDS)/*aided*
+	@rm -f $(SEEDS)/*smart*
 	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results
 
 afl: afl-medium
@@ -61,38 +61,38 @@ afl-medium:
 
 afl-hard:
 	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard
-	cp $(SEEDS)-aided/* $(SEEDS)
+	cp $(SEEDS)-smart/* $(SEEDS)
 	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard @@
 
-afl-easy-aided:
-	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-aided
-	cp $(SEEDS)-aided/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-aided @@
+afl-easy-smart:
+	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-smart
+	cp $(SEEDS)-smart/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-smart @@
 
-afl-medium-aided:
-	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-aided
-	cp $(SEEDS)-aided/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-aided @@
+afl-medium-smart:
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-smart
+	cp $(SEEDS)-smart/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-smart @@
 
-afl-hard-aided:
-	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-aided
-	cp $(SEEDS)-aided/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-aided @@
+afl-hard-smart:
+	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-smart
+	cp $(SEEDS)-smart/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-smart @@
 
-afl-easy-semi-aided:
-	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-semi-aided
-	cp $(SEEDS)-semi-aided/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-semi-aided @@
+afl-easy-semi-smart:
+	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-semi-smart
+	cp $(SEEDS)-semi-smart/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-semi-smart @@
 
-afl-medium-semi-aided:
-	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-semi-aided
-	cp $(SEEDS)-semi-aided/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-aided @@
+afl-medium-semi-smart:
+	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-semi-smart
+	cp $(SEEDS)-semi-smart/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-smart @@
 
-afl-hard-semi-aided:
-	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-semi-aided
-	cp $(SEEDS)-semi-aided/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-aided @@
+afl-hard-semi-smart:
+	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-semi-smart
+	cp $(SEEDS)-semi-smart/* $(SEEDS)
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-smart @@
 
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
