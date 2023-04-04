@@ -45,24 +45,20 @@ tis-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
+tis-fuzz:
+	tis-fuzz --tis-config trustinsoft/tis.json -i afl-results -o tis-fuzz-results --mkfs work/real_input.txt
+
 clean:
 	@rm -f $(SEEDS)/*smart*
-	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results
+	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results tis-fuzz-results
 
-afl: afl-medium
+afl: afl-easy-semi-smart
 
-afl-easy:
-	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy @@
+afl-easy: afl-easy-smart
 
-afl-medium:
-	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium @@
+afl-medium: afl-medium-semi-smart
 
-afl-hard:
-	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard
-	cp $(SEEDS)-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard @@
+afl-hard: afl-hard-semi-smart
 
 afl-easy-smart:
 	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-smart
