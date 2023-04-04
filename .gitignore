@@ -14,3 +14,4 @@ subtle-ub/demo-ub
 fuzzing/afl-results*/
 fuzzing/calc-*
 fuzzing/tis-fuzz-results/*
+fuzzing/seeds/seed-*smart*.txt
