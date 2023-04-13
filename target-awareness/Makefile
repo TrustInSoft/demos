@@ -32,8 +32,13 @@ TIS_OPTS_ARM32 := -tis-config-load trustinsoft/tis-arm32.json -tis-report
 
 .PHONY: all test report
 
+make: all
+	@echo "Options: make test | tis-x64 | tis-arm32 | clean"
+	@echo "test:      Runs compiled unit test on host (64 bits little endian)"
+	@echo "tis-x64:   Runs TIS with x86_64 target (64 bits little endian) configured"
+	@echo "tis-arm32: Runs TIS with ARM32 target (32 bits big endian) configured"
 
-all:
+test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
