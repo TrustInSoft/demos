@@ -5,7 +5,7 @@
 **/*.gcov
 **/_results/
 **/*.json
-**/tis_report*.html
+**/tis_report.html
 **/tis_misra_report/**
 
 **/afl-results/
