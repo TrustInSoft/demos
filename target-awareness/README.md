@@ -88,8 +88,8 @@ because the code is target sensitive.
 
 The analysis execution logs are below and a screenshot of the analysis for the 2 targets are available below
 
-<img src="trustinsoft/tis_report.x64.png" width=48%>
-<img src="trustinsoft/tis_report.arm32.png" width=48%>
+<img src="trustinsoft/tis_report.x64.png" width=40%>
+<img src="trustinsoft/tis_report.arm32.png" width=40%>
 
 ### x86-64
 ```bash
