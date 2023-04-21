@@ -22,6 +22,9 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <limits.h>
 #include "target.h"
 
+#define SUCCESS "\033[0;32mPASSED\033[0m"
+#define FAILED "\033[0;31m** FAILED **\033[0m"
+
 // Word size awareness
 long double_that(int i)
 {
@@ -33,13 +36,13 @@ void test_double_that()
     int val = 0x7FFFFFF0;
     // Integer overflow or no integer overflow ?
     long res = double_that(val);
-    printf("double_that(%d) = %ld\n", val, res);
+    printf((long)val * 2 == res ? SUCCESS : FAILED);
+    printf(": double_that(%d) = %ld", val, res);
 
     int array[5] = {0, 1, 2, 3, 4};
     int index = res % 5;
-    printf("Index = %d\n", index);
-    // Index out of bounds or not ?
-    array[index] = 42;
+    array[index] = 42; // Index out of bounds or not ?
+    printf(" and array[%d] = %d\n", index, array[index]);
 }
 
 //-------------------------------------
@@ -54,7 +57,8 @@ void test_msb()
     unsigned short val = 0xBEEF;
     unsigned char c = msb(val);
     // c == 0xBE or c == 0xEF ?
-    printf("msb(0x%X) = 0x%X\n", (unsigned int)val, (unsigned int)c);
+    printf( (c == 0xEF) ? SUCCESS: FAILED);
+    printf(": msb(0x%X) = 0x%X\n", (unsigned int)val, (unsigned int)c);
     // Div by zero or not ?
     float x = 1 / (0xBE - (int)c);
     return;
