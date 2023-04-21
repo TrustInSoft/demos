@@ -87,7 +87,9 @@ because the code is target sensitive.
 - On ARM-32, configured in big endian mode (ARM processors are bi-endian), the analyzer will report 2 issues
 
 The analysis execution logs are below and a screenshot of the analysis for the 2 targets are available below
-| ![here for x64](trustinsoft/tis_report.x64.png) | ![here for ARM-32](trustinsoft/tis_report.arm32.png) |
+
+<img src="trustinsoft/tis_report.x64.png" width=48%>
+<img src="trustinsoft/tis_report.arm32.png" width=48%>
 
 ### x86-64
 ```bash
