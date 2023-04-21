@@ -24,9 +24,9 @@ This demo demonstrates:
 - Why target awareness is important when doing static code analysis of low-level/embedded code.
 - How TrustInSoft analyzer gracefully solves that challenge.
 
-## Code under test
+## Target sensitive code under test
 
-The sample code for the demo is in the [target.c](target.c#L26) source file.
+The sample code for the demo is in the [target.c](target.c) source file.
 2 functions are defined that require target awareness for precise analysis
 
 ```c
@@ -47,9 +47,9 @@ unsigned char msb(unsigned short n)
 unsigned char c = msb(0xBEEF); // c == 0xBE or c == 0xEF ?
 ```
 
-## Target sensitive tests
+## Tests
 
-The test driver simply calls the 2 above functions, and make used of the return value
+The test driver simply calls the 2 above functions, and make use of the return value
 ```c
 void test_msb() {
     unsigned char c = msb(0xBEEF);      // c == 0xBE or c == 0xEF ?
@@ -69,7 +69,7 @@ int main() {
 }
 ```
 
-If we run this test the traditional way (as a unit test on host) the test do succeed, because
+If we run these tests the traditional way (as a unit test on host) they both succeed, because
 most hosts are x86 (little indian) 64 bits.
 You can verify that with `make test`
 ```bash
@@ -178,8 +178,10 @@ Changing targets or analyzing for several targets can be very handy in many use 
 - Your code was originally designed for a particular target but is now being progressively migrated to a new (more recent, more performant, with per price/performance) target
 
 ## Conclusion
-Besides its formal methods based, exhaustive analysis capabilities, the TrustInSoft Analyzer provides all the required features to analyze
-on a regular development or CI machine, embedded low level that is target dependent (or target sensitive)
+
+From the code example above, one can conclude that analysing code taking into account the target is very important for embedded code.
+Besides its formal-methods based exhaustive analysis capabilities, the TrustInSoft Analyzer provides all the required features to analyze
+on a regular development or CI machine, embedded low level that is target target sensitive.
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
