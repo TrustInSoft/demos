@@ -99,12 +99,12 @@ report:
 
 report-arm32:
 	@mv tis_report.html tis_report.arm32.html
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.arm32.html$(FONT_RESET)\n\n"
+	@printf "\nCheck generated analysis report $(FONT_CYAN)tis_report.arm32.html$(FONT_RESET)\n\n"
 	
 report-x64:
 	@mv tis_report.html tis_report.x64.html
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.x64.html$(FONT_RESET)\n\n"
+	@printf "\nCheck generated analysis report $(FONT_CYAN)tis_report.x64.html$(FONT_RESET)\n\n"
 
 tis-misra:
 	tis-misra --title "DEMO" increment.c
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"
+	@printf "\nCheck generated analysis report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"
