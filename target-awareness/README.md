@@ -86,7 +86,9 @@ because the code is target sensitive.
 - On x86-64, the analyzer will report no problem (just like traditional tests), because on that target the code is safe
 - On ARM-32, configured in big endian mode (ARM processors are bi-endian), the analyzer will report 2 issues
 
-The analysis execution logs are below and the detailed analysis reports for the 2 targets are available [here for x86-64](tis_report.x64.html) and [here for ARM-32](tis_report.arm32.html)
+The analysis execution logs are below and the detailed analysis reports for the 2 targets are available
+<a href="tis_report.x64.html" target="_blank">here for x86-64</a> and 
+<a href="tis_report.arm32.html" target="_blank">here for ARM-32</a>
 
 ### x86-64
 ```bash
