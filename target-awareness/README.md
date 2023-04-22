@@ -91,7 +91,7 @@ Let's first run the analyzer with target X86-64. The analysis report and executi
 The analysis confirms that for target X86-64 there is no undefined behavior for the code.
 
 <div style="text-align: center;">
-<img src="trustinsoft/tis_report.x64.png" width=600 title="x86-64 analysis results">
+<img src="trustinsoft/tis_report.x64.png" width=800 title="x86-64 analysis results">
 </div>
 
 ```bash
@@ -138,7 +138,7 @@ The analysis now raises 2 undefined behaviors:
 - A division by zero in `test_msb()` because the function `msb()` returns a different byte on big endian machines.
 
 <div style="text-align: center;">
-<img src="trustinsoft/tis_report.arm32.png" width=600 title="ARM-32 big endian analysis results">
+<img src="trustinsoft/tis_report.arm32.png" width=800 title="ARM-32 big endian analysis results">
 </div>
 
 ```bash
