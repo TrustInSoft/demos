@@ -193,7 +193,7 @@ Changing targets or analyzing for several targets can be very handy in many use 
 
 ## Conclusion
 
-From the code example above, one can conclude that analysing code taking into account the target is very important for embedded code.
+From the code example above, one can conclude that analysing code taking into account the target is very important for embedded code, because such code often has target sensitive code constructs.
 Besides its formal-methods based exhaustive analysis capabilities, the TrustInSoft Analyzer provides all the required features to analyze
 on a regular development or CI machine, embedded low level that is target target sensitive.
 
