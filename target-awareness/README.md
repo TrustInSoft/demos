@@ -86,7 +86,7 @@ You can perform the same tests replayed with the TrustInSoft Analyzer for differ
 - On x86-64, the analyzer will report no problem (just like traditional tests), because on that target the code is safe
 - On ARM-32, configured in big endian mode (ARM processors are bi-endian), the analyzer will report 2 issues
 
-### x86-64
+### Analysis for x86-64 target
 Let's first run the analyzer with target X86-64. The analysis report and execution logs are below.
 The analysis confirms that for target X86-64 there is no undefined behavior for the code.
 
@@ -131,7 +131,7 @@ PASSED: msb(0xBEEF) = 0xEF
 Check generated analysis report tis_report.x64.html
 ```
 
-### ARM32 big endian
+### Analysis for ARM32 big endian target
 Let's now run the analyzer with target ARM32 big endian. The analysis report and execution logs are below.
 The analysis now raises 2 undefined behaviors:
 - An integer overflow in `double_that()`.
