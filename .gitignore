@@ -4,7 +4,6 @@
 **/*.gcno
 **/*.gcov
 **/_results/
-**/*.json
 **/tis_report.html
 **/tis_misra_report/**
 
@@ -18,4 +17,3 @@ subtle-ub/demo-ub
 new-demo/increment
 overapprox/approx
 target-awareness/target
-

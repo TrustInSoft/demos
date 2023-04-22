@@ -1,0 +1,15 @@
+[
+    {
+        "include": "tis-common.json",
+        "name": "1.double-that",
+        "val-profile": "interpreter",
+        "main": "test_double_that",
+        "machdep": "gcc_x86_64"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "2.msb",
+        "main": "test_msb",
+        "machdep": "gcc_x86_64"
+    }
+]

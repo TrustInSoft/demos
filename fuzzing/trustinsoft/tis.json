@@ -1,0 +1,21 @@
+[
+    {
+        "name": "tis-fuzz",
+        "val-profile": "interpreter",
+        "main": "main",
+        "machdep": "gcc_x86_64",
+        "slevel": 5000,
+        "val": "true",
+        "files": [
+            "../boundary.c",
+            "../test_driver.c"
+        ],
+        "cpp-extra-args": "-I.",
+        "whole-program-graph": "true",
+        "val-args": " input.txt",
+        "filesystem": {
+          "files": [ { "name": "input.txt", "from": "real_input.txt" } ]
+        },
+        "mcdc": "true"
+    }
+]
