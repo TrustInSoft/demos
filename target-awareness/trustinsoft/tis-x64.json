@@ -2,7 +2,6 @@
     {
         "include": "tis-common.json",
         "name": "1.double-that",
-        "val-profile": "interpreter",
         "main": "test_double_that",
         "machdep": "gcc_x86_64"
     },
