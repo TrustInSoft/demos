@@ -81,19 +81,19 @@ PASSED: msb(0xBEEF) = 0xEF
 ```
 
 ## TrustInSoft analyses
-You can perform the same tests replayed with the TrustInSoft Analyzer for different targets and witness how the results differ
-because the code is target sensitive.
+You can perform the same tests replayed with the TrustInSoft Analyzer for different targets and witness how the results differ because the code is target sensitive.
+
 - On x86-64, the analyzer will report no problem (just like traditional tests), because on that target the code is safe
 - On ARM-32, configured in big endian mode (ARM processors are bi-endian), the analyzer will report 2 issues
 
-The analysis execution logs are below and a screenshot of the analysis for the 2 targets are available below
+### x86-64
+Let's first run the analyzer with target X86-64. The analysis report and execution logs are below.
+The analysis confirms that for target X86-64 there is no undefined behavior for the code.
 
 <div style="text-align: center;">
 <img src="trustinsoft/tis_report.x64.png" width=600 title="x86-64 analysis results">
-<img src="trustinsoft/tis_report.arm32.png" width=600 title="ARM-32 big endian analysis results">
 </div>
 
-### x86-64
 ```bash
 make tis-x64
 tis-analyzer -tis-config-load trustinsoft/tis-x64.json -tis-report -tis-config-select-by-name 1.double-that
@@ -132,6 +132,15 @@ Check generated analysis report tis_report.x64.html
 ```
 
 ### ARM32 big endian
+Let's now run the analyzer with target ARM32 big endian. The analysis report and execution logs are below.
+The analysis now raises 2 undefined behaviors:
+- An integer overflow in `double_that()`.
+- A division by zero in `test_msb()` because the function `msb()` returns a different byte on big endian machines.
+
+<div style="text-align: center;">
+<img src="trustinsoft/tis_report.arm32.png" width=600 title="ARM-32 big endian analysis results">
+</div>
+
 ```bash
 make tis-arm32
 tis-analyzer -tis-config-load trustinsoft/tis-arm32.json -tis-report -tis-config-select-by-name 1.double-that
