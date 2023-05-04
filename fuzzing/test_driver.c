@@ -33,6 +33,10 @@ int get_params(int argc, char *argv[], int *x, int *y) {
     return 0;
   }
   FILE * f = fopen(argv[1], "r");
+  if ( f == NULL ) {
+      printf("Cannot open file %s\n", argv[1] );
+      return 0;
+  }
   if (fscanf(f, "%d %d", x, y) != 2) {
     return 0;
   } else {
