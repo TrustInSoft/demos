@@ -31,6 +31,8 @@ SEEDS := seeds
 TIS_OPTS := -val-profile analyzer -val -I.
 CC := "/usr/bin/afl-gcc"
 
+MAX_EXECUTIONS := 100
+
 .PHONY: ut clean tis tis_gui
 
 all:
@@ -39,7 +41,8 @@ all:
 	@echo "make clean:    Cleans all AFL and tis-fuzz artifacts"
 
 tis-fuzz:
-	tis-fuzz --tis-config trustinsoft/tis.json -i afl-results -o tis-fuzz-results --mkfs work/real_input.txt
+	mkdir -p work/
+	tis-fuzz --tis-config trustinsoft/tis.json -i afl-results/default -o tis-fuzz-results --mkfs work/real_input.txt --no-parallel
 
 clean:
 	@rm -f $(SEEDS)/*smart*
@@ -56,32 +59,32 @@ afl-hard: afl-hard-semi-smart
 afl-easy-smart:
 	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-smart
 	cp $(SEEDS)-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-smart @@
+	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-smart @@
 
 afl-medium-smart:
 	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-smart
 	cp $(SEEDS)-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-smart @@
+	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-smart @@
 
 afl-hard-smart:
 	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-smart
 	cp $(SEEDS)-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-smart @@
+	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-smart @@
 
 afl-easy-semi-smart:
 	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-semi-smart
 	cp $(SEEDS)-semi-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-semi-smart @@
+	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-easy-semi-smart @@
 
 afl-medium-semi-smart:
 	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-semi-smart
 	cp $(SEEDS)-semi-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-smart @@
+	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-smart @@
 
 afl-hard-semi-smart:
 	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-semi-smart
 	cp $(SEEDS)-semi-smart/* $(SEEDS)
-	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-smart @@
+	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-smart @@
 
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
