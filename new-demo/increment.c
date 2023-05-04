@@ -33,7 +33,7 @@ void increment_array(int array[], int len)
     {
         int value = *array;
         (*array) = value + 1; // Increment the value of the array cell
-        array++;    // Move to next array cell
-        len--;      // Decrement counter
+        array++;              // Move to next array cell
+        len--;                // Decrement loop counter
     }
 }
