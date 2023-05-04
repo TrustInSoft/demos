@@ -33,17 +33,10 @@ CC := "/usr/bin/afl-gcc"
 
 .PHONY: ut clean tis tis_gui
 
-ut:
-	@echo -e "$(FONT_CYAN)$(CC) -I. $(FILES) -o $(TARGET)$(FONT_RESET)"
-	@$(CC) $(FILES) -o $(TARGET)
-
-tis:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
-
-tis-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
+all:
+	@echo "make afl:      Runs AFL to produce inputs for tis-fuzz"
+	@echo "make tis-fuzz: Runs tis-fuzz"
+	@echo "make clean:    Cleans all AFL and tis-fuzz artifacts"
 
 tis-fuzz:
 	tis-fuzz --tis-config trustinsoft/tis.json -i afl-results -o tis-fuzz-results --mkfs work/real_input.txt
