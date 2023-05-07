@@ -125,7 +125,6 @@ The log already contains a hint at the problem:
 
 ${RESET}increment.c:34:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(array);
 ${RESET}
-
 ${GREEN}If the output log is not self explanatory enough, you may want to:
 - Either look at the generated HTML report, that explains the problem in a
   user friendly (but still static) way
@@ -135,8 +134,10 @@ ${RESET}
 EOF
 
 press_enter
+clear
+
 cat << EOF
-${GREEN}
+${GREEN}${H2}
 In this case, the HTML report is enough.
 If we look at the small array test it says that, at some point, the array pointer, that
 iterates on the array elements, becomes invalid (not pointing to a valid memory region).
@@ -191,15 +192,36 @@ Now that we solved all the problems found by simply re-running the unit tests
 let's move to the next level: Level 2. This level consists in generalizing
 function inputs so that we can detect problem that may arise from any possible
 input instead of the few discrete inputs chosen in unit tests.
-Instead of testing our increment_array() function with only 4 different arrays,
-we'll test with all possible arrays (any size up to 1000 elements, any value for
-each array element)
+Instead of testing our ${YELLOW}increment_array()${GREEN} function with only 4 different arrays,
+we'll test with all possible values for each array element (array of 1000 elements)
 
 That's 2^32^1000 possibilities or the equivalent of 4 x 10^9000 tests !
 ${RESET}
 EOF
 
 press_enter
+cat << EOF
+${GREEN}$H2
+To do that we'll write a generalized test, using TrustInSoft built-in generalization
+instructions. The generalized test looks like this:
+${RESET}
+EOF
+
+cat test_driver.c | tac | sed '/void *test_generalized_array()/q' | tac | sed '/^}$/q'
+
+cat << EOF
+${GREEN}$H2
+The ${YELLOW}tis_make_unknown()${GREEN} instruction tells the analyzer that the ${YELLOW}input_array${GREEN}
+is no longer a array with a single value for each element, but all possible values
+i.e. 2^32^1000 possibilities!
+This formal variable is then passed to the ${YELLOW}increment_array()${GREEN} function.
+
+Let's run this test.
+${RESET}
+EOF
+
+press_enter
+
 if [ $(which tis-analyzer) ]; then
   make tis-l2
 else
@@ -214,14 +236,14 @@ fi
 cat << EOF
 ${GREEN}$H2
 As you can see from the above:
-1. First, despite the number of inputs tested, the execution time is quick (the mathematical
-   core does not ry one value at a time in brute force fashion
+1. First, despite the number of inputs tested, the execution is quick (the
+   mathematical core does not try one value at a time in brute force fashion)
 2. Thanks to the input generalization, we have been able to detect a new Undefined Behavior.
 
 ${RESET}increment.c:32:${MAGENTA}[kernel] warning:${RESET} signed overflow. assert *array+1 ≤ 2147483647;
 ${GREEN}
-Again here's the log may be sufficient to understand the problem our you can look at the HTML
-report to get more details that will let you understand the problem.
+Again in the current case the log may be sufficient to understand the problem our
+you can look at the HTML report to get more details that will let you figure out the problem.
 ${RESET}
 EOF
 
@@ -229,8 +251,46 @@ press_enter
 
 cat << EOF
 ${GREEN}$H2
-In the current case, it's an integer overflow. Indeed if the array element already contains the
-largest possible signed integer (2147483647), it's not possible to increment it without causing
-an integer overflow whose effect is unpredictable.
+In the current case, it's an integer overflow. Indeed if the array element already
+contains the largest possible signed integer (2147483647), it's not possible to
+increment it without causing an integer overflow whose effect is unpredictable.
+
+The way to fix that would be, for instance, to only increment the element if it
+is not already INT_MAX, the largest signed integer value.
+Let's do a quick fix and then re-analyze.
+${RESET}
 EOF
+
+press_enter
+
+sleep 0.5
+sed -i "s/\(\*array\) = value + 1;/if (value < INT_MAX) \1/" increment.c
+
+cat << EOF
+${GREEN}
+Fix done! Let's re-run the generalized analysis.
+${RESET}
+EOF
+
+if [ $(which tis-analyzer) ]; then
+  make tis-l2
+else
+  cat << EOF
+You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
+an analysis would produce something like the below:
+EOF
+  press_enter
+  cat .static/tis-l2-fixed.log
+fi
+
+cat << EOF
+${GREEN}$H2
+The analyzer reports 0 Undefined Behaviors. Since we generalized all inputs we have
+therefore ${YELLOW}established mathematical guarantee of absence of Undefined Behaviors
+for the perimeter of analysis${GREEN} and eliminated all Undefined Behaviors the code
+that remained unnoticed through traditional testing.
+${RESET}
+EOF
+press_enter
+
 closing
