@@ -24,6 +24,13 @@ This demo demonstrates:
 - How unit tests can typically miss undefined behaviors like buffer overflows or integer overflows if those undefined behaviors do not cause immediate problems (like a crash), and
 - How TrustInSoft analysis detects them with mathematical guarantee.
 
+Note: If you have an Ubuntu machine you can run this demo live by running:
+```bash
+git clone https://github.com/TrustInSoft/trustinsoft/demos
+cd new-demo
+./demo.sh
+``` 
+
 ## Code under test
 
 The code to be tested is the [increment.c](increment.c#L26) source file.
