@@ -181,7 +181,7 @@ else
 You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
 an analysis would produce something like the below:
 EOF
-  cat .static/tis-l1-fix.log
+  cat .static/tis-l1-fixed.log
 fi
 
 cat << EOF

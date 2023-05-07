@@ -1,0 +1,87 @@
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.2.large-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "1.2.large-array")
+[kernel] Configuration successfully loaded.
+...
+[kernel] [5/7] Parsing increment.c (with preprocessing)
+[kernel] [6/7] Parsing test_driver.c (with preprocessing)
+[kernel] [7/7] Parsing utils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_large_array
+...
+[TIS LIBC STUBS]: using deterministic rand()
+
+[0;32mPASSED[0m: increment_array({5757, -17514, 5626, 7418, -4086, ..., 26977, 13281, -14036, -8329}) = {5758, -17513, 5627, 7419, -4085, ..., 26978, 13282, -14035, -8328}
+
+[value] Done for function test_large_array
+...
+[info] Saved JSON results in '_results/1.2.large-array_results.json'
+[time] Performance summary:
+  Parsing: 3.115s
+  Value Analysis: 3.978s
+  
+  Total time: 0h00m07s (= 7.093 seconds)
+  Max memory used: 405.1MB (= 405143552 bytes)
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.3.zero-length-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "1.3.zero-length-array")
+...
+[kernel] [5/7] Parsing increment.c (with preprocessing)
+[kernel] [6/7] Parsing test_driver.c (with preprocessing)
+[kernel] [7/7] Parsing utils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_zero_length
+
+[0;32mPASSED[0m: increment_array({}) = {}
+
+[value] Done for function test_zero_length
+[scope:rm_asserts] removing 1 assertion(s)
+...
+[info] Saved JSON results in '_results/1.3.zero-length-array_results.json'
+[time] Performance summary:
+  Parsing: 3.773s
+  Value Analysis: 0.063s
+  
+  Total time: 0h00m03s (= 3.836 seconds)
+  Max memory used: 136.7MB (= 136708096 bytes)
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.4.null-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "1.4.null-array")
+...
+[kernel] [5/7] Parsing increment.c (with preprocessing)
+[kernel] [6/7] Parsing test_driver.c (with preprocessing)
+[kernel] [7/7] Parsing utils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_null
+
+[0;32mPASSED[0m: increment_array(NULL) = NULL
+
+...
+[info] Saved JSON results in '_results/1.4.null-array_results.json'
+[time] Performance summary:
+  Parsing: 3.761s
+  Value Analysis: 0.061s
+  
+  Total time: 0h00m03s (= 3.822 seconds)
+  Max memory used: 136.7MB (= 136708096 bytes)
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 1.1.small-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "1.1.small-array")
+...
+[kernel] [5/7] Parsing increment.c (with preprocessing)
+[kernel] [6/7] Parsing test_driver.c (with preprocessing)
+[kernel] [7/7] Parsing utils.c (with preprocessing)
+[value] Analyzing a complete application starting at test_small_array
+
+[0;32mPASSED[0m: increment_array({1, 3, 5, 7, 11, 13, 17}) = {2, 4, 6, 8, 12, 14, 18}
+
+[info] Saved JSON results in '_results/1.1.small-array_results.json'
+[time] Performance summary:
+  Parsing: 3.601s
+  Value Analysis: 0.135s
+  
+  Total time: 0h00m03s (= 3.736 seconds)
+  Max memory used: 136.7MB (= 136708096 bytes)
+===============================================
+       0 UNDEFINED BEHAVIORS FOUND
+===============================================
+Compiling report from 4 past executed tests
+
+Check generated test report [36mtis_report.html(B[m
+
