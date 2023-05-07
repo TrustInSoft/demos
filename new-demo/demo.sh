@@ -22,6 +22,8 @@ set -euo pipefail
 
 source ../demo-tools.sh
 
+git checkout -q -- increment.c
+
 #------------------------------------------------------------------------------
 clear
 cat << EOF
@@ -116,53 +118,58 @@ fi
 
 cat << EOF
 ${GREEN}$H2
-As you can see from the closing verdict, 2 undefined behaviors have been detected. It's actually twice
-the same problem, found in the small and large array test (the array size has no influence on the
-occurrence of the problem)
+As you can see from the closing verdict, 2 undefined behaviors have been detected.
+It's actually twice the same problem, found in the small and large array test
+(the array size has no influence on the occurrence of the problem).
+The log already contains a hint at the problem:
 
-${RESET}increment.c:32:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(array);
+${RESET}increment.c:34:${MAGENTA}[kernel] warning:${RESET} out of bounds write. assert \valid(array);
 ${RESET}
-EOF
 
-press_enter
-cat << EOF
 ${GREEN}If the output log is not self explanatory enough, you may want to:
-- Either look at the generated HTML report, that explains the problem in a user friendly (but still static) way
-- Or run the TrustInSoft Analyzer GUI (and use it advanced troubleshooting) to further investigate the problem.
+- Either look at the generated HTML report, that explains the problem in a
+  user friendly (but still static) way
+- Or run the TrustInSoft Analyzer GUI (and use it advanced troubleshooting)
+  to further  investigate the problem.
 ${RESET}
 EOF
 
 press_enter
 cat << EOF
-${GREEN}In this case, the HTML report is enough.
-If we look at the small array test it says that, at some point, the array pointer, that iterates
-on the array elements, becomes invalid (not pointer to a valid memory region).
-The additional information below the code tells us that the pointer is 28 bytes after the beginning
-of the array. The array is 7 integers of 4 bytes, i.e. the pointer is after the end of the array,
-this is a buffer overflow (or array index out of bounds).
+${GREEN}
+In this case, the HTML report is enough.
+If we look at the small array test it says that, at some point, the array pointer, that
+iterates on the array elements, becomes invalid (not pointing to a valid memory region).
+The additional information below the code tells us that the pointer is 28 bytes after
+the beginning of the array. The array is 7 integers of 4 bytes, i.e. the pointer is after
+the end of the array, this is a buffer overflow (or array index out of bounds).
 
 The above information let us suppose that the loop does not stop at the right iteration,
 the loop end condition is incorrect.
 After looking at the code, indeed the condition should be
 
-while (len > 0)
+${YELLOW}while (len > 0)${GREEN}
 
 instead of 
 
-while (len >= 0)
+${YELLOW}while (len >= 0)${GREEN}
 
 Because of the error, the loop runs one time too much, and the array is overflown.
 
 Let's fix that!
 ${RESET}
 EOF
-clear
 
+press_enter
+
+sleep 0.5
 sed -i "s/while (len >= 0)/while (len > 0)/" increment.c
 
 cat << EOF
-${GREEN}$H2
-Fix done ! If we now rerun the Level 1 analysis, we'll see that no undefined behaviors are raised.
+${GREEN}
+Fix done! If we now rerun the Level 1 analysis, we'll see that the analyzer
+will not raise any alarm.
+${RESET}
 EOF
 
 press_enter
@@ -178,14 +185,18 @@ fi
 
 cat << EOF
 ${GREEN}$H2
+The analysis now reports 0 undefined behaviors. Good!
+
 Now that we solved all the problems found by simply re-running the unit tests
-let's move to the next level: Level 2. This level consists in generalizing function inputs
-so that we can detect problem that may arise from any possible input instead of the
-few discrete inputs chosen in unit tests.
-Instead of testing our increment_array() function with only 4 different arrays, we'll test
-with all possible arrays (any size up to 1000 elements, any value for each array element)
+let's move to the next level: Level 2. This level consists in generalizing
+function inputs so that we can detect problem that may arise from any possible
+input instead of the few discrete inputs chosen in unit tests.
+Instead of testing our increment_array() function with only 4 different arrays,
+we'll test with all possible arrays (any size up to 1000 elements, any value for
+each array element)
 
 That's 2^32^1000 possibilities or the equivalent of 4 x 10^9000 tests !
+${RESET}
 EOF
 
 press_enter
@@ -196,22 +207,26 @@ else
 You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
 an analysis would produce something like the below:
 EOF
+  press_enter
   cat .static/tis-l2.log
 fi
 
 cat << EOF
 ${GREEN}$H2
 As you can see from the above:
-1. First, despite the number of inputs tested, the execution time is quick (the mathematical core does not
-   try one value at a time in brute force
+1. First, despite the number of inputs tested, the execution time is quick (the mathematical
+   core does not ry one value at a time in brute force fashion
 2. Thanks to the input generalization, we have been able to detect a new Undefined Behavior.
 
 ${RESET}increment.c:32:${MAGENTA}[kernel] warning:${RESET} signed overflow. assert *array+1 ≤ 2147483647;
-
+${GREEN}
 Again here's the log may be sufficient to understand the problem our you can look at the HTML
 report to get more details that will let you understand the problem.
+${RESET}
 EOF
+
 press_enter
+
 cat << EOF
 ${GREEN}$H2
 In the current case, it's an integer overflow. Indeed if the array element already contains the
