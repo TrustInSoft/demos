@@ -66,7 +66,7 @@ To test this function let's say that we have written 4 unit tests:
 $H2${RESET}
 EOF
 
-cat test_driver.c | tac | sed '/int *test_small_array()/q' | tac | sed '/__TRUSTINSOFT/q' | head -n -1
+cat test_driver.c | tac | sed '/int *test_small_array()/q' | tac | sed '/__TRUSTINSOFT/q' | head -n -2
 
 press_enter
 #------------------------------------------------------------------------------
@@ -82,8 +82,8 @@ sleep $SLEEP_TIME
 make clean test
 
 cat << EOF
-$H2
-${GREEN}As you can see all tests pass successfully. Structural coverage is 100%.
+${GREEN}$H2
+As you can see all tests pass successfully. Structural coverage is 100%.
 
 We'll see further that, despite the above good results, there are undetected
 undefined behaviors (or UB further), more specifically a ${BOLD}${RED}buffer overflow${RESET}...
@@ -193,17 +193,19 @@ let's move to the next level: Level 2. This level consists in generalizing
 function inputs so that we can detect problem that may arise from any possible
 input instead of the few discrete inputs chosen in unit tests.
 Instead of testing our ${YELLOW}increment_array()${GREEN} function with only 4 different arrays,
-we'll test with all possible values for each array element (array of 1000 elements)
+we'll test with all possible values for an array of 1000 elements.
 
 That's 2^32^1000 possibilities or the equivalent of 4 x 10^9000 tests !
 ${RESET}
 EOF
 
 press_enter
+clear
+
 cat << EOF
 ${GREEN}$H2
-To do that we'll write a generalized test, using TrustInSoft built-in generalization
-instructions. The generalized test looks like this:
+To test all possible inputs we'll write a generalized test, using TrustInSoft built-in
+generalization instructions. The generalized test looks like this:
 ${RESET}
 EOF
 
@@ -264,7 +266,7 @@ EOF
 press_enter
 
 sleep 0.5
-sed -i sed -r "s/(\(\*array\) \= value \+ 1)/if \(value < INT_MAX\) \1/" increment.c
+sed -i -r "s/(\(\*array\) \= value \+ 1)/if \(value < INT_MAX\) \1/" increment.c
 
 cat << EOF
 ${GREEN}
