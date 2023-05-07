@@ -264,7 +264,7 @@ EOF
 press_enter
 
 sleep 0.5
-sed -i "s/\(\*array\) = value + 1;/if (value < INT_MAX) \1/" increment.c
+sed -i sed -r "s/(\(\*array\) \= value \+ 1)/if \(value < INT_MAX\) \1/" increment.c
 
 cat << EOF
 ${GREEN}
