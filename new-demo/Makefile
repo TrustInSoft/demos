@@ -80,7 +80,10 @@ tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
 
 clean:
+	@echo "Cleaning..."
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
+	@echo "Reverting increment.c to original..."
+	@git checkout -q -- increment.c
 
 #tis-l1: tis-l1-1 tis-l1-2 count_ub report
 tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
