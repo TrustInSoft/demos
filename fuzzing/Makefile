@@ -39,7 +39,15 @@ all:
 	@echo "make clean:    Cleans all AFL and tis-fuzz artifacts"
 
 tis-fuzz:
-	tis-fuzz --tis-config trustinsoft/tis.json -i afl-results -o tis-fuzz-results --mkfs work/real_input.txt
+	mkdir -p work/
+	mkdir -p tis-fuzz-results/
+# The below is a workaround to generate AST
+	chmod a+w work tis-fuzz-results
+	ln -sr seeds/seed1.txt work/real_input.txt
+	tis-analyzer -tis-config-load trustinsoft/tis.json -save tis-fuzz-results/ast.state
+	rm work/real_input.txt
+# end of workaround
+	tis-fuzz --ast tis-fuzz-results/ast.state --tis-config trustinsoft/tis.json -i afl-results/ -o tis-fuzz-results --mkfs /home/olivier/code/demos/fuzzing/work/real_input.txt --no-parallel
 
 clean:
 	@rm -f $(SEEDS)/*smart*
