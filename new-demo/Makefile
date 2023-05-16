@@ -33,8 +33,12 @@ TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
 
 
 all:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+	@echo "make test:       Runs unit tests"
+	@echo "make tis-l1:     Runs TISA L1 analysis"
+	@echo "make tis-l2:     Runs TISA L2 analysis"
+	@echo "make tis-l1-gui: Runs TISA L1 analysis with the GUI"
+	@echo "make tis-l2-gui: Runs TISA L2 analysis with the GUI"
+	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
