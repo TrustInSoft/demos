@@ -47,7 +47,7 @@ tis-fuzz:
 	tis-analyzer -tis-config-load trustinsoft/tis.json -save tis-fuzz-results/ast.state
 	rm work/real_input.txt
 # end of workaround
-	tis-fuzz --ast tis-fuzz-results/ast.state --tis-config trustinsoft/tis.json -i afl-results/ -o tis-fuzz-results --mkfs /home/olivier/code/demos/fuzzing/work/real_input.txt --no-parallel
+	tis-fuzz --ast tis-fuzz-results/ast.state --tis-config trustinsoft/tis.json -i afl-results/ -o tis-fuzz-results --mkfs work/real_input.txt --no-parallel
 
 clean:
 	@rm -f $(SEEDS)/*smart*
