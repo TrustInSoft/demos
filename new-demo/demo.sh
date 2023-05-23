@@ -118,7 +118,7 @@ clear
 cat << EOF
 ${GREEN}$H2
 The first way to use the TrustInSoft analyzer is simply to replay the unit tests with
-the analyzed. This can (this often) detects problems that remained unnoticed with unit
+the analyzer. This can (this often) detects problems that remained unnoticed with unit
 tests. It's convenient because if you already have unit tests, it's almost zero effort
 to run the analyzer.
 ${RESET}
@@ -309,8 +309,8 @@ cat << EOF
 ${GREEN}$H2
 The analyzer reports 0 Undefined Behaviors. Since we generalized all inputs we have
 therefore ${YELLOW}established mathematical guarantee of absence of Undefined Behaviors
-for the perimeter of analysis${GREEN} and eliminated all Undefined Behaviors the code
-that remained unnoticed through traditional testing.
+for the perimeter of analysis${GREEN} and eliminated all Undefined Behaviors that
+remained unnoticed through traditional testing.
 ${RESET}
 EOF
 press_enter $auto 16
