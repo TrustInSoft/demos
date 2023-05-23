@@ -33,13 +33,17 @@ MSG="Press [Enter] to proceed: "
 H1="================================================================================"
 H2="--------------------------------------------------------------------------------"
 
-steps="true"
 # Checkout main branch
 git checkout main >/dev/null 2>&1
 
 function press_enter()
 {
-  [ "$steps" = "true" ] && read -p "$MSG" c
+  sleep_time="$1"
+  if [ "$sleep_time" = "" ]; then
+    read -p "$MSG" c
+  else
+    sleep $sleep_time
+  fi
 }
 
 function closing()
