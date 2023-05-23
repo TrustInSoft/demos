@@ -38,11 +38,12 @@ git checkout main >/dev/null 2>&1
 
 function press_enter()
 {
-  sleep_time="$1"
-  if [ "$sleep_time" = "" ]; then
+  auto="$1"
+  wait_time="$2"
+  if [ "$auto" != "true" ]; then
     read -p "$MSG" c
   else
-    sleep $sleep_time
+    sleep $wait_time
   fi
 }
 
