@@ -66,8 +66,8 @@ press_enter $auto 16
 clear
 cat << EOF
 ${GREEN}$H2
-We want to test a simple function increment_array() that takes an array of integers
-as input and increment all its elements by one. 
+We want to test a simple function ${YELLOW}increment_array()${GREEN} that takes an array of
+integers as input and increment all its elements by 1. 
 $H2${RESET}
 EOF
 
@@ -80,8 +80,8 @@ clear
 cat << EOF
 ${GREEN}$H2
 To test this function let's say that we have written 4 unit tests:
-- One test with an input array of 7 small positive integers {1, 3, 5, 7, 11, 13, 17}
-- One test with a larger array of 1000 random integers
+- 1 test with an input array of 7 small positive integers {1, 3, 5, 7, 11, 13, 17}
+- 1 test with a larger array of 1000 random integers
 - 2 tests with corner cases with an empty array ({}) or a NULL array
 $H2${RESET}
 EOF
@@ -106,8 +106,8 @@ ${GREEN}$H2
 As you can see all tests pass successfully. Structural coverage is 100%.
 
 We'll see further that, despite the above good results, there are undetected
-undefined behaviors (or UB further), more specifically a ${BOLD}${RED}buffer overflow${RESET}...
-${GREEN}and also an ${BOLD}${RED}integer overflow
+undefined behaviors (or UB further), more specifically a ${RED}buffer overflow${GREEN}...
+and also an ${RED}integer overflow${GREEN}
 ${RESET}
 EOF
 
@@ -117,10 +117,10 @@ clear
 
 cat << EOF
 ${GREEN}$H2
-The first way to use the TrustInSoft analyzer is simply to replay the unit tests with
-the analyzer. This can (this often) detects problems that remained unnoticed with unit
-tests. It's convenient because if you already have unit tests, it's almost zero effort
-to run the analyzer.
+The first way to use the TrustInSoft analyzer is simply to replay the unit tests
+with the analyzer. This can (this often) detects problems that remained
+unnoticed with unit tests. It's convenient because if you already have unit
+tests, it's almost zero effort to run the analyzer.
 ${RESET}
 EOF
 
@@ -148,25 +148,27 @@ ${RESET}
 ${GREEN}If the output log is not self explanatory enough, you may want to:
 - Either look at the generated HTML report, that explains the problem in a
   user friendly (but still static) way
-- Or run the TrustInSoft Analyzer GUI (and use it advanced troubleshooting)
-  to further  investigate the problem.
+- Or run the TrustInSoft Analyzer GUI (and use its advanced troubleshooting)
+  to further investigate the problem.
 ${RESET}
 EOF
 
-press_enter $auto 20
+press_enter $auto 30
 clear
 
 cat << EOF
 ${GREEN}${H2}
 In this case, the HTML report is enough.
-If we look at the small array test it says that, at some point, the array pointer, that
-iterates on the array elements, becomes invalid (not pointing to a valid memory region).
-The additional information below the code tells us that the pointer is 28 bytes after
-the beginning of the array. The array is 7 integers of 4 bytes, i.e. the pointer is after
-the end of the array, this is a buffer overflow (or array index out of bounds).
+If we look at the small array test it says that, at some point, the array
+pointer, that iterates on the array elements, becomes invalid (not pointing
+to a valid memory region).
+The additional information below the code tells us that the pointer is 28 bytes
+after the beginning of the array. The array is 7 integers of 4 bytes, i.e. the
+pointer is after the end of the array, this is a ${RED}buffer overflow${GREEN} (or array
+index out of bounds).
 
-The above information let us suppose that the loop does not stop at the right iteration,
-the loop end condition is incorrect.
+The above information let us suppose that the loop does not stop at the right
+iteration, the loop end condition is incorrect.
 After looking at the code, indeed the condition should be
 
 ${YELLOW}while (len > 0)${GREEN}
@@ -181,7 +183,7 @@ Let's fix that!
 ${RESET}
 EOF
 
-press_enter $auto 20
+press_enter $auto 30
 
 sleep 0.5
 sed -i "s/while (len >= 0)/while (len > 0)/" increment.c
@@ -215,7 +217,7 @@ input instead of the few discrete inputs chosen in unit tests.
 Instead of testing our ${YELLOW}increment_array()${GREEN} function with only 4 different arrays,
 we'll test with all possible values for an array of 1000 elements.
 
-That's 2^32^1000 possibilities or the equivalent of 4 x 10^9000 tests !
+That's ${RED}2^32^1000${GREEN} possibilities or the equivalent of ${RED}4 x 10^9000${GREEN} tests!
 ${RESET}
 EOF
 
@@ -273,8 +275,8 @@ press_enter $auto 20
 
 cat << EOF
 ${GREEN}$H2
-In the current case, it's an integer overflow. Indeed if the array element already
-contains the largest possible signed integer (2147483647), it's not possible to
+In the current case, it's an ${RED}integer overflow${GREEN}. Indeed if the array element already
+contains the largest possible signed integer (${YELLOW}2147483647${GREEN}), it's not possible to
 increment it without causing an integer overflow whose effect is unpredictable.
 
 The way to fix that would be, for instance, to only increment the element if it

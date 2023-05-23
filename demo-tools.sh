@@ -50,7 +50,7 @@ function press_enter()
 function closing()
 {
   cat << EOF
-${RED}$H1
+${CYAN}$H1
         With TrustInSoft you can get mathematical guarantee of
         absence of Undefined Behaviors through exhaustive analysis !
 
