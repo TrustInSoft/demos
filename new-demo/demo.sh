@@ -22,6 +22,26 @@ set -euo pipefail
 
 source ../demo-tools.sh
 
+auto="false"
+while [ $# -ne 0 ]; do
+  case $1 in
+    -a)
+      shift
+      auto="true"
+      ;;
+    *)
+      cat << EOF
+Usage: $0 [-a]
+
+-a: Runs the demo automatically without human intervention.
+    If not set, a 'press enter' prompt is displayed to move from screen to screen
+
+EOF
+      exit 1
+      ;;
+  esac
+done
+
 git checkout -q -- increment.c
 
 #------------------------------------------------------------------------------
@@ -41,7 +61,7 @@ This demo demonstrates:
 $H2${RESET}
 EOF
 
-press_enter
+press_enter $auto 16
 #------------------------------------------------------------------------------
 clear
 cat << EOF
@@ -53,7 +73,7 @@ EOF
 
 tac increment.c | sed '/increment_array(/q' | tac
 
-press_enter
+press_enter $auto 20
 clear
 
 #------------------------------------------------------------------------------
@@ -68,7 +88,7 @@ EOF
 
 cat test_driver.c | tac | sed '/int *test_small_array()/q' | tac | sed '/__TRUSTINSOFT/q' | head -n -2
 
-press_enter
+press_enter $auto 16
 #------------------------------------------------------------------------------
 clear
 
@@ -78,7 +98,7 @@ Let's run the unit tests:
 ${RESET}
 EOF
 
-sleep $SLEEP_TIME
+sleep 1
 make clean test
 
 cat << EOF
@@ -91,7 +111,7 @@ ${GREEN}and also an ${BOLD}${RED}integer overflow
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 16
 #------------------------------------------------------------------------------
 clear
 
@@ -104,7 +124,7 @@ to run the analyzer.
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 16
 
 if [ $(which tis-analyzer) ]; then
   make tis-l1
@@ -133,7 +153,7 @@ ${GREEN}If the output log is not self explanatory enough, you may want to:
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 clear
 
 cat << EOF
@@ -161,7 +181,7 @@ Let's fix that!
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 
 sleep 0.5
 sed -i "s/while (len >= 0)/while (len > 0)/" increment.c
@@ -173,7 +193,7 @@ will not raise any alarm.
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 5
 if [ $(which tis-analyzer) ]; then
   make tis-l1
 else
@@ -199,7 +219,7 @@ That's 2^32^1000 possibilities or the equivalent of 4 x 10^9000 tests !
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 clear
 
 cat << EOF
@@ -222,7 +242,7 @@ Let's run this test.
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 
 if [ $(which tis-analyzer) ]; then
   make tis-l2
@@ -231,7 +251,7 @@ else
 You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
 an analysis would produce something like the below:
 EOF
-  press_enter
+  press_enter $auto 3
   cat .static/tis-l2.log
 fi
 
@@ -249,7 +269,7 @@ you can look at the HTML report to get more details that will let you figure out
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 
 cat << EOF
 ${GREEN}$H2
@@ -263,7 +283,7 @@ Let's do a quick fix and then re-analyze.
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 
 sleep 0.5
 sed -i -r "s/(\(\*array\) \= value \+ 1)/if \(value < INT_MAX\) \1/" increment.c
@@ -281,7 +301,7 @@ else
 You don't have the TrustInSoft Analyzer installed on this machine, but if you would,
 an analysis would produce something like the below:
 EOF
-  press_enter
+  press_enter $auto 3
   cat .static/tis-l2-fixed.log
 fi
 
@@ -293,6 +313,6 @@ for the perimeter of analysis${GREEN} and eliminated all Undefined Behaviors the
 that remained unnoticed through traditional testing.
 ${RESET}
 EOF
-press_enter
+press_enter $auto 16
 
 closing
