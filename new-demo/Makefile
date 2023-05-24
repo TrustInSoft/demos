@@ -22,10 +22,12 @@ FONT_BOLD := `tput bold`
 FONT_CYAN := `tput setaf 6`
 FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
+GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
 TIS_ANALYZER := tis-analyzer
 TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
+OBJS := test_driver.o utils.o $(TARGET).o
 COMPILER := gcc
 TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
 
@@ -44,8 +46,14 @@ test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
 	@echo ""
-	@echo -e "$(FONT_CYAN)gcov $(TARGET).c $(FONT_RESET)"
-	@gcov $(TARGET).c
+	@# With gcc 11 and higher the coverage files have a different name. Temporarily fixing by changing file name to the expected name
+	@if [ $(GCC_VERSION) -ge 11 ]; then \
+	mv $(TARGET)-$(TARGET).gcno $(TARGET).gcno 2>/dev/null  \
+	fi
+	gcov $(TARGET).c
+
+cov:
+	$(shell if [ -f $(TARGET).gcno ]then; gcov $(TARGET)-$(TARGET).c; else; gcov $(TARGET).c; fi)
 
 tis-l1-1:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"$(FONT_RESET)"
