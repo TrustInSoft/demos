@@ -48,7 +48,7 @@ test:
 	@echo ""
 	@# With gcc 11 and higher the coverage files have a different name. Temporarily fixing by changing file name to the expected name
 	@if [ $(GCC_VERSION) -ge 11 ]; then \
-	mv $(TARGET)-$(TARGET).gcno $(TARGET).gcno 2>/dev/null  \
+	mv $(TARGET)-$(TARGET).gcno $(TARGET).gcno \
 	fi
 	gcov $(TARGET).c
 
