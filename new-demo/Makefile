@@ -46,9 +46,11 @@ test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
 	@echo ""
-	@# With gcc 11 and higher the coverage files have a different name. Temporarily fixing by changing file name to the expected name
+	@# With gcc 11 and higher the coverage files have a different name.
+	@# Temporarily fixing by changing file name to the expected name
 	@if [ $(GCC_VERSION) -ge 11 ]; then \
 	mv $(TARGET)-$(TARGET).gcno $(TARGET).gcno; \
+	mv $(TARGET)-$(TARGET).gcda $(TARGET).gcda; \
 	fi
 	gcov $(TARGET).c
 
