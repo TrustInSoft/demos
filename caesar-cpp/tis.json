@@ -1,0 +1,32 @@
+[
+    {
+        "include": "tis-common.json",
+        "name": "1.positive-and-negative-shift",
+        "val-profile": "interpreter",
+        "main": "main"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "1.1.positive-shift",
+        "val-profile": "interpreter",
+        "main": "test1"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "1.2.negative-shift",
+        "val-profile": "interpreter",
+        "main": "test2"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "2.1.generalized-shift",
+        "val-profile": "analyzer",
+        "main": "test_generalized_int"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "2.2.generalized-string",
+        "val-profile": "analyzer",
+        "main": "test_generalized_string"
+    }
+]
