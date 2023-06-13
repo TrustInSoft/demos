@@ -33,7 +33,6 @@ int gen_test(const std::string & str, int user_shift, const std::string expected
     return ok;
 }
 
-
 int test1(void)
 {
     printf("Test 1: Shift with a positive input\n");
@@ -55,8 +54,8 @@ int test2(void)
 int test_generalized_int(void)
 {
     long any_shift;
-#ifdef EXCLUDE_LONG_MIN
-    any_shift = tis_long_interval(LONG_MIN + 1, LONG_MAX);
+#ifdef EXCLUDE_MIN
+    any_shift = tis_long_interval(INT_MIN + 1, INT_MAX);
 #else
     tis_make_unknown(&any_shift, sizeof(any_shift));
 #endif
