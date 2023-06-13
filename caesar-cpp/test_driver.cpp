@@ -55,10 +55,10 @@ int test2(void)
 int test_generalized_int(void)
 {
     long any_shift;
-#ifdef EXCLUDE_INT_MIN
-    any_shift = tis_long_interval(INT_MIN + 1, INT_MAX);
+#ifdef EXCLUDE_LONG_MIN
+    any_shift = tis_long_interval(LONG_MIN + 1, LONG_MAX);
 #else
-    tis_make_unknown((char *)&any_shift, sizeof(any_shift));
+    tis_make_unknown(&any_shift, sizeof(any_shift));
 #endif
     printf("\nTest 3: Generalization of shift to any 64 bits signed integer [%ld - %ld]\n", LONG_MIN, LONG_MAX);
     gen_test(str, any_shift, "");
@@ -68,16 +68,15 @@ int test_generalized_int(void)
 int test_generalized_string(void)
 {
     long any_shift;
-#ifdef EXCLUDE_INT_MIN
-    any_shift = tis_long_interval(LONG_MIN + 1, LONG_MAX);
-#else
-    tis_make_unknown((char *)&any_shift, sizeof(any_shift));
-#endif
-    char any_str[MAX_BUF+1];
+    char my_str[MAX_BUF];
+    tis_make_unknown(my_str, MAX_BUF-1);
+    my_str[MAX_BUF-1] = '\0';
+    std::string any_str = my_str;
+
     printf("\nTest 4: Generalization of shift and generalization of string to any %d characters string\n", MAX_BUF);
 
-    tis_make_unknown(any_str, MAX_BUF);
-    any_str[MAX_BUF] = '\0';
+    any_shift = tis_long_interval(LONG_MIN + 1, LONG_MAX);
+
     return gen_test(any_str, any_shift, "");
 }
 #endif
@@ -86,6 +85,12 @@ int main(void)
 {
     std::string str = "People of Earth, your attention please";
     int ok;
+
+    long any_shift = 4;
+    char my_str[MAX_BUF] = "Hello world";
+    std::string any_str = my_str;
+    return gen_test(any_str, any_shift, "");
+
     ok = test1();
     ok = test2() && ok;
 #if defined(__TRUSTINSOFT_ANALYZER__) && defined (LEVEL2)
@@ -100,4 +105,14 @@ int main(void)
         std::cout << "Tests failed\n";
         return 1;
     }
+}
+
+
+int test_generalized_string_2(void)
+{
+    long any_shift = 3;
+    std::string any_str = "Foo";
+    any_str.resize(MAX_BUF);
+    printf("\nTest 4: Generalization of shift and generalization of string to any %d characters string\n", MAX_BUF);
+    return gen_test(any_str, any_shift, "");
 }

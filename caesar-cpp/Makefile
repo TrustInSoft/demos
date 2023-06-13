@@ -39,6 +39,10 @@ tis-l2-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) -D LEVEL2=1  $(TIS_OPTS) -tis-report -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-shift" -D LEVEL2=1 -gui
 
+tis-l2-step2-gui:
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) -D LEVEL2=1  $(TIS_OPTS) -tis-report -gui$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.2.generalized-string" -D LEVEL2=1 -gui
+
 tis-l1-run:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.positive-shift"
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.2.negative-shift"
