@@ -33,19 +33,24 @@ MSG="Press [Enter] to proceed: "
 H1="================================================================================"
 H2="--------------------------------------------------------------------------------"
 
-steps="true"
 # Checkout main branch
 git checkout main >/dev/null 2>&1
 
 function press_enter()
 {
-  [ "$steps" = "true" ] && read -p "$MSG" c
+  auto="$1"
+  wait_time="$2"
+  if [ "$auto" != "true" ]; then
+    read -p "$MSG" c
+  else
+    sleep $wait_time
+  fi
 }
 
 function closing()
 {
   cat << EOF
-${RED}$H1
+${CYAN}$H1
         With TrustInSoft you can get mathematical guarantee of
         absence of Undefined Behaviors through exhaustive analysis !
 

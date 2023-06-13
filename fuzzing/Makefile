@@ -31,7 +31,7 @@ SEEDS := seeds
 TIS_OPTS := -val-profile analyzer -val -I.
 CC := "/usr/bin/afl-gcc"
 
-MAX_EXECUTIONS := 100
+MAX_EXECUTIONS := 100000
 
 .PHONY: ut clean tis tis_gui
 
@@ -42,7 +42,14 @@ all:
 
 tis-fuzz:
 	mkdir -p work/
-	tis-fuzz --tis-config trustinsoft/tis.json -i afl-results/default -o tis-fuzz-results --mkfs work/real_input.txt --no-parallel
+	mkdir -p tis-fuzz-results/
+# The below is a workaround to generate AST
+	chmod a+w work tis-fuzz-results
+	ln -sr seeds/seed1.txt work/real_input.txt
+	tis-analyzer -tis-config-load trustinsoft/tis.json -save tis-fuzz-results/ast.state
+	rm work/real_input.txt
+# end of workaround
+	tis-fuzz --ast tis-fuzz-results/ast.state --tis-config trustinsoft/tis.json -i afl-results/ -o tis-fuzz-results --mkfs work/real_input.txt --no-parallel
 
 clean:
 	@rm -f $(SEEDS)/*smart*

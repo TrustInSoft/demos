@@ -17,3 +17,5 @@ subtle-ub/demo-ub
 new-demo/increment
 overapprox/approx
 target-awareness/target
+**/__vfs-tis*
+target-awareness/tis_report.*.html

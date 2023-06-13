@@ -22,10 +22,12 @@ FONT_BOLD := `tput bold`
 FONT_CYAN := `tput setaf 6`
 FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
+GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
 TIS_ANALYZER := tis-analyzer
 TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
+OBJS := test_driver.o utils.o $(TARGET).o
 COMPILER := gcc
 TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
 
@@ -33,15 +35,27 @@ TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
 
 
 all:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+	@echo "make test:       Runs unit tests"
+	@echo "make tis-l1:     Runs TISA L1 analysis"
+	@echo "make tis-l2:     Runs TISA L2 analysis"
+	@echo "make tis-l1-gui: Runs TISA L1 analysis with the GUI"
+	@echo "make tis-l2-gui: Runs TISA L2 analysis with the GUI"
+	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
 	@echo ""
-	@echo -e "$(FONT_CYAN)gcov $(TARGET).c $(FONT_RESET)"
-	@gcov $(TARGET).c
+	@# With gcc 11 and higher the coverage files have a different name.
+	@# Temporarily fixing by changing file name to the expected name
+	@if [ $(GCC_VERSION) -ge 11 ]; then \
+	mv $(TARGET)-$(TARGET).gcno $(TARGET).gcno; \
+	mv $(TARGET)-$(TARGET).gcda $(TARGET).gcda; \
+	fi
+	gcov $(TARGET).c
+
+cov:
+	$(shell if [ -f $(TARGET).gcno ]then; gcov $(TARGET)-$(TARGET).c; else; gcov $(TARGET).c; fi)
 
 tis-l1-1:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"$(FONT_RESET)"
@@ -80,7 +94,10 @@ tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
 
 clean:
+	@echo "Cleaning..."
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
+	@echo "Reverting increment.c to original..."
+	@git checkout -q -- increment.c
 
 #tis-l1: tis-l1-1 tis-l1-2 count_ub report
 tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
