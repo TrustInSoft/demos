@@ -1,0 +1,70 @@
+pipeline {
+  agent any
+//  environment {
+//      STORE_URL  = credentials('STORE_URL')
+//      STORE_TOKEN     = credentials('STORE_TOKEN')
+//  }
+  stages {
+    stage('Code Checkout') {
+      steps {
+        checkout([$class: 'GitSCM', branches: [[name: '**']], extensions: [[$class: 'CloneOption', noTags: false, reference: '', shallow: true]], userRemoteConfigs: [[credentialsId: 'GitHub-PAT-Sept-2022-v1', url: 'https://github.com/okorach/tis-demos']]])
+      }
+    }
+    stage('TISA L1 discrete tests') {
+      steps {
+        script {
+          echo "Run TrustInSoft Analyzer Level 1 analysis on 2 discrete values"
+          sh "make -C caesar-c clean tis_l1"
+        }
+      }
+    }
+    stage('TISA L2 generalize shift') {
+      steps {
+        script {
+          echo "Run TrustInSoft Analyzer"
+          sh "make -C caesar-c tis_l2_report"
+        }
+      }
+    }
+    stage('TISA L2 generalize string') {
+      steps {
+        script {
+          echo "Run TrustInSoft Analyzer"
+          sh "make -C caesar-c tis_l2_step2 report"
+        }
+      }
+    }
+    stage('Generate TISA report') {
+      steps {
+        script {
+          echo "Run TrustInSoft Analyzer"
+          sh "make -C caesar-c report"
+        }
+      }
+    }
+    stage('Generate MISRA report') {
+      steps {
+        script {
+          echo "Run TrustInSoft Analyzer"
+          sh "cd caesar-c; tis-misra ."
+        }
+      }
+    }
+    stage('Check absence of UB') {
+      steps {
+        script {
+          echo "Run TrustInSoft Analyzer"
+          sh "make -C caesar-c break_build"
+        }
+      }
+    }
+  }
+  post {
+      always {
+          archiveArtifacts artifacts: 'caesar-c/tis_report.html', fingerprint: true
+          archiveArtifacts artifacts: 'caesar-c/_results/**.json', fingerprint: true
+          archiveArtifacts artifacts: 'caesar-c/_results/**.csv', fingerprint: true
+          archiveArtifacts artifacts: 'caesar-c/tis_misra_report/**', fingerprint: true
+      }
+  }
+}
