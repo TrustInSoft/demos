@@ -34,7 +34,6 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define SUCCESS "\033[0;32mPASSED\033[0m"
 #define FAILED "\033[0;31m** FAILED **\033[0m"
 
-
 int test_array(IncrementableArray<int> array)
 {
     bool ok = true;
@@ -44,7 +43,8 @@ int test_array(IncrementableArray<int> array)
     {
         ok = (out_array.get(i) == array.get(i) + 1) && ok;
     }
-    printf("%s: increment_array(%s) = %s\n", ok ? SUCCESS : FAILED, array.toString(), out_array.toString());
+    std::cout << (ok ? SUCCESS : FAILED) << ": increment_array(" << array.toString() << ") = " <<
+        out_array.toString() << std::endl;
     return ok;
 }
 
