@@ -22,13 +22,13 @@ FONT_BOLD := `tput bold`
 FONT_CYAN := `tput setaf 6`
 FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
-GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
+GCC_VERSION := $(shell g++ --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
 TIS_ANALYZER := tis-analyzer
 TARGET := increment
 FILES := test_driver.cpp $(TARGET).cpp
 OBJS := test_driver.o $(TARGET).o
-COMPILER := gcc
+COMPILER := g++
 TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
 
 .PHONY: all test tis-l1  tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
@@ -96,8 +96,8 @@ tis-l2-gui:
 clean:
 	@echo "Cleaning..."
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
-	@echo "Reverting increment.c to original..."
-	@git checkout -q -- increment.c
+	@echo "Reverting increment.cpp to original..."
+	@git checkout -q -- increment.cpp
 
 #tis-l1: tis-l1-1 tis-l1-2 count_ub report
 tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
