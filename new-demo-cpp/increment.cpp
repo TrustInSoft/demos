@@ -20,6 +20,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <stdlib.h>
 #include <limits.h>
 #include <iostream>
+#include <sstream>
 #include "increment.hpp"
 
 #define MAX_STRING_CELLS 10
@@ -113,18 +114,19 @@ std::string IncrementableArray<T>::toString()
     else
         string_size += MAX_STRING_CELLS * 15 + 5;
     std::string s = new std::string("{");
-    s.resize(string_size);
+    s.reserve(string_size);
     bool dotted = false;
+    std::ostringstream os;
     for (int i = 0; i < this.size; i++)
     {
         if (i < (MAX_STRING_CELLS / 2) || i > this.size - (MAX_STRING_CELLS / 2))
         {
-            char str[20];
-            s.append(sprintf(str, "%d%s", this.array[i], (i == this.sz - 1) ? "" : ", "));
+            os << this.array[i] << (i == this.sz - 1) ? "" : ", ";
+            s += os.str();
         }
         else if (!dotted)
         {
-            s.append("..., ");
+            s += "..., ";
             dotted = true;
         }
     }
