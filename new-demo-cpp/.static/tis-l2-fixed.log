@@ -1,0 +1,31 @@
+[36mtis-analyzer -tis-config-load trustinsoft/tis.json -tis-report -tis-config-select-by-name 2.1.generalized-small-array(B[m
+[kernel] Loading configuration file trustinsoft/tis.json (analysis "2.generalized-array")
+...
+[kernel] [5/7] Parsing increment.c (with preprocessing)
+[kernel] [6/7] Parsing test_driver.c (with preprocessing)
+[kernel] [7/7] Parsing utils.c (with preprocessing)
+[kernel] Successfully parsed 3 files (+4 runtime files)
+[value] Analyzing a complete application starting at test_generalized_array
+[value] Computing initial state
+[value] Initial state computed
+[value] The Analysis can be stopped by hitting Ctrl-C
+[value] using specification for function tis_make_unknown
+[value] Semantic level unrolling superposing up to 100 states
+...
+[value] Semantic level unrolling superposing up to 2000 states
+[value] Done for function test_generalized_array
+...
+[info] Saved JSON results in '_results/2.generalized-array_results.json'
+[time] Performance summary:
+  Parsing: 3.115s
+  Value Analysis: 1.239s
+  
+  Total time: 0h00m04s (= 4.354 seconds)
+  Max memory used: 203.8MB (= 203816960 bytes)
+===============================================
+       0 UNDEFINED BEHAVIORS FOUND
+===============================================
+Compiling report from 5 past executed tests
+
+Check generated test report [36mtis_report.html(B[m
+
