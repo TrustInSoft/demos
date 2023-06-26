@@ -43,6 +43,19 @@ IncrementableArray<T>::IncrementableArray(int s)
 }
 
 template <typename T>
+IncrementableArray<T>::IncrementableArray(const IncrementableArray<T>& arr)
+{
+    this.size = arr.get_size();
+    if (this.size <= 0) {
+        this->array = NULL;
+        return;
+    }
+    this.array = new T[this.size];
+    for (int i = 0; i < this.size; i++)
+        this.array[i] = arr.get(i);
+}
+
+template <typename T>
 IncrementableArray<T>::~IncrementableArray()
 {
     delete[] this.array;

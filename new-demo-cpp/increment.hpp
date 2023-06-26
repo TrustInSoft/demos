@@ -30,6 +30,7 @@ public:
     IncrementableArray();
     IncrementableArray(T arr[], int s);
     IncrementableArray(int s);
+    IncrementableArray(const IncrementableArray<T>& arr);
     ~IncrementableArray();
     void increment(T val);
     void decrement(T val);
