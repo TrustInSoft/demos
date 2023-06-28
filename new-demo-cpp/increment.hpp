@@ -20,6 +20,10 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #pragma once
 #include <string>
+#include <stdlib.h>
+#include <limits.h>
+#include <iostream>
+#include <sstream>
 
 template <typename T> class IncrementableArray {
 private:
@@ -28,15 +32,137 @@ private:
  
 public:
     IncrementableArray();
+
     IncrementableArray(T arr[], int s);
     IncrementableArray(int s);
     IncrementableArray(const IncrementableArray<T>& arr);
     ~IncrementableArray();
     void increment(T val);
     void decrement(T val);
-    int get_size();
-    int get(int index);
+    int get_size() const;
+    int get(int index) const;
     bool set(int index, T val);
     std::string toString();
     void print();
 };
+
+#define MAX_STRING_CELLS 10
+
+template <typename T>
+IncrementableArray<T>::IncrementableArray() {}
+
+template <typename T>
+IncrementableArray<T>::IncrementableArray(T arr[], int s)
+{
+    this->size = s;
+    if (this->size <= 0)
+        return;
+    this->array = new T[s];
+    for (int i = 0; i < size; i++)
+        this->array[i] = arr[i];
+}
+
+template <typename T>
+IncrementableArray<T>::IncrementableArray(int s)
+{
+    this->array = new T[s];
+    this->size = s;
+}
+
+template <typename T>
+IncrementableArray<T>::IncrementableArray(const IncrementableArray<T>& arr)
+{
+    this->size = arr.get_size();
+    if (this->size <= 0) {
+        this->array = NULL;
+        return;
+    }
+    this->array = new T[this->size];
+    for (int i = 0; i < this->size; i++)
+        this->array[i] = arr.get(i);
+}
+
+template <typename T>
+IncrementableArray<T>::~IncrementableArray()
+{
+    delete[] this->array;
+}
+
+template <typename T>
+void IncrementableArray<T>::increment(T val)
+{
+    if (this->size <= 0)
+        return;
+    int index = this->size;
+    T *item = this->array;
+    while (index >= 0)
+    {
+        T value = *item;
+        (*item) = value + 1; // Increment the value of the array cell
+        item++;              // Move to next array cell
+        index--;             // Decrement loop counter
+    }
+}
+
+template <typename T>
+void IncrementableArray<T>::decrement(T val)
+{
+    this.decrement(-val);
+}
+
+template <typename T>
+int IncrementableArray<T>::get_size() const { return this->size; }
+
+template <typename T>
+int IncrementableArray<T>::get(int index) const { return this->array[index]; }
+
+template <typename T>
+bool IncrementableArray<T>::set(int index, T val)
+{
+    if (index < this->size) {
+        this->array[index] = val;
+        return true;
+    }
+    return false;
+}
+
+template <typename T>
+std::string IncrementableArray<T>::toString()
+{
+    if (this->size == -1)
+        return std::string("NULL");
+    if (this->size == 0)
+        return std::string("{}");
+
+    int string_size = 3;
+    if (this->size <= MAX_STRING_CELLS)
+        string_size += this->size * 15;
+    else
+        string_size += MAX_STRING_CELLS * 15 + 5;
+    std::string s;
+    s.reserve(string_size);
+    s = "{";
+    bool dotted = false;
+    std::ostringstream os;
+    for (int i = 0; i < this->size; i++)
+    {
+        if (i < (MAX_STRING_CELLS / 2) || i > this->size - (MAX_STRING_CELLS / 2))
+        {
+            os << this->array[i] << (i == this->size - 1) ? "" : ", ";
+            s += os.str();
+        }
+        else if (!dotted)
+        {
+            s += "..., ";
+            dotted = true;
+        }
+    }
+    s.append("}");
+    return s;
+}
+
+template <typename T>
+void IncrementableArray<T>::print()
+{
+    std::cout << this.toString();
+}
