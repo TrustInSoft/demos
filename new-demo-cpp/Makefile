@@ -100,7 +100,7 @@ clean:
 	@git checkout -q -- increment.cpp
 
 #tis-l1: tis-l1-1 tis-l1-2 count_ub report
-tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
+tis-l1: tis-l1-1 tis-l1-2 tis-l1-3 tis-l1-4 count_ub report
 
 tis-l2: tis-l2-cli count_ub_2 report
 
