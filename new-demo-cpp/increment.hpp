@@ -148,16 +148,16 @@ std::string IncrementableArray<T>::toString()
     {
         if (i < (MAX_STRING_CELLS / 2) || i > this->size - (MAX_STRING_CELLS / 2))
         {
-            os << this->array[i] << (i == this->size - 1) ? "" : ", ";
-            s += os.str();
+            os << this->array[i] << std::string((i == this->size - 1) ? "" : ", ");
         }
         else if (!dotted)
         {
-            s += "..., ";
+            os << "..., ";
             dotted = true;
         }
     }
-    s.append("}");
+    s += os.str();
+    s += "}";
     return s;
 }
 
