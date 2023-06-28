@@ -21,3 +21,4 @@ target-awareness/target
 target-awareness/tis_report.*.html
 caesar-cpp/caesar
 new-demo-cpp/.tis-kernel/
+new-demo-cpp/increment
