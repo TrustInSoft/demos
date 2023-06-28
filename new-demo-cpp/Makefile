@@ -29,7 +29,7 @@ TARGET := increment
 FILES := test_driver.cpp $(TARGET).cpp
 OBJS := test_driver.o $(TARGET).o
 COMPILER := g++
-TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
+TIS_OPTS := -cxx-std c++17 -tis-config-load trustinsoft/tis.json -tis-report
 
 .PHONY: all test tis-l1  tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
 

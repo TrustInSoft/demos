@@ -3,11 +3,12 @@
     "slevel": 5000,
     "val": "true",
     "files": [
-        "../increment.c",
-        "../test_driver.c",
-        "../utils.c"
+        "../increment.cpp",
+        "../test_driver.cpp"
     ],
     "cpp-extra-args": "-I.",
     "whole-program-graph": "true",
+    "compilation-database": "../compile_commands.json",
+    "cxx-std": "c++17",
     "mcdc": "true"
 }
