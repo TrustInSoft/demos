@@ -32,11 +32,11 @@ private:
  
 public:
     IncrementableArray();
-
     IncrementableArray(T arr[], int s);
     IncrementableArray(int s);
     IncrementableArray(const IncrementableArray<T>& arr);
     ~IncrementableArray();
+
     void increment(T val);
     void decrement(T val);
     int get_size() const;
@@ -107,7 +107,7 @@ void IncrementableArray<T>::increment(T val)
 template <typename T>
 void IncrementableArray<T>::decrement(T val)
 {
-    this.decrement(-val);
+    this->decrement(-val);
 }
 
 template <typename T>
@@ -164,5 +164,5 @@ std::string IncrementableArray<T>::toString()
 template <typename T>
 void IncrementableArray<T>::print()
 {
-    std::cout << this.toString();
+    std::cout << this->toString();
 }
