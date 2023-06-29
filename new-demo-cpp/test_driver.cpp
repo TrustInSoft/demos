@@ -79,14 +79,12 @@ int test_null()
 
 void test_generalized_array()
 {
-    int input_array[1000];
     // This corresponds to 2^32^1000 combinations
     // i.e approximatively 9 x 10^9632 inputs values
-    tis_make_unknown(&input_array, sizeof(input_array));
-    
-    int len = sizeof(input_array) / sizeof(int);
-    increment_array(input_array, len);
-    return;
+    IncrementableArray<int> array(1000);
+    for (int i = 0; i < array.get_size(); i++)
+        array.set(i, tis_interval(INT_MIN, INT_MAX));
+    array.increment(1);
 }
 
 
