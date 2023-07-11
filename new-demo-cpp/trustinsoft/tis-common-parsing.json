@@ -1,0 +1,9 @@
+{
+    "machdep": "gcc_x86_64",
+    "files": [
+        "../increment.cpp",
+        "../test_driver.cpp"
+    ],
+    "cpp-extra-args": "-I.",
+    "cxx-std": "c++17"
+}

@@ -1,0 +1,36 @@
+[
+    {
+        "include": "tis-common-parsing.json",
+        "name": "0.parsing"
+    },
+    {
+        "include": "tis-common-value.json",
+        "name": "1.1.small-array",
+        "val-profile": "interpreter",
+        "main": "test_small_array"
+    },
+    {
+        "include": "tis-common-value.json",
+        "name": "1.2.large-array",
+        "val-profile": "interpreter",
+        "main": "test_large_array"
+    },
+    {
+        "include": "tis-common-value.json",
+        "name": "1.3.zero-length-array",
+        "val-profile": "interpreter",
+        "main": "test_zero_length"
+    },
+    {
+        "include": "tis-common-value.json",
+        "name": "1.4.null-array",
+        "val-profile": "interpreter",
+        "main": "test_null"
+    },
+    {
+        "include": "tis-common-value.json",
+        "name": "2.generalized-array",
+        "val-profile": "analyzer",
+        "main": "test_generalized_array"
+    }
+]
