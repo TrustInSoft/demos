@@ -25,7 +25,6 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <limits.h>
 #include <iostream>
 #include "increment.hpp"
-#include "utils.h"
 
 #ifdef __TRUSTINSOFT_ANALYZER__
 #include <tis_builtin.h>
