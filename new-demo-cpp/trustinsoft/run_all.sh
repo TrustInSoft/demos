@@ -18,6 +18,7 @@ function run_analysis {
    opt=(
       -tis-config-load "${CONFIG}"
       -tis-config-select "${analysis_nbr}"
+      -tis-report
       -save "_results/${analysis_nbr}.save"
    )
    tis-analyzer "${opt[@]}" | tee "${DIR}/analysis.${analysis_nbr}.log"
@@ -58,7 +59,7 @@ done
 nbr_analyses=$(jq '. | length' < ${CONFIG})
 
 echo "Main config file = $CONFIG"
-echo "Total nbr of analyses to run = $nbr_analyses"
+echo "Total nbr of analyses configured = $nbr_analyses"
 echo "Nbr of analyses to run in parallel = $nbr_parallel_analyses"
-parallel -j $nbr_parallel_analyses run_analysis ::: $(seq 1 $nbr_analyses)
+parallel -j $nbr_parallel_analyses run_analysis ::: $(seq 2 5)
 
