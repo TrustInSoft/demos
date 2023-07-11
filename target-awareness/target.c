@@ -33,12 +33,12 @@ long double_that(int i)
 
 void test_double_that()
 {
-    int val = 0x7FFFFFF0;
+    int val = 2000000000;
     // Integer overflow or no integer overflow ?
     long res = double_that(val);
     printf((long)val * 2 == res ? SUCCESS : FAILED);
     printf(": double_that(%d) = %ld", val, res);
-
+    /*@ assert res == 4000000000 ;*/
     int array[5] = {0, 1, 2, 3, 4};
     int index = res % 5;
     array[index] = 42; // Index out of bounds or not ?
