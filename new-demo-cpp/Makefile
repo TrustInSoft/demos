@@ -54,9 +54,6 @@ test:
 	fi
 	gcov $(TARGET).cpp
 
-cov:
-	$(shell if [ -f $(TARGET).gcno ] then; gcov $(TARGET)-$(TARGET).c; else; gcov $(TARGET).c; fi)
-
 tis-l1-1:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"
@@ -75,6 +72,9 @@ tis-l1-3:
 tis-l1-4:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
+
+tis-l1-all:
+	trustinsoft/run_all.sh -n 4
 
 count_ub:
 	@echo "==============================================="
@@ -99,14 +99,13 @@ clean:
 	@echo "Reverting increment.cpp to original..."
 	@git checkout -q -- increment.cpp
 
-#tis-l1: tis-l1-1 tis-l1-2 count_ub report
-tis-l1: tis-l1-1 tis-l1-2 tis-l1-3 tis-l1-4 count_ub report
+tis-l1: tis-l1-all count_ub report
 
 tis-l2: tis-l2-cli count_ub_2 report
 
 report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-	@tis-report _results/ --skip-file test_driver.c,utils.c
+	@tis-report _results/ --skip-file test_driver.cpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
 
 tis-misra:
