@@ -8,7 +8,6 @@
     ],
     "cpp-extra-args": "-I.",
     "whole-program-graph": "true",
-    "compilation-database": "../compile_commands.json",
     "cxx-std": "c++17",
     "mcdc": "true"
 }
