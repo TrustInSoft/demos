@@ -1,9 +1,7 @@
 [
     {
-        "include": "tis-common.json",
-        "name": "0.all-at-once",
-        "val-profile": "analyzer",
-        "main": "main"
+        "include": "tis-common-parsing.json",
+        "name": "0.parsing"
     },
     {
         "include": "tis-common.json",
@@ -34,5 +32,11 @@
         "name": "2.generalized-array",
         "val-profile": "analyzer",
         "main": "test_generalized_array"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "0.all-at-once",
+        "val-profile": "analyzer",
+        "main": "main"
     }
 ]
