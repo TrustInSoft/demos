@@ -74,7 +74,7 @@ tis-l1-4:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
 
 tis-l1-all:
-	trustinsoft/run_all_ordered.sh -n 4 -a "3 2 4 5"
+	trustinsoft/run_all.sh -n 4 -a "3 2 4 5"
 
 count_ub:
 	@echo "==============================================="
@@ -88,7 +88,7 @@ count_ub_2:
 
 tis-l2-cli:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array"$(FONT_RESET)"
-	@trustinsoft/run_all_ordered.sh -n 1 -a 6
+	@trustinsoft/run_all.sh -n 1 -a 6
 
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
