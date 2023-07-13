@@ -93,11 +93,17 @@ tis-l2-cli:
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
 
-clean:
-	@echo "Cleaning..."
-	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log trustinsoft/*.log tis_report.html tis_misra_report
+clean: clean-results clean-cache
+
+clean-results:
+	@echo "Cleaning results..."
+	@rm -rf $(TARGET) *.gc* compile_commands.json _results/*.csv _results/*.json *.log trustinsoft/*.log tis_report.html tis_misra_report
 	@echo "Reverting increment.cpp to original..."
 	@git checkout -q -- increment.cpp
+
+clean-cache:
+	@echo "Cleaning analysis cache..."
+	@rm -rf $(TARGET) _results/*.save
 
 tis-l1: tis-l1-all count_ub report
 
