@@ -17,8 +17,11 @@ function run_analysis {
    analysis_nbr="$1"
    save_file="_results/analysis.${analysis_nbr}.save"
    if [ -f "$save_file" ]; then
+      ndx=$(expr ${analysis_nbr}-1)
+      base_name=$(cat ${CONFIG} | jq -r ".[$(expr ${analysis_nbr}-1)].name")
       opt=(
          -load "$save_file"
+         -tis-report-basename "${base_name}"
          -tis-report
       )
    else
@@ -29,6 +32,7 @@ function run_analysis {
          -tis-report
       )
    fi
+   echo "### " tis-analyzer "${opt[@]}" | tee "${DIR}/analysis.${analysis_nbr}.log"
    tis-analyzer "${opt[@]}" | tee -a "${DIR}/analysis.${analysis_nbr}.log"
 }
 
