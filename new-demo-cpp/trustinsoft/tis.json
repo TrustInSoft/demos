@@ -1,6 +1,7 @@
 [
     {
         "include": "tis-common-parsing.json",
+        "val-profile": "interpreter",
         "name": "0.parsing"
     },
     {
