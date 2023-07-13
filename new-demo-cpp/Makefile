@@ -74,7 +74,7 @@ tis-l1-4:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
 
 tis-l1-all:
-	trustinsoft/run_all_ordered.sh -n 4
+	trustinsoft/run_all_ordered.sh -n 4 -a "3 2 4 5"
 
 count_ub:
 	@echo "==============================================="
