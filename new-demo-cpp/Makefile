@@ -74,7 +74,7 @@ tis-l1-4:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
 
 tis-l1-all:
-	trustinsoft/run_all.sh -n 4
+	trustinsoft/run_all_ordered.sh -n 4
 
 count_ub:
 	@echo "==============================================="
@@ -95,7 +95,7 @@ tis-l2-gui:
 
 clean:
 	@echo "Cleaning..."
-	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
+	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log trustinsoft/*.log tis_report.html tis_misra_report
 	@echo "Reverting increment.cpp to original..."
 	@git checkout -q -- increment.cpp
 
