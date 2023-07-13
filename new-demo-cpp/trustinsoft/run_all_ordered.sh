@@ -15,13 +15,13 @@ fi
 
 function run_analysis {
    analysis_nbr="$1"
-   save_file="_results/analysis.${analysis_nbr}.save"
-   if [ -f "$save_file" ]; then
+   cache="_results/analysis_cache.${analysis_nbr}.save"
+   if [ -f "$cache" ]; then
       ndx=$(expr ${analysis_nbr}-1)
       base_name=$(cat ${CONFIG} | jq -r ".[${ndx}].name")
       entry_point=$(cat ${CONFIG} | jq -r ".[${ndx}].main")
       opt=(
-         -load "$save_file"
+         -load "$cache"
          -tis-report-basename "${base_name}"
          -main "${entry_point}"
          -tis-report
@@ -30,11 +30,11 @@ function run_analysis {
       opt=(
          -tis-config-load "${CONFIG}"
          -tis-config-select "${analysis_nbr}"
-         -save "$save_file"
+         -save "$cache"
          -tis-report
       )
    fi
-   echo "### " tis-analyzer "${opt[@]}" | tee "${DIR}/analysis.${analysis_nbr}.log"
+   echo "--> " tis-analyzer "${opt[@]}" | tee "${DIR}/analysis.${analysis_nbr}.log"
    tis-analyzer "${opt[@]}" | tee -a "${DIR}/analysis.${analysis_nbr}.log"
 }
 
@@ -55,12 +55,17 @@ EOF
 
 export -f run_analysis
 nbr_parallel_analyses=1
+list_of_analyses=""
 
 while [ $# -ne 0 ]; do
    case "${1}" in
       -n)
          shift
          nbr_parallel_analyses=${1}
+         ;;
+      -a)
+         shift
+         list_of_analyses="${1}"
          ;;
       *)
          echo "Wrong argument ${1}"
@@ -75,5 +80,10 @@ nbr_analyses=$(jq '. | length' < ${CONFIG})
 echo "Main config file = $CONFIG"
 echo "Total nbr of analyses configured = $nbr_analyses"
 echo "Nbr of analyses to run in parallel = $nbr_parallel_analyses"
-parallel -j $nbr_parallel_analyses run_analysis ::: $(echo "3 2 4 5" | sed 's/ /\n/g')
 
+
+if [ "$list_of_analyses" = "" ]; then
+   parallel -j $nbr_parallel_analyses run_analysis ::: $(seq 1 $nb_analyses)
+else
+   parallel -j $nbr_parallel_analyses run_analysis ::: $(echo "$list_of_analyses" | sed 's/ /\n/g')
+fi
