@@ -16,7 +16,8 @@ fi
 function run_analysis {
    analysis_nbr="$1"
    cache="_results/analysis_cache.${analysis_nbr}.save"
-   if [ -f "$cache" ]; then
+   # Disable cache for now, not working
+   if [ -f "DISABLED-$cache" ]; then
       ndx=$(expr ${analysis_nbr}-1)
       base_name=$(cat ${CONFIG} | jq -r ".[${ndx}].name")
       entry_point=$(cat ${CONFIG} | jq -r ".[${ndx}].main")
@@ -27,12 +28,18 @@ function run_analysis {
          -tis-report
       )
    else
+      # Disable cache for now, not working
       opt=(
          -tis-config-load "${CONFIG}"
          -tis-config-select "${analysis_nbr}"
-         -save "$cache"
          -tis-report
       )
+      # opt=(
+      #    -tis-config-load "${CONFIG}"
+      #    -tis-config-select "${analysis_nbr}"
+      #    -save "$cache"
+      #    -tis-report
+      # )
    fi
    echo "--> " tis-analyzer "${opt[@]}" | tee "${DIR}/analysis.${analysis_nbr}.log"
    tis-analyzer "${opt[@]}" | tee -a "${DIR}/analysis.${analysis_nbr}.log"
