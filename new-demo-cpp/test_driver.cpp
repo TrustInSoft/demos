@@ -97,6 +97,7 @@ int main()
     ok = test_small_array() && ok;
     ok = test_large_array() && ok;
     ok = test_zero_length() && ok;
+    ok = test_null() && ok;
 
 #ifdef __TRUSTINSOFT_ANALYZER__
     test_generalized_array();
