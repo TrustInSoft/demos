@@ -105,7 +105,8 @@ tis-l2: tis-l2-cli count_ub_2 report
 
 report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-	@tis-report _results/ --skip-file test_driver.cpp --skip-function _ZN18IncrementableArrayIiE8toStringEv
+# @tis-report _results/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
+	@tis-report _results/ --skip-file test_driver.cpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
 
 tis-misra:
