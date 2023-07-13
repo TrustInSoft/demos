@@ -19,9 +19,11 @@ function run_analysis {
    if [ -f "$save_file" ]; then
       ndx=$(expr ${analysis_nbr}-1)
       base_name=$(cat ${CONFIG} | jq -r ".[$(expr ${analysis_nbr}-1)].name")
+      entry_point=$(cat ${CONFIG} | jq -r ".[$(expr ${analysis_nbr}-1)].main")
       opt=(
          -load "$save_file"
          -tis-report-basename "${base_name}"
+         -main "${entry_point}"
          -tis-report
       )
    else
