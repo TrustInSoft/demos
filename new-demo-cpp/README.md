@@ -18,7 +18,7 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 
-# Demo of buffer overflow/array out of bounds detection
+# Demo of C++ buffer overflow and integer overflow detection with TrustInSoft analyzer
 
 This demo demonstrates TrustInSoft Analyzer capabilities on C++ code:
 - How unit tests can typically miss undefined behaviors like buffer overflows or integer overflows if those undefined behaviors do not cause immediate problems (like a crash), and
