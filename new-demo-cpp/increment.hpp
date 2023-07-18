@@ -58,7 +58,7 @@ IncrementableArray<T>::IncrementableArray(T arr[], int s)
     if (this->size <= 0)
         return;
     this->array = new T[s];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < this->size; i++)
         this->array[i] = arr[i];
 }
 
