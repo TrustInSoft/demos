@@ -98,8 +98,8 @@ clean: clean-results clean-cache
 clean-results:
 	@echo "Cleaning results..."
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results/*.csv _results/*.json *.log trustinsoft/*.log tis_report.html tis_misra_report
-	@echo "Reverting increment.cpp to original..."
-	@git checkout -q -- increment.cpp
+	@echo "Reverting increment.hpp to original..."
+	@git checkout -q -- increment.hpp
 
 clean-cache:
 	@echo "Cleaning analysis cache..."
