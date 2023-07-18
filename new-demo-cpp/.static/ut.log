@@ -1,11 +1,22 @@
-[36mgcc -I. -fprofile-arcs -ftest-coverage test_driver.c increment.c -o increment && ./increment(B[m
-increment_array({1, 3, 5, 7, 11, 17}) = {2, 4, 6, 8, 12, 18} --> PASSED
+Cleaning results...
+Reverting increment.cpp to original...
+Cleaning analysis cache...
+[36mg++ -I. -fprofile-arcs -ftest-coverage test_driver.cpp increment.cpp -o increment && ./increment(B[m
 
-increment_array({1804289383, 846930886, 1681692777, 1714636915, 1957747793, 424238335, 719885386, 1649760492, 596516649, 1189641421, ..., 1528806445, 870305000, 415522325, 1799560997, 332238283, 1446648412, 695466127, 745598382, 1143565421}) = {1804289384, 846930887, 1681692778, 1714636916, 1957747794, 424238336, 719885387, 1649760493, 596516650, 1189641422, ..., 1528806446, 870305001, 415522326, 1799560998, 332238284, 1446648413, 695466128, 745598383, 1143565422} --> PASSED
+Running unit tests
+[0;32mPASSED[0m: increment_array({1, 3, 5, 7, 11, 13, 17}) = {2, 4, 6, 8, 12, 14, 18}
+[0;32mPASSED[0m: increment_array({846930886, 1714636915, 424238335, -1649760492, -1189641421, ..., -878777377, -531352976, 413892161, 1455252833}) = {846930887, 1714636916, 424238336, -1649760491, -1189641420, ..., -878777376, -531352975, 413892162, 1455252834}
+[0;32mPASSED[0m: increment_array({}) = {}
+[0;32mPASSED[0m: increment_array(NULL) = NULL
 
+[0;32m---> All tests PASSED[0m
 
-[36mgcov increment.c (B[m
-File 'increment.c'
-Lines executed:100.00% of 6
-Creating 'increment.c.gcov'
+gcov increment.cpp
+File 'increment.hpp'
+No executable lines
+Removing 'increment.hpp.gcov'
+
+File '/usr/include/c++/9/iostream'
+No executable lines
+Removing 'iostream.gcov'
 
