@@ -114,7 +114,9 @@ report:
 # @tis-report _results/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
 	@tis-report _results/ --skip-file test_driver.cpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
+	@wslview tis_report.html
 
 tis-misra:
-	tis-misra --title "DEMO" increment.c
+	tis-misra --title "DEMO" increment.hpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"
+	@wslview tis_misra_report/index.html
