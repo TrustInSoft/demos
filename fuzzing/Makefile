@@ -31,9 +31,9 @@ SEEDS := seeds
 TIS_OPTS := -val-profile analyzer -val -I.
 CC := "/usr/bin/afl-gcc"
 
-MAX_EXECUTIONS := 100000
+MAX_EXECUTIONS := 50000
 
-.PHONY: ut clean tis tis_gui
+.PHONY: all clean tis-fuzz afl afl-easy afl-medium afl-hard afl-easy-smart afl-easy-semi-smart afl-medium-smart afl-medium-semi-smart afl-hard-smart afl-hard-semi-smart
 
 all:
 	@echo "make afl:      Runs AFL to produce inputs for tis-fuzz"
