@@ -20,10 +20,13 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 # Demo of TrustInSoft Analyzer / CUnit integration
 
-This demo demonstrates how it is quite simple to replay CUnit tests with TrustInSoft Analyzer (in Level 1
+This demo demonstrates how it could be quite simple to replay CUnit tests with TrustInSoft Analyzer (in Level 1
 Interpreter mode) and that such re-run is likely to detect problems that remain unnoticed with CUnit.
 
-<!-->
+:warning: This repository is a proof of concept to show the feasibility but full cunit integration support
+would be only available upon request from our customers.
+
+<!--
 Note: If you have an Ubuntu machine you can run this demo live by running:
 ```bash
 git clone https://github.com/TrustInSoft/trustinsoft/demos
@@ -203,15 +206,14 @@ This overflow is also found with all details in the produced [HTML report](.stat
 
 ## Conclusion
 
-Unit Tests are quite useful to verify the functional behavior of the code, but not really it's robustness. TrustInSoft analyzer is an excellent complement to also bring mathematical guarantee of robustness (absence of undefined behaviors)
+Unit Tests are quite useful to verify the functional behavior of the code, but not really its robustness. TrustInSoft analyzer is an excellent complement to also bring mathematical guarantee of robustness (absence of undefined behaviors)
 
-Running unit tests with CUnit is certainly of high value because it allows to verify taht function outputs
+Running unit tests with CUnit is certainly of high value because it allows to verify that function outputs
 are the expected values for particular inputs.
 However it may not detect Undefined Behaviors if they don't have a direct impact on the output.
 It's therefore very interesting to re-run the same CUnit tests with the TrustInSoft Analyzer to detect them,
-and the nice thing is that re-running CUnit Tests with TrustInSoft is effortless. It works almost automatically.
-- By replaying these Unit Tests with the TrustInSoft analyzer we were able to detect a first Undefined Behavior (a **buffer overflow**)
-- By further generalizing inputs, we were able to detect a second Undefined Behavior (an **integer overflow**)
+and the nice thing is that re-running CUnit Tests with TrustInSoft is almost effortless.
+It works almost automatically.
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
