@@ -215,4 +215,4 @@ and the nice thing is that re-running CUnit Tests with TrustInSoft is effortless
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022-2023 TrustInSoft*
+*Copyright (C) 2023 TrustInSoft*
