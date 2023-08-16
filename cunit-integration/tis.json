@@ -14,8 +14,8 @@
         ],
         "cpp-extra-args": [ "-I.", "-Icunit/CUnit/Headers"],
         "whole-program-graph": "true",
-        "mcdc": "true"
-        // "name": "cunit_sum_test"
+        "mcdc": "true",
+        "name": "CUnit:sum_test"
         // "main": "sum_test"
     }
 ]

@@ -35,12 +35,13 @@ TIS_OPTS := -kernel-msg-key pp -tis-config-load tis.json -tis-report
 
 
 all:
-	@echo "make test:       Runs unit tests"
+	@echo "make prepare:    Prepares the environment (install cunit binaries and sources)"
+	@echo "make cunit:      Runs CUnit unit tests"
 	@echo "make tis-l1:     Runs TISA L1 analysis"
 	@echo "make tis-l1-gui: Runs TISA L1 analysis with the GUI"
 	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
 
-test:
+cunit:
 	@echo -e "$(FONT_CYAN)$(COMPILER) $(FILES) -o $(TARGET) -lcunit && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -Wno-overflow $(FILES) -o $(TARGET) -lcunit && ./$(TARGET)
 
@@ -60,7 +61,6 @@ clean:
 	@echo "Cleaning..."
 	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
 
-
 tis-l1: tis-l1-1 count_ub report
 
 prepare:
@@ -75,3 +75,4 @@ report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
 	@tis-report _results/ --skip-file cunit/TestRun.c,TestRun.c,Automated.c,Basic.c,TestDB.c,CUError.c,Curses.c,Console.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
+	@wslview tis_report.html
