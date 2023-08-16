@@ -15,12 +15,6 @@
 #include <CUnit/Basic.h>
 */
 
-/* Test that one equals one */
-static void test_simple_pass1(void)
-{
-    CU_ASSERT_FATAL(1 == 1);
-}
-
 int sum(int a, int b) {
     return (long)a+(long)b;
 }
