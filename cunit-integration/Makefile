@@ -31,8 +31,7 @@ OBJS := $(TARGET).o
 COMPILER := gcc
 TIS_OPTS := -kernel-msg-key pp -tis-config-load tis.json -tis-report
 
-.PHONY: all test tis-l1  tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
-
+.PHONY: all cunit tis-l1 tis-l1-gui report
 
 all:
 	@echo "make prepare:    Prepares the environment (install cunit binaries and sources)"
