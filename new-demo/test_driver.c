@@ -103,7 +103,7 @@ void test_generalized_array()
     int input_array[1000];
     // This corresponds to 2^32^1000 combinations
     // i.e approximatively 9 x 10^9632 inputs values
-    tis_make_unknown(&input_array, sizeof(input_array));
+    tis_make_unknown(&input_array, sizeof input_array);
     
     int len = sizeof(input_array) / sizeof(int);
     increment_array(input_array, len);
