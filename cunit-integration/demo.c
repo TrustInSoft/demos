@@ -1,5 +1,6 @@
 #include <limits.h>
 #ifdef __TRUSTINSOFT_ANALYZER__
+#include <tis_builtin.h>
 #include "CUnit.h"
 #include "CUError.h"
 #include "Basic.h"
@@ -21,11 +22,20 @@ int sum(int a, int b) {
 
 void sum_test()
 {
-    // Check if first param matches with second[2]
+    // 4 cunit unit tests
+    // Can be replayed unchanged with TrustInSoft Analyzer (level 1)
     CU_ASSERT_EQUAL(sum(2, 14), 16);
     CU_ASSERT_EQUAL(sum(0, 0), 0);
     CU_ASSERT_EQUAL(sum(-1, 6), 5);
     CU_ASSERT_EQUAL(sum(INT_MAX, 1), INT_MAX+1);
+
+#ifdef __TRUSTINSOFT_ANALYZER__
+    // Generalized test, for all values of the 2 input integers
+    // TrustInSoft Analyzer (level 2)
+    int a = tis_interval(INT_MIN, INT_MAX);
+    int b = tis_interval(INT_MIN, INT_MAX);
+    int n = sum(a, b);
+#endif
 }
 
 int main()
