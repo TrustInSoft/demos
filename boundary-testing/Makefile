@@ -28,16 +28,20 @@ TIS_ANALYZER := tis-analyzer
 TARGET := boundary-test
 FILES := test_driver.c boundary.c
 COMPILER := gcc
-TIS_OPTS := -val-profile analyzer -val -I.
+TIS_OPTS := -tis-config-load tis-config.json -tis-report
 
 .PHONY: ut clean tis tis_gui
 
 tis:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS)$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS)
+
+poly:
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name polynomial_div_by_zero$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name polynomial_div_by_zero
 
 tis-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
 clean:

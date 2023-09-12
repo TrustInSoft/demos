@@ -60,3 +60,11 @@ int main()
 #endif
     return 0;
 }
+
+#ifdef __TRUSTINSOFT_ANALYZER__
+int test_poly_div_by_zero()
+{
+    int x = tis_interval(INT_MIN, INT_MAX);
+    compute_poly_result(x);
+}
+#endif

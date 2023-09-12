@@ -1,0 +1,10 @@
+{
+    "machdep": "gcc_x86_64",
+    "slevel": 5000,
+    "val": "true",
+    "val-profile": "analyzer",
+    "files": ["boundary.c", "test_driver.c"],
+    "cpp-extra-args": "-I.",
+    "whole-program-graph": "true",
+    "mcdc": "true"
+}

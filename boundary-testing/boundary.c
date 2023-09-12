@@ -36,3 +36,10 @@ int calculate(int x, int y)
     int d = 17 * x - 7 * y;
     return 10000 / d;
 }
+
+
+long compute_poly_result(int x)
+{
+    long n = x;
+    return 1/(n*n - 2*n + 1);
+}

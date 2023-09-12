@@ -1,0 +1,14 @@
+[
+    {
+        "include": "tis-common.json",
+        "name": "1.1.small-array",
+        "val-profile": "interpreter",
+        "main": "test_small_array"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "polynomial_div_by_zero",
+        "val-profile": "analyzer",
+        "main": "test_poly_div_by_zero"
+    }
+]
