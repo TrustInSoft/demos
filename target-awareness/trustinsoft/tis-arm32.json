@@ -3,7 +3,7 @@
         "include": "tis-common.json",
         "name": "1.double-that",
         "main": "test_double_that",
-        "machdep": "arm_eabi"
+        "machdep": "armeb_eabi"
     },
     {
         "include": "tis-common.json",
