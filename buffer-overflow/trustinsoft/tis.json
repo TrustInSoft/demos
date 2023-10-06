@@ -1,0 +1,8 @@
+[
+    {
+        "include": "tis-common.json",
+        "name": "0.all-at-once",
+        "val-profile": "interpreter",
+        "main": "main"
+    }
+]
