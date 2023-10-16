@@ -25,6 +25,8 @@ FONT_RESET := `tput sgr0`
 GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
 TIS_ANALYZER := tis-analyzer
+TIS_REPORT := tis-report
+
 TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
 OBJS := test_driver.o utils.o $(TARGET).o
@@ -106,7 +108,7 @@ tis-l2: tis-l2-cli count_ub_2 report
 
 report:
 	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-	@tis-report _results/ --skip-file test_driver.c,utils.c
+	@$(TIS_REPORT) _results/ --skip-file test_driver.c,utils.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
 
 tis-misra:
