@@ -1,0 +1,13 @@
+{
+    "machdep": "gcc_x86_64",
+    "slevel": 5000,
+    "val": "true",
+    // "metrics": "true",
+    "files": [
+        "../indexgen.c",
+        "../test_driver.c"
+    ],
+    // "whole-program-graph": "true",
+    // "mcdc": "true"
+    "cpp-extra-args": "-I."
+}

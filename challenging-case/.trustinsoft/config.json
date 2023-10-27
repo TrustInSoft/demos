@@ -1,0 +1,14 @@
+[
+    {
+        "name": "classic-test",
+        "include": "common.json",
+        "val-profile": "interpreter",
+        "main": "test1"
+    },
+    {
+        "name": "generalized-analysis",
+        "include": "common.json",
+        "val-profile": "analyzer",
+        "main": "generalized_analysis"
+    }
+]
