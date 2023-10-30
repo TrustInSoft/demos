@@ -9,6 +9,7 @@
         "name": "generalized-analysis",
         "include": "common.json",
         "val-profile": "analyzer",
+        "val-split-return": "full",
         "main": "generalized_analysis"
     }
 ]
