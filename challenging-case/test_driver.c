@@ -66,7 +66,8 @@ void generalized_analysis()
     int i = tis_interval(-17000, 1000000);
     int j = tis_interval(-424242, INT_MAX/2);
     int index = index_of(i, j);
-    tab[index] = i + j;
+    if (index != OFF_LIMITS)
+        tab[index] = i + j;
 }
 
 
