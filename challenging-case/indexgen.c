@@ -23,7 +23,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 int complex_expression(int x, int y)
 {
-    return abs(x * x + 1182 * x - (y * y) - 882) - 1;
+    return abs(x * x + 1182 * x - (y * y) - 882)%100000 - 1;
 }
 
 int index_of(int x, int y)
