@@ -81,12 +81,12 @@ tis-l1-4:
 
 count_ub:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count_ub.sh _results/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `.trustinsoft/count_ub.sh _results/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 count_ub_2:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count_ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `.trustinsoft/count_ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-cli:
