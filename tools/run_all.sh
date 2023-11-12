@@ -37,15 +37,16 @@ function run_analysis {
 function usage {
 
    cat << EOF
-Usage: $ME [-n <n>] [-h]
+Usage: $ME [-n <n>] [-c <onfigFile>] [-a <ListOfAnalysisNbrs>] [-h]
 Description: Runs multiple TrustInSoft analysis in parallel
 
 -n: Defines the max number of parallel analysis, defaults to 1
 -c: Provides the name of the config file, by default ./config.json
+-a: Provides list of analysis numbers to run, default all of them
 -h: Displays this help and exits
 
 Example:
-$ME -n 5
+$ME -n 5 -c .trustinsoft/config.json -a "1 3 7 8"
 EOF
    exit 1
 }
