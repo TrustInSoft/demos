@@ -23,4 +23,5 @@ caesar-cpp/caesar
 new-demo-cpp/.tis-kernel/
 new-demo-cpp/increment
 new-demo-cpp/trustinsoft/*.log
-new-demo/*.log
+new-demo/logs/*.log
+
