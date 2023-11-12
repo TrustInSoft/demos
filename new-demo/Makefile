@@ -31,7 +31,7 @@ TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
 OBJS := test_driver.o utils.o $(TARGET).o
 COMPILER := gcc
-CONFIG_FILE := trustinsoft/tis.json
+CONFIG_FILE := .trustinsoft/config.json
 TIS_OPTS := -tis-config-load $(CONFIG_FILE) -tis-report
 
 .PHONY: all test tis-l1 tis-l1-fast tis-l1-seq tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
