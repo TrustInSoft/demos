@@ -5,8 +5,6 @@ export FONT_CYAN=$(tput setaf 6)
 export FONT_YELLOW=$(tput setaf 3)
 export FONT_RESET=$(tput sgr0)
 export ME=$(basename $0)
-export LOGS="${PWD}/logs"
-export RESULTS="${PWD}/_results"
 
 ME=$(basename $0)
 CONFIG="config.json"
@@ -27,11 +25,11 @@ function run_analysis {
       -tis-config-load "${CONFIG}"
       -tis-config-select "${analysis_nbr}"
       -tis-report
-      -save "_results/${analysis_nbr}.save"
+      -save "${SAVE_DIR}/${analysis_nbr}.save"
    )
 
    echo; echo "${FONT_CYAN}tis-analyzer ${opt[@]}${FONT_RESET}"; echo
-   tis-analyzer "${opt[@]}" | tee "${LOGS}/analysis.${analysis_name}.log"
+   tis-analyzer "${opt[@]}" | tee "${LOG_DIR}/analysis.${analysis_name}.log"
 }
 
 function usage {
@@ -77,7 +75,11 @@ while [ $# -ne 0 ]; do
 done
 
 DIR="$(dirname ${CONFIG})"
-export CONFIG DIR LOGS
+LOG_DIR="${DIR}/logs"
+RESULTS_DIR="${DIR}/_results"
+SAVE_DIR="${DIR}/save"
+export CONFIG DIR LOG_DIR RESULTS_DIR SAVE_DIR
+
 if [ ! -f ${CONFIG} ]; then
 	echo "Configuration file \"${CONFIG}\" not found, exiting..."
 	exit 1
@@ -100,7 +102,9 @@ fi
 echo "${FONT_YELLOW}Main configuration file: $CONFIG"
 echo "${FONT_YELLOW}Total nbr of analyses to run: $nbr_analyses"
 echo "${FONT_YELLOW}Nbr of analyses to run in parallel: $nbr_parallel_analyses${FONT_RESET}"
-mkdir -p "$LOGS"
+echo "Log dir is ${LOG_DIR}"
+mkdir -p ${LOG_DIR}
+mkdir -p ${SAVE_DIR}
 
 if [ $nbr_parallel_analyses -eq 1 ]; then
    # Don't use parallel if 1 analysis at a time
