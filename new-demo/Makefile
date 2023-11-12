@@ -31,9 +31,10 @@ TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
 OBJS := test_driver.o utils.o $(TARGET).o
 COMPILER := gcc
-TIS_OPTS := -tis-config-load trustinsoft/tis.json -tis-report
+CONFIG_FILE := trustinsoft/tis.json
+TIS_OPTS := -tis-config-load $(CONFIG_FILE) -tis-report
 
-.PHONY: all test tis-l1  tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
+.PHONY: all test tis-l1 tis-l1-fast tis-l1-seq tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
 
 
 all:
@@ -101,8 +102,16 @@ clean:
 	@echo "Reverting increment.c to original..."
 	@git checkout -q -- increment.c
 
-#tis-l1: tis-l1-1 tis-l1-2 count_ub report
-tis-l1: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
+tis-l1-seq: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
+
+tis-l1: tis-l1-fast count_ub report
+
+tis-l1-fast:
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 3"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 4"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 5"
+	@../tools/run_all.sh -n 6 -c $(CONFIG_FILE) -a "2 3 4 5"
 
 tis-l2: tis-l2-cli count_ub_2 report
 
