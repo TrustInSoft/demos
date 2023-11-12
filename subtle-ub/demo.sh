@@ -19,7 +19,7 @@
 # 
 set -euo pipefail
 
-source ../demo-tools.sh
+source ../tools/demo-tools.sh
 
 #------------------------------------------------------------------------------
 clear

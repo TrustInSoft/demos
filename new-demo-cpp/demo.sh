@@ -20,7 +20,7 @@
 
 set -euo pipefail
 
-source ../demo-tools.sh
+source ../tools/demo-tools.sh
 
 auto="false"
 while [ $# -ne 0 ]; do
