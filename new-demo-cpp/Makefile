@@ -24,15 +24,15 @@ FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
 GCC_VERSION := $(shell g++ --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
+CONFIG_FILE := .trustinsoft/config.json
 TIS_ANALYZER := tis-analyzer
 TARGET := increment
 FILES := test_driver.cpp $(TARGET).cpp
 OBJS := test_driver.o $(TARGET).o
 COMPILER := g++
-TIS_OPTS := -cxx-std c++17 -tis-config-load trustinsoft/tis.json -tis-report
+TIS_OPTS := -cxx-std c++17 -tis-config-load $(CONFIG_FILE) -tis-report
 
-.PHONY: all test tis-l1  tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
-
+.PHONY: all test tis-l1 tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
 
 all:
 	@echo "make test:       Runs unit tests"
@@ -73,23 +73,27 @@ tis-l1-4:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
 
-tis-l1-all:
-	trustinsoft/run_all.sh -n 4 -a "3 2 4 5"
+tis-l1-fast:
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 3"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 4"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 5"
+	@../tools/run_all.sh -n 6 -c $(CONFIG_FILE) -a "3 2 4 5"
 
 count_ub:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count_ub.sh _results/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count_ub.sh _results/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 count_ub_2:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count_ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count_ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-cli:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array"$(FONT_RESET)"
-	@trustinsoft/run_all.sh -n 1 -a 6
-
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-array"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-array"$(FONT_RESET)"
+	
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
 
@@ -105,7 +109,7 @@ clean-cache:
 	@echo "Cleaning analysis cache..."
 	@rm -rf $(TARGET) _results/*.save
 
-tis-l1: tis-l1-all count_ub report
+tis-l1: tis-l1-fast count_ub report
 
 tis-l2: tis-l2-cli count_ub_2 report
 
