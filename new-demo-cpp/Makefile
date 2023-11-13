@@ -24,7 +24,12 @@ FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
 GCC_VERSION := $(shell g++ --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
-CONFIG_FILE := .trustinsoft/config.json
+CONFIG_DIR := .trustinsoft
+CONFIG_FILE := $(CONFIG_DIR)/config.json
+RESULTS_DIR := $(CONFIG_DIR)/results
+LOGS_DIR := $(CONFIG_DIR)/logs
+SAVE_DIR := $(CONFIG_DIR)/save
+
 TIS_ANALYZER := tis-analyzer
 TARGET := increment
 FILES := test_driver.cpp $(TARGET).cpp
@@ -82,17 +87,17 @@ tis-l1-fast:
 
 count_ub:
 	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh _results/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 count_ub_2:
 	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-cli:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-array"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
 	
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
@@ -101,22 +106,22 @@ clean: clean-results clean-cache
 
 clean-results:
 	@echo "Cleaning results..."
-	@rm -rf $(TARGET) *.gc* compile_commands.json _results/*.csv _results/*.json *.log trustinsoft/*.log tis_report.html tis_misra_report
+	@rm -rf $(TARGET) *.gc* compile_commands.json $(SAVE_DIR) $(RESULTS_DIR) $(LOG_DIR) tis_report.html tis_misra_report
 	@echo "Reverting increment.hpp to original..."
 	@git checkout -q -- increment.hpp
 
 clean-cache:
 	@echo "Cleaning analysis cache..."
-	@rm -rf $(TARGET) _results/*.save
+	@rm -rf $(TARGET) $(SAVE_DIR)
 
 tis-l1: tis-l1-fast count_ub report
 
 tis-l2: tis-l2-cli count_ub_2 report
 
 report:
-	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-# @tis-report _results/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
-	@tis-report _results/ --skip-file test_driver.cpp
+	@echo "Compiling report from" `ls ${RESULTS_DIR}/*.json | wc -l` "past executed tests"
+# @tis-report $(RESULTS_DIR)/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
+	@tis-report $(RESULTS_DIR)/ --skip-file test_driver.cpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
 
 tis-misra:
