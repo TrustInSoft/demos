@@ -111,13 +111,13 @@ clean: clean-results clean-cache
 
 clean-results:
 	@echo "Cleaning results..."
-	@rm -rf $(TARGET) *.gc* compile_commands.json $(SAVE_DIR) $(RESULTS_DIR) $(LOG_DIR) tis_report.html tis_misra_report
+	rm -rf $(TARGET) *.gc* compile_commands.json $(SAVE_DIR) $(RESULTS_DIR) $(LOGS_DIR) tis_report.html tis_misra_report
 	@echo "Reverting increment.hpp to original..."
-	@git checkout -q -- increment.hpp
+	git checkout -q -- increment.hpp
 
 clean-cache:
 	@echo "Cleaning analysis cache..."
-	@rm -rf $(TARGET) $(SAVE_DIR)
+	rm -rf $(TARGET) $(SAVE_DIR)
 
 tis-l1: tis-l1-fast count_ub report
 
