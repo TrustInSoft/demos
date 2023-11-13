@@ -16,6 +16,16 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
+
+CONFIG_DIR := .trustinsoft
+CONFIG_FILE := $(CONFIG_DIR)/config.json
+TIS_ANALYZER := tis-analyzer++
+
+# Don't change the below
+TARGET := increment
+FILES := test_driver.cpp $(TARGET).cpp
+OBJS := test_driver.o $(TARGET).o
+COMPILER := g++
 SHELL := /bin/bash
 
 FONT_BOLD := `tput bold`
@@ -24,18 +34,12 @@ FONT_RED := `tput setaf 1`
 FONT_RESET := `tput sgr0`
 GCC_VERSION := $(shell g++ --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
-CONFIG_DIR := .trustinsoft
-CONFIG_FILE := $(CONFIG_DIR)/config.json
 RESULTS_DIR := $(CONFIG_DIR)/results
 LOGS_DIR := $(CONFIG_DIR)/logs
 SAVE_DIR := $(CONFIG_DIR)/save
 
-TIS_ANALYZER := tis-analyzer
-TARGET := increment
-FILES := test_driver.cpp $(TARGET).cpp
-OBJS := test_driver.o $(TARGET).o
-COMPILER := g++
-TIS_OPTS := -cxx-std c++17 -tis-config-load $(CONFIG_FILE) -tis-report
+
+TIS_OPTS := -cxx-std c++17 -tis-config-load $(CONFIG_FILE) -tis-report-directory $(RESULTS_DIR) -tis-report
 
 .PHONY: all test tis-l1 tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
 
@@ -96,8 +100,8 @@ count_ub_2:
 	@echo "==============================================="
 
 tis-l2-cli:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array"
 	
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array" -gui
