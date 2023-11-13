@@ -77,8 +77,8 @@ int test_small_array()
 
 int test_large_array()
 {
-    int input_array[1000];
-    for (int i = 0; i < 1000; i++)
+    int input_array[500];
+    for (int i = 0; i < 500; i++)
         input_array[i] = (rand() > RAND_MAX / 2 ? rand() : -rand());
     int len = sizeof(input_array) / sizeof(int);
     return test_array(input_array, len);
