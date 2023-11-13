@@ -20,6 +20,7 @@
 CONFIG_DIR := .trustinsoft
 CONFIG_FILE := $(CONFIG_DIR)/config.json
 TIS_ANALYZER := tis-analyzer++
+TIS_REPORT := tis-report
 
 # Don't change the below
 TARGET := increment
@@ -124,8 +125,8 @@ tis-l2: tis-l2-cli count_ub_2 report
 
 report:
 	@echo "Compiling report from" `ls ${RESULTS_DIR}/*.json | wc -l` "past executed tests"
-# @tis-report $(RESULTS_DIR)/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
-	@tis-report $(RESULTS_DIR)/ --skip-file test_driver.cpp
+# @$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
+	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.cpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
 
 tis-misra:
