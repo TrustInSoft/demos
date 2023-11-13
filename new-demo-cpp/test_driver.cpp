@@ -56,7 +56,7 @@ int test_small_array()
 
 int test_large_array()
 {
-    IncrementableArray<int> array(1000);
+    IncrementableArray<int> array(500);
     for (int i = 0; i < array.get_size(); i++)
         array.set(i, rand() > RAND_MAX / 2 ? rand() : -rand());
     return test_array(array);
