@@ -120,7 +120,7 @@ tis-l1-fast:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 3"
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 4"
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 5"
-	@../tools/run_all.sh -n 6 -c $(CONFIG_FILE) -a "2 3 4 5"
+	@../tools/run_all.sh -n 4 -c $(CONFIG_FILE) -a "3 2 4 5"
 
 tis-l2: tis-l2-cli count_ub_2 report
 
