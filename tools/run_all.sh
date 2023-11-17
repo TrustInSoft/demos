@@ -24,7 +24,7 @@ CONFIG_ROOT=".trustinsoft"
 CONFIG_FILE="${CONFIG_ROOT}/config.json"
 
 # Default directory for results, logs and state save, all relative to the config root directory
-RESULTS_SUBDIR="results"
+RESULTS_SUBDIR="_results"
 LOGS_SUBDIR="logs"
 SAVE_SUBDIR="save"
 
@@ -64,16 +64,22 @@ function run_analysis {
 function usage {
 
    cat << EOF
-Usage: $ME [-n <n>] [-c <configFile>] [-a <ListOfAnalysisNbrs>] [-h]
-Description: Runs multiple TrustInSoft analysis in parallel
+Usage: $ME [-c <configFile>] [-n <n>] [-a <ListOfAnalysisNbrs>] [-h]
 
--n: Defines the max number of parallel analysis, defaults to 1
--c: Provides the name of the config file, by default .trustinsoft/config.json
--a: Provides list of analysis numbers to run, default all of them
+Description: Runs multiple TrustInSoft analysis, potentially in parallel
+
+-c: Provides the name of the config file (default ".trustinsoft/config.json").
+-n: Defines the max number of parallel analyses (default 1).
+    The "parallel" command is used if n > 1
+    Script will exit with an error if n > 1 and "parallel" is not installed (in path) 
+    Nbr of parallel analyses is capped to the number of analyses defined by the -a option
+    or the number of analyses found in the config file it -a is unspecified
+-a: Provides list of analysis numbers to run if you with to run specific
+    analyses but not all (default: all analyses defined in the config file)
 -h: Displays this help and exits
 
 Example:
-$ME -n 5 -c .trustinsoft/config.json -a "1 3 7 8"
+$ME -n 4 -c .trustinsoft/config.json -a "1 3 7 8"
 EOF
    exit 1
 }
@@ -95,6 +101,9 @@ while [ $# -ne 0 ]; do
          shift
          analysis_list=${1}
          ;;
+      -h)
+         usage
+         ;;
       *)
          echo "Wrong argument ${1}"
          usage
@@ -104,9 +113,9 @@ while [ $# -ne 0 ]; do
 done
 
 CONFIG_ROOT="$(dirname ${CONFIG_FILE})"
-LOG_DIR="${CONFIG_ROOT}/logs"
-RESULTS_DIR="${CONFIG_ROOT}/results"
-SAVE_DIR="${CONFIG_ROOT}/save"
+LOG_DIR="${CONFIG_ROOT}/${LOGS_SUBDIR}"
+RESULTS_DIR="${CONFIG_ROOT}/${RESULTS_SUBDIR}"
+SAVE_DIR="${CONFIG_ROOT}/${SAVE_SUBDIR}"
 export CONFIG_FILE CONFIG_ROOT LOG_DIR RESULTS_DIR SAVE_DIR
 
 if [ ! -f ${CONFIG_FILE} ]; then
