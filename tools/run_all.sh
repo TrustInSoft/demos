@@ -54,16 +54,17 @@ function run_analysis {
       -tis-config-select "${analysis_nbr}"
       -tis-report
       -tis-report-directory "${RESULTS_DIR}"
-      -save "${SAVE_DIR}/${analysis_nbr}.save"
+      -save "${SAVE_DIR}/${analysis_name}.save"
    )
 
    echo; echo "${FONT_CYAN}tis-analyzer ${opt[@]}${FONT_RESET}"; echo
-   tis-analyzer "${opt[@]}" | tee "${LOG_DIR}/analysis.${analysis_name}.log"
+   tis-analyzer "${opt[@]}" | tee "${LOG_DIR}/${analysis_name}.log"
 }
 
 function usage {
 
    cat << EOF
+
 Usage: $ME [-c <configFile>] [-n <n>] [-a <ListOfAnalysisNbrs>] [-h]
 
 Description: Runs multiple TrustInSoft analysis, potentially in parallel
@@ -78,8 +79,21 @@ Description: Runs multiple TrustInSoft analysis, potentially in parallel
     analyses but not all (default: all analyses defined in the config file)
 -h: Displays this help and exits
 
-Example:
-$ME -n 4 -c .trustinsoft/config.json -a "1 3 7 8"
+From the root directory of the config file (by dafault .trustinsoft)
+- The logs of each analysis is sent to ${LOGS_SUBDIR}/<analysis_name>.log
+- The .save of each analysis is sent to ${SAVE_SUBDIR}/<analysis_name>.save
+- The analysis results are sent to ${RESULTS_SUBDIR}/
+
+Examples:
+
+# Runs all analyses of config file .trustinsoft/config.json, 1 by 1 (sequentially)
+$ME
+
+# Runs all analyses of config file .trustinsoft/config.json, 4 by 4 in parallel
+$ME -n 4
+
+# Runs analyses number 1, 3, 7 and 8, from config file tis.conf, 2 by 2 in parallel
+$ME -n 2 -c tis.conf -a "1 3 7 8"
 EOF
    exit 1
 }
