@@ -36,7 +36,6 @@ export FONT_RESET=$(tput sgr0)
 
 export ME=$(basename $0)
 
-
 if [ ! $(which jq) ]; then
    echo "Please install 'jq' to run $ME"
    exit 2
@@ -133,8 +132,8 @@ SAVE_DIR="${CONFIG_ROOT}/${SAVE_SUBDIR}"
 export CONFIG_FILE CONFIG_ROOT LOG_DIR RESULTS_DIR SAVE_DIR
 
 if [ ! -f ${CONFIG_FILE} ]; then
-	echo "Configuration file \"${CONFIG_FILE}\" not found, exiting..."
-	exit 1
+   echo "Configuration file \"${CONFIG_FILE}\" not found, exiting..."
+   exit 1
 fi
 
 nbr_analyses=$(jq '. | length' < ${CONFIG_FILE})
@@ -148,7 +147,7 @@ fi
 
 # Reduce parallelism if number of analyses to do is less than parallelism
 if [ $nbr_parallel_analyses -gt $nbr_analyses ]; then
-	nbr_parallel_analyses=$nbr_analyses
+   nbr_parallel_analyses=$nbr_analyses
 fi
 
 echo "${FONT_YELLOW}Main configuration file: $CONFIG_FILE"
@@ -158,15 +157,15 @@ mkdir -p ${LOG_DIR} ${SAVE_DIR} ${RESULTS_DIR}
 
 if [ $nbr_parallel_analyses -eq 1 ]; then
    # Don't use parallel if 1 analysis at a time
-	for i in $analysis_list; do
-		run_analysis $i
-	done
+   for i in $analysis_list; do
+      run_analysis $i
+   done
 else
    # Use parallel if more than 1 analysis at a time
-	if [ ! $(which parallel) ]; then
-   	echo "Please install 'parallel' to run $ME with -n > 1"
-   	exit 3
-	fi
-	# Other interesting options: -j '75%' timeout 60s
-	parallel --progress --eta -j $nbr_parallel_analyses run_analysis ::: $analysis_list
+   if [ ! $(which parallel) ]; then
+      echo "Please install 'parallel' to run $ME with -n > 1"
+      exit 3
+   fi
+   # Other interesting options: -j '75%' timeout 60s
+   parallel --progress --eta -j $nbr_parallel_analyses run_analysis ::: $analysis_list
 fi
