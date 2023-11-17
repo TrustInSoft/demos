@@ -153,6 +153,6 @@ else
    	echo "Please install 'parallel' to run $ME with -n > 1"
    	exit 3
 	fi
-	# Can use options like: -j '75%' timeout 60s
+	# Other interesting options: -j '75%' timeout 60s
 	parallel --progress --eta -j $nbr_parallel_analyses run_analysis ::: $analysis_list
 fi
