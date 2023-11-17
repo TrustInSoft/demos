@@ -20,6 +20,7 @@
 
 # Default config root directory, and config file name
 # The below follows the tis-project-manager conventions
+# This can be changed with the tool -c option
 CONFIG_ROOT=".trustinsoft"
 CONFIG_FILE="${CONFIG_ROOT}/config.json"
 
@@ -150,9 +151,12 @@ if [ $nbr_parallel_analyses -gt $nbr_analyses ]; then
    nbr_parallel_analyses=$nbr_analyses
 fi
 
-echo "${FONT_YELLOW}Main configuration file: $CONFIG_FILE"
-echo "${FONT_YELLOW}Total nbr of analyses to run: $nbr_analyses"
-echo "${FONT_YELLOW}Nbr of analyses to run in parallel: $nbr_parallel_analyses${FONT_RESET}"
+cat << EOF
+${FONT_YELLOW}Main configuration file: $CONFIG_FILE
+Total nbr of analyses to run: $nbr_analyses
+Nbr of analyses to run in parallel: $nbr_parallel_analyses${FONT_RESET}
+EOF
+
 mkdir -p ${LOG_DIR} ${SAVE_DIR} ${RESULTS_DIR}
 
 if [ $nbr_parallel_analyses -eq 1 ]; then
