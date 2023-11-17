@@ -150,7 +150,7 @@ if [ $nbr_parallel_analyses -eq 1 ]; then
 else
    # Use parallel if more than 1 analysis at a time
 	if [ ! $(which parallel) ]; then
-   	echo "Please install 'parallel' to run $ME with "
+   	echo "Please install 'parallel' to run $ME with -n > 1"
    	exit 3
 	fi
 	# Can use options like: -j '75%' timeout 60s
