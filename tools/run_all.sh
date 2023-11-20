@@ -30,16 +30,16 @@ LOGS_SUBDIR="logs"
 SAVE_SUBDIR="save"
 
 # For coloring
-FONT_BOLD=$(tput bold)
+FONT_BOLD="$(tput bold)"
 export FONT_BOLD
-FONT_CYAN=$(tput setaf 6)
+FONT_CYAN="$(tput setaf 6)"
 export FONT_CYAN
-FONT_YELLOW=$(tput setaf 3)
+FONT_YELLOW="$(tput setaf 3)"
 export FONT_YELLOW
-FONT_RESET=$(tput sgr0)
+FONT_RESET="$(tput sgr0)"
 export FONT_RESET
 
-ME=$(basename "$0")
+ME="$(basename "$0")"
 export ME
 
 if ! command -v jq >/dev/null 2>&1; then
@@ -49,10 +49,10 @@ fi
 
 function run_analysis {
    analysis_nbr="$1"
-   ndx=$(( analysis_nbr - 1 )) || true
-   analysis_name=$(jq ".[$ndx][\"name\"]" < ${CONFIG_FILE} | cut -d '"' -f 2)
+   ndx="$(( analysis_nbr - 1 ))" || true
+   analysis_name="$(jq ".[$ndx][\"name\"]" < ${CONFIG_FILE} | cut -d '"' -f 2)"
    if [ "${analysis_name}" = "null" ]; then
-      analysis_name=${analysis_nbr}
+      analysis_name="${analysis_nbr}"
    fi
    opt=(
       -tis-config-load "${CONFIG_FILE}"
@@ -110,15 +110,15 @@ while [ $# -ne 0 ]; do
    case "${1}" in
       -n)
          shift
-         nbr_parallel_analyses=${1}
+         nbr_parallel_analyses="${1}"
          ;;
       -c)
          shift
-         CONFIG_FILE=${1}
+         CONFIG_FILE="${1}"
          ;;
       -a)
          shift
-         analysis_list=${1}
+         analysis_list="${1}"
          ;;
       -h)
          usage
@@ -142,18 +142,18 @@ if [ ! -f "${CONFIG_FILE}" ]; then
    exit 1
 fi
 
-nbr_analyses=$(jq '. | length' < "${CONFIG_FILE}")
+nbr_analyses="$(jq '. | length' < "${CONFIG_FILE}")"
 
 if [ "$analysis_list" = "" ]; then
-   analysis_list=$(seq 1 "$nbr_analyses")
+   analysis_list="$(seq 1 "$nbr_analyses")"
 else
-   nbr_analyses=$(echo "$analysis_list" | wc -w)
+   nbr_analyses="$(echo "$analysis_list" | wc -w)"
    analysis_list="${analysis_list// /$'\n'}"
 fi
 
 # Reduce parallelism if number of analyses to do is less than parallelism
 if [ "$nbr_parallel_analyses" -gt "$nbr_analyses" ]; then
-   nbr_parallel_analyses=$nbr_analyses
+   nbr_parallel_analyses="$nbr_analyses"
 fi
 
 cat << EOF
