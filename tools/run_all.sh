@@ -62,7 +62,7 @@ function run_analysis {
       -save "${SAVE_DIR}/${analysis_name}.save"
    )
 
-   echo; echo "${FONT_CYAN}tis-analyzer ${opt[@]}${FONT_RESET}"; echo
+   echo; echo "${FONT_CYAN}tis-analyzer ${opt[*]}${FONT_RESET}"; echo
    tis-analyzer "${opt[@]}" | tee "${LOG_DIR}/${analysis_name}.log"
 }
 
@@ -148,7 +148,7 @@ if [ "$analysis_list" = "" ]; then
    analysis_list=$(seq 1 "$nbr_analyses")
 else
    nbr_analyses=$(echo "$analysis_list" | wc -w)
-   analysis_list=$(echo "$analysis_list" | sed "s/ /\n/g")
+   analysis_list="${analysis_list// /$'\n'}"
 fi
 
 # Reduce parallelism if number of analyses to do is less than parallelism
