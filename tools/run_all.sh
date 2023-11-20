@@ -26,7 +26,8 @@ set -Eeuo pipefail
 CONFIG_ROOT=".trustinsoft"
 CONFIG_FILE="$CONFIG_ROOT/config.json"
 
-# Default directory for results, logs and state save, all relative to the config root directory
+# Default directory for results, logs and state save, all relative to the config
+# root directory
 RESULTS_SUBDIR="_results"
 LOGS_SUBDIR="logs"
 SAVE_SUBDIR="save"
@@ -190,5 +191,6 @@ else
    # a bad practice even if it works here. We disable the warning to avoid
    # intrusive functional changes.
    # shellcheck disable=SC2086
-   parallel --progress --eta -j "$nbr_parallel_analyses" run_analysis ::: $analysis_list
+   parallel --progress --eta -j "$nbr_parallel_analyses" run_analysis ::: \
+      $analysis_list
 fi
