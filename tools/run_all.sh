@@ -18,6 +18,8 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 
+set -Eeuo pipefail
+
 # Default config root directory, and config file name
 # The below follows the tis-project-manager conventions
 # This can be changed with the tool -c option
