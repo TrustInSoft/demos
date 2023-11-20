@@ -49,7 +49,7 @@ fi
 
 function run_analysis {
    analysis_nbr="$1"
-   let ndx=${analysis_nbr}-1
+   ndx=$(( analysis_nbr - 1 )) || true
    analysis_name=$(jq ".[$ndx][\"name\"]" < ${CONFIG_FILE} | cut -d '"' -f 2)
    if [ "${analysis_name}" = "null" ]; then
       analysis_name=${analysis_nbr}
