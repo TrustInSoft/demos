@@ -42,7 +42,7 @@ export FONT_RESET
 ME=$(basename "$0")
 export ME
 
-if [ ! "$(which jq)" ]; then
+if ! command -v jq >/dev/null 2>&1; then
    echo "Please install 'jq' to run $ME"
    exit 2
 fi
@@ -175,7 +175,7 @@ if [ "$nbr_parallel_analyses" -eq 1 ]; then
    done
 else
    # Use parallel if more than 1 analysis at a time
-   if [ ! "$(which parallel)" ]; then
+   if ! command -v parallel >/dev/null 2>&1; then
       echo "Please install 'parallel' to run $ME with -n > 1"
       exit 3
    fi
