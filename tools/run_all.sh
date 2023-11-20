@@ -105,6 +105,7 @@ EOF
 
 export -f run_analysis
 nbr_parallel_analyses=1
+analysis_list=
 
 while [[ $# -ne 0 ]]; do
    case "$1" in
