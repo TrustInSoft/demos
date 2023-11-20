@@ -64,7 +64,11 @@ function run_analysis {
       -save "$SAVE_DIR/$analysis_name.save"
    )
 
-   echo; echo "${FONT_CYAN}tis-analyzer ${opt[*]}$FONT_RESET"; echo
+   cat <<EOF
+
+${FONT_CYAN}tis-analyzer ${opt[*]}$FONT_RESET
+
+EOF
    tis-analyzer "${opt[@]}" | tee "$LOG_DIR/$analysis_name.log"
 }
 
