@@ -2,21 +2,21 @@
 # trustinsoft/demos
 # Copyright (C) 2022-2023 TrustInSoft
 # mailto:contact AT trust-in-soft DOT com
-# 
+#
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation; either
 # version 3 of the License, or (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 # Lesser General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-# 
+#
 
 # Default config root directory, and config file name
 # The below follows the tis-project-manager conventions
@@ -72,7 +72,7 @@ Description: Runs multiple TrustInSoft analysis, potentially in parallel
 -c: Provides the name of the config file (default ".trustinsoft/config.json").
 -n: Defines the max number of parallel analyses (default 1).
     The "parallel" command is used if n > 1
-    Script will exit with an error if n > 1 and "parallel" is not installed (in path) 
+    Script will exit with an error if n > 1 and "parallel" is not installed (in path)
     Nbr of parallel analyses is capped to the number of analyses defined by the -a option
     or the number of analyses found in the config file it -a is unspecified
 -a: Provides list of analysis numbers to run if you with to run specific
