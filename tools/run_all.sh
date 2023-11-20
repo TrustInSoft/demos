@@ -51,7 +51,7 @@ function run_analysis {
    analysis_nbr="$1"
    ndx="$(( analysis_nbr - 1 ))" || true
    analysis_name="$(jq ".[$ndx][\"name\"]" < $CONFIG_FILE | cut -d '"' -f 2)"
-   if [ "$analysis_name" = "null" ]; then
+   if [[ "$analysis_name" = "null" ]]; then
       analysis_name="$analysis_nbr"
    fi
    opt=(
@@ -106,7 +106,7 @@ EOF
 export -f run_analysis
 nbr_parallel_analyses=1
 
-while [ $# -ne 0 ]; do
+while [[ $# -ne 0 ]]; do
    case "$1" in
       -n)
          shift
@@ -137,14 +137,14 @@ RESULTS_DIR="$CONFIG_ROOT/$RESULTS_SUBDIR"
 SAVE_DIR="$CONFIG_ROOT/$SAVE_SUBDIR"
 export CONFIG_FILE CONFIG_ROOT LOG_DIR RESULTS_DIR SAVE_DIR
 
-if [ ! -f "$CONFIG_FILE" ]; then
+if [[ ! -f "$CONFIG_FILE" ]]; then
    echo "Configuration file \"$CONFIG_FILE\" not found, exiting..."
    exit 1
 fi
 
 nbr_analyses="$(jq '. | length' < "$CONFIG_FILE")"
 
-if [ "$analysis_list" = "" ]; then
+if [[ "$analysis_list" = "" ]]; then
    analysis_list="$(seq 1 "$nbr_analyses")"
 else
    nbr_analyses="$(echo "$analysis_list" | wc -w)"
@@ -152,7 +152,7 @@ else
 fi
 
 # Reduce parallelism if number of analyses to do is less than parallelism
-if [ "$nbr_parallel_analyses" -gt "$nbr_analyses" ]; then
+if [[ "$nbr_parallel_analyses" -gt "$nbr_analyses" ]]; then
    nbr_parallel_analyses="$nbr_analyses"
 fi
 
@@ -164,7 +164,7 @@ EOF
 
 mkdir -p "$LOG_DIR" "$SAVE_DIR" "$RESULTS_DIR"
 
-if [ "$nbr_parallel_analyses" -eq 1 ]; then
+if [[ "$nbr_parallel_analyses" -eq 1 ]]; then
    # Don't use parallel if 1 analysis at a time
    # analysis_list is used as an array but declared as a variable above. This is
    # a bad practice even if it works here. We disable the warning to avoid
