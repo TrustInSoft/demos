@@ -30,12 +30,17 @@ LOGS_SUBDIR="logs"
 SAVE_SUBDIR="save"
 
 # For coloring
-export FONT_BOLD=$(tput bold)
-export FONT_CYAN=$(tput setaf 6)
-export FONT_YELLOW=$(tput setaf 3)
-export FONT_RESET=$(tput sgr0)
+FONT_BOLD=$(tput bold)
+export FONT_BOLD
+FONT_CYAN=$(tput setaf 6)
+export FONT_CYAN
+FONT_YELLOW=$(tput setaf 3)
+export FONT_YELLOW
+FONT_RESET=$(tput sgr0)
+export FONT_RESET
 
-export ME=$(basename $0)
+ME=$(basename $0)
+export ME
 
 if [ ! $(which jq) ]; then
    echo "Please install 'jq' to run $ME"
