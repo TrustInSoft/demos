@@ -34,16 +34,13 @@ SAVE_SUBDIR="save"
 
 # For coloring
 FONT_BOLD="$(tput bold)"
-export FONT_BOLD
 FONT_CYAN="$(tput setaf 6)"
 export FONT_CYAN
 FONT_YELLOW="$(tput setaf 3)"
-export FONT_YELLOW
 FONT_RESET="$(tput sgr0)"
 export FONT_RESET
 
 ME="$(basename "$0")"
-export ME
 
 if ! command -v jq >/dev/null 2>&1; then
    echo "Please install 'jq' to run $ME"
