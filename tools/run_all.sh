@@ -39,10 +39,10 @@ export FONT_YELLOW
 FONT_RESET=$(tput sgr0)
 export FONT_RESET
 
-ME=$(basename $0)
+ME=$(basename "$0")
 export ME
 
-if [ ! $(which jq) ]; then
+if [ ! "$(which jq)" ]; then
    echo "Please install 'jq' to run $ME"
    exit 2
 fi
@@ -131,28 +131,28 @@ while [ $# -ne 0 ]; do
    shift
 done
 
-CONFIG_ROOT="$(dirname ${CONFIG_FILE})"
+CONFIG_ROOT="$(dirname "${CONFIG_FILE}")"
 LOG_DIR="${CONFIG_ROOT}/${LOGS_SUBDIR}"
 RESULTS_DIR="${CONFIG_ROOT}/${RESULTS_SUBDIR}"
 SAVE_DIR="${CONFIG_ROOT}/${SAVE_SUBDIR}"
 export CONFIG_FILE CONFIG_ROOT LOG_DIR RESULTS_DIR SAVE_DIR
 
-if [ ! -f ${CONFIG_FILE} ]; then
+if [ ! -f "${CONFIG_FILE}" ]; then
    echo "Configuration file \"${CONFIG_FILE}\" not found, exiting..."
    exit 1
 fi
 
-nbr_analyses=$(jq '. | length' < ${CONFIG_FILE})
+nbr_analyses=$(jq '. | length' < "${CONFIG_FILE}")
 
 if [ "$analysis_list" = "" ]; then
-   analysis_list=$(seq 1 $nbr_analyses)
+   analysis_list=$(seq 1 "$nbr_analyses")
 else
-   nbr_analyses=$(echo $analysis_list | wc -w)
-   analysis_list=$(echo $analysis_list | sed "s/ /\n/g")
+   nbr_analyses=$(echo "$analysis_list" | wc -w)
+   analysis_list=$(echo "$analysis_list" | sed "s/ /\n/g")
 fi
 
 # Reduce parallelism if number of analyses to do is less than parallelism
-if [ $nbr_parallel_analyses -gt $nbr_analyses ]; then
+if [ "$nbr_parallel_analyses" -gt "$nbr_analyses" ]; then
    nbr_parallel_analyses=$nbr_analyses
 fi
 
@@ -162,19 +162,27 @@ Total nbr of analyses to run: $nbr_analyses
 Nbr of analyses to run in parallel: $nbr_parallel_analyses${FONT_RESET}
 EOF
 
-mkdir -p ${LOG_DIR} ${SAVE_DIR} ${RESULTS_DIR}
+mkdir -p "${LOG_DIR}" "${SAVE_DIR}" "${RESULTS_DIR}"
 
-if [ $nbr_parallel_analyses -eq 1 ]; then
+if [ "$nbr_parallel_analyses" -eq 1 ]; then
    # Don't use parallel if 1 analysis at a time
+   # analysis_list is used as an array but declared as a variable above. This is
+   # a bad practice even if it works here. We disable the warning to avoid
+   # intrusive functional changes.
+   # shellcheck disable=SC2086
    for i in $analysis_list; do
-      run_analysis $i
+      run_analysis "$i"
    done
 else
    # Use parallel if more than 1 analysis at a time
-   if [ ! $(which parallel) ]; then
+   if [ ! "$(which parallel)" ]; then
       echo "Please install 'parallel' to run $ME with -n > 1"
       exit 3
    fi
    # Other interesting options: -j '75%' timeout 60s
-   parallel --progress --eta -j $nbr_parallel_analyses run_analysis ::: $analysis_list
+   # analysis_list is used as an array but declared as a variable above. This is
+   # a bad practice even if it works here. We disable the warning to avoid
+   # intrusive functional changes.
+   # shellcheck disable=SC2086
+   parallel --progress --eta -j "$nbr_parallel_analyses" run_analysis ::: $analysis_list
 fi
