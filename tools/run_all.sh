@@ -166,7 +166,7 @@ Total nbr of analyses to run: $nbr_analyses
 Nbr of analyses to run in parallel: $nbr_parallel_analyses$FONT_RESET
 EOF
 
-mkdir -p "$LOG_DIR" "$SAVE_DIR" "$RESULTS_DIR"
+mkdir -p "$LOG_DIR" "$SAVE_DIR"
 
 if [[ "$nbr_parallel_analyses" -eq 1 ]]; then
    # Don't use parallel if 1 analysis at a time
