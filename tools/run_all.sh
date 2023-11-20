@@ -107,7 +107,6 @@ EOF
 
 export -f run_analysis
 nbr_parallel_analyses=1
-analysis_list=
 
 while [[ $# -ne 0 ]]; do
    case "$1" in
@@ -147,7 +146,7 @@ fi
 
 nbr_analyses="$(jq '. | length' < "$CONFIG_FILE")"
 
-if [[ "$analysis_list" = "" ]]; then
+if [[ -z "${analysis_list:-}" ]]; then
    analysis_list="$(seq 1 "$nbr_analyses")"
 else
    nbr_analyses="$(echo "$analysis_list" | wc -w)"
