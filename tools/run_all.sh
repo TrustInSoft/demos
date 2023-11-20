@@ -22,7 +22,7 @@
 # The below follows the tis-project-manager conventions
 # This can be changed with the tool -c option
 CONFIG_ROOT=".trustinsoft"
-CONFIG_FILE="${CONFIG_ROOT}/config.json"
+CONFIG_FILE="$CONFIG_ROOT/config.json"
 
 # Default directory for results, logs and state save, all relative to the config root directory
 RESULTS_SUBDIR="_results"
@@ -50,20 +50,20 @@ fi
 function run_analysis {
    analysis_nbr="$1"
    ndx="$(( analysis_nbr - 1 ))" || true
-   analysis_name="$(jq ".[$ndx][\"name\"]" < ${CONFIG_FILE} | cut -d '"' -f 2)"
-   if [ "${analysis_name}" = "null" ]; then
-      analysis_name="${analysis_nbr}"
+   analysis_name="$(jq ".[$ndx][\"name\"]" < $CONFIG_FILE | cut -d '"' -f 2)"
+   if [ "$analysis_name" = "null" ]; then
+      analysis_name="$analysis_nbr"
    fi
    opt=(
-      -tis-config-load "${CONFIG_FILE}"
-      -tis-config-select "${analysis_nbr}"
+      -tis-config-load "$CONFIG_FILE"
+      -tis-config-select "$analysis_nbr"
       -tis-report
-      -tis-report-directory "${RESULTS_DIR}"
-      -save "${SAVE_DIR}/${analysis_name}.save"
+      -tis-report-directory "$RESULTS_DIR"
+      -save "$SAVE_DIR/$analysis_name.save"
    )
 
-   echo; echo "${FONT_CYAN}tis-analyzer ${opt[*]}${FONT_RESET}"; echo
-   tis-analyzer "${opt[@]}" | tee "${LOG_DIR}/${analysis_name}.log"
+   echo; echo "${FONT_CYAN}tis-analyzer ${opt[*]}$FONT_RESET"; echo
+   tis-analyzer "${opt[@]}" | tee "$LOG_DIR/$analysis_name.log"
 }
 
 function usage {
@@ -85,9 +85,9 @@ Description: Runs multiple TrustInSoft analysis, potentially in parallel
 -h: Displays this help and exits
 
 From the root directory of the config file (by dafault .trustinsoft)
-- The logs of each analysis is sent to ${LOGS_SUBDIR}/<analysis_name>.log
-- The .save of each analysis is sent to ${SAVE_SUBDIR}/<analysis_name>.save
-- The analysis results are sent to ${RESULTS_SUBDIR}/
+- The logs of each analysis is sent to $LOGS_SUBDIR/<analysis_name>.log
+- The .save of each analysis is sent to $SAVE_SUBDIR/<analysis_name>.save
+- The analysis results are sent to $RESULTS_SUBDIR/
 
 Examples:
 
@@ -107,42 +107,42 @@ export -f run_analysis
 nbr_parallel_analyses=1
 
 while [ $# -ne 0 ]; do
-   case "${1}" in
+   case "$1" in
       -n)
          shift
-         nbr_parallel_analyses="${1}"
+         nbr_parallel_analyses="$1"
          ;;
       -c)
          shift
-         CONFIG_FILE="${1}"
+         CONFIG_FILE="$1"
          ;;
       -a)
          shift
-         analysis_list="${1}"
+         analysis_list="$1"
          ;;
       -h)
          usage
          ;;
       *)
-         echo "Wrong argument ${1}"
+         echo "Wrong argument $1"
          usage
          ;;
    esac
    shift
 done
 
-CONFIG_ROOT="$(dirname "${CONFIG_FILE}")"
-LOG_DIR="${CONFIG_ROOT}/${LOGS_SUBDIR}"
-RESULTS_DIR="${CONFIG_ROOT}/${RESULTS_SUBDIR}"
-SAVE_DIR="${CONFIG_ROOT}/${SAVE_SUBDIR}"
+CONFIG_ROOT="$(dirname "$CONFIG_FILE")"
+LOG_DIR="$CONFIG_ROOT/$LOGS_SUBDIR"
+RESULTS_DIR="$CONFIG_ROOT/$RESULTS_SUBDIR"
+SAVE_DIR="$CONFIG_ROOT/$SAVE_SUBDIR"
 export CONFIG_FILE CONFIG_ROOT LOG_DIR RESULTS_DIR SAVE_DIR
 
-if [ ! -f "${CONFIG_FILE}" ]; then
-   echo "Configuration file \"${CONFIG_FILE}\" not found, exiting..."
+if [ ! -f "$CONFIG_FILE" ]; then
+   echo "Configuration file \"$CONFIG_FILE\" not found, exiting..."
    exit 1
 fi
 
-nbr_analyses="$(jq '. | length' < "${CONFIG_FILE}")"
+nbr_analyses="$(jq '. | length' < "$CONFIG_FILE")"
 
 if [ "$analysis_list" = "" ]; then
    analysis_list="$(seq 1 "$nbr_analyses")"
@@ -159,10 +159,10 @@ fi
 cat << EOF
 ${FONT_YELLOW}Main configuration file: $CONFIG_FILE
 Total nbr of analyses to run: $nbr_analyses
-Nbr of analyses to run in parallel: $nbr_parallel_analyses${FONT_RESET}
+Nbr of analyses to run in parallel: $nbr_parallel_analyses$FONT_RESET
 EOF
 
-mkdir -p "${LOG_DIR}" "${SAVE_DIR}" "${RESULTS_DIR}"
+mkdir -p "$LOG_DIR" "$SAVE_DIR" "$RESULTS_DIR"
 
 if [ "$nbr_parallel_analyses" -eq 1 ]; then
    # Don't use parallel if 1 analysis at a time
