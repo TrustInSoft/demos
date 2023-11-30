@@ -25,7 +25,7 @@ CONFIG_ROOT=".trustinsoft"
 CONFIG_FILE="${CONFIG_ROOT}/config.json"
 
 # Default directory for results, logs and state save, all relative to the config root directory
-RESULTS_SUBDIR="_results"
+RESULTS_SUBDIR="results"
 LOGS_SUBDIR="logs"
 SAVE_SUBDIR="save"
 
