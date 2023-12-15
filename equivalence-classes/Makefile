@@ -33,7 +33,7 @@ FONT_RESET := `tput sgr0`
 TARGET := equivalence-classes
 FILES := $(TARGET).c
 CONFIG_FILE := .trustinsoft/config.json
-TIS_OPTS := -tis-config-load $(CONFIG_FILE) -tis-config-select-by-name "equivalence-classes"
+TIS_OPTS := -tis-config-load $(CONFIG_FILE)
 
 all:
 	@echo "make tis:     Runs the equivalence classes demo in cmd line"
