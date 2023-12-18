@@ -45,6 +45,7 @@ tis-fuzz:
 	mkdir -p tis-fuzz-results/
 # The below is a workaround to generate AST
 	chmod a+w work tis-fuzz-results
+	rm -f work/real_input.txt
 	ln -sr seeds/seed1.txt work/real_input.txt
 	tis-analyzer -tis-config-load trustinsoft/tis.json -save tis-fuzz-results/ast.state
 	rm work/real_input.txt
