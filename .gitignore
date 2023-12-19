@@ -22,4 +22,9 @@ target-awareness/tis_report.*.html
 caesar-cpp/caesar
 new-demo-cpp/.tis-kernel/
 new-demo-cpp/increment
-**/.trustinsoft/**
+**/.trustinsoft/logs
+**/.trustinsoft/results
+**/.trustinsoft/_results
+**/.trustinsoft/save
+**/.trustinsoft/tis_report.html
+

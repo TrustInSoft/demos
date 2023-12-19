@@ -1,0 +1,16 @@
+[
+    {
+        "machdep": "gcc_x86_64",
+        "slevel": 12000,
+        "val": "true",
+        "metrics": "false",
+        "files": [
+            "../equivalence-classes.c"
+        ],
+        "cpp-extra-args": "-I.",
+        "whole-program-graph": "true",
+        "name": "equivalence-classes",
+        "val-profile": "analyzer",
+        "main": "analysis_driver"
+    }
+]
