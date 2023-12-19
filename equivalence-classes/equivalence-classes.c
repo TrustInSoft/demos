@@ -15,7 +15,7 @@ int square(int i)
     return i * i;
 }
 
-int classic_equivalence_classes_test()
+void classic_equivalence_classes_test()
 {
     int class1[] = { INT_MIN, -424242, RANGE_MIN-1, RANGE_MAX+1, 42424242, INT_MAX };
     int len = sizeof(class1) / sizeof(class1[0]);
