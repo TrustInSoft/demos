@@ -12,8 +12,24 @@
 int square(int i)
 {
     if (i < RANGE_MIN || i > RANGE_MAX) return -1;
-    return pow(i, 2);
+    return i * i;
 }
+
+int classic_equivalence_classes_test()
+{
+    int class1[] = { INT_MIN, -424242, RANGE_MIN-1, RANGE_MAX+1, 42424242, INT_MAX };
+    int len = sizeof(class1) / sizeof(class1[0]);
+    for (int i = 0; i < len; ++i) {
+        assert(square(class1[i] == -1));
+    }
+
+    int class2[] = { RANGE_MIN, RANGE_MIN+1, -1, 0, 1, RANGE_MAX-1, RANGE_MAX };
+    len = sizeof(class2) / sizeof(class2[0]);
+    for (int i = 0; i < len; ++i) {
+        assert(square(class2[i] == (i * i)));
+    }
+}
+
 
 #ifdef __TRUSTINSOFT_ANALYZER__
 
@@ -34,8 +50,8 @@ void eq_class_above_range_verification()
 void eq_class_within_range_verification()
 {
     // tis_interval(RANGE_MIN, RANGE_MAX) defines the equivalence class [RANGE_MIN, RANGE_MAX]
-    int res = square(tis_interval(RANGE_MIN, RANGE_MAX));
-    /*@ assert (res >= 0 && res <= 10000);*/
+    int res = square(tis_interval_split(RANGE_MIN, RANGE_MAX));
+    /*@ assert (res >= 0 && res <= 1000000);*/
 }
 
 void analysis_driver()
