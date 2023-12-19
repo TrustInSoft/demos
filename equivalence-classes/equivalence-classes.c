@@ -30,7 +30,6 @@ int classic_equivalence_classes_test()
     }
 }
 
-
 #ifdef __TRUSTINSOFT_ANALYZER__
 
 void eq_class_below_range_verification()
