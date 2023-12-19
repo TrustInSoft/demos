@@ -20,11 +20,8 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 # Demo of equivalence classes verification with TrustInSoft Analyzer
 
-This demo demonstrates, besides detection of undefined behaviors, the TrustInSoft Analyzer is capable of verifying
-a certain number of aspects related to equivalence classes, specifically that for a given equivalence class input
-(and input value or an range in TrustInSoft terminology) I get a given output value or value range as output.
-Unlike with traditional tests where I can only verify one or a few values of each equivalence class, with the
-TrustInSoft Analysis you can verify output for the integrality of values in the equivalence class.
+This demo demonstrates, besides detection of undefined behaviors, the TrustInSoft Analyzer is capable of verifyingva certain number of aspects related to equivalence classes, specifically that for a given equivalence class inputv(and input value or an range in TrustInSoft terminology) I get a given output value or value range as output.
+Unlike with traditional tests where I can only verify one or a few values of each equivalence class, with the TrustInSoft Analysis you can verify output for the integrality of values in the equivalence class.
 
 <!--
 Note: If you have an Ubuntu machine you can run this demo live by running:
@@ -50,7 +47,7 @@ The function `square(int i)` returns the square of a integer if it is between -1
 int square(int i)
 {
     if (i < RANGE_MIN || i > RANGE_MAX) return -1;
-    return pow(i, 2);
+    return i * i;
 }
 ```
 This defines 3 equivalence classes: [INT_MIN, -1001], [-1000, 1000] and [1001, INT_MAX]
@@ -82,7 +79,7 @@ void eq_class_above_range_verification()
 
 void eq_class_within_range_verification()
 {
-    int res = square(tis_interval(RANGE_MIN, RANGE_MAX));
+    int res = square(tis_interval_split(RANGE_MIN, RANGE_MAX));
     /*@ assert (res >= 0 && res <= 1000000);*/
 }
 
@@ -128,7 +125,7 @@ int square(int i)
 {
     // Using <= and => instead of the correct < and >
     if (i <= RANGE_MIN || i >= RANGE_MAX) return -1;
-    return pow(i, 2);
+    return i * i;
 }
 ```
 
@@ -145,7 +142,7 @@ as per the below, the verification will fail:
 ```c
 void eq_class_within_range_verification()
 {
-    int res = square(tis_interval(RANGE_MIN, RANGE_MAX));
+    int res = square(tis_interval_split(RANGE_MIN, RANGE_MAX));
     // Problem in the assertion below. The upper bound is mistakenly 100'000 instead of 1'000'000
     /*@ assert (res >= 0 && res <= 100000);*/
 }
