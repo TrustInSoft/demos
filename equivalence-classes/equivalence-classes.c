@@ -1,8 +1,16 @@
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 #include <limits.h>
+#include <assert.h>
+
 #ifdef __TRUSTINSOFT_ANALYZER__
 #include <tis_builtin.h>
 #include <math.h>
 #endif
+
+#define SUCCESS "\033[0;32mPASSED\033[0m"
+#define FAILED "\033[0;31m** FAILED **\033[0m"
 
 #define RANGE_MIN -1000
 #define RANGE_MAX 1000
@@ -22,12 +30,13 @@ void classic_equivalence_classes_test()
     for (int i = 0; i < len; ++i) {
         assert(square(class1[i] == -1));
     }
-
+    printf("%s: Equivalence class 2 test\n", SUCCESS);
     int class2[] = { RANGE_MIN, RANGE_MIN+1, -1, 0, 1, RANGE_MAX-1, RANGE_MAX };
     len = sizeof(class2) / sizeof(class2[0]);
     for (int i = 0; i < len; ++i) {
         assert(square(class2[i] == (i * i)));
     }
+    printf("%s: Equivalence class 2 test\n", SUCCESS);
 }
 
 #ifdef __TRUSTINSOFT_ANALYZER__
@@ -61,3 +70,12 @@ void analysis_driver()
 }
 
 #endif
+
+void main()
+{
+#ifdef __TRUSTINSOFT_ANALYZER__
+    analysis_driver();
+#else
+    classic_equivalence_classes_test();
+#endif
+}
