@@ -20,7 +20,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 # Demo of equivalence classes verification with TrustInSoft Analyzer
 
-This demo demonstrates, besides detection of undefined behaviors, the TrustInSoft Analyzer is capable of verifyingva certain number of aspects related to equivalence classes, specifically that for a given equivalence class inputv(and input value or an range in TrustInSoft terminology) I get a given output value or value range as output.
+This demo demonstrates, besides detection of undefined behaviors, the TrustInSoft Analyzer is capable of verifying a certain number of aspects related to equivalence classes, specifically that for a given equivalence class input (an input value or a range in TrustInSoft terminology) I get a given output value or value range as output.
 Unlike with traditional tests where I can only verify one or a few values of each equivalence class, with the TrustInSoft Analysis you can verify output for the integrality of values in the equivalence class.
 
 <!--
@@ -50,11 +50,11 @@ int square(int i)
     return i * i;
 }
 ```
-This defines 3 equivalence classes: [INT_MIN, -1001], [-1000, 1000] and [1001, INT_MAX]
+This defines 3 equivalence classes: `[INT_MIN, -1001]`, `[-1000, 1000]` and `[1001, INT_MAX]`
 
 With TrustInSoft Analyzer it's very easy to verify that for each of the equivalence classes,
-the output for each input is either the expected value (-1), or within the expected output value range
-(namely 0 to 1000000 for input betwen -1000 and 1000).
+the output for each input is either the expected value (`-1`), or within the expected output value range
+(namely `[0, 1000000]` for input in `[-1000, 1000]`).
 
 ## The analysis driver
 
