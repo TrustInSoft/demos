@@ -25,19 +25,20 @@ int square(int i)
 
 void classic_equivalence_classes_test()
 {
+    printf("RUN   : Testing equivalence class 1\n");
     int class1[] = { INT_MIN, -424242, RANGE_MIN-1, RANGE_MAX+1, 42424242, INT_MAX };
     int len = sizeof(class1) / sizeof(class1[0]);
     int res;
-    printf("RUN   : Testing equivalence class 1\n");
     for (int i = 0; i < len; ++i) {
         res = square(class1[i]);
         printf("   square(%d) = %d\n", class1[i], res);
         assert(res == -1);
     }
     printf("%s: Equivalence class 1 test\n", SUCCESS);
+
+    printf("RUN   : Testing equivalence class 2\n");
     int class2[] = { RANGE_MIN, RANGE_MIN+1, -1, 0, 1, RANGE_MAX-1, RANGE_MAX };
     len = sizeof(class2) / sizeof(class2[0]);
-    printf("RUN   : Testing equivalence class 2\n");
     for (int i = 0; i < len; ++i) {
         res = square(class2[i]);
         printf("   square(%d) = %d\n", class2[i], res);
