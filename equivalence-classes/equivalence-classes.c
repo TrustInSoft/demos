@@ -67,7 +67,9 @@ void eq_class_above_range_verification()
 void eq_class_within_range_verification()
 {
     // tis_interval(RANGE_MIN, RANGE_MAX) defines the equivalence class [RANGE_MIN, RANGE_MAX]
-    int res = square(tis_interval_split(RANGE_MIN, RANGE_MAX));
+    int i = tis_interval(RANGE_MIN, RANGE_MAX);
+    /*@ assert i < 0 || i >= 0; */
+    int res = square(i);
     /*@ assert (res >= 0 && res <= 1000000);*/
 }
 

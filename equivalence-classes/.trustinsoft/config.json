@@ -1,7 +1,7 @@
 [
     {
         "machdep": "gcc_x86_64",
-        "slevel": 2001,
+        "slevel": 2,
         "val": "true",
         "metrics": "false",
         "files": [
