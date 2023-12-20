@@ -45,6 +45,7 @@ void classic_equivalence_classes_test()
         assert((res == (class2[i] * class2[i])));
     }
     printf("%s: Equivalence class 2 test\n", SUCCESS);
+    printf("\n\033[0;32m---> All tests PASSED\033[0m\n\n");
 }
 
 #ifdef __TRUSTINSOFT_ANALYZER__
