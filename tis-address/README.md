@@ -97,7 +97,7 @@ With the example in file `source2.c`, we have a very simple example about a cust
 #define HEAP_SIZE   0x1000
 
 #ifdef SOLUTION_1
-char tis_pool __attribute__((tis_address(HEAP_BEGIN))) = 0xff;
+char tis_pool[HEAP_SIZE] __attribute__((tis_address(HEAP_BEGIN))) = { 0x00 };
 #endif
 
 struct memblock {
@@ -116,9 +116,14 @@ void* my_alloc(int size)
 
 int main()
 {
-    char * ptr = my_alloc(1);
-    if(ptr != 0)
+#define MAX_STRING_SIZE 5000
+    char * ptr = my_alloc(MAX_STRING_SIZE);
+    if (ptr == NULL) exit(1);
+    for (int i = 0; i < MAX_STRING_SIZE; i++)
+    {
         *ptr = 'a';
+        ptr++;
+    }
 }
 ```
 
