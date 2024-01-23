@@ -1,6 +1,6 @@
 #include "memory_map.h"
 
-#define GPIOA               ((GPIO_TypeDef *) GPIOA_START)
+#define GPIOA   ((GPIO_TypeDef *) GPIOA_START)
 
 void configure_gpio_as_input()
 {
