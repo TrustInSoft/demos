@@ -3,7 +3,6 @@
     "slevel": 10,
     "val": "true",
     "val-profile": "interpreter",
-    "metrics": "true",
     "remove-volatile": "true",
     "files": [
         // "../memory_allocator.c",
