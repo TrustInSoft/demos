@@ -52,7 +52,7 @@ tis-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "get_registers"
 
-tis: tis-run report
+tis: tis-run report count_ub
 
 tis-address-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "init"$(FONT_RESET)"
@@ -60,7 +60,7 @@ tis-address-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "get_registers" -DWITH_TIS_ADDRESS
 
-tis-address: tis-address-run report
+tis-address: tis-address-run report count_ub
 
 tis-init:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "init"$(FONT_RESET)"
