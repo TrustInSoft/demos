@@ -101,14 +101,15 @@ The TrustInSoft Analyzer report looks like the below:
 
 ## Eliminating False Positives by adding the physical memory mapping of TrustInSoft Analyzer
 
-With one single analysis instruction we can tell to the analyzer that the `0x48000000` address correspond to the
+With one single C declaration with the special attribute **tis_address**, we can tell to the analyzer that the `0x48000000` address corresponds to the
 physical address of the GPIOA registers (and that the memory region is of size `sizeof(GPIO_TypeDef)` i.e. 48 bytes)
 
 ```c
 GPIO_TypeDef gpioa_registers __attribute__((tis_address(GPIOA_START)));
 ```
 
-Re-running the TrustInSoft Analyzer after this simple instruction solves the false positives
+Re-running the TrustInSoft Analyzer after including this simple declaration solves the false positives.
+
 ```
 $ make tis-address
 tis-analyzer -tis-config-load .trustinsoft/config.json  -tis-config-select-by-name init
