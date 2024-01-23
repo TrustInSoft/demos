@@ -28,7 +28,8 @@ for more details on `tis_address()` capabilities
 
 ## Code under analysis
 
-The code that we want to analyze manipulates the GPIO of a given MCU (in our case the STM32L4)
+The code that we want to analyze manipulates the GPIO of a given MCU (in our case the STM32L4).
+
 The memory map is defined in [memory_map.h](memory_map.h):
 
 ```c
