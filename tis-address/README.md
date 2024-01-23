@@ -271,4 +271,4 @@ As you have seen from the example above, this allows to **eliminate both False P
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022-2023 TrustInSoft*
+*Copyright (C) 2024 TrustInSoft*
