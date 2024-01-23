@@ -18,7 +18,7 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 
-# Demo of tis_address
+# Eliminating False Positives and False Negatives on low-level code with tis_address
 
 This demo demonstrates how to eliminate, thanks to TrustInSoft unique `tis_address()` capability,
 false positives and false negatives due to the analyzer ignoring the physical memory mapping
