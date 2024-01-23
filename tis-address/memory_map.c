@@ -14,18 +14,10 @@ void configure_gpio_as_input()
     p->MODER &= ~((1U<<2) | (1U<<3));  
 }
 
-uint32_t * get_gpioa_moder() {
-    return &(GPIOA->MODER);
-}
-
-uint32_t * get_gpioa_odr() {
-    return &(GPIOA->ODR);
-}
-
 uint32_t * get_gpioa_first_register()
 {
-    return get_gpioa_moder();
-    // return get_gpioa_odr();
+    return &(GPIOA->MODER);
+    // return &(GPIOA->ODR);
 }
 
 void get_registers(uint32_t registers[])

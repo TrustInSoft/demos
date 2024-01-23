@@ -22,5 +22,3 @@ void configure_gpio_as_input();
 void get_registers(uint32_t registers[]);
 
 uint32_t * get_gpioa_first_register();
-uint32_t * get_gpioa_moder();
-uint32_t * get_gpioa_odr();
