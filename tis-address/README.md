@@ -29,8 +29,11 @@ for more details on `tis_address()` capabilities
 ## Code under analysis
 
 The code that we want to analyze manipulates the GPIO of a given MCU (in our case the STM32L4).
+For the record the memory map of STM32L4 is below, with a highlight on the Peripheral --> GPIOA --> MODER and ODR registers that will be used for the demo.
 
-The memory map is defined in [memory_map.h](memory_map.h):
+<img src=".static/STM32L4-memory-map.png" alt="False positives" width="600"/>
+
+The above memory map is defined in C in [memory_map.h](memory_map.h#L23):
 
 ```c
 typedef struct {
