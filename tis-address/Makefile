@@ -79,24 +79,7 @@ clean:
 	@echo "Cleaning..."
 	rm -rf $(RESULTS_DIR)/ $(LOGS_DIR)/ $(SAVE_DIR)/ tis_report.html tis_misra_report
 
-tis-l1-seq: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count_ub report
-
-tis-l1: tis-l1-fast count_ub report
-
-tis-l1-fast:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 2"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 3"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 4"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 5"
-	@../tools/run_all.sh -n 4 -c $(CONFIG_FILE) -a "3 2 4 5"
-
-tis-l2: tis-l2-cli count_ub_2 report
-
 report:
 	@echo "Compiling report from" `ls $(RESULTS_DIR)/*.json | wc -l` "past executed tests"
 	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.c,utils.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
-
-tis-misra:
-	tis-misra --title "DEMO" increment.c
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"
