@@ -18,10 +18,14 @@ along with this program; if not, write to the Free Software Foundation,
 Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 -->
 
-# Eliminating False Positives and False Negatives on low-level code with tis_address
+# Memory mapping to eliminate False Positives and False Negatives on low-level code
 
-This demo demonstrates how to eliminate, thanks to TrustInSoft unique `tis_address()` capability,
-false positives and false negatives due to the analyzer ignoring the physical memory mapping
+This demo demonstrates the usage of the TrustInSoft Analyzer unique `tis_address()` capability.
+When analyzing low level code, an analyzer that ignores the physical memory mapping is likely
+to raise many False Positives and also have False Negatives.
+
+The TrustInSoft Analyzer is aware of this memory mapping, thanks to `tis_address()` and
+therefore avoids all false positives and false negatives due to memory mapping.
 
 See  [TrustInSoft Analyzer documentation](https://man.trust-in-soft.com/man/tis-user-guide/physical-addresses.html)
 for more details on `tis_address()` capabilities
