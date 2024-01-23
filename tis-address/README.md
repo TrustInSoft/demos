@@ -28,7 +28,8 @@ for more details on `tis_address()` capabilities
 
 ## Code under analysis
 
-The code that we want to analyze manipulates the GPIO of a given MCU (in our case the STM32L4)
+The code that we want to analyze manipulates the GPIO of a given MCU (in our case the STM32L4).
+
 The memory map is defined in [memory_map.h](memory_map.h):
 
 ```c
@@ -52,13 +53,13 @@ typedef struct {
 ```
 
 The [memory_map.c](memory_map.c) file manipulates the GPIO registers
-- [configure_gpio_as_input()](memory_map.c#L5) configures the GPIO in read mode (merely does `GPIOA->MODER &= ~((1U<<2) | (1U<<3));`)
-- [get_gpioa_first_register()](memory_map.c#L17) returns the GPIO first register address (merely does `return &(GPIOA->MODER);`)
+- [configure_gpio_as_input()](memory_map.c#L25) configures the GPIO in read mode (merely does `GPIOA->MODER &= ~((1U<<2) | (1U<<3));`)
+- [get_gpioa_first_register()](memory_map.c#L37) returns the GPIO first register address (merely does `return &(GPIOA->MODER);`)
 
 ## Static Analysis ignoring the physical memory mapping
 
 An analyzer that ignores the physical memory mapping would probably raise an alarm for the 2 above functions
-because it is illegal to dereference an (apparently) random address that does not correspond to an allocated variable
+because it is illegal to dereference an (apparently) random memory address that does not correspond to an allocated variable
 (Precisely in the case of `get_gpioa_first_register()` you have to dereference the value returned by the function to get an alarm)
 
 Those 2 alarms are actually false positives because this memory region is special (it's physically mapped)
@@ -87,7 +88,9 @@ Check generated test report tis_report.html
 ===============================================
 ```
 
-The TrustInSoft Analyzer report looks like the below
+The TrustInSoft Analyzer report looks like the below:
+
+<img src=".static/false-positives.png" alt="False positives" width="600"/>
 
 ## Eliminating False Positives by adding the physical memory mapping of TrustInSoft Analyzer
 
@@ -119,20 +122,24 @@ Check generated test report tis_report.html
 ===============================================
 ```
 
+Now the TrustInSoft Analyzer report does not raise any false positives:
+
+<img src=".static/false-positives-avoided.png" alt="False positives avoided" width="600"/>
+
 ## Eliminating False Negatives thanks to tis_address()
 
 ```c
 GPIO_TypeDef gpioa_registers __attribute__((tis_address(GPIOA_START)));
 ```
 
-The above `tis_address()` directive not only indication that `GPIO_START` (i.e. `0x48000000`) is a physically
+The above `tis_address()` directive, not only indicates that `GPIO_START` (i.e. `0x48000000`) is a physically
 mapped address, but also that the memory region at this address is of a well defined size, the size of the 
 12 registers of the GPIO (ie 48 bytes), from `0x48000000` to `0x4800002F`)
 
 If a pointer is defined to point to this address (or in the address range), it cannot be incremented, decremented,
 or indexed in a way that would make it to point out of that range.
 
-The [get_registers()](memory_map.c#23) function exactly that.
+The [get_registers()](memory_map.c#L43) function exactly that.
 ```c
 #define NUMBER_OF_REGISTERS 12
 
@@ -157,7 +164,7 @@ uint32_t * get_gpioa_first_register() {
 }
 ```
 
-A static analyzer ignoring the physical memory mapping would not complain from the code of `get_register()``
+A static analyzer ignoring the physical memory mapping would not complain from the code of `get_register()`
 even though the loop on the 12 register would flow out of the GPIOA registers address range.
 That is a serious **False Negative**.
 
@@ -186,7 +193,11 @@ Check generated test report tis_report.html
        1 UNDEFINED BEHAVIORS FOUND
 ===============================================
 ```
-The Analyzer report looks as follows
+
+The Analyzer report looks as below, and clearly highlight the fact that the iteration of GPIOA
+registers goes out of the GPIOA registers memory address range
+
+<img src=".static/true-positive.png" alt="True positive found" width="600"/>
 
 <!--
 # Memory manager
@@ -254,11 +265,11 @@ ref: https://man.trust-in-soft.com/ref/builtins.html
 
 ## Conclusion
 
-In this demo we have shown how the TrustInSoft Analyzer unique `tis_address()` feature allows
+In this demo we have shown how the TrustInSoft Analyzer `tis_address()` unique feature allows
 to define specific hardware physical memory mapping.
 Having a physical memory mapping aware analysis is very important for embedded code static analysis.
-As you have seen from the example above this allow to both **eliminate False Positives AND False Negatives**
+As you have seen from the example above, this allows to **eliminate both False Positives AND False Negatives**
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022-2023 TrustInSoft*
+*Copyright (C) 2024 TrustInSoft*
