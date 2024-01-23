@@ -35,6 +35,7 @@ typedef struct {
 } GPIO_TypeDef;
 
 #define GPIOA_START         0x48000000
+#define GPIOA               ((GPIO_TypeDef *) GPIOA_START)
 #define NUMBER_OF_REGISTERS 12
 
 void configure_gpio_as_input();

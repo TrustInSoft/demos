@@ -20,8 +20,6 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "memory_map.h"
 
-#define GPIOA   ((GPIO_TypeDef *) GPIOA_START)
-
 void configure_gpio_as_input()
 {
     // To configure GPIOA as input you must
