@@ -33,8 +33,8 @@ void configure_gpio_in_input_mode()
 
 uint32_t * get_gpioa_first_register()
 {
-    // return &(GPIOA->MODER);
-    return &(GPIOA->ODR);
+    return &(GPIOA->MODER);
+    // return &(GPIOA->ODR);
 }
 
 void get_registers(uint32_t registers[])
