@@ -38,7 +38,7 @@ typedef struct {
 #define GPIOA               ((GPIO_TypeDef *) GPIOA_START)
 #define NUMBER_OF_REGISTERS 12
 
-void configure_gpio_as_input();
+void configure_gpio_in_input_mode();
 
 void get_registers(uint32_t registers[]);
 

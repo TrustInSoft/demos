@@ -20,22 +20,21 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "memory_map.h"
 
-void configure_gpio_as_input()
+void configure_gpio_in_input_mode()
 {
-    // To configure GPIOA as input you must
-    // set bits 2 and 3 or MODER to 0
+    // To configure GPIOA in input mode
+    // you must set bits 2 and 3 of MODER to 0
 
-    GPIO_TypeDef * p = GPIOA;
     // For non physical addresses you can't dereference a pointer on
-    // a non previously allocated address. The below whould raise
+    // a non previously allocated address. The below would raise
     // an alarm (False Positive)
-    p->MODER &= ~((1U<<2) | (1U<<3));  
+    GPIOA->MODER &= ~((1U<<2) | (1U<<3));  
 }
 
 uint32_t * get_gpioa_first_register()
 {
-    return &(GPIOA->MODER);
-    // return &(GPIOA->ODR);
+    // return &(GPIOA->MODER);
+    return &(GPIOA->ODR);
 }
 
 void get_registers(uint32_t registers[])

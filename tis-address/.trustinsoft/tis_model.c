@@ -30,7 +30,7 @@ GPIO_TypeDef gpioa_registers __attribute__((tis_address(GPIOA_START)));
 
 void test_init()
 {
-    configure_gpio_as_input();
+    configure_gpio_in_input_mode();
 }
 
 void test_get_registers()
