@@ -60,8 +60,8 @@ typedef struct {
 ```
 
 The [memory_map.c](memory_map.c) file manipulates the GPIO registers
-- [configure_gpio_as_input()](memory_map.c#L25) configures the GPIO in read mode (merely does `GPIOA->MODER &= ~((1U<<2) | (1U<<3));`)
-- [get_gpioa_first_register()](memory_map.c#L37) returns the GPIO first register address (merely does `return &(GPIOA->MODER);`)
+- [configure_gpio_in_input_mode()](memory_map.c#L23) configures the GPIO in read mode (merely does `GPIOA->MODER &= ~((1U<<2) | (1U<<3));`)
+- [get_gpioa_first_register()](memory_map.c#L34) returns the GPIO first register address (merely does `return &(GPIOA->MODER);`)
 
 ## Static Analysis ignoring the physical memory mapping
 
@@ -80,13 +80,14 @@ $ make tis
 tis-analyzer -tis-config-load .trustinsoft/config.json  -tis-config-select-by-name init
 [kernel] Loading configuration file .trustinsoft/config.json (analysis "init")
 ...
-memory_map.c:14:[kernel] warning: out of bounds write. assert \valid(&p->MODER);
-                  stack: configure_gpio_as_input :: .trustinsoft/tis_model.c:13 <- test_init
+memory_map.c:31:[kernel] warning: out of bounds write. assert \valid(&((GPIO_TypeDef *)0x48000000)->MODER);
+                  stack: configure_gpio_in_input_mode :: .trustinsoft/tis_model.c:33 <-
+                         test_init
 ...
 tis-analyzer -tis-config-load .trustinsoft/config.json  -tis-config-select-by-name get_registers
 ...
-memory_map.c:27:[kernel] warning: pointer arithmetic: assert \inside_object((void *)p_register);
-                  stack: get_registers :: .trustinsoft/tis_model.c:19 <- test_get_registers
+memory_map.c:44:[kernel] warning: pointer arithmetic: assert \inside_object((void *)p_register);
+                  stack: get_registers :: .trustinsoft/tis_model.c:39 <- test_get_registers
 ...
 Check generated test report tis_report.html
 
@@ -185,8 +186,8 @@ tis-analyzer -tis-config-load .trustinsoft/config.json  -tis-config-select-by-na
 ...
 tis-analyzer -tis-config-load .trustinsoft/config.json  -tis-config-select-by-name get_registers
 ...
-memory_map.c:27:[kernel] warning: out of bounds read. assert \valid_read(p_register+i);
-                  stack: get_registers :: .trustinsoft/tis_model.c:19 <- test_get_registers
+memory_map.c:44:[kernel] warning: out of bounds read. assert \valid_read(p_register+i);
+                  stack: get_registers :: .trustinsoft/tis_model.c:39 <- test_get_registers
 ...
 [time] Performance summary:
   Parsing: 1.785s
