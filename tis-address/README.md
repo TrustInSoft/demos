@@ -37,6 +37,10 @@ For the record the memory map of STM32L4 is below, with a highlight on the Perip
 
 <img src=".static/STM32L4-memory-map.png" alt="False positives" width="600"/>
 
+**Note:** In the above diagram the **MODER** (Mode Register) and **ODR** (Output Data Register) are highlighted
+not because they have any specific role, but simply because they will be used in this demo
+and the reader need to keep in mind their memory address (`0x48000000` and `0x48000014` respectively)
+
 The above memory map is defined in C in [memory_map.h](memory_map.h#L23):
 
 ```c
@@ -177,7 +181,7 @@ A static analyzer ignoring the physical memory mapping would not complain from t
 even though the loop on the 12 register would flow out of the GPIOA registers address range.
 That is a serious **False Negative**.
 
-The TrustInSoft Analyzer deterministically detects the problem. With modified (buggy) code above, running
+The TrustInSoft Analyzer deterministically detects the problem. With the modified (buggy) code above, running
 the analyzer reports the following
 
 ```
@@ -203,12 +207,15 @@ Check generated test report tis_report.html
 ===============================================
 ```
 
-The Analyzer report looks as below, and clearly highlight the fact that the iteration of GPIOA
+The Analyzer report looks as below, and clearly highlights the fact that the iteration of GPIOA
 registers goes out of the GPIOA registers memory address range
 
 <img src=".static/true-positive.png" alt="True positive found" width="600"/>
 
 <!--
+
+Commented out - To be used for next improvement of this demo, with a different use case (custom memory manager)
+
 # Memory manager
 
 Another common use of tis_address is custom memory manager. In this type of project, absolute address is also widely used.
