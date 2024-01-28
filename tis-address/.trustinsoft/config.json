@@ -1,17 +1,17 @@
 [
     {
         "include": "tis-common.json",
-        "name": "main",
+        "name": "0.main",
         "main": "main"
     },
     {
         "include": "tis-common.json",
-        "name": "get_registers",
-        "main": "test_get_registers"
+        "name": "1.init",
+        "main": "test_init"
     },
     {
         "include": "tis-common.json",
-        "name": "init",
-        "main": "test_init"
+        "name": "2.get_registers",
+        "main": "test_get_registers"
     }
 ]

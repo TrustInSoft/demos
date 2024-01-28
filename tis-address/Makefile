@@ -47,18 +47,18 @@ all:
 	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
 
 tis-run:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "init"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "init"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "get_registers"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "get_registers"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.init"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.init"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers"
 
 tis: tis-run report count_ub
 
 tis-address-run:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "init"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "init" -DWITH_TIS_ADDRESS
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "get_registers"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "get_registers" -DWITH_TIS_ADDRESS
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.init"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.init" -DWITH_TIS_ADDRESS
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers" -DWITH_TIS_ADDRESS
 
 tis-address: tis-address-run report count_ub
 
@@ -72,7 +72,7 @@ tis-reg:
 
 count_ub:
 	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/*.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/[0-9].*.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 clean:
@@ -80,6 +80,6 @@ clean:
 	rm -rf $(RESULTS_DIR)/ $(LOGS_DIR)/ $(SAVE_DIR)/ tis_report.html tis_misra_report
 
 report:
-	@echo "Compiling report from" `ls $(RESULTS_DIR)/*.json | wc -l` "past executed tests"
+	@echo "Compiling report from" `ls $(RESULTS_DIR)/[0-9].*.json | wc -l` "past executed tests"
 	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.c,utils.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
