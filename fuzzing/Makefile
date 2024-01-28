@@ -72,12 +72,12 @@ afl-easy-smart:
 afl-medium-smart:
 	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-smart
 	cp $(SEEDS)-smart/* $(SEEDS)
-	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-smart @@
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-smart @@
 
 afl-hard-smart:
 	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-smart
 	cp $(SEEDS)-smart/* $(SEEDS)
-	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-smart @@
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-smart @@
 
 afl-easy-semi-smart:
 	/usr/bin/afl-gcc -DEASY $(FILES) -o $(TARGET)-easy-semi-smart
@@ -87,12 +87,12 @@ afl-easy-semi-smart:
 afl-medium-semi-smart:
 	/usr/bin/afl-gcc -DMEDIUM $(FILES) -o $(TARGET)-medium-semi-smart
 	cp $(SEEDS)-semi-smart/* $(SEEDS)
-	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-smart @@
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-medium-semi-smart @@
 
 afl-hard-semi-smart:
 	/usr/bin/afl-gcc -DHARD $(FILES) -o $(TARGET)-hard-semi-smart
 	cp $(SEEDS)-semi-smart/* $(SEEDS)
-	afl-fuzz -E $(MAX_EXECUTIONS) -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-smart @@
+	afl-fuzz -i $(SEEDS) -o afl-results -- ./$(TARGET)-hard-semi-smart @@
 
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
