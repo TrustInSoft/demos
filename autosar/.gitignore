@@ -1,1 +1,2 @@
-.trustinsoft/
+.trustinsoft/*
+!.trustinsoft/permanent_config.json
