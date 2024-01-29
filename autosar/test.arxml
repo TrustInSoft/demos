@@ -7148,7 +7148,7 @@ For example: 1, 0, 126, +10.</L-2>
                 <DATA-CONSTR-RULE>
                   <INTERNAL-CONSTRS>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">20000.0</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="OPEN">INF</UPPER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">40000.0</UPPER-LIMIT>
                   </INTERNAL-CONSTRS>
                 </DATA-CONSTR-RULE>
               </DATA-CONSTR-RULES>

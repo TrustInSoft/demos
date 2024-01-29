@@ -1,277 +1,204 @@
-/**************************************************************************/
-/*                                                                        */
-/*  This file is part of TrustInSoft Analyzer.                            */
-/*                                                                        */
-/*    Copyright (C) 2023 TrustInSoft                                      */
-/*                                                                        */
-/*  All rights reserved.                                                  */
-/*                                                                        */
-/**************************************************************************/
+/**********************************************************************************************************************
+*  COPYRIGHT
+*  -------------------------------------------------------------------------------------------------------------------
+*  \verbatim
+*  Copyright (c) 2012 by Vector Informatik GmbH.                                              All rights reserved.
+*
+*                This software is copyright protected and proprietary to Vector Informatik GmbH.
+*                Vector Informatik GmbH grants to you only those rights as set out in the license conditions.
+*                All other rights remain with Vector Informatik GmbH.
+*  \endverbatim
+*  -------------------------------------------------------------------------------------------------------------------
+*  FILE DESCRIPTION
+*  -------------------------------------------------------------------------------------------------------------------
+*         File:  Platform_Types.h
+*    Component:  -
+*       Module:  -
+*    Generator:  -
+*
+*  Description:  Provision of Platform Types for CANoeEmu
+*
+*  -------------------------------------------------------------------------------------------------------------------
+*  MISRA VIOLATIONS
+*  -------------------------------------------------------------------------------------------------------------------
+*
+*
+*********************************************************************************************************************/
+
+/**********************************************************************************************************************
+*  AUTHOR IDENTITY
+*  -------------------------------------------------------------------------------------------------------------------
+*  Name                          Initials      Company
+*  -------------------------------------------------------------------------------------------------------------------
+*  Patrick Markl                 visml         Vector Informatik GmbH
+*  -------------------------------------------------------------------------------------------------------------------
+*  REVISION HISTORY
+*  -------------------------------------------------------------------------------------------------------------------
+*  Version   Date        Author  Change Id     Description
+*  -------------------------------------------------------------------------------------------------------------------
+*  01.00.00  2014-03-17  visml                 Creation based on template V1.03.01
+*  02.00.00  2015-02-11  viswge                FEAT 254: Renaming to VTT
+*            2015-02-11  viswge                Adding uint64 and sint64 data types
+*  02.01.00  2019-11-21  visas                 Adding support for new target platform
+*********************************************************************************************************************/
 
 #ifndef PLATFORM_TYPES_H
 #define PLATFORM_TYPES_H
 
-#include <stdbool.h>
+/**********************************************************************************************************************
+* INCLUDES
+*********************************************************************************************************************/
 
-/***********************************************************************************************************************
- *  PLATFORM INFORMATION MACRO
- **********************************************************************************************************************/
+/**********************************************************************************************************************
+*  GLOBAL CONSTANT MACROS
+*********************************************************************************************************************/
 
-#if AUTOSAR_VERSION <= 41
-/* AUTOSAR release R4-2 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (2u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (2u)
-#elif 42 <= AUTOSAR_VERSION <= 45
-/* AUTOSAR release R4-3 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (3u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (1u)
-#elif 46 <= AUTOSAR_VERSION <= 47
-/* AUTOSAR release R4-4 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 48
-/* AUTOSAR release R19-11 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (5u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 49
-/* AUTOSAR release R20-11 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (6u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 50
-/* AUTOSAR release R21-11 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (7u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 51
-/* AUTOSAR release R22-11 */
-#define PLATFORM_AR_RELEASE_MAJOR_VERSION (4u)
-#define PLATFORM_AR_RELEASE_MINOR_VERSION (8u)
-#define PLATFORM_AR_RELEASE_REVISION_VERSION (0u)
-#endif // AUTOSAR VERSION
+/* ##V_CFG_MANAGEMENT ##CQProject : CommonAsr_Vtt CQComponent : Impl_PlatformTypes */
+#define COMMONASR_VTT_IMPL_PLATFORMTYPES_VERSION         0x0200
+#define COMMONASR_VTT_IMPL_PLATFORMTYPES_RELEASE_VERSION 0x00
 
-/***********************************************************************************************************************
- *  GLOBAL CONSTANT MACRO
- **********************************************************************************************************************/
+#define PLATFORM_VENDOR_ID    30u    /* SREQ00015439, SREQ00015413 */
+#define PLATFORM_MODULE_ID    199u   /* SREQ00015439, SREQ00015413 */
 
-#define CPU_TYPE_8 (8u)
-#define CPU_TYPE_16 (16u)
-#define CPU_TYPE_32 (32u)
-#if AUTOSAR_VERSION >= 42 // AUTOSAR R4_3_0 (not a final revision).
-#define CPU_TYPE_64 (64u)
-#endif // AUTOSAR_VERSION >= 42
 
-#define MSB_FIRST (0u) /* Big endian bit ordering. */
-#define LSB_FIRST (1u) /* Little endian bit ordering. */
+/* AUTOSAR Software Specification Document Version Information */
 
-#define HIGH_BYTE_FIRST (0u) /* Big endian byte ordering. */
-#define LOW_BYTE_FIRST (1u)  /* Little endian byte ordering. */
+/* AUTOSAR release 4.0 R3 */
+#   define PLATFORM_AR_RELEASE_MAJOR_VERSION      (4u)
+#   define PLATFORM_AR_RELEASE_MINOR_VERSION      (0u)
+#   define PLATFORM_AR_RELEASE_REVISION_VERSION   (3u)
+
+/* Component Version Information */
+#define PLATFORM_SW_MAJOR_VERSION       (2u)
+#define PLATFORM_SW_MINOR_VERSION       (0u)
+#define PLATFORM_SW_PATCH_VERSION       (0u) 
+
+
+#define CPU_TYPE_8       (8u)
+#define CPU_TYPE_16      (16u)
+#define CPU_TYPE_32      (32u)
+#define CPU_TYPE_64      (64u)
+
+#define MSB_FIRST        (0u)    /* big endian bit ordering */
+#define LSB_FIRST        (1u)    /* little endian bit ordering */
+
+#define HIGH_BYTE_FIRST  (0u)    /* big endian byte ordering */
+#define LOW_BYTE_FIRST   (1u)    /* little endian byte ordering */
 
 #ifndef TRUE
-#define TRUE true
+#define TRUE   (1u)
 #endif
 
 #ifndef FALSE
-#define FALSE false
+#define FALSE  (0u)
 #endif
 
-#if defined(__TIS_MACHDEP_X86_16) ||      \
-    defined(__TIS_MACHDEP_X86_16_GCC) ||  \
-    defined(__TIS_MACHDEP_X86_16_HUGE) || \
-    defined(__TIS_MACHDEP_X86_16_HUGE_GCC)
-#define CPU_TYPE CPU_TYPE_16
-#elif defined(__TIS_MACHDEP_X86_32) ||       \
-    defined(__TIS_MACHDEP_X86_32_GCC) ||     \
-    defined(__TIS_MACHDEP_X86_WIN32) ||      \
-    defined(__TIS_MACHDEP_PPC_32) ||         \
-    defined(__TIS_MACHDEP_PPC_32_GCC) ||     \
-    defined(__TIS_MACHDEP_APPLE_PPC_32) ||   \
-    defined(__TIS_MACHDEP_ARM_EABI) ||       \
-    defined(__TIS_MACHDEP_ARM_EABI_GCC) ||   \
-    defined(__TIS_MACHDEP_ARMEB_EABI) ||     \
-    defined(__TIS_MACHDEP_ARMEB_EABI_GCC) || \
-    defined(__TIS_MACHDEP_SPARC_32) ||       \
-    defined(__TIS_MACHDEP_SPARC_32_GCC) ||   \
-    defined(__TIS_MACHDEP_MIPS_O32) ||       \
-    defined(__TIS_MACHDEP_MIPS_O32_GCC) ||   \
-    defined(__TIS_MACHDEP_MIPSEL_O32) ||     \
-    defined(__TIS_MACHDEP_MIPSEL_O32_GCC) || \
-    defined(__TIS_MACHDEP_MIPS_N32) ||       \
-    defined(__TIS_MACHDEP_MIPS_N32_GCC) ||   \
-    defined(__TIS_MACHDEP_MIPSEL_N32) ||     \
-    defined(__TIS_MACHDEP_MIPSEL_N32_GCC) || \
-    defined(__TIS_MACHDEP_RV32IFDQ) ||       \
-    defined(__TIS_MACHDEP_RV32IFDQ_GCC)
-#define CPU_TYPE CPU_TYPE_32
-#elif AUTOSAR_VERSION >= 42 &&               \
-    (defined(__TIS_MACHDEP_X86_64) ||        \
-     defined(__TIS_MACHDEP_X86_64_GCC) ||    \
-     defined(__TIS_MACHDEP_X86_WIN64) ||     \
-     defined(__TIS_MACHDEP_PPC_64) ||        \
-     defined(__TIS_MACHDEP_PPC_64_GCC) ||    \
-     defined(__TIS_MACHDEP_AARCH64) ||       \
-     defined(__TIS_MACHDEP_AARCH64_GCC) ||   \
-     defined(__TIS_MACHDEP_AARCH64EB) ||     \
-     defined(__TIS_MACHDEP_AARCH64EB_GCC) || \
-     defined(__TIS_MACHDEP_SPARC_64) ||      \
-     defined(__TIS_MACHDEP_SPARC_64_GCC) ||  \
-     defined(__TIS_MACHDEP_MIPS_64) ||       \
-     defined(__TIS_MACHDEP_MIPS_64_GCC) ||   \
-     defined(__TIS_MACHDEP_MIPSEL_64) ||     \
-     defined(__TIS_MACHDEP_MIPSEL_64_GCC) || \
-     defined(__TIS_MACHDEP_RV64IFDQ) ||      \
-     defined(__TIS_MACHDEP_RV64IFDQ_GCC))
-#define CPU_TYPE CPU_TYPE_64
+
+#if defined(_M_IX86)
+// Visual C++ compiler targeting 32 bit code for x86
+#define CPU_TYPE         CPU_TYPE_32
+#elif defined(_M_AMD64)
+// Visual C++ compiler targeting 64 bit code for x64
+#define CPU_TYPE         CPU_TYPE_64
+#elif defined(__x86_64__)
+// gcc or clang compiler targeting 64 bit code for x64
+#define CPU_TYPE         CPU_TYPE_64
+#elif defined(__i386__)
+// gcc or clang compiler targeting 32 bit code for x86
+#define CPU_TYPE         CPU_TYPE_32  
 #else
 #error "Unknown processor architecture"
-#endif /* CPU_TYPE. */
+#endif
 
-// This as an impact only on the hardware level, which can be ignored in this
-// context.
-#define CPU_BIT_ORDER LSB_FIRST /* Little endian bit ordering. */
 
-#if defined(__TIS_MACHDEP_X86_16) ||          \
-    defined(__TIS_MACHDEP_X86_16_GCC) ||      \
-    defined(__TIS_MACHDEP_X86_16_HUGE) ||     \
-    defined(__TIS_MACHDEP_X86_16_HUGE_GCC) || \
-    defined(__TIS_MACHDEP_X86_32) ||          \
-    defined(__TIS_MACHDEP_X86_32_GCC) ||      \
-    defined(__TIS_MACHDEP_X86_WIN32) ||       \
-    defined(__TIS_MACHDEP_ARM_EABI) ||        \
-    defined(__TIS_MACHDEP_ARM_EABI_GCC) ||    \
-    defined(__TIS_MACHDEP_MIPSEL_O32) ||      \
-    defined(__TIS_MACHDEP_MIPSEL_O32_GCC) ||  \
-    defined(__TIS_MACHDEP_MIPSEL_N32) ||      \
-    defined(__TIS_MACHDEP_MIPSEL_N32_GCC) ||  \
-    defined(__TIS_MACHDEP_RV32IFDQ) ||        \
-    defined(__TIS_MACHDEP_RV32IFDQ_GCC) ||    \
-    defined(__TIS_MACHDEP_X86_64) ||          \
-    defined(__TIS_MACHDEP_X86_64_GCC) ||      \
-    defined(__TIS_MACHDEP_X86_WIN64) ||       \
-    defined(__TIS_MACHDEP_AARCH64) ||         \
-    defined(__TIS_MACHDEP_AARCH64_GCC) ||     \
-    defined(__TIS_MACHDEP_MIPSEL_64) ||       \
-    defined(__TIS_MACHDEP_MIPSEL_64_GCC) ||   \
-    defined(__TIS_MACHDEP_RV64IFDQ) ||        \
-    defined(__TIS_MACHDEP_RV64IFDQ_GCC)
+#define CPU_BIT_ORDER    LSB_FIRST        /*little endian bit ordering*/
 
-#define CPU_BYTE_ORDER LOW_BYTE_FIRST /* Little endian byte ordering. */
+#define CPU_BYTE_ORDER   LOW_BYTE_FIRST   /*little endian byte ordering*/
 
-#else
+/**********************************************************************************************************************
+*  GLOBAL FUNCTION MACROS
+*********************************************************************************************************************/
 
-#define CPU_BYTE_ORDER HIGH_BYTE_FIRST /* Big endian byte ordering. */
 
-#endif /* Endian definition. */
 
-/***********************************************************************************************************************
- *  GLOBAL DATA TYPES AND STRUCTURES
- **********************************************************************************************************************/
-
-#if 41 <= AUTOSAR_VERSION <= 50 // Between AUTOSAR_R4_2 and AUTOSAR_R21_11.
+/**********************************************************************************************************************
+*  GLOBAL DATA TYPES AND STRUCTURES
+*********************************************************************************************************************/
 #define Rte_TypeDef_boolean
-typedef unsigned char boolean;
-
-#ifndef TRUE
-#define TRUE 1
-#endif
-#ifndef FALSE
-#define FALSE 0
-#endif
-#elif AUTOSAR_VERSION >= 51 // AUTOSAR_R22_11
-// [SRS_BSW_00378].
-#define Rte_TypeDef_boolean
-typedef _Bool boolean; /*        TRUE .. FALSE           */
-
-#ifndef TRUE
-#define TRUE true
-#endif
-#ifndef FALSE
-#define FALSE false
-#endif
-#endif // AUTOSAR VERSION
+typedef unsigned char         boolean;       /*        TRUE .. FALSE           */
 
 #define Rte_TypeDef_sint8
-typedef signed char sint8; /*        -127 .. +127            */
+typedef signed char           sint8;         /*        -127 .. +127            */
 
 #define Rte_TypeDef_uint8
-typedef unsigned char uint8; /*           0 .. 255             */
+typedef unsigned char         uint8;         /*           0 .. 255             */
 
 #define Rte_TypeDef_sint16
-typedef signed short sint16; /*      -32767 .. +32767          */
+typedef signed short          sint16;        /*      -32767 .. +32767          */
 
 #define Rte_TypeDef_uint16
-typedef unsigned short uint16; /*           0 .. 65535           */
+typedef unsigned short        uint16;        /*           0 .. 65535           */
 
 #define Rte_TypeDef_sint32
-#if CPU_TYPE == CPU_TYPE_16
-typedef signed long sint32; /* -2147483647 .. +2147483647     */
-#else
-typedef signed int sint32; /* -2147483647 .. +2147483647     */
-#endif
+typedef signed int            sint32;        /* -2147483647 .. +2147483647     */
 
 #define Rte_TypeDef_uint32
-#if CPU_TYPE == CPU_TYPE_16
-typedef unsigned long uint32; /*           0 .. 4294967295      */
-#else
-typedef unsigned int uint32; /*           0 .. 4294967295      */
-#endif
+typedef unsigned int          uint32;        /*           0 .. 4294967295      */
 
 #define Rte_TypeDef_sint8_least
-typedef signed char sint8_least; /* At least 7 bit + 1 bit sign    */
+typedef signed char           sint8_least;   /* At least 7 bit + 1 bit sign    */
 
 #define Rte_TypeDef_uint8_least
-typedef unsigned char uint8_least; /* At least 8 bit                 */
+typedef unsigned char         uint8_least;   /* At least 8 bit                 */
 
 #define Rte_TypeDef_sint16_least
-typedef signed short sint16_least; /* At least 15 bit + 1 bit sign   */
+typedef signed short          sint16_least;  /* At least 15 bit + 1 bit sign   */
 
 #define Rte_TypeDef_uint16_least
-typedef unsigned short uint16_least; /* At least 16 bit                */
+typedef unsigned short        uint16_least;  /* At least 16 bit                */
 
 #define Rte_TypeDef_sint32_least
-#if CPU_TYPE == CPU_TYPE_16
-typedef signed long sint32_least; /* At least 31 bit + 1 bit sign   */
-#else
-typedef signed int sint32_least; /* At least 31 bit + 1 bit sign   */
-#endif
+typedef signed int            sint32_least;  /* At least 31 bit + 1 bit sign   */
 
 #define Rte_TypeDef_uint32_least
-#if CPU_TYPE == CPU_TYPE_16
-typedef unsigned long uint32_least; /* At least 32 bit                */
-#else
-typedef unsigned int uint32_least; /* At least 32 bit                */
-#endif
+typedef unsigned int          uint32_least;  /* At least 32 bit                */
 
 #define Rte_TypeDef_float32
-typedef float float32;
+typedef float                 float32;
 
 #define Rte_TypeDef_float64
-typedef double float64;
+typedef double                float64;
 
-#define Rte_TypeDef_sint64
-#if defined(__TIS_MACHDEP_X86_WIN64) || CPU_TYPE != CPU_TYPE_64
-typedef signed long long sint64; /* -9223372036854775808 .. 9223372036854775807 */
-#else
-typedef signed long sint64; /* -9223372036854775808 .. 9223372036854775807 */
+
+#define PLATFORM_SUPPORT_SINT64_UINT64
+#if defined(_WIN32) && (defined(_MSC_VER) || defined (RC_INVOKED) || defined(__MINGW32__) || defined(__MINGW64__))
+  // Visual Studio C++ compiler, Visual Studio resource compiler or Mingw-w64 on Windows platform
+  #define Rte_TypeDef_sint64
+  typedef signed long long    sint64;
+  #define Rte_TypeDef_uint64
+  typedef unsigned long long  uint64;
+#elif defined(__linux__) && (defined(__clang__) || defined(__GNUC__))
+  // clang or gcc compiler on Linux platform
+  #define Rte_TypeDef_sint64
+  typedef signed long         sint64;
+  #define Rte_TypeDef_uint64
+  typedef unsigned long       uint64;
+#else 
+  #error "Unknown compiler"
 #endif
 
-#define Rte_TypeDef_uint64
-#if defined(__TIS_MACHDEP_X86_WIN64) || CPU_TYPE != CPU_TYPE_64
-typedef unsigned long long uint64; /* 0 .. 18446744073709551615 */
-#else
-typedef unsigned long uint64; /* 0 .. 18446744073709551615 */
-#endif
+/**********************************************************************************************************************
+*  GLOBAL DATA PROTOTYPES
+*********************************************************************************************************************/
 
-#if AUTOSAR_VERSION >= 49 // AUTOSAR_R20_11
-#define Rte_TypeDef_VoidPtr
-typedef void *VoidPtr;
 
-#define Rte_TypeDef_ConstVoidPtr
-typedef const void *ConstVoidPtr;
-#endif // AUTOSAR_VERSION >= 49
+/**********************************************************************************************************************
+*  GLOBAL FUNCTION PROTOTYPES
+*********************************************************************************************************************/
 
-#endif /* PLATFORM_TYPES_H */
+
+#endif  /* PLATFORM_TYPES_H */
+
+/**********************************************************************************************************************
+*  END OF FILE: Platform_Types.h
+*********************************************************************************************************************/

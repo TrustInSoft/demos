@@ -1,90 +1,102 @@
-/**************************************************************************/
-/*                                                                        */
-/*  This file is part of TrustInSoft Analyzer.                            */
-/*                                                                        */
-/*    Copyright (C) 2023 TrustInSoft                                      */
-/*                                                                        */
-/*  All rights reserved.                                                  */
-/*                                                                        */
-/**************************************************************************/
+/**********************************************************************************************************************
+ *  Contract phase header
+ *  -------------------------------------------------------------------------------------------------------------------
+ *  \verbatim
+ *
+ *                This implementation is neither intended nor qualified for use in series production
+ *                without applying suitable quality measures. The implementation as well as any of its modifications
+ *                must be tested with diligent care and must comply with all quality requirements which are necessary
+ *                according to the state of the art before its use.
+ *  \endverbatim
+ *  -------------------------------------------------------------------------------------------------------------------
+ *  FILE DESCRIPTION
+ *  -------------------------------------------------------------------------------------------------------------------
+ *             File:  Rte.h
+ *        SW-C Type:  AP_Hello_World
+ *  Generation Time:  2023-06-02 18:34:03
+ *
+ *        Generator:  MICROSAR RTE ContractPhase Generator Version 3.14.22
+ *                    RTE Core Version 4.31.0
+ *          License:  DVSwcGen
+ *
+ *      Description:  Header file containing RTE types (Contract Phase)
+ *********************************************************************************************************************/
+
+/* double include prevention */
 
 #ifndef RTE_H
-#define RTE_H
+# define RTE_H
 
-#include "Std_Types.h"
+# define RTE_SW_MAJOR_VERSION (0x03U)
+# define RTE_SW_MINOR_VERSION (0x0eU)
+# define RTE_SW_PATCH_VERSION (0x16U)
 
-/***********************************************************************************************************************
- *  PLATFORM INFORMATION MACRO
- **********************************************************************************************************************/
+# define RTE_VENDOR_ID (0x001EU)
+# define RTE_MODULE_ID (0x0002U)
 
-#if AUTOSAR_VERSION <= 41
-/* AUTOSAR release R4-2 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (2u)
-#define RTE_AR_RELEASE_REVISION_VERSION (2u)
-#elif 42 <= AUTOSAR_VERSION <= 45
-/* AUTOSAR release R4-3 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (3u)
-#define RTE_AR_RELEASE_REVISION_VERSION (1u)
-#elif 46 <= AUTOSAR_VERSION <= 47
-/* AUTOSAR release R4-4 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (4u)
-#define RTE_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 48
-/* AUTOSAR release R19-11 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (5u)
-#define RTE_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 49
-/* AUTOSAR release R20-11 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (6u)
-#define RTE_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 50
-/* AUTOSAR release R21-11 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (7u)
-#define RTE_AR_RELEASE_REVISION_VERSION (0u)
-#elif AUTOSAR_VERSION == 51
-/* AUTOSAR release R22-11 */
-#define RTE_AR_RELEASE_MAJOR_VERSION (4u)
-#define RTE_AR_RELEASE_MINOR_VERSION (8u)
-#define RTE_AR_RELEASE_REVISION_VERSION (0u)
-#endif // AUTOSAR VERSION
+# define RTE_AR_RELEASE_MAJOR_VERSION     (0x04U)
+# define RTE_AR_RELEASE_MINOR_VERSION     (0x02U)
+# define RTE_AR_RELEASE_REVISION_VERSION  (0x02U)
 
-/***********************************************************************************************************************
- *  GLOBAL CONSTANT MACRO
- **********************************************************************************************************************/
+# include "Std_Types.h"
 
-/* Common errors. */
-#define RTE_E_OK (0U)
-#define RTE_E_INVALID (1U)
+# ifdef RTE_ENABLE_USER_DATATYPES
+#  include "Rte_UserTypes.h"
+# endif
 
-/* Immediate infrastructure errors. */
-#define RTE_E_COM_STOPPED (128U)
-#define RTE_E_TIMEOUT (129U)
-#define RTE_E_LIMIT (130U)
-#define RTE_E_NO_DATA (131U)
-#define RTE_E_TRANSMIT_ACK (132U)
-#define RTE_E_NEVER_RECEIVED (133U)
-#define RTE_E_UNCONNECTED (134U)
-#define RTE_E_IN_EXCLUSIVE_AREA (135U)
-#define RTE_E_SEG_FAULT (136U)
-#define RTE_E_OUT_OF_RANGE (137U)
-#define RTE_E_SERIALIZATION_ERROR (138U)
-#define RTE_E_HARD_TRANSFORMER_ERROR (138U)
-#define RTE_E_SERIALIZATION_LIMIT (139U)
-#define RTE_E_TRANSFORMER_LIMIT (139U)
-#define RTE_E_SOFT_TRANSFORMER_ERROR (140U)
-#define RTE_E_COM_BUSY (141U)
-#ifdef AUTOSAR_VERSION >= 49 // AUTOSAR_R20_11
-#define RTE_E_RAM_UNCHANGED (142U)
-#endif // AUTOSAR_VERSION >= 49
+# if !defined (TYPEDEF) && defined (AUTOMATIC)
+#  define TYPEDEF AUTOMATIC
+# endif
 
-/* Overlayed errors. */
-#define RTE_E_LOST_DATA (64U)
-#define RTE_E_MAX_AGE_EXCEEDED (64U)
+# if !defined (FUNC_P2CONST)
+#  define FUNC_P2CONST(rettype, ptrclass, memclass) FUNC(P2CONST(rettype, AUTOMATIC, ptrclass), memclass) /* PRQA S 0850 */ /* MD_MSR_MacroArgumentEmpty */
+# endif
 
-#endif // RTE_H
+# if !defined (FUNC_P2VAR)
+#  define FUNC_P2VAR(rettype, ptrclass, memclass) FUNC(P2VAR(rettype, AUTOMATIC, ptrclass), memclass) /* PRQA S 0850 */ /* MD_MSR_MacroArgumentEmpty */
+# endif
+
+/* Note: application errors are in the range between 1-63
+         overlayed error (ORed with application errors) is 64
+         structural errors are in the range between 128-256 */
+
+/* common errors */
+# define RTE_E_OK               (0U)
+# define RTE_E_INVALID          (1U)
+
+/* overlayed errors */
+# define RTE_E_LOST_DATA        (64U)
+# define RTE_E_MAX_AGE_EXCEEDED (64U)
+
+# define Rte_HasOverlayedError(status) (((status) & 64U) != 0)
+
+/* immediate infrastructure errors */
+# define RTE_E_COM_STOPPED      (128U)
+# define RTE_E_TIMEOUT          (129U)
+# define RTE_E_LIMIT            (130U)
+# define RTE_E_NO_DATA          (131U)
+# define RTE_E_TRANSMIT_ACK     (132U)
+# define RTE_E_NEVER_RECEIVED   (133U)
+# define RTE_E_UNCONNECTED            (134U)
+# define RTE_E_IN_EXCLUSIVE_AREA      (135U)
+# define RTE_E_SEG_FAULT              (136U)
+# define RTE_E_OUT_OF_RANGE           (137U)
+# define RTE_E_SERIALIZATION_ERROR    (138U)
+# define RTE_E_HARD_TRANSFORMER_ERROR (138U)
+# define RTE_E_SERIALIZATION_LIMIT    (139U)
+# define RTE_E_TRANSFORMER_LIMIT      (139U)
+# define RTE_E_SOFT_TRANSFORMER_ERROR (140U)
+# define RTE_E_COM_BUSY               (141U)
+
+/* common SchM errors */
+# define SCHM_E_OK                    (0U)
+# define SCHM_E_TIMEOUT               (129U)
+# define SCHM_E_LIMIT                 (130U)
+# define SCHM_E_NO_DATA               (131U)
+# define SCHM_E_TRANSMIT_ACK          (132U)
+# define SCHM_E_IN_EXCLUSIVE_AREA     (135U)
+
+# define Rte_IsInfrastructureError(status) (((status) & 128U) != 0U)
+# define Rte_ApplicationError(status) ((status) & 63U)
+
+#endif /* RTE_H */

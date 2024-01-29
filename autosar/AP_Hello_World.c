@@ -303,6 +303,105 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
 
   //@ slevel merge;
   Std_ReturnType rt;
+#ifdef RTE_PTR2ARRAYTYPE_PASSING
+  IntArrayImpl arr;
+  IntArrayImpl *data = &arr;
+  rt = Rte_Read_ArraySRInterface_acknowlegdement(data);
+  if (rt == RTE_E_OK) {
+    /*@ assert \initialized(*data+(0..9)); */
+  } else {
+    /*@ assert
+      @ rt == RTE_E_INVALID ||
+      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
+      @ rt == RTE_E_NEVER_RECEIVED ||
+      @ rt == RTE_E_OUT_OF_RANGE ||
+      @ rt == RTE_E_COM_BUSY ||
+      @ rt == RTE_E_COM_STOPPED ||
+      @ rt == RTE_E_UNCONNECTED ||
+      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+      @ */
+  }
+  //@ slevel merge;
+  rt = Rte_Read_ArraySRInterface_constraint(data);
+  if (rt == RTE_E_OK) {
+    /*@ assert \initialized(*data+(0..9)); */
+    /*@ assert 1 <= (*data)[0] <= 10; */
+    /*@ assert 1 <= (*data)[9] <= 10; */
+  } else {
+    /*@ assert
+      @ rt == RTE_E_INVALID ||
+      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
+      @ rt == RTE_E_NEVER_RECEIVED ||
+      @ rt == RTE_E_OUT_OF_RANGE ||
+      @ rt == RTE_E_COM_BUSY ||
+      @ rt == RTE_E_COM_STOPPED ||
+      @ rt == RTE_E_UNCONNECTED ||
+      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+      @ */
+  }
+  //@ slevel merge;
+  data = Rte_IRead_ArrayRunable_ArraySRInterface_INone();
+  /*@ assert \initialized(*data+(0..9)); */
+  //@ slevel merge;
+  data = Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint();
+    /*@ assert \initialized(*data+(0..9)); */
+    /*@ assert 1 <= (*data)[0] <= 10; */
+    /*@ assert 1 <= (*data)[9] <= 10; */
+  //@ slevel merge;
+  rt = Rte_Write_ArraySRInterface_acknowlegdement(data);
+  /*@ assert
+    @ rt == RTE_E_OK ||
+    @ rt == RTE_E_COM_STOPPED ||
+    @ rt == RTE_E_SEG_FAULT ||
+    @ rt == RTE_E_COM_BUSY ||
+    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+    @ */
+  //@ slevel merge;
+  rt = Rte_Invalidate_ArraySRInterface_acknowlegdement();
+  /*@ assert
+    @ rt == RTE_E_OK ||
+    @ rt == RTE_E_COM_STOPPED ||
+    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+    @ */
+  //@ slevel merge;
+  Rte_IWrite_ArrayRunable_ArraySRInterface_INone(data);
+  data = Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone();
+  /*@ assert \valid(*data); */
+  //@ slevel merge;
+  Rte_IInvalidate_ArrayRunable_ArraySRInterface_Iconstraint();
+  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
+  //@ slevel merge;
+  rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
+  /*@ assert
+    @ rt == RTE_E_NO_DATA ||
+    @ rt == RTE_E_COM_STOPPED ||
+    @ rt == RTE_E_TIMEOUT ||
+    @ rt == RTE_E_TRANSMIT_ACK ||
+    @ rt == RTE_E_UNCONNECTED ||
+    @ rt == RTE_E_IN_EXCLUSIVE_AREA ||
+    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+    @ */
+  //@ slevel merge;
+  rt = Rte_IStatus_ArrayRunable_ArraySRInterface_Iconstraint();
+  /*@ assert
+    @ rt == RTE_E_OK ||
+    @ rt == RTE_E_INVALID ||
+    @ rt == RTE_E_MAX_AGE_EXCEEDED ||
+    @ rt == RTE_E_NEVER_RECEIVED ||
+    @ rt == RTE_E_OUT_OF_RANGE ||
+    @ rt == RTE_E_COM_STOPPED ||
+    @ rt == RTE_E_UNCONNECTED ||
+    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+    @ */
+  //@ slevel merge;
+  data = Rte_Prm_ArrayCalibration_arrayElement();
+  /*@ assert \initialized(*data+(0..9)); */
+#else
   Rte_DT_IntArrayImpl_0 arr[10];
   Rte_DT_IntArrayImpl_0 *data = &arr;
   rt = Rte_Read_ArraySRInterface_acknowlegdement(data);
@@ -400,6 +499,7 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
   //@ slevel merge;
   data = Rte_Prm_ArrayCalibration_arrayElement();
   /*@ assert \initialized(data+(0..9)); */
+#endif // RTE_PTR2ARRAY_PASSING
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!
@@ -521,6 +621,99 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 *
 
   //@ slevel merge;
   Std_ReturnType rt;
+#ifdef RTE_PTR2ARRAYTYPE_PASSING
+  {
+    multiArrayThreeImpl arr;
+    rt = Rte_Read_MultiArraySRInterface_multiArray(&arr);
+    if (rt == RTE_E_OK) {
+      /*@ assert \initialized(arr); */
+    } else {
+      /*@ assert
+        @ rt == RTE_E_INVALID ||
+        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
+        @ rt == RTE_E_NEVER_RECEIVED ||
+        @ rt == RTE_E_OUT_OF_RANGE ||
+        @ rt == RTE_E_COM_BUSY ||
+        @ rt == RTE_E_COM_STOPPED ||
+        @ rt == RTE_E_UNCONNECTED ||
+        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+        @ */
+    }
+  }
+  //@ slevel merge;
+  {
+    multiArrayThreeImpl arr;
+    rt = Rte_Read_MultiArraySRInterface_multiArrayConstraint(&arr);
+    if (rt == RTE_E_OK) {
+      /*@ assert \initialized(arr); */
+      /*@ assert 1 <= arr[0][0][0] <= 10; */
+      /*@ assert 1 <= arr[1][0][0] <= 10; */
+      /*@ assert 1 <= arr[1][2][9] <= 10; */
+      Rte_Write_MultiArraySRInterface_multiArrayConstraint(&arr);
+    } else {
+      /*@ assert
+        @ rt == RTE_E_INVALID ||
+        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
+        @ rt == RTE_E_NEVER_RECEIVED ||
+        @ rt == RTE_E_OUT_OF_RANGE ||
+        @ rt == RTE_E_COM_BUSY ||
+        @ rt == RTE_E_COM_STOPPED ||
+        @ rt == RTE_E_UNCONNECTED ||
+        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+        @ */
+    }
+  }
+  //@ slevel merge;
+  {
+    multiArrayThreeImpl *data;
+    data = Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+    /*@ assert \initialized(*data); */
+    /*@ assert 1 <= (*data)[0][0][0] <= 10; */
+    /*@ assert 1 <= (*data)[1][0][0] <= 10; */
+    /*@ assert 1 <= (*data)[1][2][9] <= 10; */
+    //@ slevel merge;
+    rt = Rte_Write_MultiArraySRInterface_multiArray(data);
+    /*@ assert
+      @ rt == RTE_E_OK ||
+      @ rt == RTE_E_COM_STOPPED ||
+      @ rt == RTE_E_SEG_FAULT ||
+      @ rt == RTE_E_COM_BUSY ||
+      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
+      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+      @ */
+    //@ slevel merge;
+    Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
+  }
+  //@ slevel merge;
+  {
+    multiArrayThreeImpl *data;
+    data = Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+    /*@ assert \valid(*data); */
+  }
+  //@ slevel merge;
+  Rte_IInvalidate_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
+  //@ slevel merge;
+  rt = Rte_IStatus_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+  /*@ assert
+    @ rt == RTE_E_OK ||
+    @ rt == RTE_E_INVALID ||
+    @ rt == RTE_E_MAX_AGE_EXCEEDED ||
+    @ rt == RTE_E_NEVER_RECEIVED ||
+    @ rt == RTE_E_OUT_OF_RANGE ||
+    @ rt == RTE_E_COM_STOPPED ||
+    @ rt == RTE_E_UNCONNECTED ||
+    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
+    @ */
+  //@ slevel merge;
+  {
+    multiArrayThreeImpl *data;
+    data = Rte_Prm_MultiArrayCalibration_multiArrayElement();
+    /*@ assert \initialized(*data); */
+  }
+#else
   {
     Rte_DT_IntArrayImpl_0 arr[2][3][10];
     rt = Rte_Read_MultiArraySRInterface_multiArray(&arr);
@@ -611,6 +804,7 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 *
     data = Rte_Prm_MultiArrayCalibration_multiArrayElement();
     /*@ assert \initialized(data+(0..59)); */
   }
+#endif // RTE_PTR2ARRAY_PASSING
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!
@@ -850,11 +1044,7 @@ FUNC(void, AP_Hello_World_CODE) DataConstraintRunnable(void) /* PRQA S 0624, 320
   float32 f_data;
   rt = Rte_Read_DataConstraintInterface_InfFloatConstr(&f_data);
   if (rt == RTE_E_OK) {
-#ifndef TIS_INFINITE_FLOATS
     /*@ assert \is_finite(f_data) || \is_infinite(f_data); */
-#else
-    /*@ assert \valid(&f_data); */
-#endif
   }
 
   //@ slevel merge;
@@ -947,7 +1137,7 @@ FUNC(void, AP_Hello_World_CODE) DoubleRunnable(void) /* PRQA S 0624, 3206 */ /* 
   Std_ReturnType res;
   res = Rte_Read_DoubleSRPort_explicitElem(&data);
   if(res == RTE_E_OK){
-    /*@ assert 20000 <= data && \is_finite(data); */
+    /*@ assert 20000 <= data <= 40000 && !\is_NaN(data); */
     Rte_Write_DoubleSRPort_explicitElem(data);
   }
   data = Rte_IRead_DoubleRunnable_DoubleSRPort_implicitElem();
