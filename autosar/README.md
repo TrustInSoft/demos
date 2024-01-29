@@ -20,7 +20,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 # Demo tis-autosar-mockup for automatic AUTOSAR Classic Applications analysis
 
-This demo how `tis-autosar-mockup` automatically generates all the analysis configuration and
+This demo how the TrustInSoft `tis-autosar-mockup` integration tool automatically generates all the analysis configuration and
 analysis drivers for an AUTOSAR Application from the sole AUTOSAR ARXML file in order to analyze the application fully automatically
 
 When using an AUTOSAR Authoring tool, the main output of the tool is:
