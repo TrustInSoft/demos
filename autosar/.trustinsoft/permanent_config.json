@@ -1,0 +1,6 @@
+{
+   // "machdep": "arm_eabi",
+   "files": [
+      "../AP_Hello_World.c"
+   ]
+}
