@@ -308,197 +308,63 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunnable(void) /* PRQA S 0624, 3206 */ /* M
   IntArrayImpl *data = &arr;
   rt = Rte_Read_ArraySRInterface_acknowlegdement(data);
   if (rt == RTE_E_OK) {
-    /*@ assert \initialized(*data+(0..9)); */
   } else {
-    /*@ assert
-      @ rt == RTE_E_INVALID ||
-      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-      @ rt == RTE_E_NEVER_RECEIVED ||
-      @ rt == RTE_E_OUT_OF_RANGE ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_UNCONNECTED ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
   }
   //@ slevel merge;
   rt = Rte_Read_ArraySRInterface_constraint(data);
   if (rt == RTE_E_OK) {
-    /*@ assert \initialized(*data+(0..9)); */
-    /*@ assert 1 <= (*data)[0] <= 10; */
-    /*@ assert 1 <= (*data)[9] <= 10; */
   } else {
-    /*@ assert
-      @ rt == RTE_E_INVALID ||
-      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-      @ rt == RTE_E_NEVER_RECEIVED ||
-      @ rt == RTE_E_OUT_OF_RANGE ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_UNCONNECTED ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
   }
   //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_INone();
-  /*@ assert \initialized(*data+(0..9)); */
   //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint();
-    /*@ assert \initialized(*data+(0..9)); */
-    /*@ assert 1 <= (*data)[0] <= 10; */
-    /*@ assert 1 <= (*data)[9] <= 10; */
   //@ slevel merge;
   rt = Rte_Write_ArraySRInterface_acknowlegdement(data);
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_SEG_FAULT ||
-    @ rt == RTE_E_COM_BUSY ||
-    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   rt = Rte_Invalidate_ArraySRInterface_acknowlegdement();
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data);
   data = Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone();
-  /*@ assert \valid(*data); */
   //@ slevel merge;
   Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint();
-  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
   //@ slevel merge;
   rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
-  /*@ assert
-    @ rt == RTE_E_NO_DATA ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_TIMEOUT ||
-    @ rt == RTE_E_TRANSMIT_ACK ||
-    @ rt == RTE_E_UNCONNECTED ||
-    @ rt == RTE_E_IN_EXCLUSIVE_AREA ||
-    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   rt = Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint();
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_INVALID ||
-    @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-    @ rt == RTE_E_NEVER_RECEIVED ||
-    @ rt == RTE_E_OUT_OF_RANGE ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_UNCONNECTED ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   data = Rte_Prm_ArrayCalibration_arrayElement();
-  /*@ assert \initialized(*data+(0..9)); */
 #else
   Rte_DT_IntArrayImpl_0 arr[10];
   Rte_DT_IntArrayImpl_0 *data = &arr;
   rt = Rte_Read_ArraySRInterface_acknowlegdement(data);
   if (rt == RTE_E_OK) {
-    /*@ assert \initialized(data+(0..9)); */
   } else {
-    /*@ assert
-      @ rt == RTE_E_INVALID ||
-      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-      @ rt == RTE_E_NEVER_RECEIVED ||
-      @ rt == RTE_E_OUT_OF_RANGE ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_UNCONNECTED ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
   }
   //@ slevel merge;
   rt = Rte_Read_ArraySRInterface_constraint(data);
   if (rt == RTE_E_OK) {
-    /*@ assert \initialized(data+(0..9)); */
-    /*@ assert 1 <= data[0] <= 10; */
-    /*@ assert 1 <= data[9] <= 10; */
   } else {
-    /*@ assert
-      @ rt == RTE_E_INVALID ||
-      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-      @ rt == RTE_E_NEVER_RECEIVED ||
-      @ rt == RTE_E_OUT_OF_RANGE ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_UNCONNECTED ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
   }
   //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_INone();
-  /*@ assert \initialized(data+(0..9)); */
   //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint();
-    /*@ assert \initialized(data+(0..9)); */
-    /*@ assert 1 <= data[0] <= 10; */
-    /*@ assert 1 <= data[9] <= 10; */
   //@ slevel merge;
   rt = Rte_Write_ArraySRInterface_acknowlegdement(data);
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_SEG_FAULT ||
-    @ rt == RTE_E_COM_BUSY ||
-    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   rt = Rte_Invalidate_ArraySRInterface_acknowlegdement();
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data);
   data = Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone();
-  /*@ assert \valid(data); */
   //@ slevel merge;
   Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint();
-  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
   //@ slevel merge;
   rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
-  /*@ assert
-    @ rt == RTE_E_NO_DATA ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_TIMEOUT ||
-    @ rt == RTE_E_TRANSMIT_ACK ||
-    @ rt == RTE_E_UNCONNECTED ||
-    @ rt == RTE_E_IN_EXCLUSIVE_AREA ||
-    @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   rt = Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint();
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_INVALID ||
-    @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-    @ rt == RTE_E_NEVER_RECEIVED ||
-    @ rt == RTE_E_OUT_OF_RANGE ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_UNCONNECTED ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   data = Rte_Prm_ArrayCalibration_arrayElement();
-  /*@ assert \initialized(data+(0..9)); */
 #endif // RTE_PTR2ARRAY_PASSING
 
 /**********************************************************************************************************************
@@ -546,7 +412,6 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void) /* PRQA S 0624, 3206 */ /*
   rt = Rte_Read_BooleanSR_isElement(&data);
   if(rt == RTE_E_OK)
   {
-    /*@ assert data == 0 || data == 1; */
   }
 
 /**********************************************************************************************************************
@@ -626,19 +491,7 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     multiArrayThreeImpl arr;
     rt = Rte_Read_MultiArraySRInterface_multiArray(&arr);
     if (rt == RTE_E_OK) {
-      /*@ assert \initialized(arr); */
     } else {
-      /*@ assert
-        @ rt == RTE_E_INVALID ||
-        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-        @ rt == RTE_E_NEVER_RECEIVED ||
-        @ rt == RTE_E_OUT_OF_RANGE ||
-        @ rt == RTE_E_COM_BUSY ||
-        @ rt == RTE_E_COM_STOPPED ||
-        @ rt == RTE_E_UNCONNECTED ||
-        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-        @ */
     }
   }
   //@ slevel merge;
@@ -646,43 +499,16 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     multiArrayThreeImpl arr;
     rt = Rte_Read_MultiArraySRInterface_multiArrayConstraint(&arr);
     if (rt == RTE_E_OK) {
-      /*@ assert \initialized(arr); */
-      /*@ assert 1 <= arr[0][0][0] <= 10; */
-      /*@ assert 1 <= arr[1][0][0] <= 10; */
-      /*@ assert 1 <= arr[1][2][9] <= 10; */
       Rte_Write_MultiArraySRInterface_multiArrayConstraint(&arr);
     } else {
-      /*@ assert
-        @ rt == RTE_E_INVALID ||
-        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-        @ rt == RTE_E_NEVER_RECEIVED ||
-        @ rt == RTE_E_OUT_OF_RANGE ||
-        @ rt == RTE_E_COM_BUSY ||
-        @ rt == RTE_E_COM_STOPPED ||
-        @ rt == RTE_E_UNCONNECTED ||
-        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-        @ */
     }
   }
   //@ slevel merge;
   {
     multiArrayThreeImpl *data;
     data = Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-    /*@ assert \initialized(*data); */
-    /*@ assert 1 <= (*data)[0][0][0] <= 10; */
-    /*@ assert 1 <= (*data)[1][0][0] <= 10; */
-    /*@ assert 1 <= (*data)[1][2][9] <= 10; */
     //@ slevel merge;
     rt = Rte_Write_MultiArraySRInterface_multiArray(data);
-    /*@ assert
-      @ rt == RTE_E_OK ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_SEG_FAULT ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
     //@ slevel merge;
     Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
   }
@@ -690,47 +516,22 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
   {
     multiArrayThreeImpl *data;
     data = Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-    /*@ assert \valid(*data); */
   }
   //@ slevel merge;
   Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
   //@ slevel merge;
   rt = Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_INVALID ||
-    @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-    @ rt == RTE_E_NEVER_RECEIVED ||
-    @ rt == RTE_E_OUT_OF_RANGE ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_UNCONNECTED ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   {
     multiArrayThreeImpl *data;
     data = Rte_Prm_MultiArrayCalibration_multiArrayElement();
-    /*@ assert \initialized(*data); */
   }
 #else
   {
     Rte_DT_IntArrayImpl_0 arr[2][3][10];
     rt = Rte_Read_MultiArraySRInterface_multiArray(&arr);
     if (rt == RTE_E_OK) {
-      /*@ assert \initialized(&arr[0][0][0]+(0..59)); */
     } else {
-      /*@ assert
-        @ rt == RTE_E_INVALID ||
-        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-        @ rt == RTE_E_NEVER_RECEIVED ||
-        @ rt == RTE_E_OUT_OF_RANGE ||
-        @ rt == RTE_E_COM_BUSY ||
-        @ rt == RTE_E_COM_STOPPED ||
-        @ rt == RTE_E_UNCONNECTED ||
-        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-        @ */
     }
   }
   //@ slevel merge;
@@ -738,71 +539,31 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     Rte_DT_IntArrayImpl_0 arr[2][3][10];
     rt = Rte_Read_MultiArraySRInterface_multiArrayConstraint(&arr);
     if (rt == RTE_E_OK) {
-      /*@ assert \initialized(&arr[0][0][0]+(0..59)); */
-      /*@ assert 1 <= arr[0][0][0] <= 10; */
-      /*@ assert 1 <= arr[1][0][0] <= 10; */
-      /*@ assert 1 <= arr[1][2][9] <= 10; */
       Rte_Write_MultiArraySRInterface_multiArrayConstraint(&arr);
     } else {
-      /*@ assert
-        @ rt == RTE_E_INVALID ||
-        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-        @ rt == RTE_E_NEVER_RECEIVED ||
-        @ rt == RTE_E_OUT_OF_RANGE ||
-        @ rt == RTE_E_COM_BUSY ||
-        @ rt == RTE_E_COM_STOPPED ||
-        @ rt == RTE_E_UNCONNECTED ||
-        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-        @ */
     }
   }
   //@ slevel merge;
   {
     Rte_DT_IntArrayImpl_0 *data;
     data = Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-    /*@ assert \initialized(data); */
-    /*@ assert 1 <= data[0] <= 10; */
-    /*@ assert 1 <= data[30] <= 10; */
-    /*@ assert 1 <= data[59] <= 10; */
     //@ slevel merge;
     rt = Rte_Write_MultiArraySRInterface_multiArray(data);
-    /*@ assert
-      @ rt == RTE_E_OK ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_SEG_FAULT ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
     //@ slevel merge;
     Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
   }
   {
     Rte_DT_IntArrayImpl_0 *data;
     data = Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-    /*@ assert \valid(data); */
   }
   //@ slevel merge;
   Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
   //@ slevel merge;
   rt = Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  /*@ assert
-    @ rt == RTE_E_OK ||
-    @ rt == RTE_E_INVALID ||
-    @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-    @ rt == RTE_E_NEVER_RECEIVED ||
-    @ rt == RTE_E_OUT_OF_RANGE ||
-    @ rt == RTE_E_COM_STOPPED ||
-    @ rt == RTE_E_UNCONNECTED ||
-    @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
   //@ slevel merge;
   {
     Rte_DT_IntArrayImpl_0 *data;
     data = Rte_Prm_MultiArrayCalibration_multiArrayElement();
-    /*@ assert \initialized(data+(0..59)); */
   }
 #endif // RTE_PTR2ARRAY_PASSING
 
@@ -855,7 +616,6 @@ FUNC(void, AP_Hello_World_CODE) ComplexRxRunnable(void) /* PRQA S 0624, 3206 */ 
   ret = Rte_Receive_ComplexElementRx_QueuedElement(&data);
   if (ret == RTE_E_OK)
   {
-    /*@ assert 0 <= data <= 4294967295; */
   }
   else
   {
@@ -904,9 +664,7 @@ FUNC(void, AP_Hello_World_CODE) DReadRunnable(void) /* PRQA S 0624, 3206 */ /* M
 
   sint8 data;
   data = Rte_DRead_ReadWithErrorHandler_ReadElementOpenRange();
-  /*@ assert 0 < data < 100; */
   uint64 data64 = Rte_DRead_SimpleNvDataPort_element_OneToTen();
-  /*@ assert 1 <= data64 <= 10; */
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!
@@ -1006,45 +764,35 @@ FUNC(void, AP_Hello_World_CODE) DataConstraintRunnable(void) /* PRQA S 0624, 320
   uint8 data;
   rt = Rte_Read_DataConstraintInterface_DataProtypeConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 0 < data < 100; */
   }
   rt = Rte_Read_DataConstraintInterface_DataProtypeApplConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 0 < data < 100; */
   }
   rt = Rte_Read_DataConstraintInterface_DataProtypeImplConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 0 < data < 100; */
   }
   rt = Rte_Read_DataConstraintInterface_ApplicationTypeConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 1 <= data <= 10; */
   }
   rt = Rte_Read_DataConstraintInterface_ApplicationTypeImplConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 1 <= data <= 20; */
   }
   rt = Rte_Read_DataConstraintInterface_ApplicationTypeAllConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 1 <= data <= 20; */
   }
   rt = Rte_Read_DataConstraintInterface_ImplementationTypeConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 1 <= data <= 20; */
   }
   rt = Rte_Read_DataConstraintInterface_AllConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 0 < data < 100; */
   }
   rt = Rte_Read_DataConstraintInterface_NoConstr(&data);
   if (rt == RTE_E_OK) {
-    /*@ assert 0 <= data <= 256; */
   }
 
   float32 f_data;
   rt = Rte_Read_DataConstraintInterface_InfFloatConstr(&f_data);
   if (rt == RTE_E_OK) {
-    /*@ assert \is_finite(f_data) || \is_infinite(f_data); */
   }
 
   //@ slevel merge;
@@ -1137,14 +885,12 @@ FUNC(void, AP_Hello_World_CODE) DoubleRunnable(void) /* PRQA S 0624, 3206 */ /* 
   Std_ReturnType res;
   res = Rte_Read_DoubleSRPort_explicitElem(&data);
   if(res == RTE_E_OK){
-    /*@ assert 20000 <= data <= 40000 && !\is_NaN(data); */
     Rte_Write_DoubleSRPort_explicitElem(data);
   }
   data = Rte_IRead_DoubleRunnable_DoubleSRPort_implicitElem();
   Rte_IWrite_DoubleRunnable_DoubleSRPort_implicitElem(data);
   res = Rte_Call_DoubleCS_f(data, &data2);
   if(res == RTE_E_OK){
-    /*@ assert 20000 <= data2 && \is_finite(data2); */
   }
 
 /**********************************************************************************************************************
@@ -1197,33 +943,19 @@ FUNC(void, AP_Hello_World_CODE) ExplicitReadByValue(void) /* PRQA S 0624, 3206 *
   Std_ReturnType rt;
   rt = Rte_Read_SimpleReadProto_SimpleReadElement(&out);
   if (rt == RTE_E_OK) {
-    /*@ assert -43 < out < 124; */
   } else {
-    /*@ assert
-      @ rt == RTE_E_INVALID ||
-      @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-      @ rt == RTE_E_NEVER_RECEIVED ||
-      @ rt == RTE_E_OUT_OF_RANGE ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_UNCONNECTED ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
   }
 
   //@ slevel merge;
   float32 out_f;
   rt = Rte_Read_SimpleReadProto_ReadElementRangeInfMax(&out_f);
   if (rt == RTE_E_OK) {
-    /*@ assert \is_minus_infinity(out_f) || (\is_finite(out_f) && out_f < 100.); */
   }
 
   //@ slevel merge;
   rt = Rte_Read_ReadWithErrorHandler_SimpleReadElement(&out);
   if (rt == RTE_E_OK)
   {
-    /*@ assert -43 < out < 124; */
   }
 
   //@ slevel merge;
@@ -1231,7 +963,6 @@ FUNC(void, AP_Hello_World_CODE) ExplicitReadByValue(void) /* PRQA S 0624, 3206 *
    rt = Rte_Read_SimpleReadProto_ReadElementOpenRange(&out_s);
    if (rt == RTE_E_OK)
    {
-     /*@ assert -1 <= out_s <= 101; */
    }
 
 /**********************************************************************************************************************
@@ -1369,60 +1100,19 @@ FUNC(void, AP_Hello_World_CODE) Hello_World_Runnable(P2CONST(Std_TransformerErro
   //@ slevel merge;
   Std_TransformerError err;
   Std_ReturnType ret = Rte_Write_Hello_World_port_Hello_World_Element(0, &err);
-  /*@ assert
-    @ ret == RTE_E_OK ||
-    @ ret == RTE_E_COM_STOPPED ||
-    @ ret == RTE_E_SEG_FAULT ||
-    @ ret == RTE_E_COM_BUSY ||
-    @ ret == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ ret == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
 
   ret = Rte_Send_ComplexPortTest_QueuedElement(123, &err);
-  /*@ assert
-    @ ret == RTE_E_OK ||
-    @ ret == RTE_E_COM_STOPPED ||
-    @ ret == RTE_E_LIMIT ||
-    @ ret == RTE_E_SEG_FAULT ||
-    @ ret == RTE_E_COM_BUSY ||
-    @ ret == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ ret == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
 
   ret = Rte_Feedback_ComplexPortTest_QueuedElement();
-  /*@ assert
-    @ ret == RTE_E_NO_DATA ||
-    @ ret == RTE_E_COM_STOPPED ||
-    @ ret == RTE_E_TIMEOUT ||
-    @ ret == RTE_E_TRANSMIT_ACK ||
-    @ ret == RTE_E_UNCONNECTED ||
-    @ ret == RTE_E_IN_EXCLUSIVE_AREA ||
-    @ ret == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ ret == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
 
   ret = Rte_Invalidate_Hello_World_port_Hello_World_Element(&err);
-  /*@ assert
-    @ ret == RTE_E_OK ||
-    @ ret == RTE_E_COM_STOPPED ||
-    @ ret == RTE_E_HARD_TRANSFORMER_ERROR ||
-    @ ret == RTE_E_SOFT_TRANSFORMER_ERROR;
-    @ */
 
   uint8 res_u8 = Rte_Prm_CalibrationPrimitiveType_notAccessibleElement();
-  /*@ assert 1 <= res_u8 <= 10; */
 
   res_u8 = Rte_CData_SharedInternalCalibrationParameter();
-  /*@ assert 1 <= res_u8 <= 10; */
 
   ret = 0;
   ret = Rte_SwitchAck_Mode_Port_Interface_ModeGroup();
-  /*@ assert
-    @ ret == RTE_E_TIMEOUT ||
-    @ ret == RTE_E_TRANSMIT_ACK ||
-    @ ret == RTE_E_UNCONNECTED ||
-    @ ret == RTE_E_IN_EXCLUSIVE_AREA;
-    @ */
 
 
 /**********************************************************************************************************************
@@ -1546,38 +1236,21 @@ FUNC(void, AP_Hello_World_CODE) ImpliciteWrite(void) /* PRQA S 0624, 3206 */ /* 
   Rte_IWrite_ImpliciteWrite_SimpleWritePort_SimpleReadNeverReceived(0);
   NvM_RequestResultType *complex_element =
     Rte_IWriteRef_ImpliciteWrite_ComplexPortTest_ComplexElement();
-  /*@ assert \valid(complex_element); */
   uint64 *constrained_element =
     Rte_IWriteRef_ImpliciteWrite_ComplexPortTest_ConstrainedElement();
-  /*@ assert \valid(constrained_element); */
   uint64 *handle_invalid_element =
     Rte_IWriteRef_ImpliciteWrite_ComplexPortTest_HandleInvalidElement();
-  /*@ assert \valid(handle_invalid_element); */
   sint8 *read_element_open_range =
     Rte_IWriteRef_ImpliciteWrite_SimpleWritePort_ReadElementOpenRange();
-  /*@ assert \valid(read_element_open_range); */
   float32 *read_element_range_inf_max =
     Rte_IWriteRef_ImpliciteWrite_SimpleWritePort_ReadElementRangeInfMax();
-  /*@ assert \valid(read_element_range_inf_max); */
   sint16 *simple_read_element =
     Rte_IWriteRef_ImpliciteWrite_SimpleWritePort_SimpleReadElement();
-  /*@ assert \valid(simple_read_element); */
   uint64 *simple_read_never_received =
     Rte_IWriteRef_ImpliciteWrite_SimpleWritePort_SimpleReadNeverReceived();
-  /*@ assert \valid(simple_read_never_received); */
   Rte_IInvalidate_ImpliciteWrite_SimpleWritePort_ReadElementOpenRange();
-  /*@ assert Rte_Inst_AP_Hello_World->ImpliciteWrite_SimpleWritePort_ReadElementOpenRange->status == RTE_E_INVALID; */
   Std_ReturnType feedback =
     Rte_IFeedback_ImpliciteWrite_ComplexPortTest_ComplexElement();
-  /*@ assert
-        feedback == RTE_E_NO_DATA ||
-        feedback == RTE_E_COM_STOPPED ||
-        feedback == RTE_E_TIMEOUT ||
-        feedback == RTE_E_TRANSMIT_ACK ||
-        feedback == RTE_E_UNCONNECTED ||
-        feedback == RTE_E_HARD_TRANSFORMER_ERROR ||
-        feedback == RTE_E_SOFT_TRANSFORMER_ERROR;
-  */
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!
@@ -1639,44 +1312,27 @@ FUNC(void, AP_Hello_World_CODE) InterVariableRunnable(void) /* PRQA S 0624, 3206
 
   {
     uint8 res_uint8 = Rte_IrvRead_InterVariableRunnable_ExplicitInterRunnableValue();
-    /*@ assert 1 <= res_uint8 <= 10; */
     Rte_IrvWrite_InterVariableRunnable_ExplicitInterRunnableValue(res_uint8);
   }
   //@ slevel merge;
   {
     uint8 res_uint8 = Rte_IrvIRead_InterVariableRunnable_ImplicitInterRunnableValue();
-    /*@ assert 1 <= res_uint8 <= 10; */
     Rte_IrvIWrite_InterVariableRunnable_ImplicitInterRunnableValue(res_uint8);
     uint8 *write_uint8 = Rte_IrvIWriteRef_InterVariableRunnable_ImplicitInterRunnableValue();
-    /*@ assert \valid(write_uint8); */
   }
   //@ slevel merge;
 
   {
     ComplexStructImpl res_struct;
     Rte_IrvRead_InterVariableRunnable_ExplicitInterRunnableStruct(&res_struct);
-    /*@ assert \initialized(&res_struct); */
-    /*@ assert 1 <= res_struct.intElement <= 10; */
-    /*@ assert res_struct.floatElement < 100.0; */
-    /*@ assert \initialized(res_struct.arrrayElement + (0..9)); */
-    /*@ assert \initialized(&res_struct.structElement); */
-    /*@ assert \initialized(&res_struct.structElement.boolElement); */
-    /*@ assert \initialized(&res_struct.structElement.constrElement); */
     Rte_IrvWrite_InterVariableRunnable_ExplicitInterRunnableStruct(&res_struct);
   }
   //@ slevel merge;
   {
     ComplexStructImpl res_struct;
     res_struct = *Rte_IrvIRead_InterVariableRunnable_ImplicitInterRunnableStruct();
-    /*@ assert 1 <= res_struct.intElement <= 10; */
-    /*@ assert res_struct.floatElement < 100.0; */
-    /*@ assert \initialized(res_struct.arrrayElement + (0..9)); */
-    /*@ assert \initialized(&res_struct.structElement); */
-    /*@ assert \initialized(&res_struct.structElement.boolElement); */
-    /*@ assert \initialized(&res_struct.structElement.constrElement); */
     Rte_IrvIWrite_InterVariableRunnable_ImplicitInterRunnableStruct(&res_struct);
     ComplexStructImpl *write_struct = Rte_IrvIWriteRef_InterVariableRunnable_ImplicitInterRunnableStruct();
-    /*@ assert \valid(write_struct); */
   }
 
 /**********************************************************************************************************************
@@ -1722,10 +1378,8 @@ FUNC(void, AP_Hello_World_CODE) IsUpdatedRunnable(void) /* PRQA S 0624, 3206 */ 
  *********************************************************************************************************************/
 
   boolean is_updated = Rte_IsUpdated_IsUpdatedByValuePrototype_IdUpdatedByValueElement();
-  /*@ assert is_updated == 0 || is_updated == 1; */
 
   is_updated = Rte_IsUpdated_IsUpdatedByValuePrototype_IsUpdatedByArgumentElement();
-  /*@ assert is_updated == 0 || is_updated == 1; */
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!
@@ -1776,31 +1430,10 @@ FUNC(void, AP_Hello_World_CODE) ModeRunnable(void) /* PRQA S 0624, 3206 */ /* MD
 
   uint8 res;
   res = Rte_Mode_Mode_Port_Interface_ModeGroup();
-  /*@ assert
-      res == RTE_MODE_ModeDeclarationGroup_SomeMode ||
-      res == RTE_MODE_ModeDeclarationGroup_SomeOtherMode ||
-      res == RTE_TRANSITION_ModeDeclarationGroup;
-  */
   uint8 prevMode;
   uint8 nextMode;
   res = Rte_Mode_EnhancedPortInterface_Mode(&prevMode, &nextMode);
-  /*@ assert
-        res == RTE_MODE_ExplicitModeGroup_Init ||
-        res == RTE_MODE_ExplicitModeGroup_Last ||
-        res == RTE_MODE_ExplicitModeGroup_Next ||
-        res == RTE_TRANSITION_ExplicitModeGroup;
-  */
   // Previous and next mode can't be the transition mode.
-  /*@ assert
-        prevMode == RTE_MODE_ExplicitModeGroup_Init ||
-        prevMode == RTE_MODE_ExplicitModeGroup_Last ||
-        prevMode == RTE_MODE_ExplicitModeGroup_Next;
-  */
-  /*@ assert
-        nextMode == RTE_MODE_ExplicitModeGroup_Init ||
-        nextMode == RTE_MODE_ExplicitModeGroup_Last ||
-        nextMode == RTE_MODE_ExplicitModeGroup_Next;
-  */
 
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << End of runnable implementation >>               DO NOT CHANGE THIS COMMENT!
@@ -1976,73 +1609,31 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
   Rte_DT_FloatArrayImplementation_0 float_array;
   Std_ReturnType rt = Rte_Call_CallPortInterface_InOutOperation(i, &cs, &float_array);
   // Test the return values of the asynchronous type.
-  /*@ assert
-    rt == RTE_E_OK ||
-    rt == RTE_E_LIMIT ||
-    rt == RTE_E_TRANSFORMER_LIMIT ||
-    rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    rt == RTE_E_SOFT_TRANSFORMER_ERROR ||
-    rt == RTE_E_COM_STOPPED ||
-    rt == RTE_E_UNCONNECTED ||
-    rt == RTE_E_SEG_FAULT ||
-    rt == RTE_E_COM_BUSY;
-    */
 
   customDouble32 d;
   rt = Rte_Call_CallPortInterface_SimpleIntOperation(i, &d);
-  /*@ assert
-    rt == RTE_E_OK ||
-    rt == RTE_E_IN_EXCLUSIVE_AREA ||
-    rt == RTE_E_TRANSFORMER_LIMIT ||
-    rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-    rt == RTE_E_SOFT_TRANSFORMER_ERROR ||
-    rt == RTE_E_TIMEOUT ||
-    rt == RTE_E_COM_STOPPED ||
-    rt == RTE_E_UNCONNECTED ||
-    rt == RTE_E_SEG_FAULT ||
-    rt == RTE_E_COM_BUSY;
-    */
 
   // in these cases, the output variable should not be touched.
   if (rt == RTE_E_LIMIT || rt == RTE_E_TIMEOUT) {
-    /*@ assert !\initialized(&d); */
   } else {
-    /*@ assert \valid(&d); */
   }
 
   NvM_RequestResultType nvm_result;
   rt = Rte_Result_NvSWC_NvMService_client_GetErrorStatus(&nvm_result);
-  /*@ assert
-        rt == RTE_E_OK ||
-        rt == RTE_E_TRANSFORMER_LIMIT ||
-        rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-        rt == RTE_E_SOFT_TRANSFORMER_ERROR ||
-        rt == RTE_E_NO_DATA ||
-        rt == RTE_E_TIMEOUT ||
-        rt == RTE_E_COM_STOPPED ||
-        rt == RTE_E_UNCONNECTED ||
-        rt == RTE_E_IN_EXCLUSIVE_AREA ||
-        rt == RTE_E_SEG_FAULT ||
-        rt == RTE_E_COM_BUSY;
-    */
-  /*@ assert \valid(&nvm_result); */
 
   //@ slevel merge;
   Std_TransformerError te;
   rt = Rte_Result_NvSWC_NvMService_AC2_SRBS_Defs_client_WriteBlock(&te);
   if (rt == RTE_E_HARD_TRANSFORMER_ERROR || RTE_E_SOFT_TRANSFORMER_ERROR) {
-    /*@ assert \valid(&te); */
   }
 
   NvM_RequestResultType nvm_result2;
   rt = Rte_Result_NvMService_service_client_GetErrorStatus(&nvm_result2);
   if (rt == RTE_E_NO_DATA || rt == RTE_E_TIMEOUT || rt == RTE_E_COM_STOPPED)
   {
-    /*@ assert !\initialized(&nvm_result2); */
   }
   else
   {
-    /*@ assert \initialized(&nvm_result2); */
   }
 
   rt = Rte_Result_NvSWC_NvMService_AC2_SRBS_Defs_client_SetRamBlockStatus(&te);
@@ -2114,61 +1705,25 @@ FUNC(void, AP_Hello_World_CODE) StructRunnable(void) /* PRQA S 0624, 3206 */ /* 
     ComplexStructImpl data;
     rt = Rte_Read_StructSRInterface_Element(&data);
     if (rt == RTE_E_OK) {
-      /*@ assert \initialized(&data); */
-      /*@ assert 1 <= data.intElement <= 10; */
-      /*@ assert data.floatElement < 100.0; */
-      /*@ assert \initialized(data.arrrayElement + (0..9)); */
-      /*@ assert \initialized(&data.structElement); */
-      /*@ assert
             data.structElement.boolElement == 0 ||
             data.structElement.boolElement == 1;
-      */
-      /*@ assert \initialized(&data.structElement.constrElement); */
       Rte_Write_StructSRInterface_Element(&data);
     } else {
-      /*@ assert
-        @ rt == RTE_E_INVALID ||
-        @ rt == RTE_E_MAX_AGE_EXCEEDED ||
-        @ rt == RTE_E_NEVER_RECEIVED ||
-        @ rt == RTE_E_OUT_OF_RANGE ||
-        @ rt == RTE_E_COM_BUSY ||
-        @ rt == RTE_E_COM_STOPPED ||
-        @ rt == RTE_E_UNCONNECTED ||
-        @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-        @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-        @ */
     }
   }
   //@ slevel merge;
   {
     ComplexStructImpl *data;
     data = Rte_IRead_StructRunnable_StructSRInterface_IElement();
-    /*@ assert \initialized(data); */
-    /*@ assert 1 <= data->intElement <= 10; */
-    /*@ assert data->floatElement < 100.0; */
-    /*@ assert \initialized(data->arrrayElement + (0..9)); */
-    /*@ assert \initialized(&data->structElement); */
-      /*@ assert
             data->structElement.boolElement == 0 ||
             data->structElement.boolElement == 1;
-      */
-    /*@ assert \initialized(&data->structElement.constrElement); */
     rt = Rte_Write_StructSRInterface_Element(data);
-    /*@ assert
-      @ rt == RTE_E_OK ||
-      @ rt == RTE_E_COM_STOPPED ||
-      @ rt == RTE_E_SEG_FAULT ||
-      @ rt == RTE_E_COM_BUSY ||
-      @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
-      @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
-      @ */
     Rte_IWrite_StructRunnable_StructSRInterface_IElement(data);
   }
   //@ slevel merge;
   {
     ComplexStructImpl *data;
     data = Rte_IWriteRef_StructRunnable_StructSRInterface_IElement();
-    /*@ assert \valid(data); */
   }
 
 /**********************************************************************************************************************
@@ -2305,7 +1860,6 @@ FUNC(void, AP_Hello_World_CODE) UnionRunnable(void) /* PRQA S 0624, 3206 */ /* M
   //@ slevel merge;
   float32 out;
   Std_ReturnType ret = Rte_Call_CallPortInterface_SimpleIntOperation(32, &out);
-  /*@ assert ret == RTE_E_OK; */
 
 /***  End of saved code  ************************************************************************************/
 #endif
