@@ -196,7 +196,7 @@
 
 /**********************************************************************************************************************
  *
- * Runnable Entity Name: ArrayRunable
+ * Runnable Entity Name: ArrayRunnable
  *
  *---------------------------------------------------------------------------------------------------------------------
  *
@@ -223,9 +223,9 @@
  *
  *   Implicit S/R API:
  *   -----------------
- *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunable_ArraySRInterface_INone(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunnable_ArraySRInterface_INone(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
  *
  * Output Interfaces:
@@ -253,15 +253,15 @@
  *
  *   Implicit S/R API:
  *   -----------------
- *   void Rte_IWrite_ArrayRunable_ArraySRInterface_INone(const Rte_DT_IntArrayImpl_0 *data)
+ *   void Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(const Rte_DT_IntArrayImpl_0 *data)
  *     Argument data: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   void Rte_IWrite_ArrayRunable_ArraySRInterface_Iconstraint(const Rte_DT_IntArrayImpl_0 *data)
+ *   void Rte_IWrite_ArrayRunnable_ArraySRInterface_Iconstraint(const Rte_DT_IntArrayImpl_0 *data)
  *     Argument data: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   void Rte_IInvalidate_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   void Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *
  * Client/Server Interfaces:
  * =========================
@@ -281,12 +281,12 @@
  *
  *   Rx Status:
  *   ----------
- *   Std_ReturnType Rte_IStatus_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   Std_ReturnType Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *
  *********************************************************************************************************************/
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of documentation area >>                  DO NOT CHANGE THIS COMMENT!
- * Symbol: ArrayRunable_doc
+ * Symbol: ArrayRunnable_doc
  *********************************************************************************************************************/
 
 
@@ -294,11 +294,11 @@
  * DO NOT CHANGE THIS COMMENT!           << End of documentation area >>                    DO NOT CHANGE THIS COMMENT!
  *********************************************************************************************************************/
 
-FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
+FUNC(void, AP_Hello_World_CODE) ArrayRunnable(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
 {
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
- * Symbol: ArrayRunable
+ * Symbol: ArrayRunnable
  *********************************************************************************************************************/
 
   //@ slevel merge;
@@ -342,10 +342,10 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
       @ */
   }
   //@ slevel merge;
-  data = Rte_IRead_ArrayRunable_ArraySRInterface_INone();
+  data = Rte_IRead_ArrayRunnable_ArraySRInterface_INone();
   /*@ assert \initialized(*data+(0..9)); */
   //@ slevel merge;
-  data = Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint();
+  data = Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint();
     /*@ assert \initialized(*data+(0..9)); */
     /*@ assert 1 <= (*data)[0] <= 10; */
     /*@ assert 1 <= (*data)[9] <= 10; */
@@ -368,12 +368,12 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
     @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
     @ */
   //@ slevel merge;
-  Rte_IWrite_ArrayRunable_ArraySRInterface_INone(data);
-  data = Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone();
+  Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data);
+  data = Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone();
   /*@ assert \valid(*data); */
   //@ slevel merge;
-  Rte_IInvalidate_ArrayRunable_ArraySRInterface_Iconstraint();
-  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
+  Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint();
+  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
   //@ slevel merge;
   rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
   /*@ assert
@@ -387,7 +387,7 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
     @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
     @ */
   //@ slevel merge;
-  rt = Rte_IStatus_ArrayRunable_ArraySRInterface_Iconstraint();
+  rt = Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint();
   /*@ assert
     @ rt == RTE_E_OK ||
     @ rt == RTE_E_INVALID ||
@@ -440,10 +440,10 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
       @ */
   }
   //@ slevel merge;
-  data = Rte_IRead_ArrayRunable_ArraySRInterface_INone();
+  data = Rte_IRead_ArrayRunnable_ArraySRInterface_INone();
   /*@ assert \initialized(data+(0..9)); */
   //@ slevel merge;
-  data = Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint();
+  data = Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint();
     /*@ assert \initialized(data+(0..9)); */
     /*@ assert 1 <= data[0] <= 10; */
     /*@ assert 1 <= data[9] <= 10; */
@@ -466,12 +466,12 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
     @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
     @ */
   //@ slevel merge;
-  Rte_IWrite_ArrayRunable_ArraySRInterface_INone(data);
-  data = Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone();
+  Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data);
+  data = Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone();
   /*@ assert \valid(data); */
   //@ slevel merge;
-  Rte_IInvalidate_ArrayRunable_ArraySRInterface_Iconstraint();
-  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
+  Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint();
+  /*@ assert Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status == RTE_E_INVALID; */
   //@ slevel merge;
   rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
   /*@ assert
@@ -485,7 +485,7 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD
     @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
     @ */
   //@ slevel merge;
-  rt = Rte_IStatus_ArrayRunable_ArraySRInterface_Iconstraint();
+  rt = Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint();
   /*@ assert
     @ rt == RTE_E_OK ||
     @ rt == RTE_E_INVALID ||
@@ -556,7 +556,7 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void) /* PRQA S 0624, 3206 */ /*
 
 /**********************************************************************************************************************
  *
- * Runnable Entity Name: ComplexArrayRunable
+ * Runnable Entity Name: ComplexArrayRunnable
  *
  *---------------------------------------------------------------------------------------------------------------------
  *
@@ -575,7 +575,7 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void) /* PRQA S 0624, 3206 */ /*
  *
  *   Implicit S/R API:
  *   -----------------
- *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type multiArrayThreeImpl
  *
  * Output Interfaces:
@@ -589,22 +589,22 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void) /* PRQA S 0624, 3206 */ /*
  *
  *   Implicit S/R API:
  *   -----------------
- *   void Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(const Rte_DT_IntArrayImpl_0 *data)
+ *   void Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(const Rte_DT_IntArrayImpl_0 *data)
  *     Argument data: Rte_DT_IntArrayImpl_0* is of type multiArrayThreeImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type multiArrayThreeImpl
- *   void Rte_IInvalidate_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   void Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *
  * Status Interfaces:
  * ==================
  *   Rx Status:
  *   ----------
- *   Std_ReturnType Rte_IStatus_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   Std_ReturnType Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *
  *********************************************************************************************************************/
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of documentation area >>                  DO NOT CHANGE THIS COMMENT!
- * Symbol: ComplexArrayRunable_doc
+ * Symbol: ComplexArrayRunnable_doc
  *********************************************************************************************************************/
 
 
@@ -612,11 +612,11 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void) /* PRQA S 0624, 3206 */ /*
  * DO NOT CHANGE THIS COMMENT!           << End of documentation area >>                    DO NOT CHANGE THIS COMMENT!
  *********************************************************************************************************************/
 
-FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
+FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
 {
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
- * Symbol: ComplexArrayRunable
+ * Symbol: ComplexArrayRunnable
  *********************************************************************************************************************/
 
   //@ slevel merge;
@@ -668,7 +668,7 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 *
   //@ slevel merge;
   {
     multiArrayThreeImpl *data;
-    data = Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+    data = Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
     /*@ assert \initialized(*data); */
     /*@ assert 1 <= (*data)[0][0][0] <= 10; */
     /*@ assert 1 <= (*data)[1][0][0] <= 10; */
@@ -684,19 +684,19 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 *
       @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
       @ */
     //@ slevel merge;
-    Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
+    Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
   }
   //@ slevel merge;
   {
     multiArrayThreeImpl *data;
-    data = Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+    data = Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
     /*@ assert \valid(*data); */
   }
   //@ slevel merge;
-  Rte_IInvalidate_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
+  Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
+  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
   //@ slevel merge;
-  rt = Rte_IStatus_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+  rt = Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
   /*@ assert
     @ rt == RTE_E_OK ||
     @ rt == RTE_E_INVALID ||
@@ -760,7 +760,7 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 *
   //@ slevel merge;
   {
     Rte_DT_IntArrayImpl_0 *data;
-    data = Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+    data = Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
     /*@ assert \initialized(data); */
     /*@ assert 1 <= data[0] <= 10; */
     /*@ assert 1 <= data[30] <= 10; */
@@ -776,18 +776,18 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void) /* PRQA S 0624, 3206 *
       @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
       @ */
     //@ slevel merge;
-    Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
+    Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
   }
   {
     Rte_DT_IntArrayImpl_0 *data;
-    data = Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+    data = Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
     /*@ assert \valid(data); */
   }
   //@ slevel merge;
-  Rte_IInvalidate_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
+  Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
+  /*@ assert Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status == RTE_E_INVALID; */
   //@ slevel merge;
-  rt = Rte_IStatus_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit();
+  rt = Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
   /*@ assert
     @ rt == RTE_E_OK ||
     @ rt == RTE_E_INVALID ||
@@ -2054,7 +2054,7 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
 
 /**********************************************************************************************************************
  *
- * Runnable Entity Name: StructRunable
+ * Runnable Entity Name: StructRunnable
  *
  *---------------------------------------------------------------------------------------------------------------------
  *
@@ -2070,7 +2070,7 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
  *
  *   Implicit S/R API:
  *   -----------------
- *   ComplexStructImpl *Rte_IRead_StructRunable_StructSRInterface_IElement(void)
+ *   ComplexStructImpl *Rte_IRead_StructRunnable_StructSRInterface_IElement(void)
  *
  * Output Interfaces:
  * ==================
@@ -2080,8 +2080,8 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
  *
  *   Implicit S/R API:
  *   -----------------
- *   void Rte_IWrite_StructRunable_StructSRInterface_IElement(const ComplexStructImpl *data)
- *   ComplexStructImpl *Rte_IWriteRef_StructRunable_StructSRInterface_IElement(void)
+ *   void Rte_IWrite_StructRunnable_StructSRInterface_IElement(const ComplexStructImpl *data)
+ *   ComplexStructImpl *Rte_IWriteRef_StructRunnable_StructSRInterface_IElement(void)
  *
  * Client/Server Interfaces:
  * =========================
@@ -2093,7 +2093,7 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
  *********************************************************************************************************************/
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of documentation area >>                  DO NOT CHANGE THIS COMMENT!
- * Symbol: StructRunable_doc
+ * Symbol: StructRunnable_doc
  *********************************************************************************************************************/
 
 
@@ -2101,11 +2101,11 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
  * DO NOT CHANGE THIS COMMENT!           << End of documentation area >>                    DO NOT CHANGE THIS COMMENT!
  *********************************************************************************************************************/
 
-FUNC(void, AP_Hello_World_CODE) StructRunable(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
+FUNC(void, AP_Hello_World_CODE) StructRunnable(void) /* PRQA S 0624, 3206 */ /* MD_Rte_0624, MD_Rte_3206 */
 {
 /**********************************************************************************************************************
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
- * Symbol: StructRunable
+ * Symbol: StructRunnable
  *********************************************************************************************************************/
   //@ slevel merge;
 
@@ -2142,7 +2142,7 @@ FUNC(void, AP_Hello_World_CODE) StructRunable(void) /* PRQA S 0624, 3206 */ /* M
   //@ slevel merge;
   {
     ComplexStructImpl *data;
-    data = Rte_IRead_StructRunable_StructSRInterface_IElement();
+    data = Rte_IRead_StructRunnable_StructSRInterface_IElement();
     /*@ assert \initialized(data); */
     /*@ assert 1 <= data->intElement <= 10; */
     /*@ assert data->floatElement < 100.0; */
@@ -2162,12 +2162,12 @@ FUNC(void, AP_Hello_World_CODE) StructRunable(void) /* PRQA S 0624, 3206 */ /* M
       @ rt == RTE_E_HARD_TRANSFORMER_ERROR ||
       @ rt == RTE_E_SOFT_TRANSFORMER_ERROR;
       @ */
-    Rte_IWrite_StructRunable_StructSRInterface_IElement(data);
+    Rte_IWrite_StructRunnable_StructSRInterface_IElement(data);
   }
   //@ slevel merge;
   {
     ComplexStructImpl *data;
-    data = Rte_IWriteRef_StructRunable_StructSRInterface_IElement();
+    data = Rte_IWriteRef_StructRunnable_StructSRInterface_IElement();
     /*@ assert \valid(data); */
   }
 

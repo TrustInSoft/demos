@@ -2062,7 +2062,7 @@ For example: 1, 0, 126, +10.</L-2>
               </PORT-API-OPTIONS>
               <RUNNABLES>
                 <RUNNABLE-ENTITY UUID="734CAB4D-543B-46F9-80A9-8B4501E31659">
-                  <SHORT-NAME>ArrayRunable</SHORT-NAME>
+                  <SHORT-NAME>ArrayRunnable</SHORT-NAME>
                   <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
                   <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                   <DATA-READ-ACCESSS>
@@ -2349,7 +2349,7 @@ For example: 1, 0, 126, +10.</L-2>
                       <TIMEOUT>0</TIMEOUT>
                     </SYNCHRONOUS-SERVER-CALL-POINT>
                   </SERVER-CALL-POINTS>
-                  <SYMBOL>ArrayRunable</SYMBOL>
+                  <SYMBOL>ArrayRunnable</SYMBOL>
                 </RUNNABLE-ENTITY>
                 <RUNNABLE-ENTITY UUID="33C0F34D-1CE1-4E6E-9881-CC44C7E46415">
                   <SHORT-NAME>BooleanRunnable</SHORT-NAME>
@@ -2491,7 +2491,7 @@ For example: 1, 0, 126, +10.</L-2>
                   <SYMBOL>BooleanRunnable</SYMBOL>
                 </RUNNABLE-ENTITY>
                 <RUNNABLE-ENTITY UUID="A23BB085-B769-4840-B389-338520796B06">
-                  <SHORT-NAME>ComplexArrayRunable</SHORT-NAME>
+                  <SHORT-NAME>ComplexArrayRunnable</SHORT-NAME>
                   <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
                   <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                   <DATA-READ-ACCESSS>
@@ -2678,7 +2678,7 @@ For example: 1, 0, 126, +10.</L-2>
                       </ACCESSED-PARAMETER>
                     </PARAMETER-ACCESS>
                   </PARAMETER-ACCESSS>
-                  <SYMBOL>ComplexArrayRunable</SYMBOL>
+                  <SYMBOL>ComplexArrayRunnable</SYMBOL>
                 </RUNNABLE-ENTITY>
                 <RUNNABLE-ENTITY UUID="E8362572-9C09-4BB8-B16E-4399B143D7C3">
                   <SHORT-NAME>ComplexRxRunnable</SHORT-NAME>
@@ -5528,7 +5528,7 @@ For example: 1, 0, 126, +10.</L-2>
                   </WAIT-POINTS>
                 </RUNNABLE-ENTITY>
                 <RUNNABLE-ENTITY UUID="225EE2B1-AE2A-44B2-80E8-043CFF4DCE98">
-                  <SHORT-NAME>StructRunable</SHORT-NAME>
+                  <SHORT-NAME>StructRunnable</SHORT-NAME>
                   <MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
                   <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
                   <DATA-READ-ACCESSS>
@@ -5707,7 +5707,7 @@ For example: 1, 0, 126, +10.</L-2>
                       <TIMEOUT>0</TIMEOUT>
                     </SYNCHRONOUS-SERVER-CALL-POINT>
                   </SERVER-CALL-POINTS>
-                  <SYMBOL>StructRunable</SYMBOL>
+                  <SYMBOL>StructRunnable</SYMBOL>
                 </RUNNABLE-ENTITY>
                 <RUNNABLE-ENTITY UUID="ED360828-1768-4A7C-90DC-17BA08622B31">
                   <SHORT-NAME>TriggerRunnable</SHORT-NAME>

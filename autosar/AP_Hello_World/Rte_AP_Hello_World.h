@@ -54,9 +54,9 @@ extern "C"
 struct Rte_CDS_AP_Hello_World
 {
   /* Data Handles section */
-  P2VAR(Rte_DE_IntArrayImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ArrayRunable_ArraySRInterface_INone;
-  P2VAR(Rte_DES_IntArrayImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ArrayRunable_ArraySRInterface_Iconstraint;
-  P2VAR(Rte_DES_multiArrayThreeImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit;
+  P2VAR(Rte_DE_IntArrayImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ArrayRunnable_ArraySRInterface_INone;
+  P2VAR(Rte_DES_IntArrayImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ArrayRunnable_ArraySRInterface_Iconstraint;
+  P2VAR(Rte_DES_multiArrayThreeImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit;
   P2VAR(Rte_DE_customFloat64, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) DoubleRunnable_DoubleSRPort_implicitElem;
   P2VAR(Rte_DES_sint8, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ImplicitReadRunnable_SimpleReadProto_ReadElementOpenRange;
   P2VAR(Rte_DE_customDouble32, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ImplicitReadRunnable_SimpleReadProto_ReadElementRangeInfMax;
@@ -69,7 +69,7 @@ struct Rte_CDS_AP_Hello_World
   P2VAR(Rte_DE_customDouble32, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ImpliciteWrite_SimpleWritePort_ReadElementRangeInfMax;
   P2VAR(Rte_DE_sint16, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ImpliciteWrite_SimpleWritePort_SimpleReadElement;
   P2VAR(Rte_DE_uint64, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) ImpliciteWrite_SimpleWritePort_SimpleReadNeverReceived;
-  P2VAR(Rte_DE_ComplexStructImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) StructRunable_StructSRInterface_IElement;
+  P2VAR(Rte_DE_ComplexStructImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) StructRunnable_StructSRInterface_IElement;
   P2VAR(Rte_DE_unionImpl, TYPEDEF, RTE_AP_HELLO_WORLD_APPL_VAR) UnionRunnable_UnionSRInterface_implicitElem;
   /* PIM Handles section */
   P2VAR(uint16, TYPEDEF, RTE_VAR_DEFAULT_RTE_PIM_GROUP) Pim_PerInstanceMemory;
@@ -347,32 +347,32 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IRead_ArrayRunable_ArraySRInterface_INone() \
-  (*&Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_INone->value)
+#  define Rte_IRead_ArrayRunnable_ArraySRInterface_INone() \
+  (*&Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_INone->value)
 # else
-#  define Rte_IRead_ArrayRunable_ArraySRInterface_INone() \
-  (&Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_INone->value)
+#  define Rte_IRead_ArrayRunnable_ArraySRInterface_INone() \
+  (&Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_INone->value)
 # endif
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint() \
-  (*&Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->value)
+#  define Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint() \
+  (*&Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->value)
 # else
-#  define Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint() \
-  (&Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->value)
+#  define Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint() \
+  (&Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->value)
 # endif
 
 
-# define Rte_IStatus_ArrayRunable_ArraySRInterface_Iconstraint() \
-  (Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status)
+# define Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint() \
+  (Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status)
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IWrite_ArrayRunable_ArraySRInterface_INone(data) \
+#  define Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data) \
   { \
     P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA) src = (P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA)) (data); \
-    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_INone->value; \
+    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_INone->value; \
     uint32_least i; \
     for (i = 0; i < sizeof(IntArrayImpl) ; i++) \
     { \
@@ -380,10 +380,10 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
     } \
   }
 # else
-#  define Rte_IWrite_ArrayRunable_ArraySRInterface_INone(data) \
+#  define Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data) \
   { \
     P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA) src = (P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA)) *(data); \
-    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_INone->value; \
+    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_INone->value; \
     uint32_least i; \
     for (i = 0; i < sizeof(IntArrayImpl) ; i++) \
     { \
@@ -394,20 +394,20 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone() \
-  (Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_INone->value)
+#  define Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone() \
+  (Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_INone->value)
 # else
-#  define Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone() \
-  (&Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_INone->value)
+#  define Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone() \
+  (&Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_INone->value)
 # endif
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IWrite_ArrayRunable_ArraySRInterface_Iconstraint(data) \
-  Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status = RTE_E_OK; \
+#  define Rte_IWrite_ArrayRunnable_ArraySRInterface_Iconstraint(data) \
+  Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status = RTE_E_OK; \
   { \
     P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA) src = (P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA)) (data); \
-    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->value; \
+    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->value; \
     uint32_least i; \
     for (i = 0; i < sizeof(IntArrayImpl) ; i++) \
     { \
@@ -415,11 +415,11 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
     } \
   }
 # else
-#  define Rte_IWrite_ArrayRunable_ArraySRInterface_Iconstraint(data) \
-  Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status = RTE_E_OK; \
+#  define Rte_IWrite_ArrayRunnable_ArraySRInterface_Iconstraint(data) \
+  Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status = RTE_E_OK; \
   { \
     P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA) src = (P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA)) *(data); \
-    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->value; \
+    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->value; \
     uint32_least i; \
     for (i = 0; i < sizeof(IntArrayImpl) ; i++) \
     { \
@@ -430,37 +430,37 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IWriteRef_ArrayRunable_ArraySRInterface_Iconstraint() \
-  (Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->value)
+#  define Rte_IWriteRef_ArrayRunnable_ArraySRInterface_Iconstraint() \
+  (Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->value)
 # else
-#  define Rte_IWriteRef_ArrayRunable_ArraySRInterface_Iconstraint() \
-  (&Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->value)
+#  define Rte_IWriteRef_ArrayRunnable_ArraySRInterface_Iconstraint() \
+  (&Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->value)
 # endif
 
 
-# define Rte_IInvalidate_ArrayRunable_ArraySRInterface_Iconstraint() \
-  (Rte_Inst_AP_Hello_World->ArrayRunable_ArraySRInterface_Iconstraint->status = RTE_E_INVALID)
+# define Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint() \
+  (Rte_Inst_AP_Hello_World->ArrayRunnable_ArraySRInterface_Iconstraint->status = RTE_E_INVALID)
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit() \
-  ((P2CONST(Rte_DT_IntArrayImpl_0, AUTOMATIC, RTE_VAR_NOINIT)) *&Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
+#  define Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit() \
+  ((P2CONST(Rte_DT_IntArrayImpl_0, AUTOMATIC, RTE_VAR_NOINIT)) *&Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
 # else
-#  define Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit() \
-  (&Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
+#  define Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit() \
+  (&Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
 # endif
 
 
-# define Rte_IStatus_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit() \
-  (Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status)
+# define Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit() \
+  (Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status)
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(data) \
-  Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status = RTE_E_OK; \
+#  define Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data) \
+  Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status = RTE_E_OK; \
   { \
     P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA) src = (P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA)) (data); \
-    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->value; \
+    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->value; \
     uint32_least i; \
     for (i = 0; i < sizeof(multiArrayThreeImpl) ; i++) \
     { \
@@ -468,11 +468,11 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
     } \
   }
 # else
-#  define Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(data) \
-  Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status = RTE_E_OK; \
+#  define Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data) \
+  Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status = RTE_E_OK; \
   { \
     P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA) src = (P2CONST(uint8, AUTOMATIC, RTE_AP_HELLO_WORLD_APPL_DATA)) *(data); \
-    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->value; \
+    P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT) dst = (P2VAR(uint8, AUTOMATIC, RTE_VAR_NOINIT))Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->value; \
     uint32_least i; \
     for (i = 0; i < sizeof(multiArrayThreeImpl) ; i++) \
     { \
@@ -483,16 +483,16 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
 
 
 # ifndef RTE_PTR2ARRAYTYPE_PASSING
-#  define Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit() \
-  ((P2VAR(Rte_DT_IntArrayImpl_0, AUTOMATIC, RTE_VAR_NOINIT)) Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
+#  define Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit() \
+  ((P2VAR(Rte_DT_IntArrayImpl_0, AUTOMATIC, RTE_VAR_NOINIT)) Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
 # else
-#  define Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit() \
-  (&Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
+#  define Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit() \
+  (&Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->value)
 # endif
 
 
-# define Rte_IInvalidate_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit() \
-  (Rte_Inst_AP_Hello_World->ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit->status = RTE_E_INVALID)
+# define Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit() \
+  (Rte_Inst_AP_Hello_World->ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit->status = RTE_E_INVALID)
 
 
 # define Rte_IRead_DoubleRunnable_DoubleSRPort_implicitElem() \
@@ -616,18 +616,18 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
   (&Rte_Inst_AP_Hello_World->ImpliciteWrite_SimpleWritePort_SimpleReadNeverReceived->value)
 
 
-# define Rte_IRead_StructRunable_StructSRInterface_IElement() \
-  (&Rte_Inst_AP_Hello_World->StructRunable_StructSRInterface_IElement->value)
+# define Rte_IRead_StructRunnable_StructSRInterface_IElement() \
+  (&Rte_Inst_AP_Hello_World->StructRunnable_StructSRInterface_IElement->value)
 
 
-# define Rte_IWrite_StructRunable_StructSRInterface_IElement(data) \
+# define Rte_IWrite_StructRunnable_StructSRInterface_IElement(data) \
   ( \
-    Rte_Inst_AP_Hello_World->StructRunable_StructSRInterface_IElement->value = *(data) \
+    Rte_Inst_AP_Hello_World->StructRunnable_StructSRInterface_IElement->value = *(data) \
   )
 
 
-# define Rte_IWriteRef_StructRunable_StructSRInterface_IElement() \
-  (&Rte_Inst_AP_Hello_World->StructRunable_StructSRInterface_IElement->value)
+# define Rte_IWriteRef_StructRunnable_StructSRInterface_IElement() \
+  (&Rte_Inst_AP_Hello_World->StructRunnable_StructSRInterface_IElement->value)
 
 
 # define Rte_IRead_UnionRunnable_UnionSRInterface_implicitElem() \
@@ -961,7 +961,7 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
 
 /**********************************************************************************************************************
  *
- * Runnable Entity Name: ArrayRunable
+ * Runnable Entity Name: ArrayRunnable
  *
  *---------------------------------------------------------------------------------------------------------------------
  *
@@ -988,9 +988,9 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
  *
  *   Implicit S/R API:
  *   -----------------
- *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunable_ArraySRInterface_INone(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunnable_ArraySRInterface_INone(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
  *
  * Output Interfaces:
@@ -1018,15 +1018,15 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
  *
  *   Implicit S/R API:
  *   -----------------
- *   void Rte_IWrite_ArrayRunable_ArraySRInterface_INone(const Rte_DT_IntArrayImpl_0 *data)
+ *   void Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(const Rte_DT_IntArrayImpl_0 *data)
  *     Argument data: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunable_ArraySRInterface_INone(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   void Rte_IWrite_ArrayRunable_ArraySRInterface_Iconstraint(const Rte_DT_IntArrayImpl_0 *data)
+ *   void Rte_IWrite_ArrayRunnable_ArraySRInterface_Iconstraint(const Rte_DT_IntArrayImpl_0 *data)
  *     Argument data: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type IntArrayImpl
- *   void Rte_IInvalidate_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   void Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *
  * Client/Server Interfaces:
  * =========================
@@ -1046,12 +1046,12 @@ FUNC(customUInt8, RTE_CODE) Rte_CData_AP_Hello_World_SharedInternalCalibrationPa
  *
  *   Rx Status:
  *   ----------
- *   Std_ReturnType Rte_IStatus_ArrayRunable_ArraySRInterface_Iconstraint(void)
+ *   Std_ReturnType Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint(void)
  *
  *********************************************************************************************************************/
 
-# define RTE_RUNNABLE_ArrayRunable ArrayRunable
-FUNC(void, AP_Hello_World_CODE) ArrayRunable(void);
+# define RTE_RUNNABLE_ArrayRunnable ArrayRunnable
+FUNC(void, AP_Hello_World_CODE) ArrayRunnable(void);
 
 /**********************************************************************************************************************
  *
@@ -1076,7 +1076,7 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void);
 
 /**********************************************************************************************************************
  *
- * Runnable Entity Name: ComplexArrayRunable
+ * Runnable Entity Name: ComplexArrayRunnable
  *
  *---------------------------------------------------------------------------------------------------------------------
  *
@@ -1095,7 +1095,7 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void);
  *
  *   Implicit S/R API:
  *   -----------------
- *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type multiArrayThreeImpl
  *
  * Output Interfaces:
@@ -1109,22 +1109,22 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void);
  *
  *   Implicit S/R API:
  *   -----------------
- *   void Rte_IWrite_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(const Rte_DT_IntArrayImpl_0 *data)
+ *   void Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(const Rte_DT_IntArrayImpl_0 *data)
  *     Argument data: Rte_DT_IntArrayImpl_0* is of type multiArrayThreeImpl
- *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   Rte_DT_IntArrayImpl_0 *Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *     Returnvalue: Rte_DT_IntArrayImpl_0* is of type multiArrayThreeImpl
- *   void Rte_IInvalidate_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   void Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *
  * Status Interfaces:
  * ==================
  *   Rx Status:
  *   ----------
- *   Std_ReturnType Rte_IStatus_ComplexArrayRunable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
+ *   Std_ReturnType Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(void)
  *
  *********************************************************************************************************************/
 
-# define RTE_RUNNABLE_ComplexArrayRunable ComplexArrayRunable
-FUNC(void, AP_Hello_World_CODE) ComplexArrayRunable(void);
+# define RTE_RUNNABLE_ComplexArrayRunnable ComplexArrayRunnable
+FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void);
 
 /**********************************************************************************************************************
  *
@@ -1674,7 +1674,7 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void);
 
 /**********************************************************************************************************************
  *
- * Runnable Entity Name: StructRunable
+ * Runnable Entity Name: StructRunnable
  *
  *---------------------------------------------------------------------------------------------------------------------
  *
@@ -1690,7 +1690,7 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void);
  *
  *   Implicit S/R API:
  *   -----------------
- *   ComplexStructImpl *Rte_IRead_StructRunable_StructSRInterface_IElement(void)
+ *   ComplexStructImpl *Rte_IRead_StructRunnable_StructSRInterface_IElement(void)
  *
  * Output Interfaces:
  * ==================
@@ -1700,8 +1700,8 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void);
  *
  *   Implicit S/R API:
  *   -----------------
- *   void Rte_IWrite_StructRunable_StructSRInterface_IElement(const ComplexStructImpl *data)
- *   ComplexStructImpl *Rte_IWriteRef_StructRunable_StructSRInterface_IElement(void)
+ *   void Rte_IWrite_StructRunnable_StructSRInterface_IElement(const ComplexStructImpl *data)
+ *   ComplexStructImpl *Rte_IWriteRef_StructRunnable_StructSRInterface_IElement(void)
  *
  * Client/Server Interfaces:
  * =========================
@@ -1712,8 +1712,8 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void);
  *
  *********************************************************************************************************************/
 
-# define RTE_RUNNABLE_StructRunable StructRunable
-FUNC(void, AP_Hello_World_CODE) StructRunable(void);
+# define RTE_RUNNABLE_StructRunnable StructRunnable
+FUNC(void, AP_Hello_World_CODE) StructRunnable(void);
 
 /**********************************************************************************************************************
  *

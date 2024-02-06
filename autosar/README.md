@@ -52,9 +52,9 @@ WARNING:__main__:Could not parse AutosarDataType for argument 'arg'
 WARNING:__main__:Could not extract arguments for operation 'UnionCInterface'
 The AUTOSAR mock generation is complete. Generation summary:
 In the software component 'AP_Hello_World', the following runnable(s) were detected:
- - 'ArrayRunable'
+ - 'ArrayRunnable'
  - 'BooleanRunnable'
- - 'ComplexArrayRunable'
+ - 'ComplexArrayRunnable'
  - 'ComplexRxRunnable'
  - 'DataConstraintRunnable'
  - 'DoubleRunnable'
@@ -71,7 +71,7 @@ In the software component 'AP_Hello_World', the following runnable(s) were detec
  - 'MultipleInstanciationRunnable'
  - 'ReceiveRecordRunnable'
  - 'ServiceRunnable'
- - 'StructRunable'
+ - 'StructRunnable'
  - 'TriggerRunnable'
  - 'UnionRunnable'
 
@@ -104,7 +104,7 @@ tis-analyzer -tis-config-load .trustinsoft/generated_config.json -tis-config-sel
 ETA: 0s Left: 0 AVG: 0.36s  local:0/22/100%/0.5s
 Compiling report from 22 past executed tests
 tis-report .trustinsoft/results/ --skip-file rte_mocks.c
-information: using analysis .trustinsoft/results/AP_Hello_World_ArrayRunable_results.json
+information: using analysis .trustinsoft/results/AP_Hello_World_ArrayRunnable_results.json
 ...
 information: using analysis .trustinsoft/results/AP_Hello_World_UnionRunnable_results.json
 The report has been generated in tis_report.html
