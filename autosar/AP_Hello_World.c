@@ -301,7 +301,6 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunnable(void) /* PRQA S 0624, 3206 */ /* M
  * Symbol: ArrayRunnable
  *********************************************************************************************************************/
 
-  //@ slevel merge;
   Std_ReturnType rt;
 #ifdef RTE_PTR2ARRAYTYPE_PASSING
   IntArrayImpl arr;
@@ -310,29 +309,19 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunnable(void) /* PRQA S 0624, 3206 */ /* M
   if (rt == RTE_E_OK) {
   } else {
   }
-  //@ slevel merge;
   rt = Rte_Read_ArraySRInterface_constraint(data);
   if (rt == RTE_E_OK) {
   } else {
   }
-  //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_INone();
-  //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint();
-  //@ slevel merge;
   rt = Rte_Write_ArraySRInterface_acknowlegdement(data);
-  //@ slevel merge;
   rt = Rte_Invalidate_ArraySRInterface_acknowlegdement();
-  //@ slevel merge;
   Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data);
   data = Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone();
-  //@ slevel merge;
   Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint();
-  //@ slevel merge;
   rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
-  //@ slevel merge;
   rt = Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint();
-  //@ slevel merge;
   data = Rte_Prm_ArrayCalibration_arrayElement();
 #else
   Rte_DT_IntArrayImpl_0 arr[10];
@@ -341,29 +330,19 @@ FUNC(void, AP_Hello_World_CODE) ArrayRunnable(void) /* PRQA S 0624, 3206 */ /* M
   if (rt == RTE_E_OK) {
   } else {
   }
-  //@ slevel merge;
   rt = Rte_Read_ArraySRInterface_constraint(data);
   if (rt == RTE_E_OK) {
   } else {
   }
-  //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_INone();
-  //@ slevel merge;
   data = Rte_IRead_ArrayRunnable_ArraySRInterface_Iconstraint();
-  //@ slevel merge;
   rt = Rte_Write_ArraySRInterface_acknowlegdement(data);
-  //@ slevel merge;
   rt = Rte_Invalidate_ArraySRInterface_acknowlegdement();
-  //@ slevel merge;
   Rte_IWrite_ArrayRunnable_ArraySRInterface_INone(data);
   data = Rte_IWriteRef_ArrayRunnable_ArraySRInterface_INone();
-  //@ slevel merge;
   Rte_IInvalidate_ArrayRunnable_ArraySRInterface_Iconstraint();
-  //@ slevel merge;
   rt = Rte_Feedback_ArraySRInterface_acknowlegdement();
-  //@ slevel merge;
   rt = Rte_IStatus_ArrayRunnable_ArraySRInterface_Iconstraint();
-  //@ slevel merge;
   data = Rte_Prm_ArrayCalibration_arrayElement();
 #endif // RTE_PTR2ARRAY_PASSING
 
@@ -406,7 +385,6 @@ FUNC(void, AP_Hello_World_CODE) BooleanRunnable(void) /* PRQA S 0624, 3206 */ /*
  * Symbol: BooleanRunnable
  *********************************************************************************************************************/
 
-  //@ slevel merge;
   Std_ReturnType rt;
   boolean data;
   rt = Rte_Read_BooleanSR_isElement(&data);
@@ -484,7 +462,6 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
  * Symbol: ComplexArrayRunnable
  *********************************************************************************************************************/
 
-  //@ slevel merge;
   Std_ReturnType rt;
 #ifdef RTE_PTR2ARRAYTYPE_PASSING
   {
@@ -494,7 +471,6 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     } else {
     }
   }
-  //@ slevel merge;
   {
     multiArrayThreeImpl arr;
     rt = Rte_Read_MultiArraySRInterface_multiArrayConstraint(&arr);
@@ -503,25 +479,18 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     } else {
     }
   }
-  //@ slevel merge;
   {
     multiArrayThreeImpl *data;
     data = Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-    //@ slevel merge;
     rt = Rte_Write_MultiArraySRInterface_multiArray(data);
-    //@ slevel merge;
     Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
   }
-  //@ slevel merge;
   {
     multiArrayThreeImpl *data;
     data = Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
   }
-  //@ slevel merge;
   Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  //@ slevel merge;
   rt = Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  //@ slevel merge;
   {
     multiArrayThreeImpl *data;
     data = Rte_Prm_MultiArrayCalibration_multiArrayElement();
@@ -534,7 +503,6 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     } else {
     }
   }
-  //@ slevel merge;
   {
     Rte_DT_IntArrayImpl_0 arr[2][3][10];
     rt = Rte_Read_MultiArraySRInterface_multiArrayConstraint(&arr);
@@ -543,24 +511,18 @@ FUNC(void, AP_Hello_World_CODE) ComplexArrayRunnable(void) /* PRQA S 0624, 3206 
     } else {
     }
   }
-  //@ slevel merge;
   {
     Rte_DT_IntArrayImpl_0 *data;
     data = Rte_IRead_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-    //@ slevel merge;
     rt = Rte_Write_MultiArraySRInterface_multiArray(data);
-    //@ slevel merge;
     Rte_IWrite_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit(data);
   }
   {
     Rte_DT_IntArrayImpl_0 *data;
     data = Rte_IWriteRef_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
   }
-  //@ slevel merge;
   Rte_IInvalidate_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  //@ slevel merge;
   rt = Rte_IStatus_ComplexArrayRunnable_MultiArraySRInterface_multiArrayConstraintImplicit();
-  //@ slevel merge;
   {
     Rte_DT_IntArrayImpl_0 *data;
     data = Rte_Prm_MultiArrayCalibration_multiArrayElement();
@@ -610,7 +572,6 @@ FUNC(void, AP_Hello_World_CODE) ComplexRxRunnable(void) /* PRQA S 0624, 3206 */ 
  * Symbol: ComplexRxRunnable
  *********************************************************************************************************************/
 
-  //@ slevel merge;
   Std_ReturnType ret;
   uint64 data;
   ret = Rte_Receive_ComplexElementRx_QueuedElement(&data);
@@ -795,7 +756,6 @@ FUNC(void, AP_Hello_World_CODE) DataConstraintRunnable(void) /* PRQA S 0624, 320
   if (rt == RTE_E_OK) {
   }
 
-  //@ slevel merge;
   data = tis_interval(1, 99);
   Rte_Write_DataConstraintInterface_DataProtypeConstr(data);
   data = tis_interval(1, 99);
@@ -938,7 +898,6 @@ FUNC(void, AP_Hello_World_CODE) ExplicitReadByValue(void) /* PRQA S 0624, 3206 *
  * Symbol: ExplicitReadByValue
  *********************************************************************************************************************/
 
-  //@ slevel merge;
   sint16 out;
   Std_ReturnType rt;
   rt = Rte_Read_SimpleReadProto_SimpleReadElement(&out);
@@ -946,19 +905,16 @@ FUNC(void, AP_Hello_World_CODE) ExplicitReadByValue(void) /* PRQA S 0624, 3206 *
   } else {
   }
 
-  //@ slevel merge;
   float32 out_f;
   rt = Rte_Read_SimpleReadProto_ReadElementRangeInfMax(&out_f);
   if (rt == RTE_E_OK) {
   }
 
-  //@ slevel merge;
   rt = Rte_Read_ReadWithErrorHandler_SimpleReadElement(&out);
   if (rt == RTE_E_OK)
   {
   }
 
-  //@ slevel merge;
    sint8 out_s;
    rt = Rte_Read_SimpleReadProto_ReadElementOpenRange(&out_s);
    if (rt == RTE_E_OK)
@@ -1097,7 +1053,6 @@ FUNC(void, AP_Hello_World_CODE) Hello_World_Runnable(P2CONST(Std_TransformerErro
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
  * Symbol: Hello_World_Runnable
  *********************************************************************************************************************/
-  //@ slevel merge;
   Std_TransformerError err;
   Std_ReturnType ret = Rte_Write_Hello_World_port_Hello_World_Element(0, &err);
 
@@ -1226,7 +1181,6 @@ FUNC(void, AP_Hello_World_CODE) ImpliciteWrite(void) /* PRQA S 0624, 3206 */ /* 
  * Symbol: ImpliciteWrite
  *********************************************************************************************************************/
 
-  //@ slevel merge;
   Rte_IWrite_ImpliciteWrite_ComplexPortTest_ComplexElement(0);
   Rte_IWrite_ImpliciteWrite_ComplexPortTest_ConstrainedElement(0);
   Rte_IWrite_ImpliciteWrite_ComplexPortTest_HandleInvalidElement(0);
@@ -1314,20 +1268,17 @@ FUNC(void, AP_Hello_World_CODE) InterVariableRunnable(void) /* PRQA S 0624, 3206
     uint8 res_uint8 = Rte_IrvRead_InterVariableRunnable_ExplicitInterRunnableValue();
     Rte_IrvWrite_InterVariableRunnable_ExplicitInterRunnableValue(res_uint8);
   }
-  //@ slevel merge;
   {
     uint8 res_uint8 = Rte_IrvIRead_InterVariableRunnable_ImplicitInterRunnableValue();
     Rte_IrvIWrite_InterVariableRunnable_ImplicitInterRunnableValue(res_uint8);
     uint8 *write_uint8 = Rte_IrvIWriteRef_InterVariableRunnable_ImplicitInterRunnableValue();
   }
-  //@ slevel merge;
 
   {
     ComplexStructImpl res_struct;
     Rte_IrvRead_InterVariableRunnable_ExplicitInterRunnableStruct(&res_struct);
     Rte_IrvWrite_InterVariableRunnable_ExplicitInterRunnableStruct(&res_struct);
   }
-  //@ slevel merge;
   {
     ComplexStructImpl res_struct;
     res_struct = *Rte_IrvIRead_InterVariableRunnable_ImplicitInterRunnableStruct();
@@ -1621,7 +1572,6 @@ FUNC(void, AP_Hello_World_CODE) ServiceRunnable(void) /* PRQA S 0624, 3206 */ /*
   NvM_RequestResultType nvm_result;
   rt = Rte_Result_NvSWC_NvMService_client_GetErrorStatus(&nvm_result);
 
-  //@ slevel merge;
   Std_TransformerError te;
   rt = Rte_Result_NvSWC_NvMService_AC2_SRBS_Defs_client_WriteBlock(&te);
   if (rt == RTE_E_HARD_TRANSFORMER_ERROR || RTE_E_SOFT_TRANSFORMER_ERROR) {
@@ -1698,7 +1648,6 @@ FUNC(void, AP_Hello_World_CODE) StructRunnable(void) /* PRQA S 0624, 3206 */ /* 
  * DO NOT CHANGE THIS COMMENT!           << Start of runnable implementation >>             DO NOT CHANGE THIS COMMENT!
  * Symbol: StructRunnable
  *********************************************************************************************************************/
-  //@ slevel merge;
 
   Std_ReturnType rt;
   {
@@ -1711,7 +1660,6 @@ FUNC(void, AP_Hello_World_CODE) StructRunnable(void) /* PRQA S 0624, 3206 */ /* 
     } else {
     }
   }
-  //@ slevel merge;
   {
     ComplexStructImpl *data;
     data = Rte_IRead_StructRunnable_StructSRInterface_IElement();
@@ -1720,7 +1668,6 @@ FUNC(void, AP_Hello_World_CODE) StructRunnable(void) /* PRQA S 0624, 3206 */ /* 
     rt = Rte_Write_StructSRInterface_Element(data);
     Rte_IWrite_StructRunnable_StructSRInterface_IElement(data);
   }
-  //@ slevel merge;
   {
     ComplexStructImpl *data;
     data = Rte_IWriteRef_StructRunnable_StructSRInterface_IElement();
@@ -1857,7 +1804,6 @@ FUNC(void, AP_Hello_World_CODE) UnionRunnable(void) /* PRQA S 0624, 3206 */ /* M
 
 #if 0
 /***  Start of saved code (symbol: runnable implementation:ServerCallRunnable)  *****************************/
-  //@ slevel merge;
   float32 out;
   Std_ReturnType ret = Rte_Call_CallPortInterface_SimpleIntOperation(32, &out);
 
