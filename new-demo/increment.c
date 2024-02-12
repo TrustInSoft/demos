@@ -29,11 +29,10 @@ void increment_array(int array[], int len)
     if (array == NULL || len == 0)
         return;
 
-    while (len > 0)
+    while (len >= 0)
     {
         int value = *array;
-        if (value < INT_MAX)
-            (*array) = value + 1; // Increment the value of the array cell
+        (*array) = value + 1; // Increment the value of the array cell
         array++;              // Move to next array cell
         len--;                // Decrement loop counter
     }
