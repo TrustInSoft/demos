@@ -1,6 +1,6 @@
 #!/bin/bash
 # trustinsoft/demos
-# Copyright (C) 2022-2023 TrustInSoft
+# Copyright (C) 2022-2024 TrustInSoft
 # mailto:contact AT trust-in-soft DOT com
 # 
 # This program is free software; you can redistribute it and/or
@@ -20,6 +20,25 @@
 set -euo pipefail
 
 source ../tools/demo-tools.sh
+auto="false"
+while [ $# -ne 0 ]; do
+  case $1 in
+    -a)
+      shift
+      auto="true"
+      ;;
+    *)
+      cat << EOF
+Usage: $0 [-a]
+
+-a: Runs the demo automatically without human intervention.
+    If not set, a 'press enter' prompt is displayed to move from screen to screen
+
+EOF
+      exit 1
+      ;;
+  esac
+done
 
 #------------------------------------------------------------------------------
 clear
@@ -37,7 +56,7 @@ $H2
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 12
 
 #------------------------------------------------------------------------------
 clear
@@ -54,7 +73,7 @@ EOF
 tac increment.c | sed -e '/void increment_array/q' | tac
 
 echo ""
-press_enter
+press_enter $auto 10
 #------------------------------------------------------------------------------
 clear
 cat << EOF
@@ -68,7 +87,7 @@ EOF
 tac test_driver.c | sed -e '/int main()/q' | tac
 
 echo ""
-press_enter
+press_enter $auto 10
 
 #------------------------------------------------------------------------------
 clear
@@ -79,7 +98,7 @@ ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut
+make gcc
 
 cat << EOF
 ${GREEN}As you can see the array is well incremented for all its cells.
@@ -87,7 +106,7 @@ Despite the Undefined Behavior, the test passes
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 10
 
 #------------------------------------------------------------------------------
 clear
@@ -98,7 +117,7 @@ ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut-gcc
+make gcc-verbose
 
 cat << EOF
 ${GREEN}If you carefully look, you'll notice that the compiler stored the ${YELLOW}name${GREEN} variable
@@ -114,7 +133,7 @@ be the location of ${YELLOW}name${GREEN}
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 20
 
 #------------------------------------------------------------------------------
 clear
@@ -125,7 +144,7 @@ ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut-clang
+make clang
 
 cat << EOF
 ${GREEN}clang decides for another way of storing the ${YELLOW}data${GREEN} and ${YELLOW}name${GREEN} variables in memory.
@@ -138,7 +157,7 @@ ${YELLOW}name${GREEN}. The UB problem is nevertheless still present.
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 16
 
 #------------------------------------------------------------------------------
 clear
@@ -154,7 +173,7 @@ ${RESET}
 EOF
 
 sleep $SLEEP_TIME
-make ut-gcc-long
+make gcc-long
 
 cat << EOF
 ${GREEN}"Que nenni!" as we'd say in old French: For some reason, because the ${YELLOW}name${GREEN} string
@@ -173,7 +192,7 @@ EOF
 
 make clean
 
-press_enter
+press_enter $auto 20
 
 #------------------------------------------------------------------------------
 clear
@@ -206,36 +225,40 @@ of the array) location (i.e. a buffer overflow).
 ${RESET}
 EOF
 
-press_enter
+press_enter $auto 16
 #------------------------------------------------------------------------------
 clear
+# cat << EOF
+# 
+# ${GREEN}$H2
+# Let's now fix the code and reanalyze with the TrustInSoft Analyzer.
+# ${RESET}
+# EOF
+# # Change to branch with the UB fix
+# git checkout fix-subtle-ub >/dev/null 2>&1
+# if [ $(which tis-analyzer) ]; then
+#     make tis
+# else
+#     cat << EOF
+# ${GREEN}${H2}
+# The TrustInSoft Analyzer is not installed in this machine, but if you could run it,
+# the output would be like the below:
+# ${H2}${RESET}
+# EOF
+#     cat .static/tis-no-ub.log
+# fi
+# echo ""
+# press_enter $auto 10
+#
+# cat << EOF
+
+# ${GREEN}$H2
+# No ${MAGENTA}Warning:${GREEN} is raised now that the code is fixed. 
+# EOF
+
 cat << EOF
 
 ${GREEN}$H2
-Let's now fix the code and reanalyze with the TrustInSoft Analyzer.
-${RESET}
-EOF
-# Change to branch with the UB fix
-git checkout fix-subtle-ub >/dev/null 2>&1
-if [ $(which tis-analyzer) ]; then
-    make tis
-else
-    cat << EOF
-${GREEN}${H2}
-The TrustInSoft Analyzer is not installed in this machine, but if you could run it,
-the output would be like the below:
-${H2}${RESET}
-EOF
-    cat .static/tis-no-ub.log
-fi
-echo ""
-press_enter
-
-cat << EOF
-
-${GREEN}$H2
-No ${MAGENTA}Warning:${GREEN} is raised now that the code is fixed. 
-
 With the TrustInSoft Analyzer the analysis/test result is deterministic,
 not context/memory layout dependent. There is an Undefined Behavior and it
 will always be detected and reported whatever the environment.${RESET}
