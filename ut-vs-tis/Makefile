@@ -19,9 +19,11 @@
 
 help: help-specific help-generic
 
+include ../tools/common.mk
+
 TARGET := demo-ub
-FILES := test_driver.c increment.c logutils.c
-TIS_OPTS = -val-profile interpreter -val -main test_increment_array -I.
+FILES := test_driver.c increment.c
+TIS_OPTS = -val-profile interpreter -tis-report-directory $(RESULTS_DIR) -val -main test_increment_array -I. -tis-report
 
 help-specific:
 	@echo "make ut             : Runs unit test with code compiled with gcc"
@@ -47,12 +49,16 @@ ut-long-name:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -DDEBUG -DLONG_NAME -I. $(FILES) -o $(TARGET).longname && ./$(TARGET).longname$(FONT_RESET)"
 	@$(COMPILER) -Wno-unused-value -DDEBUG -DLONG_NAME -I. $(FILES) -o $(TARGET).longname && ./$(TARGET).longname
 
-tis:
+run-tis:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
-	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+
+tis: run-tis report
 
 tis-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui
 
 clean: clean-generic
+
+report: report-generic
