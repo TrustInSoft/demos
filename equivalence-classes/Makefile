@@ -24,7 +24,7 @@ include ../tools/common.mk
 TARGET := equivalence-classes
 OBJS := $(TARGET).o
 FILES := $(TARGET).c
-TIS_OPTS := $(TIS_OPTS_SHORT)
+TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
 help-specific:
 	@echo "make test           : Runs classic equivalence test scenario"
@@ -54,3 +54,5 @@ check_assertions:
 clean: clean-generic
 
 report: report-generic
+
+prepare: prepare-generic

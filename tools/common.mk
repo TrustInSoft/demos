@@ -70,6 +70,5 @@ count-ub-2-generic:
 	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/2.*_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
-prepare:
-	@mkdir -p $(CONFIG_DIR) $(LOGS_DIR)
-	
+prepare-generic:
+	@mkdir -p $(CONFIG_DIR) $(RESULTS_DIR) $(LOGS_DIR) $(SAVE_DIR) 
