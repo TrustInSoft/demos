@@ -23,14 +23,14 @@ include ../tools/common.mk
 
 TARGET := sine-test
 FILES := test_driver.c sine.c
-TIS_OPTS := -val-profile analyzer -val -I.
+TIS_OPTS := -val-profile analyzer -val -I. -tis-report-directory $(RESULTS_DIR) -tis-report
 
 help-specific:
 	@echo "make test           : Runs unit tests"
 	@echo "make tis            : Runs TISA L1 analysis"
 	@echo "make tis-gui        : Runs TISA L1 analysis with the GUI"
 
-ut:
+test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)
 	@echo -e "$(FONT_CYAN)gcov boundary.c$(FONT_RESET)"
