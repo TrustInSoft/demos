@@ -76,15 +76,9 @@ tis-parse:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "0.parsing" -save $(AST_STATE)$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "0.parsing" -save $(AST_STATE)
 
-count-ub:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-1: count-ub-1-generic
 
-count-ub-2:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-2: count-ub-2-generic
 
 tis-l2-cli:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.1.generalized-small-array"$(FONT_RESET)"
@@ -97,8 +91,7 @@ clean: clean-generic
 	@echo "Reverting increment.cpp to original..."
 	@git checkout -q -- increment.cpp
 
-#tis-l1: tis-l1-1 tis-l1-2 count-ub report
-tis-l1: tis-parse tis-l1-1 tis-l1-2 tis-l1-3 tis-l1-4 count-ub report
+tis-l1: tis-parse tis-l1-1 tis-l1-2 tis-l1-3 tis-l1-4 count-ub-1 report
 
 tis-l2: tis-l2-cli count-ub-2 report
 

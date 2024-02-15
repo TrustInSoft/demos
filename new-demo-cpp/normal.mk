@@ -78,15 +78,9 @@ tis-l1-fast:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 5"
 	@../tools/run_all.sh -n 4 -c $(CONFIG_FILE) -a "3 2 4 5"
 
-count-ub:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-1: count-ub-1-generic
 
-count-ub-2:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-2: count-ub-2-generic
 
 tis-l2-cli:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
@@ -95,7 +89,7 @@ tis-l2-cli:
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array" -gui
 
-tis-l1: tis-l1-fast count-ub report
+tis-l1: tis-l1-fast count-ub-1 report
 
 tis-l2: tis-l2-cli count-ub-2 report
 

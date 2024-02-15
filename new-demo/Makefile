@@ -67,15 +67,9 @@ tis-l1-4:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.4.null-array"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
 
-count-ub:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-1: count-ub-1-generic
 
-count-ub-2:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-2: count-ub-2-generic
 
 tis-l2-cli:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
@@ -85,9 +79,9 @@ tis-l2-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
 	$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array" -gui
 
-tis-l1-seq: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count-ub report
+tis-l1-seq: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count-ub-1 report
 
-tis-l1: tis-l1-fast count-ub report
+tis-l1: tis-l1-fast count-ub-1 report
 
 tis-l1-fast:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 2"
