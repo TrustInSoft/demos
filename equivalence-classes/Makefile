@@ -30,15 +30,10 @@ help-specific:
 	@echo "make test           : Runs classic equivalence test scenario"
 	@echo "make tis            : Runs the TIS equivalence classes demo in cmd line"
 	@echo "make tis-gui        : Runs the equivalence classes demo in GUI"
-	@echo "make clean          : Cleanup and reset demo"
-
-prepare:
-	@mkdir -p $(CONFIG_DIR) $(LOGS_DIR)
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)
-
 
 tis-cli: prepare
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FONT_RESET)"
