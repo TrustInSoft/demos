@@ -46,7 +46,7 @@ tis-l1-run:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.positive-shift" | grep -v '\[info\]'
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.negative-shift" | grep -v '\[info\]'
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count-ub.sh _results/[12].*-shift_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh _results/[12].*-shift_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l1: tis-l1-run report
@@ -57,14 +57,14 @@ tis-l2-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2 -tis-config-select-by-name "3.generalized-shift" | grep -v '\[info\]'
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count-ub.sh _results/3.generalized-shift_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh _results/3.generalized-shift_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-step2-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2 -D LEVEL2_STEP2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2 -D LEVEL2_STEP2 -tis-config-select-by-name "4.generalized-string" | grep -v '\[info\]'
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count-ub.sh _results/4.generalized-string_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh _results/4.generalized-string_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-step2: tis-l2-step2-run report

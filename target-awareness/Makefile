@@ -71,17 +71,17 @@ tis-endianness-arm32-gui:
 
 count-ub:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count-ub.sh _results/*_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh _results/*_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 count-ub-1:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count-ub.sh _results/1.double-that_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh _results/1.double-that_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 count-ub-2:
 	@echo "==============================================="
-	@echo "      " `trustinsoft/count-ub.sh _results/2.msb_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh _results/2.msb_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 clean: clean-generic
