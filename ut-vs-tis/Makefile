@@ -17,7 +17,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-help: help-specific help-Generic
+help: help-specific help-generic
 
 TARGET := demo-ub
 FILES := test_driver.c increment.c logutils.c
