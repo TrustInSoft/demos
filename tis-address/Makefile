@@ -35,7 +35,7 @@ tis-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers"
 
-tis: tis-run report count-ub
+tis: tis-run count-ub report
 
 tis-address-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.init"$(FONT_RESET)"
@@ -43,14 +43,18 @@ tis-address-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers" -DWITH_TIS_ADDRESS
 
-tis-address: tis-address-run report count-ub
+tis-address: tis-address-run count-ub report
 
 tis-init:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "init"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "init" -gui
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.init"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.init" -gui
 
 tis-reg:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "get_registers"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "get_registers" -DWITH_TIS_ADDRESS -gui
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers" -DWITH_TIS_ADDRESS -gui
 
 count-ub: count-ub-generic
+
+report: report-generic
+
+clean: clean-generic
