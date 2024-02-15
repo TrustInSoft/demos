@@ -51,9 +51,9 @@ test:
 	fi
 	gcov $(TARGET).c
 
-tis-l1: tis-l1-run count-l1-ub report
+tis-l1: tis-l1-run count-ub-1 report
 
-tis-l2: tis-l2-run count-l2-ub report
+tis-l2: tis-l2-run count-ub-2 report
 
 tis-l1-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 1$(FONT_RESET)"
@@ -67,15 +67,9 @@ tis-l2-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2
 
-count-l1-ub:
-	@echo "==============================================="
-	@echo "      " `.trustinsoft/count-ub.sh _results/*test*_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-1: count-ub-1-generic
 
-count-l2-ub:
-	@echo "==============================================="
-	@echo "      " `.trustinsoft/count-ub.sh _results/*generalized*_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-2: count-ub-2-generic
 
 report: report-generic
 
