@@ -46,7 +46,7 @@ tis-l1-run:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.positive-shift" | grep -v '\[info\]'
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.negative-shift" | grep -v '\[info\]'
 	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/[12].*-shift_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/[12].*-shift_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l1: tis-l1-run report
@@ -57,14 +57,14 @@ tis-l2-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2 -tis-config-select-by-name "3.generalized-shift" | grep -v '\[info\]'
 	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/3.generalized-shift_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/3.generalized-shift_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-step2-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2 -D LEVEL2_STEP2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -D LEVEL2 -D LEVEL2_STEP2 -tis-config-select-by-name "4.generalized-string" | grep -v '\[info\]'
 	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/4.generalized-string_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/4.generalized-string_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-l2-step2: tis-l2-step2-run report
@@ -74,7 +74,7 @@ tis-l1-gui:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui # -tis-config-select-by-name main -gui | sed '/stack:.*test_driver.c/q'
 
 tis-l2-gui: tis-l2-run report
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER)  $(TIS_OPTS) -gui -D LEVEL2$(FONT_RESET)"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -gui -D LEVEL2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui -D LEVEL2 -tis-config-select-by-name "3.generalized-shift"
 
 tis-l2-step2-gui:
@@ -84,7 +84,7 @@ tis-l2-step2-gui:
 report: report-generic
 
 break_build:
-	@! cat _results/*_results.json|jq '{status: .alarms.status}'|grep -H '"status": "NOT OK"'
+	@! cat $(RESULTS_DIR)/*_results.json|jq '{status: .alarms.status}'|grep -H '"status": "NOT OK"'
 
 clean: clean-generic
-	@rm -rf a.out a.out.dSYM caesar caesar.dSYM *.gcov *.gcda *.gcno _results tis_report.html tis_misra_report *.log */*.log compile_commands.json
+	@rm -rf a.out a.out.dSYM caesar caesar.dSYM *.gcov *.gcda *.gcno *.log */*.log

@@ -15,7 +15,7 @@
 [value] Semantic level unrolling superposing up to 2000 states
 [value] Done for function test_generalized_array
 ...
-[info] Saved JSON results in '_results/2.generalized-array_results.json'
+[info] Saved JSON results in '.trustinsoft/results/2.generalized-array_results.json'
 [time] Performance summary:
   Parsing: 3.115s
   Value Analysis: 1.239s

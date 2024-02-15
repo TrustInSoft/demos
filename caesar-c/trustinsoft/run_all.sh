@@ -18,7 +18,7 @@ function run_analysis {
    opt=(
       -tis-config-load "${CONFIG}"
       -tis-config-select "${analysis_nbr}"
-      -save "_results/${analysis_nbr}.save"
+      -save ".trustinsoft/save/${analysis_nbr}.save"
    )
    tis-analyzer "${opt[@]}" | tee "${DIR}/analysis.${analysis_nbr}.log"
 }

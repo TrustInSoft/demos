@@ -189,7 +189,7 @@ demo.c:28:[value] completely invalid value in evaluation of
        1 UNDEFINED BEHAVIORS FOUND
 ===============================================
 Compiling report from 1 past executed tests
-information: using analysis _results/CUnit:sum_test_results.json
+information: using analysis .trustinsoft/results/CUnit:sum_test_results.json
 
 Check generated test report tis_report.html
 ```

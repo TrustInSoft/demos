@@ -23,16 +23,16 @@
 
 [value] Done for function test_large_array
 [scope:rm_asserts] removing 1 assertion(s)
-[info] Saved files information in '_results/1.2.large-array_files.csv'
-[info] Saved function information in '_results/1.2.large-array_functions.csv'
-[info] Saved variable information in '_results/1.2.large-array_variables.csv'
-[info] Saved shared variable information in '_results/1.2.large-array_shared_variables.csv'
-[info] Saved type information in '_results/1.2.large-array_types.csv'
-[info] Saved statement information in '_results/1.2.large-array_statements.csv'
-[info] Saved property information in '_results/1.2.large-array_properties.csv'
-[info] Saved decision information in '_results/1.2.large-array_decisions.csv'
-[info] Saved dead block information in '_results/1.2.large-array_dead_blocks.csv'
-[info] Saved JSON results in '_results/1.2.large-array_results.json'
+[info] Saved files information in '.trustinsoft/results/1.2.large-array_files.csv'
+[info] Saved function information in '.trustinsoft/results/1.2.large-array_functions.csv'
+[info] Saved variable information in '.trustinsoft/results/1.2.large-array_variables.csv'
+[info] Saved shared variable information in '.trustinsoft/results/1.2.large-array_shared_variables.csv'
+[info] Saved type information in '.trustinsoft/results/1.2.large-array_types.csv'
+[info] Saved statement information in '.trustinsoft/results/1.2.large-array_statements.csv'
+[info] Saved property information in '.trustinsoft/results/1.2.large-array_properties.csv'
+[info] Saved decision information in '.trustinsoft/results/1.2.large-array_decisions.csv'
+[info] Saved dead block information in '.trustinsoft/results/1.2.large-array_dead_blocks.csv'
+[info] Saved JSON results in '.trustinsoft/results/1.2.large-array_results.json'
 [time] Performance summary:
   Parsing: 2.224s
   Value Analysis: 2.872s
@@ -59,16 +59,16 @@
 
 [value] Done for function test_zero_length
 [scope:rm_asserts] removing 1 assertion(s)
-[info] Saved files information in '_results/1.3.zero-length-array_files.csv'
-[info] Saved function information in '_results/1.3.zero-length-array_functions.csv'
-[info] Saved variable information in '_results/1.3.zero-length-array_variables.csv'
-[info] Saved shared variable information in '_results/1.3.zero-length-array_shared_variables.csv'
-[info] Saved type information in '_results/1.3.zero-length-array_types.csv'
-[info] Saved statement information in '_results/1.3.zero-length-array_statements.csv'
-[info] Saved property information in '_results/1.3.zero-length-array_properties.csv'
-[info] Saved decision information in '_results/1.3.zero-length-array_decisions.csv'
-[info] Saved dead block information in '_results/1.3.zero-length-array_dead_blocks.csv'
-[info] Saved JSON results in '_results/1.3.zero-length-array_results.json'
+[info] Saved files information in '.trustinsoft/results/1.3.zero-length-array_files.csv'
+[info] Saved function information in './trustinsoft/results/1.3.zero-length-array_functions.csv'
+[info] Saved variable information in './trustinsoft/results/1.3.zero-length-array_variables.csv'
+[info] Saved shared variable information in './trustinsoft/results/1.3.zero-length-array_shared_variables.csv'
+[info] Saved type information in './trustinsoft/results/1.3.zero-length-array_types.csv'
+[info] Saved statement information in './trustinsoft/results/1.3.zero-length-array_statements.csv'
+[info] Saved property information in './trustinsoft/results/1.3.zero-length-array_properties.csv'
+[info] Saved decision information in './trustinsoft/results/1.3.zero-length-array_decisions.csv'
+[info] Saved dead block information in './trustinsoft/results/1.3.zero-length-array_dead_blocks.csv'
+[info] Saved JSON results in '.trustinsoft/results/1.3.zero-length-array_results.json'
 [time] Performance summary:
   Parsing: 2.096s
   Value Analysis: 0.037s
@@ -95,16 +95,16 @@
 
 [value] Done for function test_null
 [scope:rm_asserts] removing 1 assertion(s)
-[info] Saved files information in '_results/1.4.null-array_files.csv'
-[info] Saved function information in '_results/1.4.null-array_functions.csv'
-[info] Saved variable information in '_results/1.4.null-array_variables.csv'
-[info] Saved shared variable information in '_results/1.4.null-array_shared_variables.csv'
-[info] Saved type information in '_results/1.4.null-array_types.csv'
-[info] Saved statement information in '_results/1.4.null-array_statements.csv'
-[info] Saved property information in '_results/1.4.null-array_properties.csv'
-[info] Saved decision information in '_results/1.4.null-array_decisions.csv'
-[info] Saved dead block information in '_results/1.4.null-array_dead_blocks.csv'
-[info] Saved JSON results in '_results/1.4.null-array_results.json'
+[info] Saved files information in '.trustinsoft/results/1.4.null-array_files.csv'
+[info] Saved function information in './trustinsoft/results/1.4.null-array_functions.csv'
+[info] Saved variable information in './trustinsoft/results/1.4.null-array_variables.csv'
+[info] Saved shared variable information in './trustinsoft/results/1.4.null-array_shared_variables.csv'
+[info] Saved type information in './trustinsoft/results/1.4.null-array_types.csv'
+[info] Saved statement information in './trustinsoft/results/1.4.null-array_statements.csv'
+[info] Saved property information in './trustinsoft/results/1.4.null-array_properties.csv'
+[info] Saved decision information in './trustinsoft/results/1.4.null-array_decisions.csv'
+[info] Saved dead block information in './trustinsoft/results/1.4.null-array_dead_blocks.csv'
+[info] Saved JSON results in '.trustinsoft/results/1.4.null-array_results.json'
 [time] Performance summary:
   Parsing: 2.205s
   Value Analysis: 0.036s
@@ -131,16 +131,16 @@
 
 [value] Done for function test_small_array
 [scope:rm_asserts] removing 1 assertion(s)
-[info] Saved files information in '_results/1.1.small-array_files.csv'
-[info] Saved function information in '_results/1.1.small-array_functions.csv'
-[info] Saved variable information in '_results/1.1.small-array_variables.csv'
-[info] Saved shared variable information in '_results/1.1.small-array_shared_variables.csv'
-[info] Saved type information in '_results/1.1.small-array_types.csv'
-[info] Saved statement information in '_results/1.1.small-array_statements.csv'
-[info] Saved property information in '_results/1.1.small-array_properties.csv'
-[info] Saved decision information in '_results/1.1.small-array_decisions.csv'
-[info] Saved dead block information in '_results/1.1.small-array_dead_blocks.csv'
-[info] Saved JSON results in '_results/1.1.small-array_results.json'
+[info] Saved files information in '.trustinsoft/results/1.1.small-array_files.csv'
+[info] Saved function information in './trustinsoft/results/1.1.small-array_functions.csv'
+[info] Saved variable information in './trustinsoft/results/1.1.small-array_variables.csv'
+[info] Saved shared variable information in './trustinsoft/results/1.1.small-array_shared_variables.csv'
+[info] Saved type information in './trustinsoft/results/1.1.small-array_types.csv'
+[info] Saved statement information in './trustinsoft/results/1.1.small-array_statements.csv'
+[info] Saved property information in './trustinsoft/results/1.1.small-array_properties.csv'
+[info] Saved decision information in './trustinsoft/results/1.1.small-array_decisions.csv'
+[info] Saved dead block information in './trustinsoft/results/1.1.small-array_dead_blocks.csv'
+[info] Saved JSON results in '.trustinsoft/results/1.1.small-array_results.json'
 [time] Performance summary:
   Parsing: 2.133s
   Value Analysis: 0.055s

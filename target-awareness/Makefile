@@ -69,20 +69,11 @@ tis-endianness-arm32:
 tis-endianness-arm32-gui:
 	@$(TIS_ANALYZER) $(TIS_OPTS_ARM32) -tis-config-select-by-name "2.msb" -gui
 
-count-ub:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/*_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub: count-ub-generic
 
-count-ub-1:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/1.double-that_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-1: count-ub-1-generic
 
-count-ub-2:
-	@echo "==============================================="
-	@echo "      " `../tools/count-ub.sh _results/2.msb_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-2: count-ub-2-generic
 
 clean: clean-generic
 

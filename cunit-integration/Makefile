@@ -60,6 +60,6 @@ prepare:
 	cp cunit/CUnit/Headers/CUnit.h.in cunit/CUnit/Headers/CUnit.h
 
 report:
-	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
+	@echo "Compiling report from" `ls $(RESULTS_DIR)/*.json | wc -l` "past executed tests"
 	@tis-report $(RESULTS_DIR) --skip-file cunit/TestRun.c,TestRun.c,Automated.c,Basic.c,TestDB.c,CUError.c,Curses.c,Console.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
