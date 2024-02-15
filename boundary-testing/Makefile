@@ -17,20 +17,16 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-SHELL := /bin/bash
+help: help-specific help-gen
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+include ../tools/common.mk
 
-TIS_ANALYZER := tis-analyzer
-TARGET := boundary-test
 FILES := test_driver.c boundary.c
-COMPILER := gcc
 TIS_OPTS := -val-profile analyzer -val -I.
 
-.PHONY: ut clean tis tis_gui
+help-specific:
+	@echo "make tis            : Runs TISA in CLI mode"
+	@echo "make tis-gui        : Runs TISA in GUI modde"
 
 tis:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"

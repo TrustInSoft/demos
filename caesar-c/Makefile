@@ -1,24 +1,39 @@
-SHELL := /bin/bash
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+# trustinsoft/demos
+# Copyright (C) 2022-2024 TrustInSoft
+# mailto:contact AT trust-in-soft DOT com
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
 
-TIS_ANALYZER := tis-analyzer
+help: help-specific help-generic
+
+include ../tools/common.mk
+
 FILES := test_driver.c caesar.c
 COMPILER := gcc
-TIS_OPTS = -tis-config-load trustinsoft/tis.json -tis-report
+TIS_OPTS = $(TIS_OPTS_SHORT) -tis-report
 
 .PHONY: test cov clean tis_l1 tis_l2 tis_l1_report tis_l2_report tis-l1-gui tis-l2-gui test1 test2 test-int report
 
-help:
-	@echo "make test:          Runs unit tests"
-	@echo "make tis-l1:        Runs TISA L1 analysis for positive and negative shift"
-	@echo "make tis-l2:        Runs TISA L2 analysis generalization of shift"
-	@echo "make tis-l2-step2:  Runs TISA L2 analysis generalization of string"
-	@echo "make tis-l2-gui:    Runs TISA L2 analysis with the GUI on the generalization of shift"
-	@echo "make clean:         Cleans everything to revert to the beginning of the demo"
+help-specific:
+	@echo "make test           : Runs unit tests"
+	@echo "make tis-l1         : Runs TISA L1 analysis for positive and negative shift"
+	@echo "make tis-l2         : Runs TISA L2 analysis generalization of shift"
+	@echo "make tis-l2-step2   : Runs TISA L2 analysis generalization of string"
+	@echo "make tis-l2-gui     : Runs TISA L2 analysis with the GUI on the generalization of shift"
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o caesar && ./caesar$(FONT_RESET)"
