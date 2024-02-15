@@ -1,0 +1,17 @@
+{
+    "name": "analysis-main",
+    "val-profile": "interpreter",
+    "main": "main",
+    "machdep": "gcc_x86_64",
+    "slevel": 100,
+    "val": "true",
+    // "metrics": "true",
+    "files": [
+        "../increment.c",
+        "../test_driver.c",
+        "../logutils.c"
+    ],
+    "cpp-extra-args": "-I.",
+    "whole-program-graph": "true",
+    "mcdc": "true"
+}

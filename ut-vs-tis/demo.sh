@@ -1,13 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-FONT_BOLD=`tput bold`
-FONT_CYAN=`tput setaf 6`
-FONT_GREEN=`tput setaf 2`
-FONT_RED=`tput setaf 1`
-FONT_YELLOW=`tput setaf 3`
-FONT_RESET=`tput sgr0`
-FONT_UNDERLINE=`tput sgr 0 1`
+source "../tools/demo-tools.sh"
 
 SLEEP_TIME=1
 

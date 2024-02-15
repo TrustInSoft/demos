@@ -1,0 +1,15 @@
+{
+    "machdep": "gcc_x86_64",
+    "slevel": 10,
+    "val": "true",
+    "val-profile": "interpreter",
+    "remove-volatile": "true",
+    "files": [
+        // "../memory_allocator.c",
+        "../memory_map.c",
+        "tis_model.c"
+    ],
+    "cpp-extra-args": "-I.",
+    "whole-program-graph": "true",
+    "mcdc": "true"
+}

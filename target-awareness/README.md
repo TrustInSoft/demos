@@ -91,13 +91,13 @@ Let's first run the analyzer with target X86-64. The analysis report and executi
 The analysis confirms that for target X86-64 there is no undefined behavior for the code.
 
 <div style="text-align: center;">
-<img src="trustinsoft/tis_report.x64.png" width=800 title="x86-64 analysis results">
+<img src=".static/tis_report.x64.png" width=800 title="x86-64 analysis results">
 </div>
 
 ```bash
 make tis-x64
-tis-analyzer -tis-config-load trustinsoft/tis-x64.json -tis-report -tis-config-select-by-name 1.double-that
-[kernel] Loading configuration file trustinsoft/tis-x64.json (analysis "1.double-that")
+tis-analyzer -tis-config-load .trustinsoft/tis-x64.json -tis-report -tis-config-select-by-name 1.double-that
+[kernel] Loading configuration file .trustinsoft/tis-x64.json (analysis "1.double-that")
 ...
 [kernel] [5/5] Parsing target.c (with preprocessing)
 
@@ -112,8 +112,8 @@ PASSED: double_that(2147483632) = 4294967264 and array[4] = 42
   Total time: 0h00m01s (= 1.374 seconds)
   Max memory used: 140.3MB (= 140304384 bytes)
 
-tis-analyzer -tis-config-load trustinsoft/tis-x64.json -tis-report -tis-config-select-by-name 2.msb
-[kernel] Loading configuration file trustinsoft/tis-x64.json (analysis "2.msb")
+tis-analyzer -tis-config-load .trustinsoft/tis-x64.json -tis-report -tis-config-select-by-name 2.msb
+[kernel] Loading configuration file .trustinsoft/tis-x64.json (analysis "2.msb")
 ...
 
 PASSED: msb(0xBEEF) = 0xEF
@@ -138,13 +138,13 @@ The analysis now raises 2 undefined behaviors:
 - A division by zero in `test_msb()` because the function `msb()` returns a different byte on big endian machines.
 
 <div style="text-align: center;">
-<img src="trustinsoft/tis_report.arm32.png" width=800 title="ARM-32 big endian analysis results">
+<img src=".static/tis_report.arm32.png" width=800 title="ARM-32 big endian analysis results">
 </div>
 
 ```bash
 make tis-arm32
-tis-analyzer -tis-config-load trustinsoft/tis-arm32.json -tis-report -tis-config-select-by-name 1.double-that
-[kernel] Loading configuration file trustinsoft/tis-arm32.json (analysis "1.double-that")
+tis-analyzer -tis-config-load .trustinsoft/tis-arm32.json -tis-report -tis-config-select-by-name 1.double-that
+[kernel] Loading configuration file .trustinsoft/tis-arm32.json (analysis "1.double-that")
 [kernel] [5/5] Parsing target.c (with preprocessing)
 ...
 target.c:31:[kernel] warning: signed overflow. assert (long)i*2 ≤ 2147483647;
@@ -155,8 +155,8 @@ target.c:31:[kernel] warning: signed overflow. assert (long)i*2 ≤ 2147483647;
   Value Analysis: 0.038s
   Max memory used: 140.3MB (= 140304384 bytes)
 
-tis-analyzer -tis-config-load trustinsoft/tis-arm32.json -tis-report -tis-config-select-by-name 2.msb
-[kernel] Loading configuration file trustinsoft/tis-arm32.json (analysis "2.msb")
+tis-analyzer -tis-config-load .trustinsoft/tis-arm32.json -tis-report -tis-config-select-by-name 2.msb
+[kernel] Loading configuration file .trustinsoft/tis-arm32.json (analysis "2.msb")
 [kernel] [5/5] Parsing target.c (with preprocessing)
 ...
 
@@ -180,7 +180,7 @@ Check generated analysis report tis_report.arm32.html
 
 It is extremely easy to change targets (or to analyze the same code for different targets) with the TrustInSoft Analyzer.
 The target is defined with a single analysis configuration parameter, that can be changed from one analysis to the other in a snap.
-See the different value of the `machdep` parameter in [trustinsoft/tis-x64.json](trustinsoft/tis-x64.json) and [trustinsoft/tis-arm32.json](trustinsoft/tis-arm32.json) files.
+See the different value of the `machdep` parameter in [.trustinsoft/tis-x64.json](.trustinsoft/tis-x64.json) and [.trustinsoft/tis-arm32.json](.trustinsoft/tis-arm32.json) files.
 
 More than 30 targets (and counting) are available preconfigured out of the box by TrustInSoft (see [online documentation](https://man.trust-in-soft.com/man/tis-user-guide/machdep.html)). If your target is not in the list, TrustInSoft can very easy add it based on the
 target datasheet, something that we do on a regular basis as we "discover" new targets.

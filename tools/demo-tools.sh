@@ -38,8 +38,8 @@ git checkout main >/dev/null 2>&1
 
 function press_enter()
 {
-  auto="$1"
-  wait_time="$2"
+  auto="${1:-false}"
+  wait_time="${2:-10}"
   if [ "$auto" != "true" ]; then
     read -p "$MSG" c
   else

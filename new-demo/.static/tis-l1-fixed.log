@@ -14,7 +14,7 @@
 
 [value] Done for function test_large_array
 ...
-[info] Saved JSON results in '_results/1.2.large-array_results.json'
+[info] Saved JSON results in '.trustinsoft/results/1.2.large-array_results.json'
 [time] Performance summary:
   Parsing: 3.115s
   Value Analysis: 3.978s
@@ -35,7 +35,7 @@
 [value] Done for function test_zero_length
 [scope:rm_asserts] removing 1 assertion(s)
 ...
-[info] Saved JSON results in '_results/1.3.zero-length-array_results.json'
+[info] Saved JSON results in '.trustinsoft/results/1.3.zero-length-array_results.json'
 [time] Performance summary:
   Parsing: 3.773s
   Value Analysis: 0.063s
@@ -54,7 +54,7 @@
 [0;32mPASSED[0m: increment_array(NULL) = NULL
 
 ...
-[info] Saved JSON results in '_results/1.4.null-array_results.json'
+[info] Saved JSON results in '.trustinsoft/results/1.4.null-array_results.json'
 [time] Performance summary:
   Parsing: 3.761s
   Value Analysis: 0.061s
@@ -71,7 +71,7 @@
 
 [0;32mPASSED[0m: increment_array({1, 3, 5, 7, 11, 13, 17}) = {2, 4, 6, 8, 12, 14, 18}
 
-[info] Saved JSON results in '_results/1.1.small-array_results.json'
+[info] Saved JSON results in '.trustinsoft/results/1.1.small-array_results.json'
 [time] Performance summary:
   Parsing: 3.601s
   Value Analysis: 0.135s

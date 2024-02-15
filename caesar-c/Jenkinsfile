@@ -62,8 +62,8 @@ pipeline {
   post {
       always {
           archiveArtifacts artifacts: 'caesar-c/tis_report.html', fingerprint: true
-          archiveArtifacts artifacts: 'caesar-c/_results/**.json', fingerprint: true
-          archiveArtifacts artifacts: 'caesar-c/_results/**.csv', fingerprint: true
+          archiveArtifacts artifacts: 'caesar-c/.trustinsoft/results/**.json', fingerprint: true
+          archiveArtifacts artifacts: 'caesar-c/.trustinsoft/results/**.csv', fingerprint: true
           archiveArtifacts artifacts: 'caesar-c/tis_misra_report/**', fingerprint: true
       }
   }

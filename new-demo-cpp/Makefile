@@ -17,40 +17,28 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-CONFIG_DIR := .trustinsoft
-CONFIG_FILE := $(CONFIG_DIR)/config.json
+help: help-specific help-generic
+
+include ../tools/common.mk
+
 TIS_ANALYZER := tis-analyzer++
-TIS_REPORT := tis-report
+TIS_OPTS_SHORT := -cxx-std c++17 -tis-config-load $(CONFIG_FILE) -tis-report-directory $(RESULTS_DIR)
+COMPILER := g++
+GCC_VERSION := $(shell g++ --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
 # Don't change the below
 TARGET := increment
 FILES := test_driver.cpp $(TARGET).cpp
 OBJS := test_driver.o $(TARGET).o
-COMPILER := g++
-SHELL := /bin/bash
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
-GCC_VERSION := $(shell g++ --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
+TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
-RESULTS_DIR := $(CONFIG_DIR)/results
-LOGS_DIR := $(CONFIG_DIR)/logs
-SAVE_DIR := $(CONFIG_DIR)/save
-
-TIS_OPTS_SHORT := -cxx-std c++17 -tis-config-load $(CONFIG_FILE)
-TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report-directory $(RESULTS_DIR) -tis-report
-
-.PHONY: all test tis-l1 tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
-
-all:
-	@echo "make test:       Runs unit tests"
-	@echo "make tis-l1:     Runs TISA L1 analysis"
-	@echo "make tis-l2:     Runs TISA L2 analysis"
-	@echo "make tis-l1-gui: Runs TISA L1 analysis with the GUI"
-	@echo "make tis-l2-gui: Runs TISA L2 analysis with the GUI"
-	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
+help-specific:
+	@echo "make test           : Runs unit tests"
+	@echo "make tis-l1         : Runs TISA L1 analysis"
+	@echo "make tis-l2         : Runs TISA L2 analysis"
+	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"
+	@echo "make tis-l2-gui     : Runs TISA L2 analysis with the GUI"
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
@@ -90,15 +78,9 @@ tis-l1-fast:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 5"
 	@../tools/run_all.sh -n 4 -c $(CONFIG_FILE) -a "3 2 4 5"
 
-count_ub:
-	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/1.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-1: count-ub-1-generic
 
-count_ub_2:
-	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/2.*-array_results.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub-2: count-ub-2-generic
 
 tis-l2-cli:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
@@ -107,28 +89,16 @@ tis-l2-cli:
 tis-l2-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array" -gui
 
-clean: clean-results clean-cache
+tis-l1: tis-l1-fast count-ub-1 report
 
-clean-results:
-	@echo "Cleaning results..."
-	rm -rf $(TARGET) *.gc* compile_commands.json $(SAVE_DIR) $(RESULTS_DIR) $(LOGS_DIR) tis_report.html tis_misra_report
+tis-l2: tis-l2-cli count-ub-2 report
+
+report: report-generic
+
+clean: clean-generic clean-cache
 	@echo "Reverting increment.hpp to original..."
 	git checkout -q -- increment.hpp
 
 clean-cache:
 	@echo "Cleaning analysis cache..."
 	rm -rf $(TARGET) $(SAVE_DIR)
-
-tis-l1: tis-l1-fast count_ub report
-
-tis-l2: tis-l2-cli count_ub_2 report
-
-report:
-	@echo "Compiling report from" `ls ${RESULTS_DIR}/*.json | wc -l` "past executed tests"
-# @$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.cpp _ZN18IncrementableArrayIiE8toStringEv
-	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.cpp
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
-
-tis-misra:
-	tis-misra --title "DEMO" increment.c
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"

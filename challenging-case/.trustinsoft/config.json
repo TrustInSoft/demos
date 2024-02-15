@@ -1,12 +1,12 @@
 [
     {
-        "name": "classic-test",
+        "name": "1.classic-test",
         "include": "common.json",
         "val-profile": "interpreter",
         "main": "test1"
     },
     {
-        "name": "generalized-analysis",
+        "name": "2.generalized-analysis",
         "include": "common.json",
         "val-profile": "analyzer",
         "val-split-return": "full",

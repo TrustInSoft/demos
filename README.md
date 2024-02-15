@@ -12,6 +12,16 @@ In this demo you'll see that undefined behaviors are subtle bugs that are often 
 In this demo you'll see that analyzing code with awareness of the embedded target on which teh code will ultimately run, because some low-level code statements are target sensitive.
 A code that is analyzed or unit tested on a standard x86-64 host may run smoothly, and not reveal the problems that would occur on target.
 
+
+## [tis_address](tis-address/README.md)
+
+In this demo you'll see how you can **avoid False Positives and False Negatives on low-level code with TrustInSoft unique tis_address feature**
+
+## [AUTOSAR Classic integration](autosar/README.md)
+
+This demo shows how you can fully automatically analyze AUTOSAR Classic applications
+with the TrustInSoft `tis-autosar-mockup` integration tool.
+
 ## [Limitations of boundary testing](boundary-testing/README.md)
 
 With this example you'll see that boundary testing, although a good practice, is often insufficient to detect corner cases that can have runtime impacts on your code (in the current case an hidden division by zero problem), and how the TrustInSoft Analyzer input generalization feature can deterministicly detect all such problems.
