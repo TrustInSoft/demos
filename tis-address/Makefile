@@ -17,34 +17,17 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-CONFIG_DIR := .trustinsoft
-CONFIG_FILE := $(CONFIG_DIR)/config.json
-TIS_ANALYZER := tis-analyzer
-TIS_REPORT := tis-report
+help: help-specific help-generic
 
-# Don't change the below
-RESULTS_DIR := $(CONFIG_DIR)/results
-LOGS_DIR := $(CONFIG_DIR)/logs
-SAVE_DIR := $(CONFIG_DIR)/save
+include ../tools/common.mk
 
-SHELL := /bin/bash
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
-CONFIG_FILE := .trustinsoft/config.json
-TIS_OPTS_SHORT := -tis-config-load $(CONFIG_FILE) 
-TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report-directory $(RESULTS_DIR) -tis-report
-
-.PHONY: all tis
-
-all:
-	@echo "make tis:        Runs the 2 TISA memory mapping examples without tis_address"
-	@echo "make tis-address:Runs the 2 TISA memory mapping examples with tis_address directive"
-	@echo "make tis-init:   Runs the TISA 'init' memory mapping example with the GUI"
-	@echo "make tis-reg:    Runs the TISA 'get_registers' memory mapping example with the GUI"
-	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
+help-specific:
+	@echo "make tis            : Runs the 2 TISA memory mapping examples without tis_address"
+	@echo "make tis-address    : Runs the 2 TISA memory mapping examples with tis_address directive"
+	@echo "make tis-init       : Runs the TISA 'init' memory mapping example with the GUI"
+	@echo "make tis-reg        : Runs the TISA 'get_registers' memory mapping example with the GUI"
 
 tis-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.init"$(FONT_RESET)"
@@ -52,7 +35,7 @@ tis-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers"
 
-tis: tis-run report count_ub
+tis: tis-run report count-ub
 
 tis-address-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.init"$(FONT_RESET)"
@@ -60,7 +43,7 @@ tis-address-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.get_registers" -DWITH_TIS_ADDRESS
 
-tis-address: tis-address-run report count_ub
+tis-address: tis-address-run report count-ub
 
 tis-init:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "init"$(FONT_RESET)"
@@ -70,16 +53,4 @@ tis-reg:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "get_registers"$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "get_registers" -DWITH_TIS_ADDRESS -gui
 
-count_ub:
-	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/[0-9].*.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
-
-clean:
-	@echo "Cleaning..."
-	rm -rf $(RESULTS_DIR)/ $(LOGS_DIR)/ $(SAVE_DIR)/ tis_report.html tis_misra_report
-
-report:
-	@echo "Compiling report from" `ls $(RESULTS_DIR)/[0-9].*.json | wc -l` "past executed tests"
-	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.c,utils.c
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
+count-ub: count-ub-generic

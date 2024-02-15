@@ -1,17 +1,36 @@
-SHELL := /bin/bash
+# trustinsoft/demos
+# Copyright (C) 2022-2023 TrustInSoft
+# mailto:contact AT trust-in-soft DOT com
+# 
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+# 
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, write to the Free Software Foundation,
+# Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# 
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+help: help-specific help-Generic
 
-TIS_ANALYZER := tis-analyzer
 TARGET := demo-ub
 FILES := test_driver.c increment.c logutils.c
 COMPILER := gcc
 TIS_OPTS = -val-profile interpreter -val -main test_increment_array -I.
 
-.PHONY: ut ut-debug ut-clang ut-long-name clean tis tis_gui
+help-specific:
+	@echo "make ut             : Runs unit test with code compiled with gcc"
+	@echo "make ut-debug       : Runs unit test with code compiled with gcc and extra logging"
+	@echo "make ut-long-name   : Runs unit test with code compiled with gcc and longer name variable"
+	@echo "make ut-clang       : Runs unit test with code compiled with clang"
+	@echo "make tis            : Runs TIS L1 analysis in CLI mode"
+	@echo "make tis-gui        : Runs TIS L1 analysis in GUI mode"
 
 ut:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
@@ -37,5 +56,4 @@ tis-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui
 
-clean:
-	@rm -rf $(TARGET) $(TARGET).*
+clean: clean-generic

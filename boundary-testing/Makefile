@@ -36,5 +36,4 @@ tis-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
-clean:
-	@rm -rf $(TARGET) *.gc* compile_commands.json
+clean: clean-generic 

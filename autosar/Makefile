@@ -17,7 +17,7 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-help: help-specifc help-generic
+help: help-specific help-generic
 
 include ../tools/common.mk
 
@@ -50,6 +50,6 @@ report:
 	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file rte_mocks.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
 
-clean::
+clean: clean-generic
 	@echo "Cleaning: Removing all automatically generated files except .trustinsoft/permanent_config.json"
 	@rm -rf $(CONFIG_DIR)/[^p]* $(RESULTS_DIR)/ $(LOGS_DIR)/ $(SAVE_DIR)/ tis_report.html

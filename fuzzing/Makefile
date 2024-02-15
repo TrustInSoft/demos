@@ -17,14 +17,10 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-SHELL := /bin/bash
+help: help-specific help-generic
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+include ../tools/common.mk
 
-TIS_ANALYZER := tis-analyzer
 TARGET := calc
 FILES := test_driver.c boundary.c
 SEEDS := seeds
@@ -35,10 +31,10 @@ MAX_EXECUTIONS := 50000
 
 .PHONY: all clean tis-fuzz afl afl-easy afl-medium afl-hard afl-easy-smart afl-easy-semi-smart afl-medium-smart afl-medium-semi-smart afl-hard-smart afl-hard-semi-smart
 
-all:
-	@echo "make afl:      Runs AFL to produce inputs for tis-fuzz"
-	@echo "make tis-fuzz: Runs tis-fuzz"
-	@echo "make clean:    Cleans all AFL and tis-fuzz artifacts"
+help-specific:
+	@echo "make afl            : Runs AFL to produce inputs for tis-fuzz"
+	@echo "make tis-fuzz       : Runs tis-fuzz"
+	@echo "make clean          : Cleans all AFL and tis-fuzz artifacts"
 
 tis-fuzz:
 	mkdir -p work/
@@ -51,10 +47,6 @@ tis-fuzz:
 	rm work/real_input.txt
 # end of workaround
 	tis-fuzz --ast tis-fuzz-results/ast.state --tis-config trustinsoft/tis.json -i afl-results/ -o tis-fuzz-results --mkfs work/real_input.txt --no-parallel
-
-clean:
-	@rm -f $(SEEDS)/*smart*
-	@rm -rf $(TARGET)* *.gc* compile_commands.json afl-results tis-fuzz-results
 
 afl: afl-easy-semi-smart
 
@@ -97,3 +89,9 @@ afl-hard-semi-smart:
 test-seeds:
 	gcc $(FILES) -o $(TARGET)
 	./run_test.sh
+
+clean: clean-generic
+	@rm -f $(SEEDS)/*smart*
+	@rm -rf $(TARGET)* afl-results tis-fuzz-results
+
+report: report-generic

@@ -54,13 +54,17 @@ run-tis:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
 	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
 
-tis: run-tis count_ub
+tis: run-tis count-ub
 
-count_ub:
+count-ub:
 	@echo "==============================================="
-	@echo "      " `../tools/count_ub.sh $(RESULTS_DIR)/analysis*.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/analysis*.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 tis-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui
+
+report: report-generic
+
+clean: clean-generic

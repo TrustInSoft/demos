@@ -67,20 +67,16 @@ tis-l2-run:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2
 
-clean:
-	@rm -rf $(TARGET) *.gc* compile_commands.json _results
-
 count-l1-ub:
 	@echo "==============================================="
-	@echo "      " `.trustinsoft/count_ub.sh _results/*test*_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `.trustinsoft/count-ub.sh _results/*test*_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
 count-l2-ub:
 	@echo "==============================================="
-	@echo "      " `.trustinsoft/count_ub.sh _results/*generalized*_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "      " `.trustinsoft/count-ub.sh _results/*generalized*_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
 
-report:
-	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-	@$(TIS_REPORT) _results/ --skip-file test_driver.c
-	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
+report: report-generic
+
+clean: clean-generic

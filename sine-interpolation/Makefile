@@ -17,20 +17,18 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-SHELL := /bin/bash
+help: help-specific help-generic
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+include ../tools/common.mk
 
-TIS_ANALYZER := tis-analyzer
 TARGET := sine-test
 FILES := test_driver.c sine.c
-COMPILER := gcc
 TIS_OPTS := -val-profile analyzer -val -I.
 
-.PHONY: ut clean tis tis_gui
+help-specific:
+	@echo "make test           : Runs unit tests"
+	@echo "make tis            : Runs TISA L1 analysis"
+	@echo "make tis-gui        : Runs TISA L1 analysis with the GUI"
 
 ut:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
@@ -46,5 +44,6 @@ tis-gui:
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui
 
-clean:
-	@rm -rf $(TARGET) *.gc* compile_commands.json
+clean: clean-generic
+
+report: report-generic

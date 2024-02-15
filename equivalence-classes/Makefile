@@ -17,31 +17,21 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-CONFIG_DIR := .trustinsoft
-CONFIG_FILE := $(CONFIG_DIR)/config.json
-TIS_ANALYZER := tis-analyzer
+help: help-specific help-generic
 
-# Don't change the below
-LOGS_DIR := $(CONFIG_DIR)/logs
-
-SHELL := /bin/bash
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+include ../tools/common.mk
 
 TARGET := equivalence-classes
 OBJS := $(TARGET).o
 COMPILER := gcc
 FILES := $(TARGET).c
-CONFIG_FILE := .trustinsoft/config.json
-TIS_OPTS := -tis-config-load $(CONFIG_FILE)
+TIS_OPTS := $(TIS_OPTS_SHORT)
 
-all:
-	@echo "make test:    Runs classic equivalence test scenario"
-	@echo "make tis:     Runs the TIS equivalence classes demo in cmd line"
-	@echo "make tis-gui: Runs the equivalence classes demo in GUI"
-	@echo "make clean:   Cleanup and reset demo"
+help-specific:
+	@echo "make test           : Runs classic equivalence test scenario"
+	@echo "make tis            : Runs the TIS equivalence classes demo in cmd line"
+	@echo "make tis-gui        : Runs the equivalence classes demo in GUI"
+	@echo "make clean          : Cleanup and reset demo"
 
 prepare:
 	@mkdir -p $(CONFIG_DIR) $(LOGS_DIR)
@@ -67,6 +57,6 @@ check_assertions:
 	@echo "$(FONT_RED)"`../tools/check_assertions.sh warnings $(LOGS_DIR)/tis.log` "$(FONT_RESET)"
 	@echo "==============================================="
 
-clean:
-	@echo "Cleaning..."
-	rm -rf $(TARGET) *.gc* compile_commands.json $(LOGS_DIR)/ tis_report.html tis_misra_report
+clean: clean-generic
+
+report: report-generic

@@ -17,48 +17,44 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-SHELL := /bin/bash
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := $(shell tput setaf 6)
-FONT_YELLOW := $(shell tput setaf 3)
-FONT_RED := $(shell tput setaf 1)
-FONT_RESET := $(shell tput sgr0)
+help: help-specific help-generic
 
-TIS_ANALYZER := tis-analyzer
+include ../tools/common.mk
+
 TARGET := two_threads
 FILES := $(TARGET).c
 COMPILER := gcc
 
 .PHONY: all tis clean
 
-all:
-	@echo "make tis-v1"
-	@echo "make tis-v2"
-	@echo "make tis-v3"
+help-specific:
+	@echo "make tis-v1         : Run multithread analysis on code v1"
+	@echo "make tis-v2         : Run multithread analysis on code v2"
+	@echo "make tis-v3         : Run multithread analysis on code v3"
 
 tis-v1 :
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) -val -mthread -slevel 1000 two_threads.c$(FONT_RESET)"
 	@$(TIS_ANALYZER) -val -mthread -slevel 1000 two_threads.c | sed -E \
-	    -e "s/(Iteration [0-9]+)/$(FONT_CYAN)\1$(FONT_RESET)/g" \
-	    -E -e "s/(.*)(unprotected).*/\1$(FONT_RED)\2$(FONT_RESET)/g" \
+	   -e "s/(Iteration [0-9]+)/$(FONT_CYAN)\1$(FONT_RESET)/g" \
+	   -E -e "s/(.*)(unprotected).*/\1$(FONT_RED)\2$(FONT_RESET)/g" \
 		-E -e "s/.*(data races|read by|write by).*/$(FONT_YELLOW)\0$(FONT_RESET)/g"
 
 tis-v2 :
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) -val -mthread -slevel 1000 two_threads_v2.c$(FONT_RESET)"
 	@$(TIS_ANALYZER) -val -mthread -slevel 1000 two_threads_v2.c | sed -E \
-	    -e "s/(Iteration [0-9]+)/$(FONT_CYAN)\1$(FONT_RESET)/g" \
-	    -E -e "s/(.*)(unprotected).*/\1$(FONT_RED)\2$(FONT_RESET)/g" \
+	   -e "s/(Iteration [0-9]+)/$(FONT_CYAN)\1$(FONT_RESET)/g" \
+	   -E -e "s/(.*)(unprotected).*/\1$(FONT_RED)\2$(FONT_RESET)/g" \
 		-E -e "s/.*(data races|read by|write by).*/$(FONT_YELLOW)\0$(FONT_RESET)/g"
-
 
 tis-v3 :
 	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) -val -mthread -slevel 1000 two_threads_v3.c$(FONT_RESET)"
 	@$(TIS_ANALYZER) -val -mthread -slevel 1000 two_threads_v3.c | sed -E \
-	    -e "s/(Iteration [0-9]+)/$(FONT_CYAN)\1$(FONT_RESET)/g" \
-	    -E -e "s/(.*)(unprotected).*/\1$(FONT_RED)\2$(FONT_RESET)/g" \
+	   -e "s/(Iteration [0-9]+)/$(FONT_CYAN)\1$(FONT_RESET)/g" \
+	   -E -e "s/(.*)(unprotected).*/\1$(FONT_RED)\2$(FONT_RESET)/g" \
 		-E -e "s/.*(data races|read by|write by).*/$(FONT_YELLOW)\0$(FONT_RESET)/g"
 
-clean :
-	rm -rf *~ output.txt $(TARGET)
+clean: clean-generic
+	@rm -rf *~ output.txt $(TARGET)
 
+report: report-generic
