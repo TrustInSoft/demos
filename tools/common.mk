@@ -1,7 +1,6 @@
 
 CONFIG_DIR := .trustinsoft
 CONFIG_FILE := $(CONFIG_DIR)/config.json
-TIS_OPTS_SHORT := -tis-config-load $(CONFIG_FILE)
 TIS_ANALYZER := tis-analyzer
 TIS_REPORT := tis-report
 TIS_MISRA := tis-misra
@@ -10,6 +9,8 @@ TIS_MISRA := tis-misra
 RESULTS_DIR := $(CONFIG_DIR)/results
 LOGS_DIR := $(CONFIG_DIR)/logs
 SAVE_DIR := $(CONFIG_DIR)/save
+
+TIS_OPTS_SHORT := -tis-config-load $(CONFIG_FILE) -tis-report-directory $(RESULTS_DIR) 
 
 SHELL := /bin/bash
 
@@ -27,13 +28,13 @@ FONT_UNDERLINE := `tput sgr 0 1`
 
 GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
-.PHONY: tis gui tis-l1 tis-l2 test help-generic help-specific clean count_ub count_ub_2
+.PHONY: tis gui tis-l1 tis-l2 test help-generic help-specific clean count-ub count-ub-2 report report-gen
 
 help-generic:
 	@echo "-- Generic options -------------------------------------"
-	@echo "make misra     : Runs tis-misra to generate MISRA report"
-	@echo "make report    : Runs tis-report to generate tis_report.html from past executed analyses"
-	@echo "make clean     : Cleans everything and reverts to initial demo state"
+	@echo "make misra          : Runs tis-misra to generate MISRA report"
+	@echo "make report         : Runs tis-report to generate tis_report.html from past executed analyses"
+	@echo "make clean          : Cleans everything and reverts to initial demo state"
 
 tis-misra:
 	@echo $(FONT_CYAN)$(TIS_MISRA) --title "DEMO" .$(FONT_RESET)
@@ -42,7 +43,17 @@ tis-misra:
 
 misra: tis-misra
 
-report:
-	@echo "Compiling report from" `ls $(RESULTS_DIR)/*.json | wc -l` "past executed tests"
-	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.c,utils.c,$(CONFIG_DIR)/tis_model.c
+report-generic:
+	@echo "Compiling report from" `ls $(RESULTS_DIR)/*_results.json | wc -l` "past executed tests"
+	@echo -e "$(FONT_CYAN)$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.c,utils.c,$(CONFIG_DIR)/tis_model.c$(FONT_RESET)"
+	@$(TIS_REPORT) $(RESULTS_DIR)/ --skip-file test_driver.c,test_driver.cpp,utils.c,$(CONFIG_DIR)/tis_model.c,$(CONFIG_DIR)/tis_model.cpp
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
+
+clean-generic:
+	@echo "Cleaning..."
+	rm -rf $(TARGET) *.gc* compile_commands.json $(RESULTS_DIR)/ $(LOGS_DIR)/ $(SAVE_DIR)/ tis_report.html tis_misra_report
+
+count-ub-generic:
+	@echo "==============================================="
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/*_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "==============================================="
