@@ -1,4 +1,6 @@
 
+COMPILER := gcc
+
 CONFIG_DIR := .trustinsoft
 CONFIG_FILE := $(CONFIG_DIR)/config.json
 TIS_ANALYZER := tis-analyzer
