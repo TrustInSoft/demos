@@ -12,7 +12,7 @@ RESULTS_DIR := $(CONFIG_DIR)/results
 LOGS_DIR := $(CONFIG_DIR)/logs
 SAVE_DIR := $(CONFIG_DIR)/save
 
-TIS_OPTS_SHORT := -tis-config-load $(CONFIG_FILE) -tis-report-directory $(RESULTS_DIR) 
+TIS_OPTS_SHORT := -tis-config-load $(CONFIG_FILE) -tis-report-directory $(RESULTS_DIR)
 
 SHELL := /bin/bash
 
