@@ -24,9 +24,9 @@ include ../tools/common.mk
 TARGET := demo
 FILES := $(TARGET).c
 OBJS := $(TARGET).o
-TIS_OPTS := $(TIS_OPTS_SHORT) -kernel-msg-key pp -tis-report
+TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
-.PHONY: all cunit tis-l1 tis-l1-gui report
+.PHONY: cunit tis-l1 tis-l1-gui 
 
 help-specific:
 	@echo "make prepare        : Prepares the environment (install cunit binaries and sources)"
