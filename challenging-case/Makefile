@@ -23,7 +23,7 @@ include ../tools/common.mk
 
 TARGET := indexgen
 FILES := test_driver.c indexgen.c
-TIS_OPTS := -tis-config-load .trustinsoft/config.json -tis-report
+TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
 .PHONY: clean test tis-l1 tis-l2
 
