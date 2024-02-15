@@ -27,7 +27,14 @@ TIS_OPTS := -val-profile analyzer -val -I.
 
 .PHONY: all clean tis tis-gui
 
-all:
+help-specific:
+	@echo "make tis            : Runs all analyses with default slevel 0"
+	@echo "make tis-1          : Runs analysis #1 with slevel 10000"
+	@echo "make tis-2          : Runs analysis #2 with slevel 10000"
+	@echo "make tis-3s         : Runs analysis #3 with val-split-return full"
+	@echo "and more... see makefile"	
+
+build:
 	$(COMPILER) -Wno-unused-value -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
 tis:
@@ -68,4 +75,4 @@ tis-6:
 
 clean: clean-generic
 
-report: report-generic
+report: prepare-generic report-generic
