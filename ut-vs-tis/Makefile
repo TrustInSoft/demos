@@ -60,5 +60,6 @@ tis-gui:
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui
 
 clean: clean-generic
+	@rm -rf $(TARGET).*
 
 report: report-generic
