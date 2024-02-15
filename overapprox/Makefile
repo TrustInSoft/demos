@@ -16,22 +16,25 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-SHELL := /bin/bash
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+help: help-specific help-generic
 
-TIS_ANALYZER := tis-analyzer
+include ../tools/common.mk
+
 TARGET := approx
 FILES := approx.c
-COMPILER := gcc
 TIS_OPTS := -val-profile analyzer -val -I.
 
 .PHONY: all clean tis tis-gui
 
-all:
+help-specific:
+	@echo "make tis            : Runs all analyses with default slevel 0"
+	@echo "make tis-1          : Runs analysis #1 with slevel 10000"
+	@echo "make tis-2          : Runs analysis #2 with slevel 10000"
+	@echo "make tis-3s         : Runs analysis #3 with val-split-return full"
+	@echo "and more... see makefile"	
+
+build:
 	$(COMPILER) -Wno-unused-value -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
 tis:
@@ -70,5 +73,6 @@ tis-5s:
 tis-6:
 	$(TIS_ANALYZER) $(TIS_OPTS) -main testn -slevel 10000 -val-split-return-function approx:full $(FILES)
 
-clean:
-	@rm -rf $(TARGET) compile_commands.json
+clean: clean-generic
+
+report: prepare-generic report-generic
