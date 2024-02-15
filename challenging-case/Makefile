@@ -17,18 +17,12 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-help: help-specific help-gen
+help: help-specific help-generic
 
 include ../tools/common.mk
 
-
-
-TIS_ANALYZER := tis-analyzer
-TIS_REPORT := tis-report
-
 TARGET := indexgen
 FILES := test_driver.c indexgen.c
-COMPILER := gcc
 TIS_OPTS := -tis-config-load .trustinsoft/config.json -tis-report
 
 .PHONY: clean test tis-l1 tis-l2

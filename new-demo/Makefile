@@ -17,16 +17,13 @@
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
 
-help: help-specific help-gen
+help: help-specific help-generic
 
 include ../tools/common.mk
-
-GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
 TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
 OBJS := test_driver.o utils.o $(TARGET).o
-COMPILER := gcc
 TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
 .PHONY: help-specific all-specific test tis-l1 tis-l1-fast tis-l1-seq tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
