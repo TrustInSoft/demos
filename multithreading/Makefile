@@ -24,7 +24,6 @@ include ../tools/common.mk
 
 TARGET := two_threads
 FILES := $(TARGET).c
-COMPILER := gcc
 
 .PHONY: all tis clean
 

@@ -24,7 +24,6 @@ include ../tools/common.mk
 TARGET := demo
 FILES := $(TARGET).c
 OBJS := $(TARGET).o
-COMPILER := gcc
 TIS_OPTS := -kernel-msg-key pp -tis-config-load tis.json -tis-report
 
 .PHONY: all cunit tis-l1 tis-l1-gui report

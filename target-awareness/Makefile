@@ -23,7 +23,6 @@ include ../tools/common.mk
 
 TARGET := target
 FILES := $(TARGET).c
-COMPILER := gcc
 TIS_OPTS_X64 := -tis-config-load trustinsoft/tis-x64.json -tis-report
 TIS_OPTS_ARM32 := -tis-config-load trustinsoft/tis-arm32.json -tis-report
 

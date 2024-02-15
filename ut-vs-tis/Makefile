@@ -21,7 +21,6 @@ help: help-specific help-Generic
 
 TARGET := demo-ub
 FILES := test_driver.c increment.c logutils.c
-COMPILER := gcc
 TIS_OPTS = -val-profile interpreter -val -main test_increment_array -I.
 
 help-specific:

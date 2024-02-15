@@ -23,7 +23,6 @@ include ../tools/common.mk
 
 TARGET := equivalence-classes
 OBJS := $(TARGET).o
-COMPILER := gcc
 FILES := $(TARGET).c
 TIS_OPTS := $(TIS_OPTS_SHORT)
 

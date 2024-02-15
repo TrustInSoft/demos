@@ -23,7 +23,6 @@ help: help-specific help-generic
 include ../tools/common.mk
 
 FILES := test_driver.c caesar.c
-COMPILER := gcc
 TIS_OPTS = $(TIS_OPTS_SHORT) -tis-report
 
 .PHONY: test cov clean tis_l1 tis_l2 tis_l1_report tis_l2_report tis-l1-gui tis-l2-gui test1 test2 test-int report
