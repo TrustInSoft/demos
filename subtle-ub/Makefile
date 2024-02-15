@@ -23,7 +23,7 @@ include ../tools/common.mk
 
 TARGET := demo-ub
 FILES := test_driver.c increment.c logutils.c
-TIS_OPTS := $(TIS_OPTS_SHORT) -val-profile interpreter -val -I. -tis-report-directory $(RESULTS_DIR) -tis-report
+TIS_OPTS := $(TIS_OPTS_SHORT) -val-profile interpreter -val -I. -tis-report
 
 .PHONY: ut ut-gcc ut-clang ut-gcc-tis clean tis tis_gui
 
@@ -48,18 +48,18 @@ clang:
 
 gcc-long:
 	@echo -e "$(FONT_CYAN)gcc -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$gcc -Wno-unused-value -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+	@gcc -Wno-unused-value -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
 run-tis:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
-	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS)$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS)
 
 tis: run-tis count-ub
 
 count-ub: count-ub-generic
 
 tis-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui
 
 report: report-generic
