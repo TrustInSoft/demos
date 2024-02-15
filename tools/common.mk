@@ -57,3 +57,13 @@ count-ub-generic:
 	@echo "==============================================="
 	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/*_results.json` UNDEFINED BEHAVIORS FOUND
 	@echo "==============================================="
+
+count-ub-1-generic:
+	@echo "==============================================="
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/1.*_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "==============================================="
+
+count-ub-2-generic:
+	@echo "==============================================="
+	@echo "      " `../tools/count-ub.sh $(RESULTS_DIR)/2.*_results.json` UNDEFINED BEHAVIORS FOUND
+	@echo "==============================================="
