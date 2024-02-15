@@ -19,7 +19,7 @@
 
 help: help-specific help-generic
 
-include ../tools/colors.mk
+include ../tools/common.mk
 
 TARGET := demo-ub
 FILES := test_driver.c increment.c logutils.c
