@@ -30,16 +30,16 @@ increment.hpp:101:[kernel] warning: signed overflow. assert value+1 ≤ 21474836
                   stack: IncrementableArray<int>::increment :: test_driver.cpp:86 <-
                          test_generalized_array
 [value] Done for function test_generalized_array
-[info] Saved files information in '_results/2.generalized-array_files.csv'
-[info] Saved function information in '_results/2.generalized-array_functions.csv'
-[info] Saved variable information in '_results/2.generalized-array_variables.csv'
-[info] Saved shared variable information in '_results/2.generalized-array_shared_variables.csv'
-[info] Saved type information in '_results/2.generalized-array_types.csv'
-[info] Saved statement information in '_results/2.generalized-array_statements.csv'
-[info] Saved property information in '_results/2.generalized-array_properties.csv'
-[info] Saved decision information in '_results/2.generalized-array_decisions.csv'
-[info] Saved dead block information in '_results/2.generalized-array_dead_blocks.csv'
-[info] Saved JSON results in '_results/2.generalized-array_results.json'
+[info] Saved files information in '.trustinsoft/results/2.generalized-array_files.csv'
+[info] Saved function information in './trustinsoft/results/2.generalized-array_functions.csv'
+[info] Saved variable information in './trustinsoft/results/2.generalized-array_variables.csv'
+[info] Saved shared variable information in './trustinsoft/results/2.generalized-array_shared_variables.csv'
+[info] Saved type information in './trustinsoft/results/2.generalized-array_types.csv'
+[info] Saved statement information in './trustinsoft/results/2.generalized-array_statements.csv'
+[info] Saved property information in './trustinsoft/results/2.generalized-array_properties.csv'
+[info] Saved decision information in './trustinsoft/results/2.generalized-array_decisions.csv'
+[info] Saved dead block information in './trustinsoft/results/2.generalized-array_dead_blocks.csv'
+[info] Saved JSON results in '.trustinsoft/results/2.generalized-array_results.json'
 [time] Performance summary:
   Parsing: 10.268s
   Value Analysis: 8.062s

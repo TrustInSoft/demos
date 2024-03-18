@@ -16,29 +16,23 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-SHELL := /bin/bash
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
-GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
+help: help-specific help-generic
 
-TIS_ANALYZER := tis-analyzer
+include ../tools/common.mk
+
 TARGET := demo
 FILES := $(TARGET).c
 OBJS := $(TARGET).o
-COMPILER := gcc
-TIS_OPTS := -kernel-msg-key pp -tis-config-load tis.json -tis-report
+TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
-.PHONY: all cunit tis-l1 tis-l1-gui report
+.PHONY: cunit tis-l1 tis-l1-gui 
 
-all:
-	@echo "make prepare:    Prepares the environment (install cunit binaries and sources)"
-	@echo "make cunit:      Runs CUnit unit tests"
-	@echo "make tis-l1:     Runs TISA L1 analysis"
-	@echo "make tis-l1-gui: Runs TISA L1 analysis with the GUI"
-	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
+help-specific:
+	@echo "make prepare        : Prepares the environment (install cunit binaries and sources)"
+	@echo "make cunit          : Runs CUnit unit tests"
+	@echo "make tis-l1         : Runs TISA L1 analysis"
+	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"
 
 cunit:
 	@echo -e "$(FONT_CYAN)$(COMPILER) $(FILES) -o $(TARGET) -lcunit && ./$(TARGET)$(FONT_RESET)"
@@ -51,16 +45,11 @@ tis-l1-1:
 tis-l1-gui:
 	$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 1 -gui
 
-count_ub:
-	@echo "==============================================="
-	@echo "      " `./count_ub.sh _results/*.json` UNDEFINED BEHAVIORS FOUND
-	@echo "==============================================="
+count-ub: count-ub-generic
 
-clean:
-	@echo "Cleaning..."
-	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
+clean: clean-generic
 
-tis-l1: tis-l1-1 count_ub report
+tis-l1: tis-l1-1 count-ub report
 
 prepare:
 	@echo "Installing cunit"
@@ -71,7 +60,6 @@ prepare:
 	cp cunit/CUnit/Headers/CUnit.h.in cunit/CUnit/Headers/CUnit.h
 
 report:
-	@echo "Compiling report from" `ls _results/*.json | wc -l` "past executed tests"
-	@tis-report _results/ --skip-file cunit/TestRun.c,TestRun.c,Automated.c,Basic.c,TestDB.c,CUError.c,Curses.c,Console.c
+	@echo "Compiling report from" `ls $(RESULTS_DIR)/*.json | wc -l` "past executed tests"
+	@tis-report $(RESULTS_DIR) --skip-file cunit/TestRun.c,TestRun.c,Automated.c,Basic.c,TestDB.c,CUError.c,Curses.c,Console.c
 	@printf "\nCheck generated test report $(FONT_CYAN)tis_report.html$(FONT_RESET)\n\n"
-	@wslview tis_report.html

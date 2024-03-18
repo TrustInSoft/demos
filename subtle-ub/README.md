@@ -1,6 +1,6 @@
 <!--
 trustinsoft/demos
-Copyright (C) 2022-2023 TrustInSoft
+Copyright (C) 2022-2024 TrustInSoft
 mailto:contact AT trust-in-soft DOT com
 
 This program is free software; you can redistribute it and/or
@@ -75,7 +75,7 @@ First finding: Despite the Undefined Behavior (Buffer Overflow) the test **pass*
   
 This can be verified by running `make ut`
 ```bash
-$ make ut
+$ make gcc
 gcc -I. test_driver.c increment.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
@@ -91,7 +91,7 @@ increments one cell to far at the end of the array.
 For the moment let's try to see what is happening exactly, and for that we'll re-run the same test with a little bit more information logged, by running `make ut-gcc`
 
 ```bash
-$ make ut-gcc
+$ make gcc-verbose
 gcc -DLOG_VERBOSE -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
@@ -117,7 +117,7 @@ It's all about context! With an Undefined Behavior, the code behaves unpredictab
 Let's change the compiler, and use **clang** instead of **gcc**. For that run `make ut-clang`.
 
 ```bash
-make ut-clang
+make clang
 clang -DLOG_VERBOSE -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
@@ -141,7 +141,7 @@ buffer overflow, and hold the value `UrustInSoft`.
 Let's try by running: `make ut-gcc-long`
 
 ```bash
-$ make ut-gcc-long
+$ make gcc-long
 gcc -DLOG_VERBOSE -DNAME="TrustInSoft" -I. test_driver.c increment.c logutils.c -o demo-ub && ./demo-ub
 
 Run test_increment_array()
@@ -211,4 +211,4 @@ The TrustInSoft analyzer solves all the above challenges by:
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
 
-*Copyright (C) 2022-2023 TrustInSoft*
+*Copyright (C) 2022-2024 TrustInSoft*

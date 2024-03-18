@@ -144,10 +144,10 @@ PASSED: increment_array(NULL) = NULL
        2 UNDEFINED BEHAVIORS FOUND
 ===============================================
 Compiling report from 4 past executed tests
-information: using analysis _results/1.1.small-array_results.json
-information: using analysis _results/1.2.large-array_results.json
-information: using analysis _results/1.3.zero-length-array_results.json
-information: using analysis _results/1.4.null-array_results.json
+information: using analysis .trustinsoft/results/1.1.small-array_results.json
+information: using analysis .trustinsoft/results/1.2.large-array_results.json
+information: using analysis .trustinsoft/results/1.3.zero-length-array_results.json
+information: using analysis .trustinsoft/results/1.4.null-array_results.json
 
 Check generated test report tis_report.html
 ```

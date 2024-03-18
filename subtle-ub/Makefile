@@ -1,5 +1,5 @@
 # trustinsoft/demos
-# Copyright (C) 2022-2023 TrustInSoft
+# Copyright (C) 2022-2024 TrustInSoft
 # mailto:contact AT trust-in-soft DOT com
 # 
 # This program is free software; you can redistribute it and/or
@@ -16,44 +16,52 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
-SHELL := /bin/bash
 
-FONT_BOLD := `tput bold`
-FONT_CYAN := `tput setaf 6`
-FONT_RED := `tput setaf 1`
-FONT_RESET := `tput sgr0`
+help: help-specific help-generic
 
-TIS_ANALYZER := tis-analyzer
+include ../tools/common.mk
+
 TARGET := demo-ub
 FILES := test_driver.c increment.c logutils.c
-COMPILER := gcc
-TIS_OPTS := -val-profile interpreter -val -I.
+TIS_OPTS := $(TIS_OPTS_SHORT) -val-profile interpreter -val -I. -tis-report
 
 .PHONY: ut ut-gcc ut-clang ut-gcc-tis clean tis tis_gui
 
-ut:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -Wno-unused-value -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+help-specific:
+	@echo "make gcc            : Run code and tests compiled with gcc"
+	@echo "make gcc-verbose    : Run code and tests compiled with gcc and verbose logs"
+	@echo "make clang          : Run code and tests compiled with clang and verbose logs"
+	@echo "make gcc-long       : Run code and tests compiled with gcc and a longer string"
+	@echo "make tis            : Run code with TrustInSoft Analyzer L1"
 
-ut-gcc:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -Wno-unused-value -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+gcc:
+	@echo -e "$(FONT_CYAN)gcc -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
+	@gcc -Wno-unused-value -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
-ut-clang:
+gcc-verbose:
+	@echo -e "$(FONT_CYAN)gcc -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
+	@gcc -Wno-unused-value -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+
+clang:
 	@echo -e "$(FONT_CYAN)clang -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
 	@clang -Wno-unused-value -DLOG_VERBOSE -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
-ut-gcc-long:
-	@echo -e "$(FONT_CYAN)$(COMPILER) -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
-	@$(COMPILER) -Wno-unused-value -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)
+gcc-long:
+	@echo -e "$(FONT_CYAN)gcc -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
+	@gcc -Wno-unused-value -DLOG_VERBOSE -DNAME=\"TrustInSoft\" -I. $(FILES) -o $(TARGET) && ./$(TARGET)
 
-tis:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)$(FONT_RESET)"
-	$(TIS_ANALYZER) $(TIS_OPTS) $(FILES)
+run-tis:
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS)$(FONT_RESET)"
+	@$(TIS_ANALYZER) $(TIS_OPTS)
+
+tis: run-tis count-ub
+
+count-ub: count-ub-generic
 
 tis-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
+	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -gui$(FONT_RESET)"
 	@$(TIS_ANALYZER) $(TIS_OPTS) -gui
 
-clean:
-	@rm -rf $(TARGET) compile_commands.json
+report: report-generic
+
+clean: clean-generic
