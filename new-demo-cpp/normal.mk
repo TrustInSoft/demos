@@ -34,7 +34,7 @@ OBJS := test_driver.o $(TARGET).o
 TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
 help-specific:
-	@echo "make test           : Runs unit tests"
+	@echo "make test           : Runs functional tests"
 	@echo "make tis-l1         : Runs TISA L1 analysis"
 	@echo "make tis-l2         : Runs TISA L2 analysis"
 	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"

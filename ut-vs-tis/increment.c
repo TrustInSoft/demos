@@ -6,7 +6,7 @@
 /*
 The below function is technically correct (no UB) but *probably* functionally incorrect
 (it does not return the expected result). It:
-- Would fail for functional tests (unit tests or TrustInSoft L3 analysis)
+- Would fail for functional tests (functional tests or TrustInSoft L3 analysis)
 - Would pass for robustness tests (TrustInSoft L1 or L2 analysis)
 */
 int increment_short(short i)
@@ -26,7 +26,7 @@ int increment_int(int i)
 /*
 The below function is technically correct (no UB) but *probably* functionally incorrect
 (it does not return the expected result). It:
-- Would fail for functional tests (unit tests or TrustInSoft L3 analysis)
+- Would fail for functional tests (functional tests or TrustInSoft L3 analysis)
 - May pass for robustness tests (TrustInSoft L1 or L2 analysis)
 
 */

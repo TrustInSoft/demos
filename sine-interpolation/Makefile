@@ -26,7 +26,7 @@ FILES := test_driver.c sine.c
 TIS_OPTS := -val-profile analyzer -val -I. -tis-report-directory $(RESULTS_DIR) -tis-report
 
 help-specific:
-	@echo "make test           : Runs unit tests"
+	@echo "make test           : Runs functional tests"
 	@echo "make tis            : Runs TISA L1 analysis"
 	@echo "make tis-gui        : Runs TISA L1 analysis with the GUI"
 

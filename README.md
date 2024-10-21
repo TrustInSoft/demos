@@ -5,7 +5,7 @@ A collection of code snippets showing TrustInSoft Analyzer capabilities
 
 ## [General demo of TrustInSoft Analyzer: A buffer overflow and an integer overflow, not found by tests, but found by the analyzer](new-demo/README.md)
 
-In this demo you'll see that undefined behaviors are subtle bugs that are often not detected by unit tests, and, to the contrary that the TrustInSoft Analyzer finds all Undefined Behaviors deterministically.
+In this demo you'll see that undefined behaviors are subtle bugs that are often not detected by functional tests, and, to the contrary that the TrustInSoft Analyzer finds all Undefined Behaviors deterministically.
 
 ## [Target awareness](target-awareness/README.md)
 
@@ -30,7 +30,7 @@ With this example you'll see that boundary testing, although a good practice, is
 
 With this example you'll see that Undefined Behaviors are subtle problems that may or may not have immediate visible effects, and whose effect easily change by changing very minor context elements (like changing compiler, changing the code by very little etc...)
 
-Because of that Undefined Behaviors are often not detected by Unit Tests or can have very different impacts between Unit Tests and on-target production execution.
+Because of that Undefined Behaviors are often not detected by functional tests or can have very different impacts between functional tests and on-target production execution.
 It will then show how the TrustInSoft Analyzer Zero false negatives guarantees to deterministicly detect Undefined Behaviors, irrespective of the environment/context.
 
 # Coming soon

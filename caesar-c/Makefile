@@ -28,7 +28,7 @@ TIS_OPTS = $(TIS_OPTS_SHORT) -tis-report
 .PHONY: test cov clean tis_l1 tis_l2 tis_l1_report tis_l2_report tis-l1-gui tis-l2-gui test1 test2 test-int report
 
 help-specific:
-	@echo "make test           : Runs unit tests"
+	@echo "make test           : Runs functional tests"
 	@echo "make tis-l1         : Runs TISA L1 analysis for positive and negative shift"
 	@echo "make tis-l2         : Runs TISA L2 analysis generalization of shift"
 	@echo "make tis-l2-step2   : Runs TISA L2 analysis generalization of string"

@@ -49,12 +49,12 @@ clear
 cat << EOF
 
 ${CYAN}$H1
-           DETECTING UNDEFINED BEHAVIOURS MISSED BY UNIT TESTS
+           DETECTING UNDEFINED BEHAVIOURS MISSED BY functional tests
 $H1
 
 ${GREEN}$H2
 This demo demonstrates:
-- How unit tests can typically miss undefined behaviors like buffer overflows
+- How functional tests can typically miss undefined behaviors like buffer overflows
   or integer overflows if those undefined behaviors do not cause immediate
   execution problems (like a crash), and
 - How TrustInSoft analysis detects them with mathematical guarantee.
@@ -79,7 +79,7 @@ clear
 #------------------------------------------------------------------------------
 cat << EOF
 ${GREEN}$H2
-To test this function let's say that we have written 4 unit tests:
+To test this function let's say that we have written 4 functional tests:
 - 1 test with an input array of 7 small positive integers {1, 3, 5, 7, 11, 13, 17}
 - 1 test with a larger array of 1000 random integers
 - 2 tests with corner cases with an empty array ({}) or a NULL array
@@ -94,7 +94,7 @@ clear
 
 cat << EOF
 ${GREEN}$H2
-Let's run the unit tests:
+Let's run the functional tests:
 ${RESET}
 EOF
 
@@ -117,9 +117,9 @@ clear
 
 cat << EOF
 ${GREEN}$H2
-The first way to use the TrustInSoft analyzer is simply to replay the unit tests
+The first way to use the TrustInSoft analyzer is simply to replay the functional tests
 with the analyzer. This can (this often) detects problems that remained
-unnoticed with unit tests. It's convenient because if you already have unit
+unnoticed with functional tests. It's convenient because if you already have unit
 tests, it's almost zero effort to run the analyzer.
 ${RESET}
 EOF
@@ -210,10 +210,10 @@ cat << EOF
 ${GREEN}$H2
 The analysis now reports 0 undefined behaviors. Good!
 
-Now that we solved all the problems found by simply re-running the unit tests
+Now that we solved all the problems found by simply re-running the functional tests
 let's move to the next level: Level 2. This level consists in generalizing
 function inputs so that we can detect problem that may arise from any possible
-input instead of the few discrete inputs chosen in unit tests.
+input instead of the few discrete inputs chosen in functional tests.
 Instead of testing our ${YELLOW}increment_array()${GREEN} function with only 4 different arrays,
 we'll test with all possible values for an array of 1000 elements.
 

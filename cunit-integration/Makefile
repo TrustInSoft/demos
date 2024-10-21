@@ -30,7 +30,7 @@ TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 
 help-specific:
 	@echo "make prepare        : Prepares the environment (install cunit binaries and sources)"
-	@echo "make cunit          : Runs CUnit unit tests"
+	@echo "make cunit          : Runs CUnit functional tests"
 	@echo "make tis-l1         : Runs TISA L1 analysis"
 	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"
 

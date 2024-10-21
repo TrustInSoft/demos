@@ -3,7 +3,7 @@
 ## Overview
 
 This directory demonstrate how subtle Undefined Behaviors can be and why they are
-most often not detected through unit tests
+most often not detected through functional tests
 
 Spoiler: In the below tests function, there is an Undefined Behavior, you may have already spotted it...
 ...But that's not the point of this example. The main point is to show that due to the
@@ -106,7 +106,7 @@ The nice thing is that, unlike shown above, the TrustInSoft analyzer is not depe
 If you have access to the TrustInSoft Analyzer this can be verified by running `make tis` or `make tis-gui`
 
 This is an evidence that TrustInSoft analyzer is a much more reliable way of testing code for robustness
-than Unit Tests.
+than functional tests.
 
 
 

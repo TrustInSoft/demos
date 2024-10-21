@@ -21,7 +21,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # Demo of C++ buffer overflow and integer overflow detection with TrustInSoft analyzer
 
 This demo demonstrates TrustInSoft Analyzer capabilities on C++ code:
-- How unit tests can typically miss undefined behaviors like buffer overflows or integer overflows if those undefined behaviors do not cause immediate problems (like a crash), and
+- How functional tests can typically miss undefined behaviors like buffer overflows or integer overflows if those undefined behaviors do not cause immediate problems (like a crash), and
 - How TrustInSoft analysis detects them with mathematical guarantee.
 
 <!--
@@ -57,21 +57,21 @@ void IncrementableArray<T>::increment(T val)
 }
 ```
 
-## Unit tests
+## functional tests
 
-The test driver [test_driver.cpp](test_driver.c#L50) has several unit tests meant to test that function.
+The test driver [test_driver.cpp](test_driver.c#L50) has several functional tests meant to test that function.
 - Test with small array of a few static integers
 - Test with a larger array (1000 cells) of random integers
 - Test with an empty array
 - Test with an null (unallocated) array
 
-When running the 4 unit tests, they all pass, and on top of that the code coverage is 100%. This can be verified by running `make clean test`
+When running the 4 functional tests, they all pass, and on top of that the code coverage is 100%. This can be verified by running `make clean test`
 ```
 $ make clean test
 
 g++ -I. -fprofile-arcs -ftest-coverage test_driver.cpp increment.cpp -o increment && ./increment
 
-Running unit tests
+Running tests
 PASSED: increment_array({1, 3, 5, 7, 11, 13, 17}) = {2, 4, 6, 8, 12, 14, 18}
 PASSED: increment_array({846930886, 1714636915, 424238335, -1649760492, -1189641421, ..., -878777377, -531352976, 413892161, 1455252833}) = {846930887, 1714636916, 424238336, -1649760491, -1189641420, ..., -878777376, -531352975, 413892162, 1455252834}
 PASSED: increment_array({}) = {}
@@ -84,9 +84,9 @@ Despite the above passing tests we'll see that there are undetected undefined be
 
 Note that gcov is kinda confused by C++ templated classes and does not produce coverage.
 
-## Level 1 analysis - Replay existing unit tests
+## Level 1 analysis - Replay existing functional tests
 
-Level 1 analysis with TrustInSoft is really easy because it simply consists in replaying the unit tests with the TrustInSoft analyzer instead of the Unit Test framework. In the current case the [Makefile](makefile) is preparing the quite simple commands to run the 4 tests so it only requires to run `make tis-l1`.
+Level 1 analysis with TrustInSoft is really easy because it simply consists in replaying the functional tests with the TrustInSoft analyzer instead of the Unit Test framework. In the current case the [Makefile](makefile) is preparing the quite simple commands to run the 4 tests so it only requires to run `make tis-l1`.
 
 You need to have the TrustInSoft analyzer installed to successfully run this command. If you don't you can see the output below (uninteresting parts of the output log have been stripped)
 
@@ -178,13 +178,13 @@ After investigation of the problem, one should conclude that the problem comes f
 The code is looping 1 time to much (e.g. 8 loops for an array of 7 integer)
 It should be `while (index > 0)` instead of `while (index >= 0)`.
 
-If we fix the code and re-run the 4 unit tests with the TrustInSoft Analyzer, all 4 analyses succeed and demonstrate absence of Undefined Behaviors with the considered inputs (4 differents inputs), See the updated [HTML report](.static/tis_report.l1-no-ub.html)
+If we fix the code and re-run the 4 functional tests with the TrustInSoft Analyzer, all 4 analyses succeed and demonstrate absence of Undefined Behaviors with the considered inputs (4 differents inputs), See the updated [HTML report](.static/tis_report.l1-no-ub.html)
 
 <img src=".static/tis_report.l1-no-ub.png" alt="TIS report Level 1 fixed" width="700"/>
 
 ## Level 2 analysis - Input generalization
 
-Now that Level 1 unit tests are proven to have no undefined behaviors (for the discrete test input values), we can now make our analyses more exhaustive, and generalize the inputs to a much larger input set that the 4 (hopefully smart) values used for unit tests. This is what is called Level 2 analysis.
+Now that Level 1 functional tests are proven to have no undefined behaviors (for the discrete test input values), we can now make our analyses more exhaustive, and generalize the inputs to a much larger input set than the 4 (hopefully smart) values used for functional tests. This is what is called Level 2 analysis.
 
 For that, we generalize the array to any possible array values up to the given array size.
 We have chosen a limit of array of 1000 integers. That's **(2^32)^1000 different values** (assuming integers on 32 bits) !
@@ -230,7 +230,7 @@ increment.hpp:101:[kernel] warning: signed overflow. assert value+1 ≤ 21474836
 ===============================================
 ```
 
-As you can see, the generalization of input has revealed 1 additional undefined behaviors, not found by discrete unit tests. It's an **integer overflow** as quickly highlighted by the log:
+As you can see, the generalization of input has revealed 1 additional undefined behaviors, not found by discrete functional tests. It's an **integer overflow** as quickly highlighted by the log:
 ```
 increment.hpp:101:[kernel] warning: signed overflow. assert value+1 ≤ 2147483647;
                   stack: IncrementableArray<int>::increment :: test_driver.cpp:86 <-
@@ -245,11 +245,11 @@ Anyhow, the root cause here is that when an array cell contains the value `INT_M
 
 ## Conclusion
 
-In this demo we have shown a relatively common situation where pretty well defined Unit Tests, all passing, have missed Undefined behaviors.
-- By replaying these Unit Tests with the TrustInSoft analyzer we were able to detect a first Undefined Behavior (a **buffer overflow**)
+In this demo we have shown a relatively common situation where pretty well defined functional tests, all passing, have missed Undefined behaviors.
+- By replaying these functional tests with the TrustInSoft analyzer we were able to detect a first Undefined Behavior (a **buffer overflow**)
 - By further generalizing inputs, we were able to detect a second Undefined Behavior (an **integer overflow**)
 
-Unit Tests are quite useful to verify the functional behavior of the code, but not really it's robustness. TrustInSoft analyzer is an excellent complement to also bring mathematical guarantee of robustness (absence of undefined behaviors)
+functional tests are quite useful to verify the functional behavior of the code, but not really it's robustness. TrustInSoft analyzer is an excellent complement to also bring mathematical guarantee of robustness (absence of undefined behaviors)
 
 Note also that, despite the complexity introduced by templated classes, the TrustInSoft analyzer was able to produce a code coverage report (see below), something that was out of reach with simple coverage tools like **gcov**.
 <img src=".static/tis_report.coverage.png" alt="TIS report coverage" width="700"/>

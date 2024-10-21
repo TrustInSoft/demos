@@ -35,7 +35,7 @@ TIS_OPTS := -tis-config-load trustinsoft/tis-preparse.json -tis-report
 .PHONY: tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui
 
 help-specific:
-	@echo "make test           : Runs unit tests"
+	@echo "make test           : Runs functional tests"
 	@echo "make tis-l1         : Runs TISA L1 analysis"
 	@echo "make tis-l2         : Runs TISA L2 analysis"
 	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"

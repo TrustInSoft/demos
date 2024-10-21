@@ -206,13 +206,13 @@ This overflow is also found with all details in the produced [HTML report](.stat
 
 ## Conclusion
 
-Unit Tests are quite useful to verify the functional behavior of the code, but not really its robustness. TrustInSoft analyzer is an excellent complement to also bring mathematical guarantee of robustness (absence of undefined behaviors)
+functional tests are quite useful to verify the functional behavior of the code, but not really its robustness. TrustInSoft analyzer is an excellent complement to also bring mathematical guarantee of robustness (absence of undefined behaviors)
 
-Running unit tests with CUnit is certainly of high value because it allows to verify that function outputs
+Running tests with CUnit is certainly of high value because it allows to verify that function outputs
 are the expected values for particular inputs.
 However it may not detect Undefined Behaviors if they don't have a direct impact on the output.
 It's therefore very interesting to re-run the same CUnit tests with the TrustInSoft Analyzer to detect them,
-and the nice thing is that re-running CUnit Tests with TrustInSoft is almost effortless.
+and the nice thing is that re-running CUnit tests with TrustInSoft is almost effortless.
 It works almost automatically.
 
 Reach out to us through https://trust-in-soft.com/contact/ if you would like to know more about our product.
