@@ -1,0 +1,11 @@
+{
+    "slevel": 5000,
+    "val": "true",
+    "val-profile": "interpreter",
+    "files": [
+        "../target.c"
+    ],
+    "cpp-extra-args": "-I.",
+    "whole-program-graph": "true",
+    "mcdc": "true"
+}

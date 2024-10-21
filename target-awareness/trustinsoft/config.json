@@ -1,0 +1,26 @@
+[
+    {
+        "include": "tis-common.json",
+        "name": "1.double-that.arm32",
+        "main": "test_double_that",
+        "machdep": "armeb_eabi"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "2.msb.arm32",
+        "main": "test_msb",
+        "machdep": "armeb_eabi"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "1.double-that.x86_64",
+        "main": "test_double_that",
+        "machdep": "gcc_x86_64"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "2.msb.x86_64",
+        "main": "test_msb",
+        "machdep": "gcc_x86_64"
+    }
+]
