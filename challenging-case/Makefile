@@ -28,10 +28,8 @@ TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
 .PHONY: clean test tis-l1 tis-l2
 
 help-specific:
-	@echo "make test           : Runs unit tests"
-	@echo "make tis-l1         : Runs TISA L1 analysis"
-	@echo "make tis-l2         : Runs TISA L2 analysis"
-	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"
+	@echo "make test           : Runs functional tests"
+	@echo "make tis            : Runs TrustInSoft Analyzer on the code"
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
@@ -45,26 +43,8 @@ test:
 	fi
 	gcov $(TARGET).c
 
-tis-l1: tis-l1-run count-ub-1 report
-
-tis-l2: tis-l2-run count-ub-2 report
-
-tis-l1-run:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 1$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 1
-
-tis-l1-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) $(FILES) -gui$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 1 -gui
-
-tis-l2-run:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select 2
-
-count-ub-1: count-ub-1-generic
-
-count-ub-2: count-ub-2-generic
-
-report: report-generic
+tis:
+	@echo -e "Running analyses"
+	@tis run -f && tis-report --open
 
 clean: clean-generic

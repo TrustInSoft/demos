@@ -1,0 +1,120 @@
+{
+  "computation": { "type": "error", "status": "OK" },
+  "undefined_functions": { "type": "error", "status": "OK" },
+  "degeneration": {
+    "type": "error",
+    "status": "NOT OK",
+    "reason": "stop at nth alarm",
+    "program_point": {
+      "file": "../../../test_driver.c",
+      "line": 47,
+      "function": "test1",
+      "function_start_line": 40,
+      "function_end_line": 59,
+      "statement_kind": "instruction"
+    }
+  },
+  "non_terminating": {
+    "type": "to verify",
+    "status": "NOT OK",
+    "list": [
+      {
+        "never_terminating": true,
+        "program_point": {
+          "file": "../../../test_driver.c",
+          "line": 43,
+          "function": "test1",
+          "function_start_line": 40,
+          "function_end_line": 59,
+          "statement_kind": "loop",
+          "loop_number": 1
+        }
+      },
+      {
+        "never_terminating": false,
+        "program_point": {
+          "file": "../../../test_driver.c",
+          "line": 44,
+          "function": "test1",
+          "function_start_line": 40,
+          "function_end_line": 59,
+          "statement_kind": "loop",
+          "loop_number": 2
+        }
+      }
+    ]
+  },
+  "messages": { "type": "to verify", "status": "OK" },
+  "bypassed_parsing_errors": { "type": "to verify", "status": "OK" },
+  "alarms": {
+    "type": "error",
+    "status": "NOT OK",
+    "list": [
+      {
+        "kind": "index out of bound",
+        "predicate": "0 ≤ index_0",
+        "details": "The values of the index 'index_0' are in {-1}: they are out of the array bounds. They should be greater or equal than 0.",
+        "rank": 1,
+        "status": "unknown",
+        "program_point": {
+          "file": "../../../test_driver.c",
+          "line": 47,
+          "function": "test1",
+          "function_start_line": 40,
+          "function_end_line": 59,
+          "statement_kind": "instruction",
+          "call_stacks": []
+        },
+        "values": [ { "lvalue": "index_0", "values": " ∈ {-1}" } ]
+      }
+    ]
+  },
+  "libc_alarms": { "type": "informative", "status": "OK" },
+  "hypotheses": { "type": "to verify", "status": "OK" },
+  "no_body_but_spec": { "type": "to verify", "status": "OK" },
+  "body_but_use_spec": { "type": "informative", "status": "OK" },
+  "external_variables": { "type": "informative", "status": "OK" },
+  "assembly": { "type": "informative", "status": "OK" },
+  "builtins": {
+    "type": "informative",
+    "status": "NOT OK",
+    "list": [ "tis_bzero", "abs" ]
+  },
+  "useless_files": { "type": "to verify", "status": "OK" },
+  "coverage": {
+    "type": "informative",
+    "function_coverage": "50%",
+    "total_statements_coverage": "30%",
+    "semantic_statements_coverage": "44%"
+  },
+  "precision": { "type": "informative", "status": "OK", "max_slevel": 2682 },
+  "time": {
+    "type": "informative",
+    "total_time": "3.722",
+    "value_analysis_time": "2.744",
+    "parsing_time": "0.978"
+  },
+  "target": {
+    "type": "informative",
+    "entry_point": "test1",
+    "entry_point_function": {
+      "function": "test1",
+      "file": "../../../test_driver.c",
+      "function_start_line": 40,
+      "function_end_line": 59
+    },
+    "architecture": "gcc AMD64",
+    "endianness": "little endian"
+  },
+  "entry_point_return": { "type": "informative", "reachable": false },
+  "exit_function": { "type": "informative", "reachable": false },
+  "val_profile": "interpreter",
+  "value_results": true,
+  "memory_usage": {
+    "words": 29609984,
+    "bytes": 236879872,
+    "kbytes": 236879,
+    "Mbytes": 236,
+    "Gbytes": 0
+  }
+}

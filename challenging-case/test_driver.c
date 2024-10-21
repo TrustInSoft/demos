@@ -77,7 +77,7 @@ int main()
 {
 
     int ok = 1;
-    printf("\nRunning unit tests\n");
+    printf("\nRunning tests\n");
     ok = test1() && ok;
 
 #ifdef __TRUSTINSOFT_ANALYZER__

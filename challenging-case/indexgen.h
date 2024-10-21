@@ -2,7 +2,7 @@
 #define INDEXGEN_H
 /*
 trustinsoft/demos
-Copyright (C) 2023 TrustInSoft
+Copyright (C) 2023-2024 TrustInSoft
 mailto:contact AT trust-in-soft DOT com
 
 This program is free software; you can redistribute it and/or
