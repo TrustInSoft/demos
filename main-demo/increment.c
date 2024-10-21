@@ -1,6 +1,6 @@
 /*
 trustinsoft/demos
-Copyright (C) 2022-2023 TrustInSoft
+Copyright (C) 2022-2024 TrustInSoft
 mailto:contact AT trust-in-soft DOT com
 
 This program is free software; you can redistribute it and/or
@@ -22,11 +22,11 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "increment.h"
 
 /*
-Increments all cells of an integer array
+REQ_0123: Increments all cells of an integer array
 */
 void increment_array(int array[], int len)
 {
-    if (array == NULL || len == 0)
+    if (array == NULL || len <= 0)
         return;
 
     while (len >= 0)

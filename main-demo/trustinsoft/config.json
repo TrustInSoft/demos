@@ -1,0 +1,38 @@
+[
+  {
+    "include": "tis-common.json",
+    "name": "1.1.small-array",
+    "val-profile": "interpreter",
+    "main": "test_small_array",
+    "fun-inout": "increment_array"
+  },
+  {
+    "include": "tis-common.json",
+    "name": "1.2.large-array",
+    "val-profile": "interpreter",
+    "main": "test_large_array",
+    "fun-inout": "increment_array"
+  },
+  {
+    "include": "tis-common.json",
+    "name": "1.3.zero-length-array",
+    "val-profile": "interpreter",
+    "main": "test_zero_length",
+    "fun-inout": "increment_array"
+  },
+  {
+    "include": "tis-common.json",
+    "name": "1.4.null-array",
+    "val-profile": "interpreter",
+    "main": "test_null",
+    "fun-inout": "increment_array"
+  },
+  {
+    "dev": true,
+    "fun-inout": "increment_array",
+    "include": "tis-common.json",
+    "main": "test_generalized_array",
+    "name": "2.generalized-array",
+    "val-profile": "analyzer"
+  }
+]

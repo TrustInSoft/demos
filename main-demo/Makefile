@@ -16,24 +16,30 @@
 # along with this program; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # 
+SHELL := /bin/bash
 
-help: help-specific help-generic
+FONT_BOLD := `tput bold`
+FONT_CYAN := `tput setaf 6`
+FONT_RED := `tput setaf 1`
+FONT_RESET := `tput sgr0`
+GCC_VERSION := $(shell gcc --version | head -n 1 | cut -d ' ' -f 4 | cut -d '.' -f 1)
 
-include ../tools/common.mk
-
+TIS_ANALYZER := tis-analyzer
 TARGET := increment
 FILES := test_driver.c utils.c $(TARGET).c
 OBJS := test_driver.o utils.o $(TARGET).o
-TIS_OPTS := $(TIS_OPTS_SHORT) -tis-report
+COMPILER := gcc
+TIS_OPTS := -tis-config-load demo-tools/tis.json -fun-inout increment_array -inout-verbose 0 -tis-report
 
-.PHONY: help-specific all-specific test tis-l1 tis-l1-fast tis-l1-seq tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
+.PHONY: all test tis-l1  tis-l1-gui tis-l1-run tis-l1-run-gui tis-l2 tis-l2-gui tis-l2-run tis-l2-run-gui report
 
-help-specific:
-	@echo "make test           : Runs unit tests"
-	@echo "make tis-l1         : Runs TISA L1 analysis"
-	@echo "make tis-l2         : Runs TISA L2 analysis"
-	@echo "make tis-l1-gui     : Runs TISA L1 analysis with the GUI"
-	@echo "make tis-l2-gui     : Runs TISA L2 analysis with the GUI"
+
+all:
+	@echo "make test:       Runs tests"
+	@echo "make tis:        Runs TISA complete analysis"
+	@echo "make tis-l1:     Runs TISA interpreter mode analysis"
+	@echo "make tis-l2:     Runs TISA analyzer mode analysis"
+	@echo "make clean:      Cleans everything to revert to the beginning of the demo"
 
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o $(TARGET) && ./$(TARGET)$(FONT_RESET)"
@@ -47,53 +53,30 @@ test:
 	fi
 	gcov $(TARGET).c
 
-tis-l1-1:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.1.small-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.1.small-array"
+cov:
+	$(shell if [ -f $(TARGET).gcno ]then; gcov $(TARGET)-$(TARGET).c; else; gcov $(TARGET).c; fi)
 
-tis-l1-gui:
-	@echo -e "$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.1.small-array" -gui"
-	$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.1.small-array" -gui
+tis:
+	@echo -e "Running all tests"
+	@tis run -f
+	@tis report --open
 
-tis-l1-2:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.2.large-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.2.large-array"
+tis-l1:
+	@echo -e "Running intepreter tests"
+	@tis run -f 1..4
+	@tis report --open
 
-tis-l1-3:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.3.zero-length-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.3.zero-length-array"
+tis-l2:
+	@echo -e "Running intepreter tests"
+	@tis run -f 5
+	@tis report --open
 
-tis-l1-4:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "1.4.null-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "1.4.null-array"
-
-count-ub-1: count-ub-1-generic
-
-count-ub-2: count-ub-2-generic
-
-tis-l2-cli:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
-	@$(TIS_ANALYZER) $(TIS_OPTS) -tis-config-select-by-name "2.generalized-array"
-
-tis-l2-gui:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array"$(FONT_RESET)"
-	$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select-by-name "2.generalized-array" -gui
-
-tis-l1-seq: tis-l1-2 tis-l1-3 tis-l1-4 tis-l1-1 count-ub-1 report
-
-tis-l1: tis-l1-fast count-ub-1 report
-
-tis-l1-fast:
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 2"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 3"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 4"
-	@echo -e "$(FONT_CYAN)$(TIS_ANALYZER) $(TIS_OPTS_SHORT) -tis-config-select 5"
-	@../tools/run_all.sh -n 4 -c $(CONFIG_FILE) -a "3 2 4 5"
-
-tis-l2: tis-l2-cli count-ub-2 report
-
-report: report-generic
-
-clean: clean-generic
+clean:
+	@echo "Cleaning..."
+	@rm -rf $(TARGET) *.gc* compile_commands.json _results *.log tis_report.html tis_misra_report
 	@echo "Reverting increment.c to original..."
 	@git checkout -q -- increment.c
+	
+tis-misra:
+	tis-misra --title "DEMO" increment.c
+	@printf "\nCheck generated test report $(FONT_CYAN)tis_misra_report/index.html$(FONT_RESET)\n\n"
