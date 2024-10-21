@@ -1,7 +1,7 @@
 /*
 trustinsoft/demos
 
-Copyright (C) 2022-2023 TrustInSoft
+Copyright (C) 2022-2024 TrustInSoft
 mailto:contact AT trust-in-soft DOT com
 
 This program is free software; you can redistribute it and/or
@@ -68,6 +68,10 @@ int test_array(int *in_array, int len)
     return ok;
 }
 
+/*
+TEST_0001: verify with small array
+Uptrace: REQ_0123
+*/
 int test_small_array()
 {
     int input_array[] = {1, 3, 5, 7, 11, 13, 17};
@@ -75,21 +79,33 @@ int test_small_array()
     return test_array(input_array, len);
 }
 
+/*
+TEST_0002: verify with big array
+Uptrace: REQ_0123
+*/
 int test_large_array()
 {
-    int input_array[500];
-    for (int i = 0; i < 500; i++)
+    int input_array[1000];
+    for (int i = 0; i < 1000; i++)
         input_array[i] = (rand() > RAND_MAX / 2 ? rand() : -rand());
     int len = sizeof(input_array) / sizeof(int);
     return test_array(input_array, len);
 }
 
+/*
+TEST_0003: test of empty array (GNU extension)
+Uptrace: REQ_0123
+*/
 int test_zero_length()
 {
     int p[] = {};
     return test_array(p, 0);
 }
 
+/*
+TEST_0004: test of NULL
+Uptrace: REQ_0123
+*/
 int test_null()
 {
     int *p = NULL;
@@ -97,19 +113,21 @@ int test_null()
 }
 
 #ifdef __TRUSTINSOFT_ANALYZER__
-
+/*
+TEST_ROBUSTNESS_0005: verify all entries in a big array
+Uptrace: REQ_0123
+*/
 void test_generalized_array()
 {
     int input_array[1000];
     // This corresponds to 2^32^1000 combinations
     // i.e approximatively 9 x 10^9632 inputs values
-    tis_make_unknown(&input_array, sizeof input_array);
+    tis_make_unknown(&input_array, sizeof(input_array));
     
     int len = sizeof(input_array) / sizeof(int);
     increment_array(input_array, len);
     return;
 }
-
 
 #endif
 
@@ -117,7 +135,7 @@ int main()
 {
 
     int ok = 1;
-    printf("\nRunning unit tests\n");
+    printf("\nRunning tests\n");
     ok = test_small_array() && ok;
     ok = test_large_array() && ok;
     ok = test_zero_length() && ok;

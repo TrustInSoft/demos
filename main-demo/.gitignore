@@ -1,0 +1,6 @@
+/trustinsoft/.tis-current
+/trustinsoft/.tis-stash
+/trustinsoft/.tis-config-check.json
+/*.gcno
+/*.gcda
+/*.gcov
