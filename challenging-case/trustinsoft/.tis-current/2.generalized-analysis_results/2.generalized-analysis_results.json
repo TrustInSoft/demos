@@ -1,0 +1,90 @@
+{
+  "computation": { "type": "error", "status": "OK" },
+  "undefined_functions": { "type": "error", "status": "OK" },
+  "degeneration": { "type": "error", "status": "OK" },
+  "non_terminating": { "type": "to verify", "status": "OK" },
+  "messages": { "type": "to verify", "status": "OK" },
+  "bypassed_parsing_errors": { "type": "to verify", "status": "OK" },
+  "alarms": {
+    "type": "error",
+    "status": "NOT OK",
+    "list": [
+      {
+        "kind": "index out of bound",
+        "predicate": "0 ≤ index_0",
+        "details": "The values of the index 'index_0' are in {-1}: they are out of the array bounds. They should be greater or equal than 0.",
+        "rank": 1,
+        "status": "unknown",
+        "program_point": {
+          "file": "../../../test_driver.c",
+          "line": 70,
+          "function": "generalized_analysis",
+          "function_start_line": 63,
+          "function_end_line": 71,
+          "statement_kind": "instruction",
+          "call_stacks": []
+        },
+        "values": [ { "lvalue": "index_0", "values": " ∈ [-1..99998]" } ]
+      }
+    ]
+  },
+  "libc_alarms": { "type": "informative", "status": "OK" },
+  "hypotheses": { "type": "to verify", "status": "OK" },
+  "no_body_but_spec": { "type": "to verify", "status": "OK" },
+  "body_but_use_spec": { "type": "informative", "status": "OK" },
+  "external_variables": {
+    "type": "informative",
+    "status": "NOT OK",
+    "list": [
+      {
+        "name": "tis_entropy_source",
+        "type": "int",
+        "file": "TIS_KERNEL_SHARE/libc/termios.h",
+        "line": 241
+      }
+    ]
+  },
+  "assembly": { "type": "informative", "status": "OK" },
+  "builtins": {
+    "type": "informative",
+    "status": "NOT OK",
+    "list": [ "tis_bzero", "__tis_stdio_cleanup", "abs", "tis_interval" ]
+  },
+  "useless_files": { "type": "to verify", "status": "OK" },
+  "coverage": {
+    "type": "informative",
+    "function_coverage": "67%",
+    "total_statements_coverage": "30%",
+    "semantic_statements_coverage": "100%"
+  },
+  "precision": { "type": "informative", "status": "OK", "max_slevel": 5 },
+  "time": {
+    "type": "informative",
+    "total_time": "0.669",
+    "value_analysis_time": "0.009",
+    "parsing_time": "0.660"
+  },
+  "target": {
+    "type": "informative",
+    "entry_point": "generalized_analysis",
+    "entry_point_function": {
+      "function": "generalized_analysis",
+      "file": "../../../test_driver.c",
+      "function_start_line": 63,
+      "function_end_line": 71
+    },
+    "architecture": "gcc AMD64",
+    "endianness": "little endian"
+  },
+  "entry_point_return": { "type": "informative", "reachable": true },
+  "exit_function": { "type": "informative", "reachable": false },
+  "val_profile": "analyzer",
+  "value_results": true,
+  "memory_usage": {
+    "words": 17027072,
+    "bytes": 136216576,
+    "kbytes": 136216,
+    "Mbytes": 136,
+    "Gbytes": 0
+  }
+}

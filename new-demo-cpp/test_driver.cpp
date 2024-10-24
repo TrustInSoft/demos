@@ -93,7 +93,7 @@ int main()
 {
 
     bool ok = true;
-    printf("\nRunning unit tests\n");
+    printf("\nRunning tests\n");
     ok = test_small_array() && ok;
     ok = test_large_array() && ok;
     ok = test_zero_length() && ok;

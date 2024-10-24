@@ -1,0 +1,228 @@
+File, Line, Function, StmtId, Kind, Name, Status, Alarm, Alarm rank, MoreInfo, Is libc
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 43, tis_bzero, -1, ensures, , considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 41, tis_bzero, -1, requires, valid_buffer, never tried, no, -1, , libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 52, __tis_copy_block, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 49, __tis_copy_block, -1, requires, valid_buffer, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 50, __tis_copy_block, -1, requires, valid_count, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 288, free, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 284, free, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 285, free, -1, requires, freeable, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 290, free, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 306, malloc, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 302, malloc, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 311, malloc, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 308, malloc, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 132, tis_interval, -1, ensures, , considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 129, tis_interval, -1, requires, valid_interval, surely valid, no, -1, , libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 183, tis_make_unknown, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 180, tis_make_unknown, -1, requires, valid_buffer, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 249, tis_nondet, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 1993, tis_long_long_interval, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 1990, tis_long_long_interval, -1, requires, valid_interval, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 426, vsnprintf, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 423, vsnprintf, -1, requires, valid_format, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 424, vsnprintf, -1, requires, valid_size, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 425, vsnprintf, -1, requires, valid_buf, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 79, memcpy, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 80, memcpy, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 73, memcpy, -1, requires, valid_dst, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 74, memcpy, -1, requires, valid_src, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 76, memcpy, -1, requires, separated_areas, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 124, memset, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 125, memset, -1, ensures, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 121, memset, -1, requires, valid_buffer, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 889, close, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1213, read, -1, requires, valid_size, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1214, read, -1, requires, valid_buf, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1219, read, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1216, read, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1225, read, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1223, read, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1305, write, -1, requires, valid_size, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1306, write, -1, requires, valid_buf, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1311, write, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1308, write, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1316, write, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1314, write, -1, assumes, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_mkfs_utils.h, 23, __mkfs_check_fd_file_ok, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_mkfs_utils.h, 28, __mkfs_get_fd_kind, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 415, __tis_flush_write_buffer, -1, requires, dirty_write_buffer, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 461, __tis_write_stream, -1, requires, valid_len, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 588, __mkfs_stat_access, -1, requires, tis_access_mode, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1083, __mkfs_check_file_data, -1, requires, check_data, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 535, abs, -1, ensures, , unknown, no, -1, , libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 533, abs, -1, requires, abs_representable_UB, surely valid, no, -1, , libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 111, ferror, -1, requires, valid_file, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 230, fwrite, -1, ensures, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 228, fwrite, -1, requires, valid_file, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 229, fwrite, -1, requires, valid_buffer, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 265, printf, -1, requires, valid_format, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 384, vfprintf, -1, requires, valid_file, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.h, 385, vfprintf, -1, requires, valid_format, never tried, no, -1, in unreachable function, libc:yes
+../../../test_driver.c, 42, test1, 1, ensures, , valid but dead, no, -1, in unreachable function, libc:no
+../../../test_driver.c, 42, test1, 1, ensures, , valid but dead, no, -1, in unreachable function, libc:no
+../../../test_driver.c, 65, generalized_analysis, 1, ensures, , surely valid, no, -1, , libc:no
+../../../test_driver.c, 65, generalized_analysis, 1, ensures, , surely valid, no, -1, , libc:no
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 60, __tis_std_terminate, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 42, tis_bzero, -1, assigns, , considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 51, __tis_copy_block, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 286, free, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 282, free, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 296, free, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 303, malloc, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 299, malloc, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 315, malloc, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.c, 49, abs, -1, assigns, , never tried, no, -1, , libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 130, tis_interval, -1, assigns, , considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 181, tis_make_unknown, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 247, tis_nondet, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 1991, tis_long_long_interval, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 3045, tis_show_each, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 2776, printf, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 77, memcpy, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 122, memset, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 888, close, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1224, read, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1217, read, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1315, write, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1309, write, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_mkfs_utils.h, 22, __mkfs_check_fd_file_ok, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 298, __mkfs_get_fd_kind, -1, assigns, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 65, tis_vfprintf, -1, assigns, , considered valid, no, -1, in unreachable function, libc:yes
+../../../test_driver.c, 42, test1, 1, assigns, assigns_stmt_1, valid but dead, no, -1, in unreachable function, libc:no
+../../../test_driver.c, 65, generalized_analysis, 1, assigns, assigns_stmt_1, surely valid, no, -1, , libc:no
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 99, NA, -1, axiom, memchr_def, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 157, NA, -1, axiom, memcmp_strlen, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 162, NA, -1, axiom, memcmp_strlen_shift_left, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 167, NA, -1, axiom, memcmp_strlen_shift_right, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 85, NA, -1, axiom, memcmp_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 110, NA, -1, axiom, memset_def, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 219, NA, -1, axiom, strchr_def, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 185, NA, -1, axiom, strcmp_zero_1, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 192, NA, -1, axiom, strcmp_zero_2, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 178, NA, -1, axiom, strcmp_zero_memcmp, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 134, NA, -1, axiom, strlen_at_null, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 131, NA, -1, axiom, strlen_before_null, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 153, NA, -1, axiom, strlen_create_shift, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 126, NA, -1, axiom, strlen_neg, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 137, NA, -1, axiom, strlen_not_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 120, NA, -1, axiom, strlen_pos_or_null, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 149, NA, -1, axiom, strlen_shift, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 145, NA, -1, axiom, strlen_sup, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 141, NA, -1, axiom, strlen_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 206, NA, -1, axiom, strncmp_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 272, NA, -1, axiom, wcscmp_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 243, NA, -1, axiom, wcslen_at_null, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 240, NA, -1, axiom, wcslen_before_null, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 262, NA, -1, axiom, wcslen_create_shift, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 235, NA, -1, axiom, wcslen_neg, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 246, NA, -1, axiom, wcslen_not_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 229, NA, -1, axiom, wcslen_pos_or_null, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 258, NA, -1, axiom, wcslen_shift, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 254, NA, -1, axiom, wcslen_sup, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 250, NA, -1, axiom, wcslen_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 284, NA, -1, axiom, wcsncmp_zero, considered valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 99, NA, -1, axiomatic, MemChr, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 85, NA, -1, axiomatic, MemCmp, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 110, NA, -1, axiomatic, MemSet, surely valid, no, -1, global, libc:yes
+<unknown>, 0, NA, -1, axiomatic, NormalizedPath, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 219, NA, -1, axiomatic, StrChr, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 192, NA, -1, axiomatic, StrCmp, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 167, NA, -1, axiomatic, StrLen, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 206, NA, -1, axiomatic, StrNCmp, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 272, NA, -1, axiomatic, WcsCmp, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 262, NA, -1, axiomatic, WcsLen, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_string_axiomatic.h, 284, NA, -1, axiomatic, WcsNCmp, surely valid, no, -1, global, libc:yes
+<unknown>, 0, NA, -1, axiomatic, dynamic_allocation, surely valid, no, -1, global, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 183, __tis_check_stream, 1, assert, __tis_access_to_closed_file_use_of_invalid_FILE_object_UB, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 185, __tis_check_stream, 3, assert, __tis_access_to_closed_file_use_of_invalid_FILE_object_UB, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 499, __tis_write_stream, 23, assert, __tis_incorrect_alternated_io_c_7_21_5_3_alternating_io_UB, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 513, __tis_write_stream, 37, assert, , valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 602, __tis_write_stream, 97, assert, wrong_buffering_mode, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 768, close_stream, 5, assert, internal_consistency, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 2786, printf, 5, assert, use_of_invalid_FILE_object_UB, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1896, __mkfs_read_socket, 6, assert, __mkfs_read_socket_get_socket_info_ok, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1957, __mkfs_read, 21, assert, __mkfs_read_unsupported_file_kind, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2117, __mkfs_local_pwrite, 19, assert, mkfs_pwrite_ok, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2174, __mkfs_write, 14, assert, __mkfs_write_is_directory, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2183, __mkfs_write, 21, assert, __mkfs_read_unsupported_file_kind, valid but dead, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 3238, __mkfs_close, 20, assert, __mkfs_read_unsupported_file_kind, valid but dead, no, -1, in unreachable function, libc:yes
+../../../test_driver.c, 70, generalized_analysis, 8, index out of bound, Value_index_bound, unknown, yes, 1, , libc:no
+TIS_KERNEL_SHARE/libc/stdlib.h, 296, free, -1, complete behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 315, malloc, -1, complete behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1970, read, -1, complete behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2199, write, -1, complete behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 296, free, -1, disjoint behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 315, malloc, -1, disjoint behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1970, read, -1, disjoint behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2199, write, -1, disjoint behaviors, , never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 42, tis_bzero, -1, from, (line 42), considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_builtin_for_normalization.i, 51, __tis_copy_block, -1, from, (line 51), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 286, free, -1, from, (line 286), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 282, free, -1, from, (line 282), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 303, malloc, -1, from, (line 303), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 304, malloc, -1, from, (line 304), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 299, malloc, -1, from, (line 299), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 300, malloc, -1, from, (line 300), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 309, malloc, -1, from, (line 309), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 534, abs, -1, from, (line 534), never tried, no, -1, , libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 130, tis_interval, -1, from, (line 130), considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 131, tis_interval, -1, from, (line 131), considered valid, no, -1, ensures of -val-use-spec function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 181, tis_make_unknown, -1, from, (line 181), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 182, tis_make_unknown, -1, from, (line 182), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 247, tis_nondet, -1, from, (line 247), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 248, tis_nondet, -1, from, (line 248), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 1991, tis_long_long_interval, -1, from, (line 1991), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 1992, tis_long_long_interval, -1, from, (line 1992), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 77, memcpy, -1, from, (line 77), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 78, memcpy, -1, from, (line 78), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 122, memset, -1, from, (line 122), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/string.h, 123, memset, -1, from, (line 123), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 888, close, -1, from, (line 888), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 888, close, -1, from, (line 888), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 888, close, -1, from, (line 888), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1224, read, -1, from, (line 1224), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1224, read, -1, from, (line 1224), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1217, read, -1, from, (line 1217), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1217, read, -1, from, (line 1217), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1217, read, -1, from, (line 1217), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1315, write, -1, from, (line 1315), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1315, write, -1, from, (line 1315), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1309, write, -1, from, (line 1309), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1309, write, -1, from, (line 1309), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/unistd.h, 1309, write, -1, from, (line 1309), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_mkfs_utils.h, 22, __mkfs_check_fd_file_ok, -1, from, (line 22), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_mkfs_utils.h, 22, __mkfs_check_fd_file_ok, -1, from, (line 22), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_mkfs_utils.h, 27, __mkfs_get_fd_kind, -1, from, (line 27), never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 65, tis_vfprintf, -1, from, (line 65), considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 296, free, -1, behavior, deallocation, surely valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 296, free, -1, behavior, no_deallocation, surely valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 315, malloc, -1, behavior, allocation, surely valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 315, malloc, -1, behavior, no_allocation, surely valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1970, read, -1, behavior, invalid_fd, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1970, read, -1, behavior, valid_fd, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2199, write, -1, behavior, invalid_fd, never tried, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2199, write, -1, behavior, valid_fd, never tried, no, -1, in unreachable function, libc:yes
+../../../test_driver.c, 42, test1, 1, behavior, TIS_Kernel_implicit_init, valid but dead, no, -1, in unreachable function, libc:no
+../../../test_driver.c, 65, generalized_analysis, 1, behavior, TIS_Kernel_implicit_init, surely valid, no, -1, , libc:no
+TIS_KERNEL_SHARE/libc/stdio.c, 2786, printf, 5, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 183, __tis_check_stream, 1, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 185, __tis_check_stream, 3, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 499, __tis_write_stream, 23, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 513, __tis_write_stream, 37, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 602, __tis_write_stream, 97, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdio.c, 768, close_stream, 5, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1896, __mkfs_read_socket, 6, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 1957, __mkfs_read, 21, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2117, __mkfs_local_pwrite, 19, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2174, __mkfs_write, 14, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 2183, __mkfs_write, 21, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 3238, __mkfs_close, 20, reachability, , surely invalid, no, -1, in unreachable function, libc:yes
+../../../test_driver.c, 42, test1, 1, reachability, , surely invalid, no, -1, in unreachable function, libc:no
+TIS_KERNEL_SHARE/libc/stdlib.h, 287, free, -1, allocates, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 296, free, -1, allocates, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 305, malloc, -1, allocates, , considered valid, no, -1, in unreachable function, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 315, malloc, -1, allocates, , considered valid, no, -1, in unreachable function, libc:yes
+../../../indexgen.c, 26, complex_expression, 1, instance of requires, abs:abs_representable_UB, surely valid, no, -1, , libc:no
+../../../test_driver.c, 66, generalized_analysis, 4, instance of requires, tis_interval:valid_interval, surely valid, no, -1, , libc:no
+../../../test_driver.c, 67, generalized_analysis, 5, instance of requires, tis_interval:valid_interval, surely valid, no, -1, , libc:no

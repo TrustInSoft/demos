@@ -6,6 +6,7 @@
 **/_results/
 **/tis_report.html
 **/tis_misra_report/**
+**/.tis-config-check.json
 
 **/afl-results/
 fuzzing/afl-results*/
@@ -22,11 +23,13 @@ target-awareness/tis_report.*.html
 caesar-cpp/caesar
 new-demo-cpp/.tis-kernel/
 new-demo-cpp/increment
-**/.trustinsoft/logs
-**/.trustinsoft/results
-**/.trustinsoft/_results
-**/.trustinsoft/save
-**/.trustinsoft/tis_report.html
+**/trustinsoft/logs
+**/trustinsoft/results
+**/trustinsoft/_results
+**/trustinsoft/.tis-current
+**/trustinsoft/.tis-stash
+**/trustinsoft/save
+**/trustinsoft/tis_report.html
 
 caesar-c/caesar
 ut-vs-tis/demo-ub*

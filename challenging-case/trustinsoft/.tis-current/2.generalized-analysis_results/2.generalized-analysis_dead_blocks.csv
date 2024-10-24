@@ -1,0 +1,3 @@
+File, Function, Number, Description, CallNumber
+../../../test_driver.c, test1, 8, Function called from never called function, 1
+../../../test_driver.c, main, 7, Function that cannot be called at all, 2

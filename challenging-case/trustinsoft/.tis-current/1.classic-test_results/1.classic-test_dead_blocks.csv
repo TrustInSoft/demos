@@ -1,0 +1,6 @@
+File, Function, Number, Description, CallNumber
+../../../test_driver.c, test1, 29, Block in reachable function, 2
+../../../test_driver.c, main, 7, Function that cannot be called at all, 2
+../../../indexgen.c, index_of, 6, Block in reachable function, 0
+../../../test_driver.c, generalized_analysis, 6, Function called from never called function, 3
+../../../test_driver.c, __tis_globfini, 2, Function that may be called, 1

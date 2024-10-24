@@ -1,0 +1,40 @@
+File, Line, Kind, Source name, Internal name, Defined, Sub-type, Size (#bytes), Is libc
+TIS_KERNEL_SHARE/libc/__fc_define_wchar_t.h, 39, typedef, wchar_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_size_t.h, 42, typedef, size_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_sa_family_t.h, 39, typedef, sa_family_t, <same>, defined, unsigned short, 2, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_sockaddr.h, 55, struct, sockaddr, <same>, defined, N/A, 18, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_ssize_t.h, 42, typedef, ssize_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 28, typedef, __tis_blkcnt_t, <same>, defined, long long, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 29, typedef, __tis_blksize_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 30, typedef, __tis_dev_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 31, typedef, __tis_uid_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 32, typedef, __tis_gid_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 33, typedef, __tis_ino_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 34, typedef, __tis_mode_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 35, typedef, __tis_nlink_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 38, typedef, __tis_off_t, <same>, defined, long long, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 51, typedef, __tis_time_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_timespec.h, 16, struct, __tis_timespec, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_stat.h, 44, struct, stat, <same>, defined, N/A, 128, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_uid_and_gid.h, 38, typedef, uid_t, <same>, defined, typedef __tis_uid_t, 4, libc:yes
+TIS_KERNEL_SHARE/libc/sys/socket.h, 51, typedef, socklen_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_fpos_t.h, 15, struct, __fc_pos_t, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_fpos_t.h, 16, typedef, __tis_fpos_t, <same>, defined, struct __fc_pos_t, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_off_t.h, 37, typedef, off_t, <same>, defined, typedef __tis_off_t, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_FILE.h, 16, struct, __fc_FILE, <same>, defined, N/A, 160, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_FILE.h, 44, typedef, __tis_FILE, <same>, defined, struct __fc_FILE, 160, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_file.h, 58, typedef, FILE, <same>, defined, typedef __tis_FILE, 160, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_va_list.h, 15, typedef, va_list, <same>, defined, __builtin_va_list, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_mode_t.h, 38, typedef, mode_t, <same>, defined, typedef __tis_mode_t, 4, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_dirent.h, 32, struct, __tis_dirent, <same>, defined, N/A, 264, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_DIR.h, 16, struct, __tis_DIR, <same>, defined, N/A, 24, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_DIR.h, 23, typedef, __tis_DIR, <same>, defined, struct __tis_DIR, 24, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.c, 310, typedef, __tis_void_function, <same>, defined, pointer type, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/__tis_internal_stat.h, 79, struct, __tis_stat, <same>, defined, N/A, 128, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 48, struct, <empty>, __anonstruct___mkfs_file_info_15, defined, N/A, 24, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 48, typedef, __mkfs_file_info, <same>, defined, struct __anonstruct___mkfs_file_info_15, 24, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 62, typedef, __mkfs_dir_info, <same>, defined, typedef __tis_DIR, 24, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 69, struct, __mkfs_socket, <same>, defined, N/A, 200, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 69, typedef, __mkfs_socket_info, <same>, defined, struct __mkfs_socket, 200, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 115, struct, __mkfs_fs_file, <same>, defined, N/A, 40, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 257, struct, __mkfs_fd_info, <same>, defined, N/A, 8, libc:yes

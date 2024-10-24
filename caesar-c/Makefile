@@ -22,13 +22,14 @@ help: help-specific help-generic
 
 include ../tools/common.mk
 
+TARGET := caesar
 FILES := test_driver.c caesar.c
 TIS_OPTS = $(TIS_OPTS_SHORT) -tis-report
 
 .PHONY: test cov clean tis_l1 tis_l2 tis_l1_report tis_l2_report tis-l1-gui tis-l2-gui test1 test2 test-int report
 
 help-specific:
-	@echo "make test           : Runs unit tests"
+	@echo "make test           : Runs functional tests"
 	@echo "make tis-l1         : Runs TISA L1 analysis for positive and negative shift"
 	@echo "make tis-l2         : Runs TISA L2 analysis generalization of shift"
 	@echo "make tis-l2-step2   : Runs TISA L2 analysis generalization of string"
@@ -37,8 +38,14 @@ help-specific:
 test:
 	@echo -e "$(FONT_CYAN)$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o caesar && ./caesar$(FONT_RESET)"
 	@$(COMPILER) -I. -fprofile-arcs -ftest-coverage $(FILES) -o caesar && ./caesar
-	@echo ""
+
 	@echo -e "$(FONT_CYAN)gcov caesar.c $(FONT_RESET)"
+	@# With gcc 11 and higher the coverage files have a different name.
+	@# Temporarily fixing by changing file name to the expected name
+	@if [ $(GCC_VERSION) -ge 11 ]; then \
+	mv $(TARGET)-$(TARGET).gcno $(TARGET).gcno; \
+	mv $(TARGET)-$(TARGET).gcda $(TARGET).gcda; \
+	fi
 	@gcov caesar.c
 
 tis-l1-run:

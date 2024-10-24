@@ -21,7 +21,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 ## Overview
 
-This directory demonstrate how subtle Undefined Behaviors (UB) can be and why they are most often not detected through unit tests
+This directory demonstrate how subtle Undefined Behaviors (UB) can be and why they are most often not detected through functional tests
 
 Note: If you have an Ubuntu machine you can run this demo live by running:
 ```bash
@@ -191,13 +191,13 @@ increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);
 
 The message `increment.c:27:[kernel] warning: out of bounds write. assert \valid(p);` is the
 evidence that the buffer overflow was detected and that the TrustInSoft Analyzer is a much more
-reliable way of testing code for robustness than Unit Tests.
+reliable way of testing code for robustness than functional tests.
 
 ## Conclusion
 
 Undefined Behaviors are sometimes obvious (they can cause runtime errors like division by zero, and software crashes) but most of the time:
 - They are quite subtle
-- They are often hard to detect with traditional unit tests.
+- They are often hard to detect with traditional functional tests.
 - They will materialize (cause a problem) only in certain conditions, and their
   potentially catastrophic effect may not materialize immediately (crash after some time, crash under particular circumstances, no crash but unpredictable code behavior etc...)
 
