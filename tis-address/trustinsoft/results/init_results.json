@@ -1,0 +1,13 @@
+{
+  "computation": {
+    "type": "error",
+    "status": "NOT OK",
+    "error": "parsing error",
+    "message": [
+      {
+        "msg": "File TIS_KERNEL_SHARE/libc/tis_runtime.c: failed to run: /opt/tis/2025.10.4-2668-g53596912e0/llvm/bin/clang -E -C -m64 -target x86_64-unknown-linux-gnu -mno-sse -D __TIS_MACHDEP_X86_64_GCC -nostdinc -D__TIS_KERNEL__ -dD -I '/opt/tis/2025.10.4-2668-g53596912e0/share/tis-kernel' -D__TIS_MKFS -D__TIS_MKFS_NO_ERR -D__TRUSTINSOFT_MAJOR__=2025 -D__TRUSTINSOFT_MINOR__=10 -D__TRUSTINSOFT_PATCH__=4 -D__TRUSTINSOFT_ANALYZER__ -D__TRUSTINSOFT_HELPER__ -D__TRUSTINSOFT_LABEL__ -D__TRUSTINSOFT_BUGFIX__ -D__TRUSTINSOFT_TMPBUG__ -DTIS_DETERMINISTIC_LIBC -DTIS_INTERPRETER '-I.trustinsoft' -D 'WITH_TIS_ADDRESS' -I/opt/tis/2025.10.4-2668-g53596912e0/share/tis-kernel/tis-lib -isystem '/opt/tis/2025.10.4-2668-g53596912e0/share/tis-kernel/libc' -isystem '/opt/tis/2025.10.4-2668-g53596912e0/share/tis-kernel/linux' -D__TIS_TARGET_LINUX__ -o '/tmp/tis_runtime.c251de4.i' '/opt/tis/2025.10.4-2668-g53596912e0/share/tis-kernel/libc/tis_runtime.c'\nyou may set the CPP environment variable to select the proper preprocessor command or use the option \"-cpp-command\".",
+        "code": "EAP118"
+      }
+    ]
+  }
+}

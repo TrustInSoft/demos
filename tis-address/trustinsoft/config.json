@@ -1,0 +1,35 @@
+{
+    "common": {
+        "machdep": "gcc_x86_64",
+        "slevel": 10,
+        "val": true,
+        "val-profile": "interpreter",
+        "remove-volatile": true,
+        "prefix_path": "..",
+        "files": [
+            // "../memory_allocator.c",
+            "memory_map.c",
+            "trustinsoft/tis_model.c"
+        ],
+        "cpp-extra-args": "-I.",
+        "whole-program-graph": true,
+        "mcdc": true
+    },
+    "analyses":[
+        {
+            "name": "main",
+            "main": "main",
+            "files":[
+                "memory_allocator.c"
+            ]
+        },
+        {
+            "name": "get_registers",
+            "main": "test_get_registers"
+        },
+        {
+            "name": "init",
+            "main": "test_init"
+        }
+    ]
+}

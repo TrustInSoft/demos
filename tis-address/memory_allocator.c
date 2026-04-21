@@ -19,6 +19,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <stdlib.h>
+#include <string.h>
 
 #define HEAP_BEGIN  0x8000000
 #define HEAP_SIZE   0x100
@@ -42,6 +43,7 @@ void * my_alloc(int size)
     while (i < MAX_BLOCKS && mem[i].isAllocated) i++;
     if (i == MAX_BLOCKS) return NULL;
     
+    mem[i].size = 0x100;
     if (mem[i].size > size)
     {
         // if (free_heap_start + size > HEAP_BEGIN + HEAP_SIZE) return NULL;
@@ -64,6 +66,16 @@ void my_free(void * ptr)
     }
 }
 
+char *  uppercase(char *str)
+{
+    while (*str != '\0') {
+        if (*str > 'a' && *str < 'z') {
+            *str = *str + 'A' - 'a';
+        }
+    }
+    return str;
+}
+
 int main()
 {
     char * paragraph1 = my_alloc(100);
@@ -78,12 +90,3 @@ int main()
     uppercase(paragraph3);
 }
 
-char *  uppercase(char *str)
-{
-    while (*str != '\0') {
-        if (*str > 'a' && *str < 'z') {
-            *str = *str + 'A' - 'a';
-        }
-    }
-    return str;
-}

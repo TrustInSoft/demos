@@ -1,0 +1,111 @@
+{
+  "computation": { "type": "error", "status": "OK" },
+  "undefined_functions": { "type": "error", "status": "OK" },
+  "degeneration": {
+    "type": "error",
+    "status": "NOT OK",
+    "reason": "stop at nth alarm",
+    "program_point": {
+      "file": "../../memory_map.c",
+      "line": 44,
+      "function": "get_registers",
+      "function_start_line": 40,
+      "function_end_line": 46,
+      "statement_kind": "instruction"
+    }
+  },
+  "non_terminating": {
+    "type": "to verify",
+    "status": "NOT OK",
+    "list": [
+      {
+        "never_terminating": true,
+        "program_point": {
+          "file": "../../memory_map.c",
+          "line": 43,
+          "function": "get_registers",
+          "function_start_line": 40,
+          "function_end_line": 46,
+          "statement_kind": "loop",
+          "loop_number": 1
+        }
+      }
+    ]
+  },
+  "messages": { "type": "to verify", "status": "OK" },
+  "alarms": {
+    "type": "error",
+    "status": "NOT OK",
+    "list": [
+      {
+        "kind": "pointer arithmetic",
+        "predicate": "\\inside_object((void *)p_register)",
+        "rank": 1,
+        "status": "unknown",
+        "program_point": {
+          "file": "../../memory_map.c",
+          "line": 44,
+          "function": "get_registers",
+          "function_start_line": 40,
+          "function_end_line": 46,
+          "statement_kind": "instruction",
+          "call_stacks": [
+            [
+              {
+                "function": "test_get_registers",
+                "file": "../tis_model.c",
+                "line": 39
+              }
+            ]
+          ]
+        },
+        "values": [
+          { "lvalue": "p_register", "values": " ∈ {1207959552}" }
+        ]
+      }
+    ]
+  },
+  "hypotheses": { "type": "to verify", "status": "OK" },
+  "no_body_but_spec": { "type": "to verify", "status": "OK" },
+  "body_but_use_spec": { "type": "informative", "status": "OK" },
+  "external_variables": { "type": "informative", "status": "OK" },
+  "assembly": { "type": "informative", "status": "OK" },
+  "builtins": { "type": "informative", "status": "OK" },
+  "useless_files": { "type": "to verify", "status": "OK" },
+  "coverage": {
+    "type": "informative",
+    "function_coverage": "50%",
+    "total_statements_coverage": "48%",
+    "semantic_statements_coverage": "67%"
+  },
+  "precision": { "type": "informative", "status": "OK", "max_slevel": 1 },
+  "time": {
+    "type": "informative",
+    "total_time": "1.473",
+    "value_analysis_time": "0.042",
+    "parsing_time": "1.432"
+  },
+  "target": {
+    "type": "informative",
+    "entry_point": "test_get_registers",
+    "entry_point_function": {
+      "function": "test_get_registers",
+      "file": "../tis_model.c",
+      "function_start_line": 36,
+      "function_end_line": 40
+    },
+    "architecture": "gcc 4.0.3 AMD64",
+    "endianness": "little endian"
+  },
+  "entry_point_return": { "type": "informative", "reachable": false },
+  "exit_function": { "type": "informative", "reachable": false },
+  "val_profile": "interpreter",
+  "value_results": true,
+  "memory_usage": {
+    "words": 17088512,
+    "bytes": 136708096,
+    "kbytes": 136708,
+    "Mbytes": 136,
+    "Gbytes": 0
+  }
+}

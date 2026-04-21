@@ -1,0 +1,7 @@
+File, Function, Number, Description, CallNumber
+../tis_model.c, test_init, 2, Function that cannot be called at all, 1
+../tis_model.c, test_get_registers, 2, Block in reachable function, 1
+../../memory_map.c, get_registers, 2, Block in reachable function, 0
+../../memory_map.c, get_registers, 1, Block in reachable function, 0
+../../memory_map.c, configure_gpio_in_input_mode, 2, Function called from never called function, 0
+../tis_model.c, __tis_globfini, 2, Function that may be called, 1

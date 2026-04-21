@@ -1,0 +1,199 @@
+File, Line, Kind, Source name, Internal name, Defined, Sub-type, Size (#bytes), Is libc
+TIS_KERNEL_SHARE/libc/__fc_define_wchar_t.h, 39, typedef, wchar_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_intXX_t.h, 16, typedef, int8_t, <same>, defined, signed char, 1, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_intXX_t.h, 17, typedef, int16_t, <same>, defined, short, 2, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_intXX_t.h, 18, typedef, int32_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_intXX_t.h, 19, typedef, int64_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 44, typedef, uint8_t, <same>, defined, unsigned char, 1, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 45, typedef, uint16_t, <same>, defined, unsigned short, 2, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 46, typedef, uint32_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 47, typedef, uint64_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 71, typedef, uintptr_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 74, typedef, intmax_t, <same>, defined, long long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdint.h, 75, typedef, uintmax_t, <same>, defined, unsigned long long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/inttypes.h, 352, struct, <empty>, __anonstruct_imaxdiv_t_1, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/inttypes.h, 352, typedef, imaxdiv_t, <same>, defined, struct __anonstruct_imaxdiv_t_1, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_size_t.h, 42, typedef, size_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_iovec.h, 39, struct, iovec, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_sa_family_t.h, 39, typedef, sa_family_t, <same>, defined, unsigned short, 2, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_sockaddr.h, 47, struct, __tis_posix_sockaddr, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_sockaddr.h, 55, struct, sockaddr, <same>, defined, N/A, 18, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_ssize_t.h, 42, typedef, ssize_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_blkcnt_t.h, 37, typedef, blkcnt_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_blksize_t.h, 37, typedef, blksize_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_dev_t.h, 38, typedef, dev_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_ino_t.h, 38, typedef, ino_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_mode_t.h, 39, typedef, mode_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_nlink_t.h, 38, typedef, nlink_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_off_t.h, 42, typedef, off_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_off_t.h, 46, typedef, off64_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_timespec.h, 38, struct, timespec, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_time_t.h, 46, typedef, time_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_uid_and_gid.h, 38, typedef, gid_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_uid_and_gid.h, 39, typedef, uid_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_stat_internal.h, 39, struct, stat, <same>, defined, N/A, 128, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_stat_internal.h, 39, struct, stat64, <same>, defined, N/A, 128, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pid_t.h, 38, typedef, pid_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/sys/socket.h, 51, typedef, socklen_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/sys/socket.h, 88, struct, msghdr, <same>, defined, N/A, 48, libc:yes
+TIS_KERNEL_SHARE/libc/sys/socket.h, 260, struct, __fc_sockfds_type, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/netinet/in.h, 53, typedef, in_addr_t, <same>, defined, typedef uint32_t, 4, libc:yes
+TIS_KERNEL_SHARE/libc/netinet/in.h, 55, struct, in_addr, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/netinet/in.h, 71, struct, in6_addr, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_locale_t.h, 38, struct, __tis_locale_struct, <same>, defined, N/A, 232, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_locale_t.h, 38, typedef, __tis_locale_t, <same>, defined, pointer type, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_locale_t.h, 46, typedef, locale_t, <same>, defined, typedef __tis_locale_t, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fpos_t.h, 42, struct, __fc_pos_t, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fpos_t.h, 43, typedef, fpos_t, <same>, defined, struct __fc_pos_t, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_file.h, 56, struct, __fc_FILE, <same>, defined, N/A, 160, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_file.h, 57, struct, __fc_FILE, <same>, defined, N/A, 160, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_file.h, 84, typedef, FILE, <same>, defined, struct __fc_FILE, 160, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_va_list.h, 15, typedef, va_list, <same>, defined, __builtin_va_list, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 52, struct, __fc_div_t, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 52, typedef, div_t, <same>, defined, struct __fc_div_t, 8, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 58, struct, __fc_ldiv_t, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 58, typedef, ldiv_t, <same>, defined, struct __fc_ldiv_t, 16, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 64, struct, __fc_lldiv_t, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.h, 64, typedef, lldiv_t, <same>, defined, struct __fc_lldiv_t, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_quad_t.h, 17, typedef, u_quad_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_quad_t.h, 18, typedef, quad_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/tis-lib/tis_builtin.h, 821, enum, tis_valid_pointer, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_clock_t.h, 14, typedef, clock_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_clockid_t.h, 38, typedef, clockid_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fsblkcnt_t.h, 16, typedef, fsblkcnt_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fsblkcnt_t.h, 17, typedef, fsblkcnt64_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fsblkcnt_t.h, 18, typedef, fsfilcnt_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fsblkcnt_t.h, 19, typedef, fsfilcnt64_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_id_t.h, 38, typedef, id_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread_attr_t.h, 21, struct, <empty>, __anonstruct_pthread_attr_t_3, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread_attr_t.h, 21, typedef, pthread_attr_t, <same>, defined, struct __anonstruct_pthread_attr_t_3, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 23, struct, <empty>, __anonstruct_pthread_mutex_t_4, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 23, typedef, pthread_mutex_t, <same>, defined, struct __anonstruct_pthread_mutex_t_4, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 24, struct, <empty>, __anonstruct_pthread_mutexattr_t_5, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 24, typedef, pthread_mutexattr_t, <same>, defined, struct __anonstruct_pthread_mutexattr_t_5, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 25, typedef, pthread_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 38, struct, __tis_rwlockattr, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 42, typedef, pthread_rwlockattr_t, <same>, defined, struct __tis_rwlockattr, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 43, struct, __tis_rwlock, <same>, defined, N/A, 20, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 49, typedef, pthread_rwlock_t, <same>, defined, struct __tis_rwlock, 20, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 51, struct, __tis_cond, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 54, typedef, pthread_cond_t, <same>, defined, struct __tis_cond, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 55, typedef, pthread_condattr_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 57, typedef, pthread_once_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_pthread.h, 58, typedef, pthread_key_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_suseconds_t.h, 38, typedef, suseconds_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/dirent.h, 48, struct, dirent, <same>, defined, N/A, 264, libc:yes
+TIS_KERNEL_SHARE/libc/dirent.h, 57, struct, <empty>, __anonstruct_DIR_7, defined, N/A, 24, libc:yes
+TIS_KERNEL_SHARE/libc/dirent.h, 57, typedef, DIR, <same>, defined, struct __anonstruct_DIR_7, 24, libc:yes
+TIS_KERNEL_SHARE/libc/dlfcn.h, 64, struct, <empty>, __anonstruct_Dl_info_9, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/dlfcn.h, 64, typedef, Dl_info, <same>, defined, struct __anonstruct_Dl_info_9, 32, libc:yes
+TIS_KERNEL_SHARE/libc/dlfcn.c, 26, struct, dl_entry, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/fcntl.h, 53, struct, flock, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/fenv.h, 16, struct, <empty>, __anonstruct_fenv_t_10, defined, N/A, 12, libc:yes
+TIS_KERNEL_SHARE/libc/fenv.h, 16, typedef, fenv_t, <same>, defined, struct __anonstruct_fenv_t_10, 12, libc:yes
+TIS_KERNEL_SHARE/libc/getopt.h, 42, struct, option, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/grp.h, 40, struct, group, <same>, defined, N/A, 24, libc:yes
+TIS_KERNEL_SHARE/libc/stddef.h, 45, typedef, ptrdiff_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/iconv.h, 43, typedef, iconv_t, <same>, defined, pointer type, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_nl_item.h, 37, typedef, nl_item, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/locale.h, 41, struct, lconv, <same>, defined, N/A, 96, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_mbstate_t.h, 28, struct, <empty>, __anonstruct___utf8_state_11, defined, N/A, 12, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_mbstate_t.h, 28, union, __tis_mbstate_t, <same>, defined, N/A, 12, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_mbstate_t.h, 37, typedef, mbstate_t, <same>, defined, union __tis_mbstate_t, 12, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_wint_t.h, 39, typedef, wint_t, <same>, defined, long long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/wchar.h, 54, struct, tm, <same>, defined, N/A, 56, libc:yes
+TIS_KERNEL_SHARE/libc/math.c, 71, union, <empty>, __anonunion_ux_12, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/math.c, 99, union, <empty>, __anonunion_uy_13, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/math.c, 238, union, <empty>, __anonunion_ux_14, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/math.c, 332, union, <empty>, __anonunion_ux_15, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/mntent.h, 22, struct, mntent, <same>, defined, N/A, 40, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_siginfo.h, 43, union, sigval, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_siginfo.h, 48, struct, <empty>, __anonstruct_siginfo_t_16, defined, N/A, 56, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_siginfo.h, 48, typedef, siginfo_t, <same>, defined, struct __anonstruct_siginfo_t_16, 56, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_sigset_t.h, 37, typedef, sigset_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/signal.h, 178, struct, sigaction, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/signal.h, 210, struct, sigevent, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/mqueue.h, 36, typedef, mqd_t, <same>, defined, int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/mqueue.h, 38, struct, mq_attr, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/mqueue.c, 8, struct, mq_message, <same>, defined, N/A, 24, libc:yes
+TIS_KERNEL_SHARE/libc/mqueue.c, 15, struct, mq_priority_queue, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/net/if.h, 50, struct, if_nameindex, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/poll.h, 28, struct, pollfd, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/poll.h, 34, typedef, nfds_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/pwd.h, 46, struct, passwd, <same>, defined, N/A, 64, libc:yes
+TIS_KERNEL_SHARE/libc/semaphore.h, 16, typedef, sem_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/setjmp.h, 42, typedef, jmp_buf, <same>, defined, array type, 20, libc:yes
+TIS_KERNEL_SHARE/libc/setjmp.h, 54, struct, <empty>, __anonstruct_sigjmp_buf_23, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/setjmp.h, 54, typedef, sigjmp_buf, <same>, defined, struct __anonstruct_sigjmp_buf_23, 32, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_useconds_t.h, 39, typedef, useconds_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/stdlib.c, 308, typedef, __tis_void_function, <same>, defined, pointer type, 8, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_timeval.h, 19, struct, timeval, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_rusage.h, 39, struct, rusage, <same>, defined, N/A, 144, libc:yes
+TIS_KERNEL_SHARE/libc/sys/resource.h, 51, typedef, rlim_t, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/sys/resource.h, 52, struct, rlimit, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fd_set_t.h, 45, struct, <empty>, __anonstruct_fd_set_27, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_fd_set_t.h, 45, typedef, fd_set, <same>, defined, struct __anonstruct_fd_set_27, 32, libc:yes
+TIS_KERNEL_SHARE/libc/sys/statvfs.h, 18, struct, statvfs, <same>, defined, N/A, 88, libc:yes
+TIS_KERNEL_SHARE/libc/sys/statvfs.h, 32, struct, statvfs64, <same>, defined, N/A, 88, libc:yes
+TIS_KERNEL_SHARE/libc/sys/time.h, 50, struct, timezone, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/sys/timeb.h, 20, struct, timeb, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/sys/utsname.h, 24, struct, utsname, <same>, defined, N/A, 1280, libc:yes
+TIS_KERNEL_SHARE/libc/sys/wait.h, 56, enum, __TIS_IDTYPE_T, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/sys/wait.h, 56, typedef, idtype_t, <same>, defined, enum __TIS_IDTYPE_T, 4, libc:yes
+TIS_KERNEL_SHARE/libc/syslog.h, 41, struct, _code, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/syslog.h, 41, typedef, CODE, <same>, defined, struct _code, 16, libc:yes
+TIS_KERNEL_SHARE/libc/termios.h, 44, typedef, cc_t, <same>, defined, unsigned char, 1, libc:yes
+TIS_KERNEL_SHARE/libc/termios.h, 45, typedef, speed_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/termios.h, 46, typedef, tcflag_t, <same>, defined, unsigned int, 4, libc:yes
+TIS_KERNEL_SHARE/libc/termios.h, 228, struct, termios, <same>, defined, N/A, 56, libc:yes
+TIS_KERNEL_SHARE/libc/__fc_define_tm.h, 17, struct, tm, <same>, defined, N/A, 56, libc:yes
+TIS_KERNEL_SHARE/libc/tis_stdlib.c, 245, struct, pair, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/tis_stdlib.c, 245, typedef, qsort_pair_t, <same>, defined, struct pair, 8, libc:yes
+TIS_KERNEL_SHARE/libc/tis_stdlib.c, 253, struct, qsort_stack, <same>, defined, N/A, 516, libc:yes
+TIS_KERNEL_SHARE/libc/tis_stdlib.c, 253, typedef, qsort_stack_t, <same>, defined, struct qsort_stack, 516, libc:yes
+TIS_KERNEL_SHARE/libc/regex.h, 54, typedef, regoff_t, <same>, defined, long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/regex.h, 56, struct, re_guts, <same>, defined, N/A, 128, libc:yes
+TIS_KERNEL_SHARE/libc/regex.h, 56, struct, <empty>, __anonstruct_regex_t_28, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/regex.h, 56, typedef, regex_t, <same>, defined, struct __anonstruct_regex_t_28, 32, libc:yes
+TIS_KERNEL_SHARE/libc/regex.h, 63, struct, <empty>, __anonstruct_regmatch_t_29, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex.h, 63, typedef, regmatch_t, <same>, defined, struct __anonstruct_regmatch_t_29, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 55, typedef, uch, <same>, defined, unsigned char, 1, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 81, typedef, sop, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 82, typedef, sopno, <same>, defined, unsigned long, 8, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 124, struct, <empty>, __anonstruct_cset_30, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 124, typedef, cset, <same>, defined, struct __anonstruct_cset_30, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 151, struct, re_guts, <same>, defined, N/A, 128, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 180, struct, cclass, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 205, struct, cname, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 311, struct, parse, <same>, defined, N/A, 224, libc:yes
+TIS_KERNEL_SHARE/libc/regex.c, 1639, struct, rerr, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/regex_engine.i, 67, struct, smat, <same>, defined, N/A, 96, libc:yes
+TIS_KERNEL_SHARE/libc/regex_engine.i, 67, struct, lmat, <same>, defined, N/A, 112, libc:yes
+TIS_KERNEL_SHARE/libc/pthread.c, 323, struct, <empty>, __anonstruct_keys_31, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/libc/pthread.c, 668, struct, <empty>, __anonstruct_threads_32, defined, N/A, 12, libc:yes
+TIS_KERNEL_SHARE/libc/tis_gcc_builtins.c, 409, struct, ieee_single, <same>, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/tis_gcc_builtins.c, 421, struct, ieee_double, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/libc/sys/socket.h, 63, struct, sockaddr_storage, <same>, defined, N/A, 136, libc:yes
+TIS_KERNEL_SHARE/libc/netinet/in.h, 52, typedef, in_port_t, <same>, defined, typedef uint16_t, 2, libc:yes
+TIS_KERNEL_SHARE/libc/netinet/in.h, 59, struct, sockaddr_in, <same>, defined, N/A, 12, libc:yes
+TIS_KERNEL_SHARE/libc/netinet/in.h, 75, struct, sockaddr_in6, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/libc/dirent.h, 126, enum, <empty>, __anonenum_7, defined, N/A, 4, libc:yes
+TIS_KERNEL_SHARE/libc/sys/un.h, 41, struct, sockaddr_un, <same>, defined, N/A, 112, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 51, struct, __mkfs_fs_file, <same>, defined, N/A, 40, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 51, struct, <empty>, __anonstruct___mkfs_file_info_11, defined, N/A, 24, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 51, typedef, __mkfs_file_info, <same>, defined, struct __anonstruct___mkfs_file_info_11, 24, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 65, typedef, __mkfs_dir_info, <same>, defined, typedef DIR, 24, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 72, struct, __mkfs_socket, <same>, defined, N/A, 200, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 72, typedef, __mkfs_socket_info, <same>, defined, struct __mkfs_socket, 200, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 118, struct, __mkfs_fs_file, <same>, defined, N/A, 40, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 145, struct, __mkfs_fs_dir, <same>, defined, N/A, 32, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 154, union, __mkfs_sockaddr_base, <same>, defined, N/A, 136, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.h, 161, struct, __mkfs_connection, <same>, defined, N/A, 184, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 203, struct, __mkfs_ancestors, <same>, defined, N/A, 16, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 254, struct, __mkfs_fd_info, <same>, defined, N/A, 8, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 3692, struct, __mkfs_map, <same>, defined, N/A, 48, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 3692, typedef, map, <same>, defined, struct __mkfs_map, 48, libc:yes
+TIS_KERNEL_SHARE/__tis_mkfs.c, 3712, struct, __mkfs_maps, <same>, defined, N/A, 2024, libc:yes
+TIS_KERNEL_SHARE/libc/dirent.h, 126, enum, <empty>, __anonenum_2, defined, N/A, 4, libc:yes
+../../memory_map.h, 23, struct, <empty>, __anonstruct_GPIO_TypeDef_1, defined, N/A, 48, libc:no
+../../memory_map.h, 23, typedef, GPIO_TypeDef, <same>, defined, struct __anonstruct_GPIO_TypeDef_1, 48, libc:no

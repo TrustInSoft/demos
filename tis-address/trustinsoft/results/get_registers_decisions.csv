@@ -1,0 +1,2 @@
+File, Line, Function, #conditions, Conditions, Mixed, #ok(branches), #ok(mcdc), Traces
+../../memory_map.c, 43, get_registers, 1, 5, simple, -1, -1, NA
