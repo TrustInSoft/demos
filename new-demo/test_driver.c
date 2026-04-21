@@ -100,6 +100,11 @@ int test_null()
 
 void test_generalized_array()
 {
+    // temp is a variable that represents the range of possibilities from -1 to 100.
+    int temp = tis_interval(-1, 100);
+    // Now temp becomes -2 to 100, and temp % 2 == 0 , which means -2, 0, 2, 4, ..., 200
+    temp *= 2;
+
     int input_array[1000];
     // This corresponds to 2^32^1000 combinations
     // i.e approximatively 9 x 10^9632 inputs values
