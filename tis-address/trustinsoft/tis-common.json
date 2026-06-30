@@ -5,7 +5,7 @@
     "val-profile": "interpreter",
     "remove-volatile": "true",
     "files": [
-        // "../memory_allocator.c",
+        "../memory_allocator.c",
         "../memory_map.c",
         "tis_model.c"
     ],

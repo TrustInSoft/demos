@@ -1,0 +1,36 @@
+[
+    {
+        "include": "tis-common.json",
+        "name": "0.main",
+        "main": "main"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "1.init",
+        "main": "test_init"
+    },
+    {
+        "include": "tis-common.json",
+        "name": "1.1.init_with_tis_address",
+        "main": "test_init",
+        "cpp-extra-args":[
+            "-DWITH_TIS_ADDRESS"
+        ]
+    },
+    {
+        "include": "tis-common.json",
+        "name": "2.get_registers",
+        "main": "test_get_registers",
+        "cpp-extra-args":[
+            "-DWITH_TIS_ADDRESS"
+        ]
+    },
+    {
+        "include": "tis-common.json",
+        "name": "3.custom_alloc",
+        "main": "test_allocator",
+        "cpp-extra-args":[
+            ""
+        ]
+    }
+]
